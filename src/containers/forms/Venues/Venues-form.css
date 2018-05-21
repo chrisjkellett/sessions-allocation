@@ -1,0 +1,8 @@
+.Venues{
+  padding: 5px;
+}
+
+.Venues label{
+  margin-right: 5px;
+  text-transform: capitalize;
+}
