@@ -1,12 +1,16 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios';
+import {objectToArray} from './utility';
 
 export const loadExaminers = () => {
   return dispatch => {
     axios.get('/examiners.json')
       .then(response => {
-        dispatch(setExaminers(response.data))
-    })
+        dispatch(setExaminers(objectToArray(response.data)))
+      })
+      .catch(error => {
+        dispatch(failedLoad(error))
+      })
   }
 }
 
@@ -16,3 +20,10 @@ export const setExaminers = (data) => {
     examiners: data
   }
 }
+
+export const failedLoad = (error) => {
+  return {
+    type: actionTypes.FAILED_LOAD,
+    error: error
+  }
+} 
