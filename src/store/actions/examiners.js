@@ -4,12 +4,9 @@ import axios from '../../axios';
 export const loadExaminers = () => {
   return dispatch => {
     axios.get('/examiners.json')
-      .then(res => {
-        dispatch(setExaminers(res.data))
-      })
-      .error(error => {
-        console.log(error);
-      })
+      .then(response => {
+        dispatch(setExaminers(response.data))
+    })
   }
 }
 

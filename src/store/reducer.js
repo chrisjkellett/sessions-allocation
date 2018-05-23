@@ -7,7 +7,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
 
   switch(action.type){
-    case actionTypes.LOAD_EXAMINERS:
+    case actionTypes.SET_EXAMINERS:
       return {
         ...state,
         examiners: action.examiners

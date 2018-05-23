@@ -1,1 +1,1 @@
-export const LOAD_EXAMINERS = 'LOAD_EXAMINERS';
+export const SET_EXAMINERS = 'SET_EXAMINERS';
