@@ -22,3 +22,8 @@ button{
 button:hover{
   background-color: lightgrey;
 }
+
+table{
+  width: 100%;
+  border-spacing: 0;
+}

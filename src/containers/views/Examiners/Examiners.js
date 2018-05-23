@@ -2,19 +2,25 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/examiners';
 import classes from './Examiners.css';
+import {examinerTableHeaders} from './utility';
+
+import Table from '../../wrappers/Table/Table';
+import Rows from './Rows/Rows';
 
 class Examiners extends Component{
   componentDidMount(){
-    this.props.loadExaminers()
+    this.props.loadExaminers();
   }
 
   render(){
     return (
-      <ul className={classes.Examiners}>
-        {this.props.examiners === null ? null : this.props.examiners.map(examiner => {
-          return <li key={examiner.name}>{examiner.name}</li>
-        })}
-      </ul>
+      <section className={classes.Examiners}>
+        <Table labels={examinerTableHeaders}>
+          {this.props.examiners === null ? 'loading' : this.props.examiners.map(examiner => (
+            <Rows key={examiner.name} examiner={examiner} />
+          ))}
+        </Table>
+      </section>
     )
   }
 }
