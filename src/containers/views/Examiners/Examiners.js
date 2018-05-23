@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/examiners';
+import classes from './Examiners.css';
 
 class Examiners extends Component{
   componentDidMount(){
@@ -9,7 +10,7 @@ class Examiners extends Component{
 
   render(){
     return (
-      <ul>
+      <ul className={classes.Examiners}>
         {this.props.examiners === null ? null : this.props.examiners.map(examiner => {
           return <li key={examiner.name}>{examiner.name}</li>
         })}
