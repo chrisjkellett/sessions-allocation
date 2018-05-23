@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 class Examiners extends Component{
   render(){
@@ -8,4 +9,10 @@ class Examiners extends Component{
   }
 }
 
-export default Examiners;
+const mapStateToProps = state => {
+  return {
+    examiners: state.examiners
+  }
+}
+
+export default connect(mapStateToProps)(Examiners);

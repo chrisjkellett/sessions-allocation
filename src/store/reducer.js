@@ -1,9 +1,21 @@
+import * as actionTypes from './actions/actionTypes';
+
 const initialState = {
-  name: 'Chris'
+  examiners: null
 }
 
 const reducer = (state = initialState, action) => {
-  return state;
+
+  switch(action.type){
+    case actionTypes.LOAD_EXAMINERS:
+      return {
+        ...state,
+        examiners: action.examiners
+      }
+
+    default:
+      return state;  
+  }
 }
 
 export default reducer;
