@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Venues from './containers/forms/Venues/Venues-form';
+import Examiners from './containers/views/Examiners/Examiners';
 
 class App extends Component {
   render() {
     return (
-      <Venues />
+      <Examiners />
     );
   }
 }

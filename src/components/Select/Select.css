@@ -1,4 +1,18 @@
+.Select, .DateSelect{
+  margin: 10px 0;
+}
+
+.DateSelect{
+  display: inline;
+}
+
 .Select select{
   width: 150px;
   padding: 3px 0;
 }
+
+.DateSelect select{
+  padding: 3px 0;
+  display: inline;
+}
+

@@ -6,9 +6,19 @@ body {
   font-family: 'Quicksand', sans-serif;
 }
 
-input, select{
+input, select, button{
   font-family: inherit;
   font-size: inherit;
   outline: 0;
   display: block;
+}
+
+button{
+  border: 1px solid grey;
+  padding: 5px;
+  cursor: pointer;
+}
+
+button:hover{
+  background-color: lightgrey;
 }
