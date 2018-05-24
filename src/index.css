@@ -27,3 +27,17 @@ table{
   width: 100%;
   border-spacing: 0;
 }
+
+@media only screen and (max-width: 600px) {
+  thead{
+    display: none;
+  }
+
+  tr td{
+    display: block;
+    width: 100%; 
+    border-bottom: none !important;
+    height: 10px !important;
+    text-align: center;
+  }
+}
