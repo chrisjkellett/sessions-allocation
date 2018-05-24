@@ -12,7 +12,7 @@ const rows = (props) => {
       <td>{props.examiner.SE_id}</td>
       <td>
         {mapLevelsToArray.map(level => {
-          return <span className={classes.Icons}>{level}</span>
+          return <span key={level} className={classes.Icons}>{level}</span>
         })}
       </td>
       <td></td>

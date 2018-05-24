@@ -1,0 +1,15 @@
+.Header{
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  border-bottom: 1px solid lightgrey;
+  top: 0;
+}
+
+.Header li{
+  display: inline-block;
+  padding: 10px;
+}
