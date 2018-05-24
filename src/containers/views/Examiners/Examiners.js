@@ -16,7 +16,7 @@ class Examiners extends Component{
     return (
       <section className={classes.Examiners}>
         <Table labels={examinerTableHeaders}>
-          {this.props.examiners === null ? 'loading' : this.props.examiners.map(examiner => (
+          {this.props.examiners === null ? null : this.props.examiners.map(examiner => (
             <Rows key={examiner.name} examiner={examiner} />
           ))}
         </Table>
