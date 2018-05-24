@@ -39,5 +39,6 @@ table{
     border-bottom: none !important;
     height: 10px !important;
     text-align: center;
+    padding: 15px 0 !important;
   }
 }

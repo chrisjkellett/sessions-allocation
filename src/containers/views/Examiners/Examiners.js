@@ -6,6 +6,7 @@ import {examinerTableHeaders} from './utility';
 
 import Table from '../../wrappers/Table/Table';
 import Rows from './Rows/Rows';
+import Loading from '../../../components/Misc/Loading';
 
 class Examiners extends Component{
   componentDidMount(){
@@ -16,7 +17,7 @@ class Examiners extends Component{
     return (
       <section className={classes.Examiners}>
         <Table labels={examinerTableHeaders}>
-          {this.props.examiners === null ? null : this.props.examiners.map(examiner => (
+          {this.props.examiners === null ? <Loading /> : this.props.examiners.map(examiner => (
             <Rows key={examiner.name} examiner={examiner} />
           ))}
         </Table>

@@ -1,11 +1,17 @@
 import React from 'react';
 import classes from './Header.css';
+import {NavLink} from 'react-router-dom';
 
 const header = () => {
   return(
     <ul className={classes.Header}>
-      <li>examiners</li>
-      <li>add examiner</li>
+      <NavLink to='/' exact activeClassName={classes.Active}>
+        <li>examiners</li>
+      </NavLink>
+
+      <NavLink to='/venues' exact activeClassName={classes.Active}>
+        <li>venues</li>
+      </NavLink>
     </ul>
   )
 } 
