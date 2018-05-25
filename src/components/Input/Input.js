@@ -6,7 +6,7 @@ const Input = (props) => {
     <div className={classes.Input}>
       <label>{props.id}</label>
       <input 
-        type={props.type} 
+        type={props.type ? props.type : 'text'} 
         onChange={(event) => props.handler(event, props.id)} 
         defaultValue={props.value} />
     </div>

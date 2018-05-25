@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Route} from 'react-router-dom';
 import Header from './containers/header/Header';
 import Examiners from './containers/views/Examiners/Examiners';
+import AddExaminers from './containers/forms/Examiners/Examiners';
 import Venues from './containers/forms/Venues/Venues';
 import Wrapper from './containers/wrappers/Empty';
 
@@ -12,6 +13,7 @@ class App extends Component {
         <Header />
         <Route path='/' exact component={Examiners} />
         <Route path='/venues' exact component={Venues} />
+        <Route path='/examiners/add' exact component={AddExaminers} />
       </Wrapper>
     );
   }
