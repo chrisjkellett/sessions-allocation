@@ -21,6 +21,26 @@ export const setExaminers = (data) => {
   }
 }
 
+export const saveNewExaminer = () => {
+  return dispatch => {
+    axios.post('/examiners.json')
+      .then(response => {
+        dispatch(addNewExaminer(response.data))
+      })
+      .catch(error => {
+        dispatch(failedLoad(error))
+      })
+  }
+}
+
+
+export const addNewExaminer = (examiner) => {
+  return {
+    type: actionTypes.ADD_NEW_EXAMINER,
+    examiner: examiner
+  }
+}
+
 export const failedLoad = (error) => {
   return {
     type: actionTypes.FAILED_LOAD,

@@ -1,2 +1,4 @@
 export const SET_EXAMINERS = 'SET_EXAMINERS';
 export const FAILED_LOAD = 'FAILED_LOAD';
+
+export const ADD_NEW_EXAMINER = 'ADD_NEW_EXAMINER';

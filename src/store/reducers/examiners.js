@@ -11,6 +11,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_EXAMINERS:
       return updateState(state, {examiners: action.examiners, error: false})
 
+    case actionTypes.ADD_NEW_EXAMINER:
+      return updateState(state, {examiners: state.examiners.concat(action.examiner), error: false})
+
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: true})
 

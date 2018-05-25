@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import classes from './Examiners.css';
 import Input from '../../../components/Input/Input';
+import {connect} from 'react-redux';
+import * as actions from '../../../store/actions/examiners';
 
 class Examiners extends Component {
   state = {
@@ -21,6 +23,7 @@ class Examiners extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
+    this.props.addNewExaminer(this.state);
     console.log('submitting');
   }
 
@@ -34,4 +37,10 @@ class Examiners extends Component {
   }
 }
 
-export default Examiners;
+const mapDispatchToProps = dispatch => {
+  return{
+    addNewExaminer: (record) => dispatch(actions.addNewExaminer(record))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Examiners);
