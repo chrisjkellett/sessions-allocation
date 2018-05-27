@@ -1,11 +1,12 @@
 import React from 'react';
 import classes from './Rows.css';
-import {objectToArray} from './utility';
-import {levelKeys, roleKeys} from '../../../../store/data';
+import {objectToArray, formatAvailability, abbreviateDays} from './utility';
+import {levelKeys, roleKeys, availabilityKeys} from '../../../../store/data';
 
 const rows = (props) => {
   const mapLevelsToArray = objectToArray(props.examiner.levels, levelKeys);
   const mapRolesToArray = objectToArray(props.examiner.roles, roleKeys)
+  const mapAvailabilityToArray = objectToArray(props.examiner.availability, availabilityKeys)
 
   return(
     <tr className={classes.Row}>
@@ -27,7 +28,12 @@ const rows = (props) => {
         })}
       </td>
 
-      <td></td>
+      <td>
+      {mapAvailabilityToArray
+          .map(day => {
+            return <span key={day} className={classes.Icons}>{abbreviateDays(day)}</span>
+        })}
+      </td>
     </tr>
   )
 }
