@@ -8,3 +8,4 @@ export const yearOptions = [moment().format('Y'), Number(moment().format('Y')) +
 
 //keys
 export const levelKeys = ['YLE', 'KET', 'PET', 'FCE', 'CAE', 'CPE'];
+export const roleKeys = ['Speaking Examiner', 'Supervisor', 'Invigilator', 'Support staff'];
