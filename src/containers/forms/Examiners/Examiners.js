@@ -3,28 +3,25 @@ import classes from './Examiners.css';
 import Input from '../../../components/Input/Input';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/examiners';
+import {capitaliseFirstLetter} from './utility';
 
 class Examiners extends Component {
   state = {
-    name: {
-      type: 'text',
-      value: ''
-    }
+    name: ''
   }
 
   inputHandler = (event, id) => {
     this.setState({
-      [id]: {
-        ...this.state[id],
-        value: event.target.value
-      }
+      [id]: capitaliseFirstLetter(event.target.value)
     })
   }
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.props.addNewExaminer(this.state);
-    console.log('submitting');
+    this.props.saveNewExaminer(this.state);
+    this.props.history.push({
+      pathname: '/'
+    })
   }
 
   render(){
@@ -39,7 +36,7 @@ class Examiners extends Component {
 
 const mapDispatchToProps = dispatch => {
   return{
-    addNewExaminer: (record) => dispatch(actions.addNewExaminer(record))
+    saveNewExaminer: (examiner) => dispatch(actions.saveNewExaminer(examiner))
   }
 }
 

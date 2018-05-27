@@ -4,3 +4,9 @@ export const updateState = (obj, update) => {
     ...update
   }
 }
+
+export const sortByName = (obj) => {
+  return obj.sort((a, b) =>{
+    return a.name > b.name
+  })
+}

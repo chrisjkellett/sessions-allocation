@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import {updateState} from './utility';
+import {updateState, sortByName} from './utility';
 
 const initialState = {
   examiners: null,
@@ -12,7 +12,8 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {examiners: action.examiners, error: false})
 
     case actionTypes.ADD_NEW_EXAMINER:
-      return updateState(state, {examiners: state.examiners.concat(action.examiner), error: false})
+      console.log('dispatched examiner');
+      return updateState(state, {examiners: sortByName(state.examiners.concat(action.examiner)), error: false})
 
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: true})

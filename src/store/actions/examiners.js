@@ -21,11 +21,11 @@ export const setExaminers = (data) => {
   }
 }
 
-export const saveNewExaminer = () => {
+export const saveNewExaminer = (examiner) => {
   return dispatch => {
-    axios.post('/examiners.json')
+    axios.post('/examiners.json', examiner)
       .then(response => {
-        dispatch(addNewExaminer(response.data))
+        dispatch(addNewExaminer(examiner))
       })
       .catch(error => {
         dispatch(failedLoad(error))

@@ -8,9 +8,13 @@ export const objectToArray = (obj) => {
     const array = keys.map(item =>{
       copy.id = item;
       return copy[item]
-    }).sort((a, b) =>{
-      return a.name > b.name
     });
 
-    return array;
+    return sortByName(array);
+}
+
+export const sortByName = (obj) => {
+  return obj.sort((a, b) =>{
+    return a.name > b.name
+  })
 }

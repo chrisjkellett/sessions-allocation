@@ -5,8 +5,8 @@ const Input = (props) => {
   return(
     <div className={classes.Input}>
       <label>{props.id}</label>
-      <input 
-        type={props.type ? props.type : 'text'} 
+      <input
+         type={props.type ? props.type : 'text'} 
         onChange={(event) => props.handler(event, props.id)} 
         defaultValue={props.value} />
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Rows.css';
-import {objectToArray, formatAvailability, abbreviateDays} from './utility';
+import {objectToArray, abbreviateDays} from './utility';
 import {levelKeys, roleKeys, availabilityKeys} from '../../../../store/data';
 
 const rows = (props) => {
