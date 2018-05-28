@@ -2,8 +2,14 @@ import React from 'react';
 import classes from './Checkbox.css';
 
 const Checkbox = (props) => {
+  let styles = [];
+
+  if(!props.visible && props.id === 'LEVELS'){
+    styles.push(classes.NotVisible);
+  }
+
   return(
-    <div>
+    <div className={styles}>
       <label>{props.id.toLowerCase()}</label>
         <div className={classes.Checkbox}>
           {props.options.map(option => {

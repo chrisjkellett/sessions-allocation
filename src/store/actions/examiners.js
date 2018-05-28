@@ -6,7 +6,7 @@ export const loadExaminers = () => {
   return dispatch => {
     axios.get('/examiners.json')
       .then(response => {
-        dispatch(setExaminers(objectToArray(response.data)))
+        dispatch(loadExaminersSuccess(objectToArray(response.data)))
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -14,18 +14,18 @@ export const loadExaminers = () => {
   }
 }
 
-export const setExaminers = (data) => {
+export const loadExaminersSuccess = (data) => {
   return {
-    type: actionTypes.SET_EXAMINERS,
+    type: actionTypes.LOAD_EXAMINERS_SUCCESS,
     examiners: data
   }
 }
 
-export const saveNewExaminer = (examiner) => {
+export const addExaminer = (examiner) => {
   return dispatch => {
     axios.post('/examiners.json', examiner)
       .then(response => {
-        dispatch(addNewExaminer(examiner))
+        dispatch(addExaminerSuccess(examiner))
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -34,9 +34,9 @@ export const saveNewExaminer = (examiner) => {
 }
 
 
-export const addNewExaminer = (examiner, data) => {
+export const addExaminerSuccess = (examiner, data) => {
   return {
-    type: actionTypes.ADD_NEW_EXAMINER,
+    type: actionTypes.ADD_EXAMINER_SUCCESS,
     examiner: examiner
   }
 }

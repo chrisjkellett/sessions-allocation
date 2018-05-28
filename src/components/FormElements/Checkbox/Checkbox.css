@@ -25,3 +25,7 @@
 .Active {
   background: lightblue !important;
 }
+
+.NotVisible{
+  display: none;
+}

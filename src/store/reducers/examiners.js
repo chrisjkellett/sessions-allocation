@@ -8,10 +8,10 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
-    case actionTypes.SET_EXAMINERS:
+    case actionTypes.LOAD_EXAMINERS_SUCCESS:
       return updateState(state, {examiners: action.examiners, error: false})
 
-    case actionTypes.ADD_NEW_EXAMINER:
+    case actionTypes.ADD_EXAMINER_SUCCESS:
       return updateState(state, {examiners: sortByName(state.examiners.concat(action.examiner)), error: false})
 
     case actionTypes.DELETE_EXAMINER_SUCCESS:

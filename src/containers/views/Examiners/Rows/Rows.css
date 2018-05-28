@@ -33,3 +33,12 @@
   font-size: 90%;
 }
 
+.Btn{
+  cursor: pointer;
+  color: #0000EE;
+}
+
+.Btn:hover, .Bar{
+  color: grey;
+}
+

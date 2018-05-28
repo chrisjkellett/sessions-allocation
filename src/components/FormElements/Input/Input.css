@@ -1,3 +1,7 @@
 .Input{
   margin: 10px 0;
 }
+
+.NotVisible{
+  display: none;
+}

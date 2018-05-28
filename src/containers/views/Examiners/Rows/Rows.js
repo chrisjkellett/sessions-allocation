@@ -34,7 +34,9 @@ const rows = (props) => {
       </td>
 
       <td>
-        <span onClick={props.delete}>delete</span>
+        <span className={classes.Btn} onClick={props.edit}>edit</span>
+        <span className={classes.Bar}> | </span>
+        <span className={classes.Btn} onClick={props.delete}>delete</span>
       </td>
     </tr>
   )

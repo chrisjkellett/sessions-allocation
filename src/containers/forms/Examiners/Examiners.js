@@ -3,7 +3,6 @@ import classes from './Examiners.css';
 import Input from '../../../components/FormElements/Input/Input';
 import Select from '../../../components/FormElements/Select/Select';
 import Checkbox from '../../../components/FormElements/Checkbox/Checkbox';
-import Wrapper from '../../wrappers/Empty';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/examiners';
 import {capitaliseFirstLetter, getSelectedOptions, updateOptionArray} from './utility';
@@ -41,7 +40,7 @@ class Examiners extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.props.saveNewExaminer(this.state);
+    this.props.addExaminer(this.state);
     this.props.history.push({
       pathname: '/'
     })
@@ -49,20 +48,14 @@ class Examiners extends Component {
 
 
   render(){
+    const isVisible = this.state.roles.includes('Speaking Examiner');
     return(
       <form className={classes.Examiners} onSubmit={this.submitHandler}>
         <Input id='NAME' value={this.state.name} handler={this.inputHandler}/>
         <Select id='ROLES' options={roleKeys} handler={this.selectHandler} multiple />
-        
-        {!this.state.roles.includes('Speaking Examiner') ? null :
-            <Wrapper>
-              <Input id='ID_NUMBER' value={this.state.id_number} handler={this.inputHandler}/>
-              <Checkbox id='LEVELS' value={this.state.levels} options={levelKeys} handler={this.checkBoxHandler}/>
-            </Wrapper>
-        }
-
+        <Input id='ID_NUMBER' value={this.state.id_number} handler={this.inputHandler} visible={isVisible}/>
+        <Checkbox id='LEVELS' value={this.state.levels} options={levelKeys} handler={this.checkBoxHandler} visible={isVisible}/>
         <Select id='AVAILABILITY' options={availabilityKeys} handler={this.selectHandler} multiple />
-
         <button>Submit</button>
       </form>
     )
@@ -71,7 +64,7 @@ class Examiners extends Component {
 
 const mapDispatchToProps = dispatch => {
   return{
-    saveNewExaminer: (examiner) => dispatch(actions.saveNewExaminer(examiner))
+    addExaminer: (examiner) => dispatch(actions.addExaminer(examiner))
   }
 }
 
