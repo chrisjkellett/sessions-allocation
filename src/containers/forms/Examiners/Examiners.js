@@ -57,7 +57,7 @@ class Examiners extends Component {
         {!this.state.roles.includes('Speaking Examiner') ? null :
             <Wrapper>
               <Input id='ID_NUMBER' value={this.state.id_number} handler={this.inputHandler}/>
-              <Checkbox id='LEVELS' options={levelKeys} handler={this.checkBoxHandler}/>
+              <Checkbox id='LEVELS' value={this.state.levels} options={levelKeys} handler={this.checkBoxHandler}/>
             </Wrapper>
         }
 

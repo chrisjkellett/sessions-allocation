@@ -21,6 +21,7 @@
     opacity: 0;
 }
 
+
 .Active {
-  background: lightblue;
+  background: lightblue !important;
 }

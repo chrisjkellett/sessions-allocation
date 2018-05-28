@@ -9,9 +9,12 @@ const Checkbox = (props) => {
           {props.options.map(option => {
             return (
               <div key={option}>
-                <label>
+                <label className={props.value.includes(option) ? classes.Active : null}>
                   {option}
-                  <input type='checkbox' id={option} onChange={(event) => props.handler(event, props.id.toLowerCase())}/>
+                  <input 
+                    type='checkbox' 
+                    id={option}
+                    onChange={(event) => props.handler(event, props.id.toLowerCase())}/>
                 </label>
               </div>
             );
