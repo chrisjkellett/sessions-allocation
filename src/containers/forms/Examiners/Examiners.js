@@ -5,7 +5,7 @@ import Select from '../../../components/FormElements/Select/Select';
 import Checkbox from '../../../components/FormElements/Checkbox/Checkbox';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/examiners';
-import {capitaliseFirstLetter, getSelectedOptions, updateOptionArray} from './utility';
+import {capitaliseFirstLetter, getSelectedOptions, updateOptionArray, errorHandler} from './utility';
 import {roleKeys, levelKeys, availabilityKeys} from '../../../store/data';
 
 class Examiners extends Component {
@@ -60,7 +60,6 @@ class Examiners extends Component {
         pathname: '/'
       })
     }else{
-      console.log(validation);
       this.setState({
         ...this.state,
         validation: validation
@@ -73,11 +72,11 @@ class Examiners extends Component {
     const isVisible = this.state.roles.includes('Speaking Examiner');
     return(
       <form className={classes.Examiners} onSubmit={(event) => this.submitHandler(event, this.checkValidity())}>
-        <Input id='NAME' value={this.state.name} handler={this.inputHandler} valid={this.state.validation}/>
+        <Input id='NAME' value={this.state.name} handler={this.inputHandler} validation={errorHandler(this.state.validation, 'NAME')}/>
         <Select id='ROLES' options={roleKeys} handler={this.selectHandler} multiple />
         <Input id='ID_NUMBER' value={this.state.id_number} handler={this.inputHandler} visible={isVisible}/>
         <Checkbox id='LEVELS' value={this.state.levels} options={levelKeys} handler={this.checkBoxHandler} visible={isVisible}/>
-        <Select id='AVAILABILITY' options={availabilityKeys} handler={this.selectHandler} valid={this.state.validation} multiple />
+        <Select id='AVAILABILITY' options={availabilityKeys} handler={this.selectHandler} validation={errorHandler(this.state.validation, 'AVAILABILITY')} multiple />
         <button>Submit</button>
       </form>
     )

@@ -1,3 +1,4 @@
+
 export const capitaliseFirstLetter = (str) => {
   return str.replace(/\b\w/g, l => l.toUpperCase());
 }
@@ -16,4 +17,14 @@ export const updateOptionArray = (options, event) => {
     options.splice(index, 1)
   }
   return options;
+}
+
+export const errorHandler = (validation, id) => {
+  if(validation !== null){
+    return validation.find(errorObj => {
+      return errorObj.id === id.toLowerCase()
+    })
+  }else{
+    return null;
+  }
 }

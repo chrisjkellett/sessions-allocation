@@ -10,16 +10,11 @@ const Input = (props) => {
     styles.push(classes.NotVisible);
   }
 
-  if(props.valid){
-    const errors = props.valid.find(errorObj => {
-      return errorObj.id === props.id.toLowerCase()
-    })
-
-    if(errors){
-      styles.push(classes.Invalid)
-      errorMessage = <span className={classes.Error}>{errors.error}</span>;
-    }
+  if(props.validation){
+    styles.push(classes.Invalid)
+    errorMessage = <span className={classes.Error}>{props.validation.error}</span>;
   }
+
 
   return(
     <div className={styles.join(" ")} id={props.id}>

@@ -11,18 +11,11 @@ const select = (props) => {
     styles.push(classes.Select);
   }
 
-  if(props.valid){
-    const arr = props.valid.find(errorObj => {
-      return errorObj.id === props.id.toLowerCase()
-    })
-
-    console.log(arr);
-
-    if(arr){
-      styles.push(classes.Invalid)
-      error = <span className={classes.Error}>{arr.error}</span>;
-    }
+  if(props.validation){
+    styles.push(classes.Invalid)
+    error = <span className={classes.Error}>{props.validation.error}</span>;
   }
+
 
   return(
     <div className={styles.join(" ")}>
