@@ -45,7 +45,6 @@ export const deleteExaminer = (id) => {
   return dispatch => {
     axios.delete('/examiners/' + id + '.json')
       .then(response => {
-        console.log(response);
         dispatch(deleteExaminerSuccess(id))
       })
       .catch(error => {

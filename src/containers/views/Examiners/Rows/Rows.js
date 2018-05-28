@@ -3,7 +3,6 @@ import classes from './Rows.css';
 import {isPm} from './utility';
 
 const rows = (props) => {
-  console.log(props.examiner);
   return(
     <tr className={classes.Row}>
       <td>{props.examiner.name}</td>
@@ -25,7 +24,7 @@ const rows = (props) => {
       </td>
 
       <td>
-      {props.examiner.availability
+      {!props.examiner.availability ? null : props.examiner.availability
           .map(day => {
             return <span key={day} className={classes.Icons}>
               {day.substring(0, 3)}
