@@ -12,8 +12,12 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {examiners: action.examiners, error: false})
 
     case actionTypes.ADD_NEW_EXAMINER:
-      console.log('dispatched examiner');
       return updateState(state, {examiners: sortByName(state.examiners.concat(action.examiner)), error: false})
+
+    case actionTypes.DELETE_EXAMINER_SUCCESS:
+      console.log('delete examiner');
+      break;
+      // return updateState(state, {examiners: removeExaminer(state.examiners, action.id), error: false})
 
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: true})

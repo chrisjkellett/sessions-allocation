@@ -6,7 +6,7 @@ export const objectToArray = (obj) => {
     const keys = Object.keys(copy);
 
     const array = keys.map(item =>{
-      copy.id = item;
+      copy[item].id = item;
       return copy[item]
     });
 

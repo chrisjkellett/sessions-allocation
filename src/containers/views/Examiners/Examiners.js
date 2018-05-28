@@ -18,7 +18,7 @@ class Examiners extends Component{
       <section className={classes.Examiners}>
         <Table labels={examinerTableHeaders}>
           {this.props.examiners === null ? <Loading /> : this.props.examiners.map(examiner => (
-            <Rows key={examiner.name} examiner={examiner} />
+            <Rows key={examiner.name} examiner={examiner} delete={() => this.props.deleteExaminer(examiner.id)}/>
           ))}
         </Table>
       </section>
@@ -34,7 +34,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadExaminers: () => dispatch(actions.loadExaminers())
+    loadExaminers: () => dispatch(actions.loadExaminers()),
+    deleteExaminer: (id) => dispatch(actions.deleteExaminer(id))
   }
 }
 

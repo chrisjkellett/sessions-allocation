@@ -9,14 +9,8 @@ export const objectToArray = (obj, keys) => {
   return levels;
 }
 
-export const abbreviateDays = (day) => {
-  if(day.substring(day.length - 2, day.length) === 'pm')
-    return day.substring(0, 3) + ' pm';
-  else
-    return day.substring(0, 3);
+
+export const isPm = (day) => {
+  return day.substring(day.length - 2, day.length) === 'pm';
 }
 
-export const formatAvailability = (days) => {
-  console.log(days)
-  return days;
-}

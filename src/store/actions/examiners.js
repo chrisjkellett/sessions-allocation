@@ -34,10 +34,31 @@ export const saveNewExaminer = (examiner) => {
 }
 
 
-export const addNewExaminer = (examiner) => {
+export const addNewExaminer = (examiner, data) => {
   return {
     type: actionTypes.ADD_NEW_EXAMINER,
     examiner: examiner
+  }
+}
+
+export const deleteExaminer = (id) => {
+  return dispatch => {
+    axios.delete('/examiners/' + id + '.json')
+      .then(response => {
+        console.log(response);
+        dispatch(deleteExaminerSuccess(id))
+      })
+      .catch(error => {
+        dispatch(failedLoad(error))
+      })
+  }
+}
+
+
+export const deleteExaminerSuccess = (id) => {
+  return {
+    type: actionTypes.DELETE_EXAMINER_SUCCESS,
+    id: id
   }
 }
 

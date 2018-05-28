@@ -1,18 +1,15 @@
 import React from 'react';
 import classes from './Rows.css';
-import {objectToArray, abbreviateDays} from './utility';
-import {levelKeys, availabilityKeys} from '../../../../store/data';
+import {isPm} from './utility';
 
 const rows = (props) => {
-  const mapLevelsToArray = objectToArray(props.examiner.levels, levelKeys);
-  const mapAvailabilityToArray = objectToArray(props.examiner.availability, availabilityKeys)
-
+  console.log(props.examiner);
   return(
     <tr className={classes.Row}>
       <td>{props.examiner.name}</td>
 
       <td>
-        {props.examiner.SE_id}
+        {props.examiner.id_number}
         {props.examiner.roles
           .filter(role => role !== 'Speaking Examiner')
           .map(role => {
@@ -21,17 +18,24 @@ const rows = (props) => {
       </td>
 
       <td>
-        {mapLevelsToArray
+        {!props.examiner.levels ? null : props.examiner.levels
           .map(level => {
             return <span key={level} className={classes.Icons}>{level}</span>
         })}
       </td>
 
       <td>
-      {mapAvailabilityToArray
+      {props.examiner.availability
           .map(day => {
-            return <span key={day} className={classes.Icons}>{abbreviateDays(day)}</span>
+            return <span key={day} className={classes.Icons}>
+              {day.substring(0, 3)}
+              {isPm(day) ? <span>pm</span> : <span>am</span>}
+            </span>
         })}
+      </td>
+
+      <td>
+        <span onClick={props.delete}>delete</span>
       </td>
     </tr>
   )
