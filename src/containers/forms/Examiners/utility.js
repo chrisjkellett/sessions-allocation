@@ -7,3 +7,13 @@ export const getSelectedOptions = (event) => {
       .filter(({selected}) => selected)
       .map(({value}) => value);
 }
+
+export const updateOptionArray = (options, event) => {
+  if (event.target.checked) {
+    options.push(event.target.id)
+  }else{
+    let index = options.indexOf(event.target.id)
+    options.splice(index, 1)
+  }
+  return options;
+}

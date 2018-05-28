@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Select.css';
 
-const Input = (props) => {
+const select = (props) => {
   const styles = [];
 
   if(props.date){
@@ -28,4 +28,4 @@ const Input = (props) => {
   )
 }
 
-export default Input;
+export default select;

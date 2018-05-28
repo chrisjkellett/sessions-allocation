@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Input from '../../../components/Input/Input';
-import Select from '../../../components/Select/Select';
+import Input from '../../../components/FormElements/Input/Input';
+import Select from '../../../components/FormElements/Select/Select';
 import classes from './Venues.css';
 import {connect} from 'react-redux';
 import {locationOptions, dayOptions, monthOptions, yearOptions} from '../../../store/data';

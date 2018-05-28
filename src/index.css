@@ -13,6 +13,10 @@ input, select, button{
   display: block;
 }
 
+input[type='checkbox']{
+  display: inline-block;
+}
+
 button{
   border: 1px solid grey;
   padding: 5px;

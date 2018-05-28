@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import classes from './Examiners.css';
-import Input from '../../../components/Input/Input';
-import Select from '../../../components/Select/Select';
+import Input from '../../../components/FormElements/Input/Input';
+import Select from '../../../components/FormElements/Select/Select';
+import Checkbox from '../../../components/FormElements/Checkbox/Checkbox';
 import Wrapper from '../../wrappers/Empty';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/examiners';
-import {capitaliseFirstLetter, getSelectedOptions} from './utility';
+import {capitaliseFirstLetter, getSelectedOptions, updateOptionArray} from './utility';
 import {roleKeys, levelKeys, availabilityKeys} from '../../../store/data';
 
 class Examiners extends Component {
   state = {
     name: '',
-    roles: [],
+    roles: ['Speaking Examiner'],
     id_number: '',
     levels: [],
     availability: []
@@ -31,6 +32,13 @@ class Examiners extends Component {
     })
   }
 
+  checkBoxHandler = (event, id) => {
+    this.setState({
+      ...this.state,
+      [id]: updateOptionArray([...this.state[id]], event)
+    })
+  }
+
   submitHandler = (event) => {
     event.preventDefault();
     this.props.saveNewExaminer(this.state);
@@ -38,6 +46,7 @@ class Examiners extends Component {
       pathname: '/'
     })
   }
+
 
   render(){
     return(
@@ -48,7 +57,7 @@ class Examiners extends Component {
         {!this.state.roles.includes('Speaking Examiner') ? null :
             <Wrapper>
               <Input id='ID_NUMBER' value={this.state.id_number} handler={this.inputHandler}/>
-              <Select id='LEVELS' options={levelKeys} handler={this.selectHandler} multiple />
+              <Checkbox id='LEVELS' options={levelKeys} handler={this.checkBoxHandler}/>
             </Wrapper>
         }
 
