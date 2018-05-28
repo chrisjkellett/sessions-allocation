@@ -5,3 +5,12 @@
 .NotVisible{
   display: none;
 }
+
+.Invalid input{
+  border:1px solid #dc3545;
+}
+
+.Error{
+  font-size: 70%;
+  color: #dc3545;
+}

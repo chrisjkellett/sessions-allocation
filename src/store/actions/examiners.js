@@ -22,6 +22,7 @@ export const loadExaminersSuccess = (data) => {
 }
 
 export const addExaminer = (examiner) => {
+  delete examiner.validation;
   return dispatch => {
     axios.post('/examiners.json', examiner)
       .then(response => {

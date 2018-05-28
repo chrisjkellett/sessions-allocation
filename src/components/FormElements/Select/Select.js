@@ -10,11 +10,11 @@ const select = (props) => {
     styles.push(classes.Select);
   }
 
-
   return(
     <div className={styles}>
       <label>{props.date ? null : props.id.toLowerCase()}</label>
-      <select 
+      <select
+        className={classes[props.id]} 
         onChange={(event) => props.handler(event, props.id.toLowerCase())} 
         defaultValue={props.value} 
         multiple={props.multiple}>

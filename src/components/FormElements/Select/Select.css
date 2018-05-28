@@ -9,6 +9,7 @@
 .Select select{
   min-width: 200px;
   padding: 3px 0;
+  overflow-y: auto;
 }
 
 .DateSelect select{
@@ -16,7 +17,9 @@
   display: inline;
 }
 
-.AVAILABILITY select {
+.AVAILABILITY{
   height: 300px;
 }
+
+
 

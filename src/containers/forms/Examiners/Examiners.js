@@ -14,7 +14,8 @@ class Examiners extends Component {
     roles: ['Speaking Examiner'],
     id_number: '',
     levels: [],
-    availability: []
+    availability: [],
+    validation: null
   }
 
   inputHandler = (event, id) => {
@@ -38,24 +39,45 @@ class Examiners extends Component {
     })
   }
 
-  submitHandler = (event) => {
+  checkValidity = () => {
+    let isValid = [];
+
+    if(this.state.name.trim().length === 0)
+      isValid.push({id: 'name', error: 'this is a compulsory field'})
+
+    if(this.state.availability.length === 0)
+      isValid.push({id: 'availability', error: 'this is a compulsory field'})
+    
+    return isValid;  
+  }
+
+  submitHandler = (event, validation) => {
     event.preventDefault();
-    this.props.addExaminer(this.state);
-    this.props.history.push({
-      pathname: '/'
-    })
+    
+    if(validation.length === 0){
+      this.props.addExaminer(this.state);
+      this.props.history.push({
+        pathname: '/'
+      })
+    }else{
+      console.log(validation);
+      this.setState({
+        ...this.state,
+        validation: validation
+      })
+    }
   }
 
 
   render(){
     const isVisible = this.state.roles.includes('Speaking Examiner');
     return(
-      <form className={classes.Examiners} onSubmit={this.submitHandler}>
-        <Input id='NAME' value={this.state.name} handler={this.inputHandler}/>
+      <form className={classes.Examiners} onSubmit={(event) => this.submitHandler(event, this.checkValidity())}>
+        <Input id='NAME' value={this.state.name} handler={this.inputHandler} valid={this.state.validation}/>
         <Select id='ROLES' options={roleKeys} handler={this.selectHandler} multiple />
         <Input id='ID_NUMBER' value={this.state.id_number} handler={this.inputHandler} visible={isVisible}/>
         <Checkbox id='LEVELS' value={this.state.levels} options={levelKeys} handler={this.checkBoxHandler} visible={isVisible}/>
-        <Select id='AVAILABILITY' options={availabilityKeys} handler={this.selectHandler} multiple />
+        <Select id='AVAILABILITY' options={availabilityKeys} handler={this.selectHandler} valid={this.state.validation} multiple />
         <button>Submit</button>
       </form>
     )
