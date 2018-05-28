@@ -21,5 +21,16 @@
   height: 300px;
 }
 
+.Invalid select{
+  border:1px solid #dc3545;
+  background: #f7d0cb;
+}
+
+.Error{
+  font-size: 70%;
+  margin-left: 4px;
+  color: #dc3545;
+}
+
 
 
