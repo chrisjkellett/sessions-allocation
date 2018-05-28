@@ -1,11 +1,10 @@
 import React from 'react';
 import classes from './Rows.css';
 import {objectToArray, abbreviateDays} from './utility';
-import {levelKeys, roleKeys, availabilityKeys} from '../../../../store/data';
+import {levelKeys, availabilityKeys} from '../../../../store/data';
 
 const rows = (props) => {
   const mapLevelsToArray = objectToArray(props.examiner.levels, levelKeys);
-  const mapRolesToArray = objectToArray(props.examiner.roles, roleKeys)
   const mapAvailabilityToArray = objectToArray(props.examiner.availability, availabilityKeys)
 
   return(
@@ -14,7 +13,7 @@ const rows = (props) => {
 
       <td>
         {props.examiner.SE_id}
-        {mapRolesToArray
+        {props.examiner.roles
           .filter(role => role !== 'Speaking Examiner')
           .map(role => {
             return <div key={role} className={classes.Roles}>{role}</div>

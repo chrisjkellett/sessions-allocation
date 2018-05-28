@@ -13,11 +13,16 @@ const Input = (props) => {
 
   return(
     <div className={styles}>
-      <label>{props.date ? null : props.id}</label>
-      <select onChange={(event) => props.handler(event, props.id)} defaultValue={props.value}>
+      <label>{props.date ? null : props.id.toLowerCase()}</label>
+      <select 
+        onChange={(event) => props.handler(event, props.id.toLowerCase())} 
+        defaultValue={props.value} 
+        multiple={props.multiple}>
+
         {props.options.map(option => {
           return <option key={option}>{option}</option>
         })}
+        
       </select>
     </div>
   )

@@ -7,12 +7,16 @@
 }
 
 .Select select{
-  width: 150px;
+  min-width: 200px;
   padding: 3px 0;
 }
 
 .DateSelect select{
   padding: 3px 0;
   display: inline;
+}
+
+.AVAILABILITY select {
+  height: 300px;
 }
 
