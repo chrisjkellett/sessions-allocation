@@ -19,7 +19,7 @@ export const updateOptionArray = (options, event) => {
   return options;
 }
 
-export const errorHandler = (validation, id) => {
+export const validationHandler = (validation, id) => {
   if(validation !== null){
     return validation.find(errorObj => {
       return errorObj.id === id.toLowerCase()
@@ -27,4 +27,22 @@ export const errorHandler = (validation, id) => {
   }else{
     return null;
   }
+}
+
+export const checkValidity = (state) => {
+  let isValid = [];
+  const errors = {
+    required: 'compulsory field'
+  }
+
+  if(state.name.trim().length === 0)
+    isValid.push({id: 'name', error: errors.required})
+
+  if(state.availability.length === 0)
+    isValid.push({id: 'availability', error: errors.required})
+  
+  if(state.roles.length === 0)
+    isValid.push({id: 'roles', error: errors.required})
+  
+  return isValid;  
 }

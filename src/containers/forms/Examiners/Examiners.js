@@ -5,13 +5,13 @@ import Select from '../../../components/FormElements/Select/Select';
 import Checkbox from '../../../components/FormElements/Checkbox/Checkbox';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/examiners';
-import {capitaliseFirstLetter, getSelectedOptions, updateOptionArray, errorHandler} from './utility';
+import {capitaliseFirstLetter, getSelectedOptions, updateOptionArray, validationHandler, checkValidity} from './utility';
 import {roleKeys, levelKeys, availabilityKeys} from '../../../store/data';
 
 class Examiners extends Component {
   state = {
     name: '',
-    roles: ['Speaking Examiner'],
+    roles: [],
     id_number: '',
     levels: [],
     availability: [],
@@ -39,18 +39,6 @@ class Examiners extends Component {
     })
   }
 
-  checkValidity = () => {
-    let isValid = [];
-
-    if(this.state.name.trim().length === 0)
-      isValid.push({id: 'name', error: 'this is a compulsory field'})
-
-    if(this.state.availability.length === 0)
-      isValid.push({id: 'availability', error: 'this is a compulsory field'})
-    
-    return isValid;  
-  }
-
   submitHandler = (event, validation) => {
     event.preventDefault();
     
@@ -71,12 +59,39 @@ class Examiners extends Component {
   render(){
     const isVisible = this.state.roles.includes('Speaking Examiner');
     return(
-      <form className={classes.Examiners} onSubmit={(event) => this.submitHandler(event, this.checkValidity())}>
-        <Input id='NAME' value={this.state.name} handler={this.inputHandler} validation={errorHandler(this.state.validation, 'NAME')}/>
-        <Select id='ROLES' options={roleKeys} handler={this.selectHandler} multiple />
-        <Input id='ID_NUMBER' value={this.state.id_number} handler={this.inputHandler} visible={isVisible}/>
-        <Checkbox id='LEVELS' value={this.state.levels} options={levelKeys} handler={this.checkBoxHandler} visible={isVisible}/>
-        <Select id='AVAILABILITY' options={availabilityKeys} handler={this.selectHandler} validation={errorHandler(this.state.validation, 'AVAILABILITY')} multiple />
+      <form className={classes.Examiners} onSubmit={(event) => this.submitHandler(event, checkValidity(this.state))}>
+        <Input 
+          id='NAME' 
+          value={this.state.name} 
+          handler={this.inputHandler} 
+          validation={validationHandler(this.state.validation, 'NAME')} />
+
+        <Select 
+          id='ROLES' 
+          options={roleKeys} 
+          handler={this.selectHandler} 
+          validation={validationHandler(this.state.validation, 'ROLES')}
+          multiple />
+
+        <Input 
+          id='ID_NUMBER' 
+          value={this.state.id_number} 
+          handler={this.inputHandler} visible={isVisible}/>
+
+        <Checkbox 
+          id='LEVELS' 
+          value={this.state.levels} 
+          options={levelKeys} 
+          handler={this.checkBoxHandler} 
+          visible={isVisible}/>
+
+        <Select 
+          id='AVAILABILITY' 
+          options={availabilityKeys} 
+          handler={this.selectHandler} 
+          validation={validationHandler(this.state.validation, 'AVAILABILITY')} 
+          multiple />
+
         <button>Submit</button>
       </form>
     )
