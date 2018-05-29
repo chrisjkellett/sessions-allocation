@@ -1,21 +1,33 @@
 import React, {Component} from 'react';
 import classes from './Examiners.css';
 import Input from '../../../components/FormElements/Input/Input';
-import Select from '../../../components/FormElements/Select/Select';
-import Checkbox from '../../../components/FormElements/Checkbox/Checkbox';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/examiners';
-import {capitaliseFirstLetter, getSelectedOptions, updateOptionArray, validationHandler, checkValidity} from './utility';
-import {roleKeys, levelKeys, availabilityKeys} from '../../../store/data';
+import {capitaliseFirstLetter, getSelectedOptions, updateOptionArray, checkValidity} from './utility';
+import {roleKeys} from '../../../store/data';
 
 class Examiners extends Component {
   state = {
-    name: '',
-    roles: [],
-    id_number: '',
-    levels: [],
-    availability: [],
-    validation: null
+    examiner: {
+      name: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: ''
+        },
+        value: ''
+      },
+
+      roles: {
+        elementType: 'select',
+        elementConfig: {
+          multiple: true
+        },
+        options: roleKeys,
+        value: ''
+      }
+    }
+    
   }
 
   inputHandler = (event, id) => {
@@ -57,41 +69,28 @@ class Examiners extends Component {
 
 
   render(){
-    const isVisible = this.state.roles.includes('Speaking Examiner');
+    let formElementArray = [];
+
+    for(let key in this.state.examiner){
+      formElementArray.push({
+        id: key,
+        config: this.state.examiner[key]
+      })
+    }
+
     return(
       <form className={classes.Examiners} onSubmit={(event) => this.submitHandler(event, checkValidity(this.state))}>
-        <Input 
-          id='NAME' 
-          value={this.state.name} 
-          handler={this.inputHandler} 
-          validation={validationHandler(this.state.validation, 'NAME')} />
-
-        <Select 
-          id='ROLES' 
-          options={roleKeys} 
-          handler={this.selectHandler} 
-          validation={validationHandler(this.state.validation, 'ROLES')}
-          multiple />
-
-        <Input 
-          id='ID_NUMBER' 
-          value={this.state.id_number} 
-          handler={this.inputHandler} visible={isVisible}/>
-
-        <Checkbox 
-          id='LEVELS' 
-          value={this.state.levels} 
-          options={levelKeys} 
-          handler={this.checkBoxHandler} 
-          visible={isVisible}/>
-
-        <Select 
-          id='AVAILABILITY' 
-          options={availabilityKeys} 
-          handler={this.selectHandler} 
-          validation={validationHandler(this.state.validation, 'AVAILABILITY')} 
-          multiple />
-
+        {formElementArray.map(element => {
+          return (
+            <Input 
+              key={element.id}
+              label={element.id}
+              options={element.config.options}
+              elementtype={element.config.elementType} 
+              elementConfig={element.config.elementConfig}
+              value={element.config.value} />
+          )
+        })}
         <button>Submit</button>
       </form>
     )

@@ -2,6 +2,12 @@
   margin: 10px 0;
 }
 
+.Input select{
+  min-width: 200px;
+  padding: 3px 0;
+  overflow-y: auto;
+}
+
 .NotVisible{
   display: none;
 }
