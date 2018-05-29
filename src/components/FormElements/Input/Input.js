@@ -7,15 +7,30 @@ const Input = (props) => {
   switch(props.elementtype){
     case 'select':
       formElement = (
-        <select {...props.elementConfig}>
+        <select {...props.elementConfig} onChange={props.change} value={props.value}>
           {props.options.map(option => (
-            <option>{option}</option>
+            <option key={option}>{option}</option>
           ))}
         </select>
         );
       break;
+
+    case 'checkbox':
+      formElement = (
+        props.options.map(option => {
+          return (
+            <div className={classes.Checkbox} key={option}>
+              <label className={props.value.includes(option) ? classes.Active : null}>
+                {option}
+                <input type='checkbox' id={option} onChange={props.change} value={props.value}/>
+              </label>
+            </div>
+          );
+        })
+      )
+      break;
     default:
-      formElement = <input {...props.elementConfig} />;
+      formElement = <input {...props.elementConfig} onChange={props.change} value={props.value}/>;
   }
 
   // if(!props.visible && props.id === 'ID_NUMBER'){

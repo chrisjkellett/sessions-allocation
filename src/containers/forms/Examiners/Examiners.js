@@ -3,52 +3,19 @@ import classes from './Examiners.css';
 import Input from '../../../components/FormElements/Input/Input';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/examiners';
-import {capitaliseFirstLetter, getSelectedOptions, updateOptionArray, checkValidity} from './utility';
-import {roleKeys} from '../../../store/data';
+import {constructExaminerState} from '../../../store/constructors/examiners';
+import {
+  updateState, 
+  capsFirstLetters, 
+  getSelectedOptions, 
+  updateOptionArray, 
+  checkValidity, 
+  generateFormElementArray} from './utility';
+
 
 class Examiners extends Component {
   state = {
-    examiner: {
-      name: {
-        elementType: 'input',
-        elementConfig: {
-          type: 'text',
-          placeholder: ''
-        },
-        value: ''
-      },
-
-      roles: {
-        elementType: 'select',
-        elementConfig: {
-          multiple: true
-        },
-        options: roleKeys,
-        value: ''
-      }
-    }
-    
-  }
-
-  inputHandler = (event, id) => {
-    this.setState({
-      ...this.state,
-      [id]: capitaliseFirstLetter(event.target.value)
-    })
-  }
-
-  selectHandler = (event, id) => {
-    this.setState({
-      ...this.state,
-      [id]: getSelectedOptions(event)
-    })
-  }
-
-  checkBoxHandler = (event, id) => {
-    this.setState({
-      ...this.state,
-      [id]: updateOptionArray([...this.state[id]], event)
-    })
+    examiner: constructExaminerState()
   }
 
   submitHandler = (event, validation) => {
@@ -68,29 +35,39 @@ class Examiners extends Component {
   }
 
 
-  render(){
-    let formElementArray = [];
+  changeHandler = (event, type, id) => {
+    switch(type){
+      case 'select':
+        this.setState(updateState(this.state, id, {value: getSelectedOptions(event)}))
+        break;
 
-    for(let key in this.state.examiner){
-      formElementArray.push({
-        id: key,
-        config: this.state.examiner[key]
-      })
+      case 'checkbox':
+        this.setState(updateState(this.state, id, {value: updateOptionArray([...this.state.examiner[id].value], event)}))  
+        break;
+
+      default:
+        this.setState(updateState(this.state, id, {value: capsFirstLetters(event.target.value)}));  
     }
+  }
+
+
+  render(){
+    const formElements = generateFormElementArray(this.state.examiner).map(element => {
+      return (
+        <Input 
+          key={element.id}
+          label={element.id}
+          options={element.config.options}
+          elementtype={element.config.elementType} 
+          elementConfig={element.config.elementConfig}
+          value={element.config.value} 
+          change={(event) => this.changeHandler(event, element.config.elementType, element.id)}/>
+      )
+    })
 
     return(
       <form className={classes.Examiners} onSubmit={(event) => this.submitHandler(event, checkValidity(this.state))}>
-        {formElementArray.map(element => {
-          return (
-            <Input 
-              key={element.id}
-              label={element.id}
-              options={element.config.options}
-              elementtype={element.config.elementType} 
-              elementConfig={element.config.elementConfig}
-              value={element.config.value} />
-          )
-        })}
+        {formElements}
         <button>Submit</button>
       </form>
     )

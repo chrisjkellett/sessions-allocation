@@ -1,6 +1,18 @@
-
-export const capitaliseFirstLetter = (str) => {
+export const capsFirstLetters = (str) => {
   return str.replace(/\b\w/g, l => l.toUpperCase());
+}
+
+export const updateState = (obj, id, updatedState) => {
+  return{
+    ...obj,
+    examiner: {
+      ...obj.examiner,
+      [id]: {
+        ...obj.examiner[id],
+        ...updatedState
+      }
+    }
+  }
 }
 
 export const getSelectedOptions = (event) => {
@@ -17,6 +29,19 @@ export const updateOptionArray = (options, event) => {
     options.splice(index, 1)
   }
   return options;
+}
+
+export const generateFormElementArray = (examiner) => {
+  let formElementArray = [];
+
+  for(let key in examiner){
+    formElementArray.push({
+      id: key,
+      config: examiner[key]
+    })
+  }
+
+  return formElementArray;
 }
 
 export const validationHandler = (validation, id) => {
