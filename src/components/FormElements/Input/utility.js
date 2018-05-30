@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const formatLabel = (str) => {
-  return str === null ? null : str.replace('_', ' ').toLowerCase();
+  return str === undefined ? null : str.replace('_', ' ').toLowerCase();
 }
 
 export const generateFormElement = (type, props, classes) =>{
