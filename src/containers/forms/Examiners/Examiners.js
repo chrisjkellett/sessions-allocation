@@ -27,19 +27,16 @@ class Examiners extends Component {
     })
   }
 
-
   changeHandler = (event, type, id) => {
     switch(type){
       case 'select':
         this.setState(updateState(this.state, id, {value: getSelectedOptions(event)}))
         break;
-
       case 'checkbox':
         this.setState(updateState(this.state, id, {value: updateOptionArray([...this.state.examiner[id].value], event)}))  
         break;
-
       default:
-        this.setState(updateState(this.state, id, {value: capsFirstLetters(event.target.value)}));  
+        this.setState(updateState(this.state, id, {value: capsFirstLetters(event.target.value)})); 
     }
   }
 

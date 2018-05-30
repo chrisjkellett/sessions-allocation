@@ -8,7 +8,11 @@ export const constructExaminerState = () => {
         type: 'text',
         placeholder: ''
       },
-      value: ''
+      value: '',
+      validation: {
+        required: true
+      },
+      valid: false
     },
 
     roles: {
@@ -18,7 +22,11 @@ export const constructExaminerState = () => {
         size: roleKeys.length
       },
       options: roleKeys,
-      value: []
+      value: [],
+      validation: {
+        required: true
+      },
+      valid: false
     },
 
     id_number: {
@@ -47,7 +55,11 @@ export const constructExaminerState = () => {
         size: availabilityKeys.length
       },
       options: availabilityKeys,
-      value: []
+      value: [],
+      validation: {
+        required: true
+      },
+      valid: false
     },
   } 
 }

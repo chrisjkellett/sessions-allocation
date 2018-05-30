@@ -9,10 +9,20 @@ export const updateState = (obj, id, updatedState) => {
       ...obj.examiner,
       [id]: {
         ...obj.examiner[id],
-        ...updatedState
+        ...updatedState, 
+        valid: checkValidity(updatedState.value, {...obj.examiner[id].validation})
       }
     }
   }
+}
+
+export const checkValidity = (value, rules) => {
+  let isValid = false;
+
+  if(rules.required)
+    isValid = value.trim() !== '';
+
+  return isValid;  
 }
 
 export const getSelectedOptions = (event) => {
@@ -52,32 +62,4 @@ export const generateObjectForSubmitForm = (obj) => {
     }
 
     return data;
-}
-
-export const validationHandler = (validation, id) => {
-  if(validation !== null){
-    return validation.find(errorObj => {
-      return errorObj.id === id.toLowerCase()
-    })
-  }else{
-    return null;
-  }
-}
-
-export const checkValidity = (state) => {
-  let isValid = [];
-  const errors = {
-    required: 'compulsory field'
-  }
-
-  if(state.name.trim().length === 0)
-    isValid.push({id: 'name', error: errors.required})
-
-  if(state.availability.length === 0)
-    isValid.push({id: 'availability', error: errors.required})
-  
-  if(state.roles.length === 0)
-    isValid.push({id: 'roles', error: errors.required})
-  
-  return isValid;  
 }
