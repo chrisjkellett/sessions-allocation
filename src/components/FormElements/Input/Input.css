@@ -2,6 +2,10 @@
   margin: 10px 0;
 }
 
+.Input label{
+  display: block;
+}
+
 .Input select{
   min-width: 200px;
   padding: 3px 0;
@@ -25,7 +29,6 @@
 
 .Checkbox{
   display: inline-block;
-  margin: 10px 0;
 }
 
 .Checkbox label{

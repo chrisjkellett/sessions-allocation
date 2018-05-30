@@ -14,7 +14,8 @@ export const constructExaminerState = () => {
     roles: {
       elementType: 'select',
       elementConfig: {
-        multiple: true
+        multiple: true,
+        size: roleKeys.length
       },
       options: roleKeys,
       value: []
@@ -24,7 +25,8 @@ export const constructExaminerState = () => {
       elementType: 'input',
       elementConfig: {
         type: 'text',
-        placeholder: ''
+        placeholder: '',
+        maxlength: 6
       },
       value: ''
     },
@@ -41,7 +43,8 @@ export const constructExaminerState = () => {
     availability: {
       elementType: 'select',
       elementConfig: {
-        multiple: true
+        multiple: true,
+        size: availabilityKeys.length
       },
       options: availabilityKeys,
       value: []
