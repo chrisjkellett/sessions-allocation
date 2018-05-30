@@ -44,6 +44,16 @@ export const generateFormElementArray = (examiner) => {
   return formElementArray;
 }
 
+export const generateObjectForSubmitForm = (obj) => {
+    const data = {};
+
+    for (let id in obj){
+      data[id] = obj[id].value;
+    }
+
+    return data;
+}
+
 export const validationHandler = (validation, id) => {
   if(validation !== null){
     return validation.find(errorObj => {

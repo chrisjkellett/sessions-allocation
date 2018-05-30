@@ -26,7 +26,7 @@ export const constructExaminerState = () => {
       elementConfig: {
         type: 'text',
         placeholder: '',
-        maxlength: 6
+        maxLength: 6
       },
       value: ''
     },

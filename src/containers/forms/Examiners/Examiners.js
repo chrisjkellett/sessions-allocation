@@ -9,8 +9,9 @@ import {
   capsFirstLetters, 
   getSelectedOptions, 
   updateOptionArray, 
-  checkValidity, 
-  generateFormElementArray} from './utility';
+  generateFormElementArray,
+  generateObjectForSubmitForm
+} from './utility';
 
 
 class Examiners extends Component {
@@ -20,18 +21,10 @@ class Examiners extends Component {
 
   submitHandler = (event, validation) => {
     event.preventDefault();
-    
-    if(validation.length === 0){
-      this.props.addExaminer(this.state);
-      this.props.history.push({
-        pathname: '/'
-      })
-    }else{
-      this.setState({
-        ...this.state,
-        validation: validation
-      })
-    }
+    this.props.addExaminer(generateObjectForSubmitForm(this.state.examiner));
+    this.props.history.push({
+      pathname: '/'
+    })
   }
 
 
@@ -66,7 +59,7 @@ class Examiners extends Component {
     })
 
     return(
-      <form className={classes.Examiners} onSubmit={(event) => this.submitHandler(event, checkValidity(this.state))}>
+      <form className={classes.Examiners} onSubmit={this.submitHandler}>
         {formElements}
         <button>Submit</button>
       </form>
