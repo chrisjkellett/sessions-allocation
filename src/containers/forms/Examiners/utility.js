@@ -17,10 +17,10 @@ export const updateState = (obj, id, updatedState) => {
 }
 
 export const checkValidity = (value, rules) => {
-  let isValid = false;
+  let isValid = true;
 
   if(rules.required)
-    isValid = value.trim() !== '';
+    isValid = value.trim() !== '' && isValid;
 
   return isValid;  
 }

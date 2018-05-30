@@ -1,11 +1,10 @@
 import React from 'react';
 import classes from './Input.css';
-import { generateFormElement, formatLabel } from './utility';
+import { generateFormElement, formatLabel, generateClasses } from './utility';
 
 const Input = (props) => {
-
   return(
-    <div className={classes.Input}>
+    <div className={generateClasses(props, classes)}>
       <label>{formatLabel(props.label)}</label>
       {generateFormElement(props.elementtype, props, classes)}
     </div>

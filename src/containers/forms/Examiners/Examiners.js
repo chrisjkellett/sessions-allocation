@@ -51,6 +51,7 @@ class Examiners extends Component {
           elementtype={element.config.elementType} 
           elementConfig={element.config.elementConfig}
           value={element.config.value} 
+          valid={element.config.valid}
           change={(event) => this.changeHandler(event, element.config.elementType, element.id)}/>
       )
     })

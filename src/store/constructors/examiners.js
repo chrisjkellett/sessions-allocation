@@ -36,7 +36,8 @@ export const constructExaminerState = () => {
         placeholder: '',
         maxLength: 6
       },
-      value: ''
+      value: '',
+      valid: true
     },
 
     levels: {

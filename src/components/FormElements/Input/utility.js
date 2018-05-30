@@ -32,7 +32,17 @@ export const generateFormElement = (type, props, classes) =>{
       }))
 
      default :
-      return {}; 
+        return {}; 
 
   }
+}
+
+export const generateClasses = (props, classes) => {
+  const styles = [classes.Input];
+
+  if(!props.valid){
+    styles.push(classes.Invalid);
+  }
+
+  return styles.join(" ");
 }
