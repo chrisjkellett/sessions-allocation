@@ -37,8 +37,11 @@ export const constructExaminerState = () => {
       },
       value: '',
       validation: {
-        required: true
+        required: {value: true, error: 'required field'},
+        idCheck: {value: true, error: 'use proper format'}
       },
+      valid: false,
+      touched: false
     },
 
     levels: {

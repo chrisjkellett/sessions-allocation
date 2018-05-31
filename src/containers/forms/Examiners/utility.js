@@ -24,6 +24,10 @@ export const checkValidity = (value, validation) => {
     isValid = value.trim() !== '' && isValid;
   }
 
+  if(validation.idCheck.value){
+    isValid = /[a-m][a-m][0-9][0-9][a-m][a-m]/i.test(value);
+  }
+
   return isValid;  
 }
 
