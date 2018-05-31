@@ -20,11 +20,11 @@ export const updateState = (obj, id, updatedState) => {
 export const checkValidity = (value, validation) => {
   let isValid = true;
 
-  if(validation.required.value){
+  if(validation && validation.required && isValid){
     isValid = value.trim() !== '' && isValid;
   }
 
-  if(validation.idCheck.value){
+  if(validation && validation.idCheck && isValid){
     isValid = /[a-m][a-m][0-9][0-9][a-m][a-m]/i.test(value);
   }
 
