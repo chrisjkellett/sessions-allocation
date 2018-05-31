@@ -10,9 +10,12 @@ export const constructExaminerState = () => {
       },
       value: '',
       validation: {
-        required: true
+        required: {
+          value: true, error: 'required field'
+        }
       },
-      valid: false
+      valid: false,
+      touched: false
     },
 
     roles: {
@@ -22,11 +25,7 @@ export const constructExaminerState = () => {
         size: roleKeys.length
       },
       options: roleKeys,
-      value: [],
-      validation: {
-        required: true
-      },
-      valid: false
+      value: []
     },
 
     id_number: {
@@ -37,7 +36,9 @@ export const constructExaminerState = () => {
         maxLength: 6
       },
       value: '',
-      valid: true
+      validation: {
+        required: true
+      },
     },
 
     levels: {
@@ -60,7 +61,8 @@ export const constructExaminerState = () => {
       validation: {
         required: true
       },
-      valid: false
+      valid: false,
+      touched: false
     },
   } 
 }

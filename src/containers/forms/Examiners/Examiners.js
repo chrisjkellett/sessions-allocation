@@ -6,7 +6,6 @@ import * as actions from '../../../store/actions/examiners';
 import {constructExaminerState} from '../../../store/constructors/examiners';
 import {
   updateState, 
-  capsFirstLetters, 
   getSelectedOptions, 
   updateOptionArray, 
   generateFormElementArray,
@@ -36,7 +35,7 @@ class Examiners extends Component {
         this.setState(updateState(this.state, id, {value: updateOptionArray([...this.state.examiner[id].value], event)}))  
         break;
       default:
-        this.setState(updateState(this.state, id, {value: capsFirstLetters(event.target.value)})); 
+        this.setState(updateState(this.state, id, {value: event.target.value})); 
     }
   }
 
@@ -52,6 +51,7 @@ class Examiners extends Component {
           elementConfig={element.config.elementConfig}
           value={element.config.value} 
           valid={element.config.valid}
+          touched={element.config.touched}
           change={(event) => this.changeHandler(event, element.config.elementType, element.id)}/>
       )
     })

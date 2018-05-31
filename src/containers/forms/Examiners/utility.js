@@ -1,6 +1,6 @@
-export const capsFirstLetters = (str) => {
-  return str.replace(/\b\w/g, l => l.toUpperCase());
-}
+// export const capsFirstLetters = (str) => {
+//   return str.replace(/\b\w/g, l => l.toUpperCase());
+// }
 
 export const updateState = (obj, id, updatedState) => {
   return{
@@ -10,17 +10,19 @@ export const updateState = (obj, id, updatedState) => {
       [id]: {
         ...obj.examiner[id],
         ...updatedState, 
-        valid: checkValidity(updatedState.value, {...obj.examiner[id].validation})
+        valid: checkValidity(updatedState.value, {...obj.examiner[id].validation}),
+        touched: true
       }
     }
   }
 }
 
-export const checkValidity = (value, rules) => {
+export const checkValidity = (value, validation) => {
   let isValid = true;
 
-  if(rules.required)
+  if(validation.required.value){
     isValid = value.trim() !== '' && isValid;
+  }
 
   return isValid;  
 }

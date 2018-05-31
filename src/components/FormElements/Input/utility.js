@@ -40,7 +40,7 @@ export const generateFormElement = (type, props, classes) =>{
 export const generateClasses = (props, classes) => {
   const styles = [classes.Input];
 
-  if(!props.valid){
+  if(!props.valid && props.touched){
     styles.push(classes.Invalid);
   }
 

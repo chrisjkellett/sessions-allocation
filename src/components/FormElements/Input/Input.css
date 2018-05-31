@@ -16,9 +16,10 @@
   display: none;
 }
 
-.Invalid input{
+.Invalid input, .Invalid select{
   border:1px solid #dc3545;
   background: #f7d0cb;
+  padding: 2px 0;
 }
 
 .Error{
