@@ -1,4 +1,6 @@
-import {roleKeys, levelKeys, availabilityKeys} from '../data';
+import {
+  roleKeys, levelKeys, availabilityKeys, dayOptions, monthOptions, yearOptions
+} from '../data';
 
 export const constructExaminerState = () => {
   return {
@@ -64,5 +66,15 @@ export const constructExaminerState = () => {
       },
       valid: false
     },
+
+    last_monitored: {
+      elementType: 'date',
+      options: {
+        days: dayOptions,
+        months: monthOptions,
+        years: yearOptions
+      },
+      value: [1, 'January', 2018]
+    }
   } 
 }

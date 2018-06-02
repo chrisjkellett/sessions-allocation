@@ -68,3 +68,8 @@ export const generateObjectForSubmitForm = (obj) => {
 
     return data;
 }
+
+export const updateDateArray = (arr, event, index) => {
+  arr[index] = event.target.value;
+  return arr;
+} 

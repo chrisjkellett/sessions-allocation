@@ -31,8 +31,29 @@ export const generateFormElement = (type, props, classes) =>{
           );
       }))
 
+    case 'date' :
+      return(
+        <div className={classes.DateSelect}>
+          <select onChange={(event, index) => props.change(event, 0)} value={props.value[0]} >
+            {props.options.days.map(option => (
+              <option key={option}>{option}</option>
+            ))}
+          </select>
+          <select onChange={(event, index) => props.change(event, 1)}  value={props.value[1]} >
+            {props.options.months.map(option => (
+              <option key={option}>{option}</option>
+            ))}
+          </select>
+          <select onChange={(event, index) => props.change(event, 2)}  value={props.value[2]} >
+            {props.options.years.map(option => (
+              <option key={option}>{option}</option>
+            ))}
+          </select>
+        </div>
+      )
+
      default :
-        return {}; 
+        return null; 
 
   }
 }

@@ -9,7 +9,8 @@ import {
   getSelectedOptions, 
   updateOptionArray, 
   generateFormElementArray,
-  generateObjectForSubmitForm
+  generateObjectForSubmitForm,
+  updateDateArray
 } from './utility';
 
 
@@ -31,13 +32,16 @@ class Examiners extends Component {
     })
   }
 
-  changeHandler = (event, type, id) => {
+  changeHandler = (event, type, id, index) => {
     switch(type){
       case 'select':
         this.setState(updateState(this.state, id, {value: getSelectedOptions(event)}))
         break;
       case 'checkbox':
         this.setState(updateState(this.state, id, {value: updateOptionArray([...this.state.examiner[id].value], event)}))  
+        break;
+      case 'date':
+        this.setState(updateState(this.state, id, {value: updateDateArray([...this.state.examiner[id].value], event, index)}));
         break;
       default:
         this.setState(updateState(this.state, id, {value: event.target.value})); 
@@ -57,7 +61,7 @@ class Examiners extends Component {
           value={element.config.value} 
           valid={element.config.valid}
           validate={this.state.validate}
-          change={(event) => this.changeHandler(event, element.config.elementType, element.id)}/>
+          change={(event, index) => this.changeHandler(event, element.config.elementType, element.id, index)}/>
       )
     })
 
