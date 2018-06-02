@@ -13,8 +13,7 @@ export const constructExaminerState = () => {
         required: true,
         idCheck: false
       },
-      valid: false,
-      touched: false
+      valid: false
     },
 
     roles: {
@@ -40,8 +39,7 @@ export const constructExaminerState = () => {
         required: true,
         idCheck: true
       },
-      valid: false,
-      touched: false
+      valid: false
     },
 
     levels: {
@@ -64,8 +62,7 @@ export const constructExaminerState = () => {
       validation: {
         required: true
       },
-      valid: false,
-      touched: false
+      valid: false
     },
   } 
 }

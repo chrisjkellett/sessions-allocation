@@ -15,15 +15,20 @@ import {
 
 class Examiners extends Component {
   state = {
-    examiner: constructExaminerState()
+    examiner: constructExaminerState(),
+    validate: false
   }
 
   submitHandler = (event, validation) => {
     event.preventDefault();
-    this.props.addExaminer(generateObjectForSubmitForm(this.state.examiner));
-    this.props.history.push({
-      pathname: '/'
+    this.setState({
+      ...this.state,
+      validate: true
     })
+    // this.props.addExaminer(generateObjectForSubmitForm(this.state.examiner));
+    // this.props.history.push({
+    //   pathname: '/'
+    // })
   }
 
   changeHandler = (event, type, id) => {
@@ -50,9 +55,8 @@ class Examiners extends Component {
           elementtype={element.config.elementType} 
           elementConfig={element.config.elementConfig}
           value={element.config.value} 
-          shouldValidate={element.config.validation}
           valid={element.config.valid}
-          touched={element.config.touched}
+          validate={this.state.validate}
           change={(event) => this.changeHandler(event, element.config.elementType, element.id)}/>
       )
     })

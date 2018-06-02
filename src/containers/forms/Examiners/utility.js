@@ -10,8 +10,7 @@ export const updateState = (obj, id, updatedState) => {
       [id]: {
         ...obj.examiner[id],
         ...updatedState, 
-        valid: checkValidity(updatedState.value, {...obj.examiner[id].validation}),
-        touched: true
+        valid: checkValidity(updatedState.value, {...obj.examiner[id].validation})
       }
     }
   }
