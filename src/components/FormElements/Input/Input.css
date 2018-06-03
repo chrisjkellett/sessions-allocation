@@ -45,6 +45,10 @@
   cursor: pointer;
 }
 
+.Checkbox label:hover{
+  background: lightgray;
+}
+
 .Checkbox input {
     position: absolute;
     z-index: -1;
