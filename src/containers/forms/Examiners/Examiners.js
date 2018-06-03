@@ -26,10 +26,10 @@ class Examiners extends Component {
       ...this.state,
       validate: true
     })
-    this.props.addExaminer(generateObjectForSubmitForm(this.state.examiner));
-    this.props.history.push({
-      pathname: '/'
-    })
+    // this.props.addExaminer(generateObjectForSubmitForm(this.state.examiner));
+    // this.props.history.push({
+    //   pathname: '/'
+    // })
   }
 
   changeHandler = (event, type, id, index) => {

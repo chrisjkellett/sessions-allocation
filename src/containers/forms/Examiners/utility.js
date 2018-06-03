@@ -1,6 +1,6 @@
-// export const capsFirstLetters = (str) => {
-//   return str.replace(/\b\w/g, l => l.toUpperCase());
-// }
+
+import {monthOptions} from '../../../store/data';
+import moment from 'moment';
 
 export const updateState = (obj, id, updatedState) => {
   return{
@@ -27,8 +27,31 @@ export const checkValidity = (value, validation) => {
     isValid = /[a-m][a-m][0-9][0-9][a-m][a-m]/i.test(value);
   }
 
+  if(validation.date && isValid){
+    const dateCopy = [...value];
+    dateCopy[1] = convertMonthToNumber(dateCopy[1]);
+    isValid = moment(dateCopy.join("-")).isValid();
+  }
+
+  if(validation.beforeNow && isValid){
+    const dateCopy = [...value];
+    dateCopy[1] = convertMonthToNumber(dateCopy[1]);
+    console.log(moment().format('UTC'));
+    console.log('checking if before now');
+  }
+
   return isValid;  
 }
+
+export const convertMonthToNumber = (month) => {
+  const obj = monthOptions.find(item => {
+    return item.m === month;
+  })
+
+  return obj.id;
+}
+
+
 
 export const getSelectedOptions = (event) => {
   return [...event.target.options]
@@ -73,3 +96,4 @@ export const updateDateArray = (arr, event, index) => {
   arr[index] = event.target.value;
   return arr;
 } 
+

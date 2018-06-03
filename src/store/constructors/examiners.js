@@ -63,14 +63,19 @@ export const constructExaminerState = () => {
       value: []
     },
 
-    last_monitored: {
+    last_monitoring: {
       elementType: 'date',
       options: {
         days: dayOptions,
         months: monthOptions,
         years: yearOptionsMonitoring
       },
-      value: [1, 'January', 2018]
+      value: ['2018', 'January', '10'],
+      validation: {
+        date: true,
+        beforeNow: true
+      },
+      valid: false
     }
   } 
 }
