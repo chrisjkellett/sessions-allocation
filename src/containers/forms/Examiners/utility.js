@@ -15,6 +15,13 @@ export const updateState = (obj, id, updatedState) => {
   }
 }
 
+export const updateSimpleState = (obj, updatedState) => {
+  return{
+    ...obj,
+    ...updatedState
+  }
+}
+
 export const getSelectedOptions = (event) => {
   return [...event.target.options]
       .filter(({selected}) => selected)

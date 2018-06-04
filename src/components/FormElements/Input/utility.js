@@ -69,6 +69,7 @@ export const generateClasses = (props, classes) => {
 }
 
 export const generateErrorMessage =(props, classes) => {
+  console.log(props.valid);
   if(props.valid)
     return <span className={classes.ErrorMessage}>{props.valid[0]}</span>
   else

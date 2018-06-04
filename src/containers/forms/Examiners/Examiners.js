@@ -6,6 +6,7 @@ import * as actions from '../../../store/actions/examiners';
 import {constructExaminerState} from '../../../store/constructors/examiners';
 import {
   updateState, 
+  updateSimpleState,
   getSelectedOptions, 
   updateOptionArray, 
   generateFormElementArray,
@@ -18,13 +19,14 @@ import {checkValidity} from './validation';
 class Examiners extends Component {
   state = {
     examiner: constructExaminerState(),
-    validate: false
+    shouldValidate: false,
+    formIsValid: false
   }
 
   submitHandler = (event, validation) => {
     event.preventDefault();
     this.initialiseValidation();
-    
+    console.log(this.checkFormValidity({...this.state.examiner}));
     // this.props.addExaminer(generateObjectForSubmitForm(this.state.examiner));
     // this.props.history.push({
     //   pathname: '/'
@@ -32,10 +34,19 @@ class Examiners extends Component {
   }
 
   initialiseValidation = () => {
-    this.setState({
-      ...this.state,
-      validate: true
-    })
+    updateSimpleState({shouldValidate: true});
+  }
+
+  checkFormValidity = (obj) => {
+    let isValid = true;
+
+    for(let item in obj){
+      if(obj[item].validation.valid.length !== 0){
+        isValid = false
+      }
+    }
+
+    return isValid;
   }
 
   changeHandler = (event, type, id, index) => {
@@ -60,20 +71,21 @@ class Examiners extends Component {
     const value = event.target.value;
     const update = updateState(this.state, id, {value: value});
     update.examiner[id].validation = checkValidity({...update.examiner[id]});
-    console.log(update.examiner[id].validation);
     this.setState(update);
   }
 
   selectHandler = (event, id) => {
     const value = getSelectedOptions(event);
     const update = updateState(this.state, id, {value: value});
+    update.examiner[id].validation = checkValidity({...update.examiner[id]});
     this.setState(update);
   }
 
   checkBoxHandler = (event, id) => {
     const copyOptions = [...this.state.examiner[id].value];
     const value = updateOptionArray(copyOptions, event);
-    const update = updateState(this.state, id, {value: value})
+    const update = updateState(this.state, id, {value: value});
+    update.examiner[id].validation = checkValidity({...update.examiner[id]});
     this.setState(update);
   }
 
@@ -81,6 +93,7 @@ class Examiners extends Component {
     const copyArray = [...this.state.examiner[id].value];
     const value = updateDateArray(copyArray, event, index)
     const update = updateState(this.state, id, {value: value})
+    update.examiner[id].validation = checkValidity({...update.examiner[id]});
     this.setState(update);
   }
 
