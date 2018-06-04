@@ -10,7 +10,8 @@ import {
   updateOptionArray, 
   generateFormElementArray,
   generateObjectForSubmitForm,
-  updateDateArray
+  updateDateArray,
+  checkValidity
 } from './utility';
 
 
@@ -58,6 +59,8 @@ class Examiners extends Component {
   inputHandler = (event, id) => {
     const value = event.target.value;
     const update = updateState(this.state, id, {value: value});
+    update.examiner[id].validation = checkValidity({...update.examiner[id]});
+    console.log(update.examiner[id].validation);
     this.setState(update);
   }
 

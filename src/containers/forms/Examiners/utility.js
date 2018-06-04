@@ -1,6 +1,6 @@
 
-import {monthOptions} from '../../../store/data';
-import moment from 'moment';
+// import {monthOptions} from '../../../store/data';
+// import moment from 'moment';
 
 export const updateState = (obj, id, updatedState) => {
   return{
@@ -13,6 +13,14 @@ export const updateState = (obj, id, updatedState) => {
       }
     }
   }
+}
+
+export const checkValidity = (obj) => {
+  if(obj.validation.rules.required){
+    obj.value.trim().length !== 0 ? obj.validation.valid = [] : obj.validation.valid.push(obj.validation.rules.required.error);
+  }
+    
+  return obj.validation;
 }
 
 
