@@ -25,8 +25,7 @@ export const constructExaminerState = () => {
         size: roleKeys.length
       },
       options: roleKeys,
-      value: [],
-      valid: true
+      value: []
     },
 
     id_number: {
@@ -36,12 +35,7 @@ export const constructExaminerState = () => {
         placeholder: '',
         maxLength: 6
       },
-      value: '',
-      validation: {
-        required: true,
-        idCheck: true
-      },
-      valid: false
+      value: ''
     },
 
     levels: {
@@ -70,12 +64,7 @@ export const constructExaminerState = () => {
         months: monthOptions,
         years: yearOptionsMonitoring
       },
-      value: ['2018', 'January', '10'],
-      validation: {
-        date: true,
-        beforeNow: true
-      },
-      valid: false
+      value: ['2018', 'January', '10']
     }
   } 
 }

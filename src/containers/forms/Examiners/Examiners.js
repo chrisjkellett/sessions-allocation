@@ -22,32 +22,64 @@ class Examiners extends Component {
 
   submitHandler = (event, validation) => {
     event.preventDefault();
-    this.setState({
-      ...this.state,
-      validate: true
-    })
+    this.initialiseValidation();
+    
     // this.props.addExaminer(generateObjectForSubmitForm(this.state.examiner));
     // this.props.history.push({
     //   pathname: '/'
     // })
   }
 
-  changeHandler = (event, type, id, index) => {
-    switch(type){
-      case 'select':
-        this.setState(updateState(this.state, id, {value: getSelectedOptions(event)}))
-        break;
-      case 'checkbox':
-        this.setState(updateState(this.state, id, {value: updateOptionArray([...this.state.examiner[id].value], event)}))  
-        break;
-      case 'date':
-        this.setState(updateState(this.state, id, {value: updateDateArray([...this.state.examiner[id].value], event, index)}));
-        break;
-      default:
-        this.setState(updateState(this.state, id, {value: event.target.value})); 
-    }
+  initialiseValidation = () => {
+    this.setState({
+      ...this.state,
+      validate: true
+    })
   }
 
+  changeHandler = (event, type, id, index) => {
+    if(type === 'input'){
+      this.inputHandler(event, id);
+    } 
+
+    if(type === 'select'){
+      this.selectHandler(event, id);
+    } 
+
+    if(type === 'checkbox'){
+      this.checkBoxHandler(event, id);
+    } 
+
+    if(type === 'date'){
+      this.dateHandler(event, id, index);
+    } 
+  }
+
+  inputHandler = (event, id) => {
+    const value = event.target.value;
+    const update = updateState(this.state, id, {value: value});
+    this.setState(update);
+  }
+
+  selectHandler = (event, id) => {
+    const value = getSelectedOptions(event);
+    const update = updateState(this.state, id, {value: value});
+    this.setState(update);
+  }
+
+  checkBoxHandler = (event, id) => {
+    const copyOptions = [...this.state.examiner[id].value];
+    const value = updateOptionArray(copyOptions, event);
+    const update = updateState(this.state, id, {value: value})
+    this.setState(update);
+  }
+
+  dateHandler = (event, id, index) => {
+    const copyArray = [...this.state.examiner[id].value];
+    const value = updateDateArray(copyArray, event, index)
+    const update = updateState(this.state, id, {value: value})
+    this.setState(update);
+  }
 
   render(){
     const formElements = generateFormElementArray(this.state.examiner).map(element => {
