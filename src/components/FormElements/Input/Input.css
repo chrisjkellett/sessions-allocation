@@ -3,7 +3,13 @@
 }
 
 .Input label{
-  display: block;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.Input .ErrorMessage{
+  font-size: 85%;
+  color: #dc3545;
 }
 
 .Input select{

@@ -1,6 +1,6 @@
-import {
-  roleKeys, levelKeys, availabilityKeys, dayOptions, monthOptions, yearOptionsMonitoring
-} from '../data';
+// import {
+//   roleKeys, levelKeys, availabilityKeys, dayOptions, monthOptions, yearOptionsMonitoring
+// } from '../data';
 
 import {
   constructValidation,

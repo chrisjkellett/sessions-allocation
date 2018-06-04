@@ -15,15 +15,6 @@ export const updateState = (obj, id, updatedState) => {
   }
 }
 
-export const checkValidity = (obj) => {
-  if(obj.validation.rules.required){
-    obj.value.trim().length !== 0 ? obj.validation.valid = [] : obj.validation.valid.push(obj.validation.rules.required.error);
-  }
-    
-  return obj.validation;
-}
-
-
 export const getSelectedOptions = (event) => {
   return [...event.target.options]
       .filter(({selected}) => selected)

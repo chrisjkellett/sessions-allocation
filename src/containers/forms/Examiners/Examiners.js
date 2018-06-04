@@ -10,9 +10,9 @@ import {
   updateOptionArray, 
   generateFormElementArray,
   generateObjectForSubmitForm,
-  updateDateArray,
-  checkValidity
+  updateDateArray
 } from './utility';
+import {checkValidity} from './validation';
 
 
 class Examiners extends Component {
@@ -94,8 +94,7 @@ class Examiners extends Component {
           elementtype={element.config.elementType} 
           elementConfig={element.config.elementConfig}
           value={element.config.value} 
-          valid={element.config.valid}
-          validate={this.state.validate}
+          valid={element.config.validation.valid}
           change={(event, index) => this.changeHandler(event, element.config.elementType, element.id, index)}/>
       )
     })
