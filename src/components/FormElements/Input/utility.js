@@ -61,16 +61,23 @@ export const generateFormElement = (type, props, classes) =>{
 export const generateClasses = (props, classes) => {
   const styles = [classes.Input];
 
-  if(props.valid.length !== 0){
+  if(props.valid.length !== 0 && props.shouldValidate){
     styles.push(classes.Invalid);
+  }
+
+  if(props.hide && !props.showHidden){
+    styles.push(classes.NotVisible);
+  }
+
+  if(props.group !== props.activeGroup){
+    styles.push(classes.NotVisible);
   }
 
   return styles.join(" ");
 }
 
 export const generateErrorMessage =(props, classes) => {
-  console.log(props.valid);
-  if(props.valid)
+  if(props.valid && props.shouldValidate)
     return <span className={classes.ErrorMessage}>{props.valid[0]}</span>
   else
     return null;

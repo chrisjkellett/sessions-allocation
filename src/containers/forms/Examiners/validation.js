@@ -1,3 +1,12 @@
+export const formatInput = (str, id) => {
+  switch(id){
+    case 'id_number':
+      return str.toUpperCase();
+    default:
+      return str;
+  }
+}
+
 export const checkValidity = (obj) => {
   const {validation, value} = obj;
   const {rules} = validation;
@@ -16,6 +25,18 @@ export const checkValidity = (obj) => {
   return validation;
 }
 
+export const checkFormValidity = (obj) => {
+  let isValid = true;
+
+  for(let item in obj){
+    if(obj[item].validation.valid.length !== 0){
+      isValid = false
+    }
+  }
+
+  return isValid;
+}
+
 const formatLengthError = (rule, num) => {
   return rule.replace(/#/g, num)
 }
@@ -28,3 +49,4 @@ const invalidDate = (arr) => {
   console.log(arr);
   return false;
 }
+

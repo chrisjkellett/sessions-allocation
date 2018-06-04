@@ -12,10 +12,10 @@ export const constructExaminerState = () => {
     name: {
       elementType: 'input',
       elementConfig: {
-        type: 'text',
-        placeholder: ''
+        type: 'text'
       },
       value: '',
+      group: 'personal',
       validation: constructValidation({...rules.required, ...rules.minLength})
       },
 
@@ -27,6 +27,7 @@ export const constructExaminerState = () => {
       },
       options: roleKeys,
       value: [],
+      group: 'roles',
       validation: constructValidation({...rules.required})
     },
 
@@ -34,20 +35,20 @@ export const constructExaminerState = () => {
       elementType: 'input',
       elementConfig: {
         type: 'text',
-        placeholder: '',
         maxLength: 6
       },
+      hide: true,
       value: '',
+      group: 'roles',
       validation: constructValidation({...rules.required, ...rules.validId})
     },
 
     levels: {
       elementType: 'checkbox',
-      elementConfig: {
-        placeholder: ''
-      },
       options: levelKeys,
+      hide: true,
       value: [],
+      group: 'roles',
       validation: constructValidation({})
     },
     
@@ -59,6 +60,7 @@ export const constructExaminerState = () => {
       },
       options: availabilityKeys,
       value: [],
+      group: 'availability',
       validation: constructValidation({...rules.required})
     },
 
@@ -70,6 +72,7 @@ export const constructExaminerState = () => {
         years: yearOptionsMonitoring
       },
       value: ['2018', 'January', '10'],
+      group: 'monitoring',
       validation: constructValidation({...rules.checkDate})
     }
   } 

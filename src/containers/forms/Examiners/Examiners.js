@@ -11,65 +11,48 @@ import {
   updateOptionArray, 
   generateFormElementArray,
   generateObjectForSubmitForm,
-  updateDateArray
+  updateDateArray,
+  showHiddenFields, 
+  generateGroups,
+  generateGroupClasses
 } from './utility';
-import {checkValidity} from './validation';
+import {checkValidity, checkFormValidity, formatInput} from './validation';
 
 
 class Examiners extends Component {
   state = {
     examiner: constructExaminerState(),
-    shouldValidate: false,
-    formIsValid: false
+    activeGroup: 'personal',
+    shouldValidate: false
   }
 
   submitHandler = (event, validation) => {
     event.preventDefault();
     this.initialiseValidation();
-    console.log(this.checkFormValidity({...this.state.examiner}));
-    // this.props.addExaminer(generateObjectForSubmitForm(this.state.examiner));
-    // this.props.history.push({
-    //   pathname: '/'
-    // })
+    const isValid = checkFormValidity({...this.state.examiner});
+    if(isValid){
+      this.props.addExaminer(generateObjectForSubmitForm(this.state.examiner));
+      this.props.history.push({
+        pathname: '/'
+      })
+    }
+    
   }
 
   initialiseValidation = () => {
-    updateSimpleState({shouldValidate: true});
-  }
-
-  checkFormValidity = (obj) => {
-    let isValid = true;
-
-    for(let item in obj){
-      if(obj[item].validation.valid.length !== 0){
-        isValid = false
-      }
-    }
-
-    return isValid;
+    this.setState(updateSimpleState(this.state, {shouldValidate: true}));
   }
 
   changeHandler = (event, type, id, index) => {
-    if(type === 'input'){
-      this.inputHandler(event, id);
-    } 
-
-    if(type === 'select'){
-      this.selectHandler(event, id);
-    } 
-
-    if(type === 'checkbox'){
-      this.checkBoxHandler(event, id);
-    } 
-
-    if(type === 'date'){
-      this.dateHandler(event, id, index);
-    } 
+    if(type === 'input') this.inputHandler(event, id);
+    if(type === 'select') this.selectHandler(event, id);
+    if(type === 'checkbox') this.checkBoxHandler(event, id);
+    if(type === 'date') this.dateHandler(event, id, index);
   }
 
   inputHandler = (event, id) => {
     const value = event.target.value;
-    const update = updateState(this.state, id, {value: value});
+    const update = updateState(this.state, id, {value: formatInput(value, id)});
     update.examiner[id].validation = checkValidity({...update.examiner[id]});
     this.setState(update);
   }
@@ -97,6 +80,10 @@ class Examiners extends Component {
     this.setState(update);
   }
 
+  groupChange = (event, group) => {
+    this.setState(updateSimpleState({activeGroup: group}))
+  }
+
   render(){
     const formElements = generateFormElementArray(this.state.examiner).map(element => {
       return (
@@ -107,13 +94,27 @@ class Examiners extends Component {
           elementtype={element.config.elementType} 
           elementConfig={element.config.elementConfig}
           value={element.config.value} 
+          hide={element.config.hide}
+          activeGroup={this.state.activeGroup}
+          group={element.config.group}
+          showHidden={showHiddenFields(this.state.examiner)}
           valid={element.config.validation.valid}
+          shouldValidate={this.state.shouldValidate}
           change={(event, index) => this.changeHandler(event, element.config.elementType, element.id, index)}/>
       )
     })
 
+    const groupToolbar = generateGroups(this.state.examiner).map(group =>(
+      <span 
+        key={group} 
+        className={generateGroupClasses(classes, group, this.state.activeGroup)} 
+        onClick={(event) => this.groupChange(event, group)}>{group}
+      </span>
+    ))
+
     return(
       <form className={classes.Examiners} onSubmit={this.submitHandler}>
+        {groupToolbar}
         {formElements}
         <button>Submit</button>
       </form>

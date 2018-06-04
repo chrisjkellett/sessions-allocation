@@ -66,3 +66,25 @@ export const updateDateArray = (arr, event, index) => {
   return arr;
 } 
 
+export const showHiddenFields = (obj) => {
+  if(obj.roles.value.includes('Speaking Examiner')){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+export const generateGroups = (obj) => {
+  let groups = [];
+
+  for (let item in obj){
+    groups.push(obj[item].group)
+  }
+
+  return Array.from(new Set(groups));
+}
+
+export const generateGroupClasses = (classes, group, active) => {
+  if(group !== active) return classes.Group;
+  else return classes.NotActiveGroup;
+}
