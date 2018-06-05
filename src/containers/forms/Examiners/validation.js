@@ -17,6 +17,7 @@ export const checkFormValidity = (obj) => {
 export const checkValidity = (obj) => {
   const {validation, value} = obj;
   const {rules} = validation;
+
   let errors = [];
 
   if(rules.required && value.length === 0) errors.push(rules.required);
@@ -28,6 +29,8 @@ export const checkValidity = (obj) => {
   if(rules.checkDate && invalidDate([...value])) errors.push(rules.checkDate);
 
   if(rules.checkEmail && invalidEmail(value)) errors.push(rules.checkEmail);
+
+  if(rules.beforeToday && NotBeforeToday([...value])) errors.push(rules.beforeToday);
 
   validation.valid = errors;
     
@@ -46,6 +49,12 @@ const invalidDate = (arr) => {
 
 const invalidEmail = (value) => {
   return !/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value);
+}
+
+const NotBeforeToday = (arr) => {
+  arr[1] = convertMonthToNumber(arr[1]);
+  console.log(arr);
+  return moment(arr.join("-"), 'YYYY-MM-DD').isAfter(moment());
 }
 
 

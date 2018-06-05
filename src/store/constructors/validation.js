@@ -11,6 +11,7 @@ export const rules = {
   minLength: {minLength: 'min # characters'},
   checkId: {checkId: 'incorrect format'},
   checkDate: {checkDate: 'invalid date'},
+  beforeToday: {beforeToday: 'cannot be a future date'},
   checkEmail: {checkEmail: 'not a valid email'}
 }
 

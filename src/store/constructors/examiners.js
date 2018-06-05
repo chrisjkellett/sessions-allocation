@@ -83,7 +83,7 @@ export const constructExaminerState = () => {
       },
       value: ['2018', 'January', '10'],
       group: 'monitoring',
-      validation: constructValidation({...rules.checkDate})
+      validation: constructValidation({...rules.checkDate, ...rules.beforeToday})
     }
   } 
 }
