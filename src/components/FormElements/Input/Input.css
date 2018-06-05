@@ -3,7 +3,6 @@
 }
 
 .Input label{
-  display: inline-block;
   margin-right: 5px;
 }
 
@@ -22,7 +21,7 @@
   display: none;
 }
 
-.Invalid input, .Invalid select{
+.Invalid input, .Invalid select, input:-webkit-autofill{
   border:1px solid #dc3545;
   background: #f7d0cb;
   padding: 2px 1px;

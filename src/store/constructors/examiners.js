@@ -84,6 +84,14 @@ export const constructExaminerState = () => {
       value: ['2018', 'January', '10'],
       group: 'monitoring',
       validation: constructValidation({...rules.checkDate, ...rules.beforeToday})
-    }
+    },
+
+    monitoring_level: {
+      elementType: 'checkbox',
+      options: levelKeys,
+      value: [],
+      group: 'monitoring',
+      validation: constructValidation({})
+    },
   } 
 }

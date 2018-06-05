@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Rows.css';
 import {isPm} from './utility';
+import BtnWithLink from '../../../../components/FormElements/Btns/BtnWithLink';
 
 const rows = (props) => {
   return(
@@ -34,7 +35,7 @@ const rows = (props) => {
       </td>
 
       <td>
-        <span className={classes.Btn} onClick={props.edit}>edit</span>
+        <BtnWithLink link={'edit-examiner/' + props.examiner.name.toLowerCase().split(" ").join("-")} label='edit' />
         <span className={classes.Bar}> | </span>
         <span className={classes.Btn} onClick={props.delete}>delete</span>
       </td>
