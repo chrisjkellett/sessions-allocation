@@ -1,3 +1,6 @@
+import {monthOptions} from '../../../store/data';
+import moment from 'moment';
+
 //general validation setup
 export const checkFormValidity = (obj) => {
   let isValid = true;
@@ -22,7 +25,7 @@ export const checkValidity = (obj) => {
 
   if(rules.checkId && invalidID(value)) errors.push(rules.checkId)
 
-  if(rules.checkDate && invalidDate(value)) errors.push(rules.checkDate);
+  if(rules.checkDate && invalidDate([...value])) errors.push(rules.checkDate);
 
   if(rules.checkEmail && invalidEmail(value)) errors.push(rules.checkEmail);
 
@@ -37,8 +40,8 @@ const invalidID = (id) => {
 }
 
 const invalidDate = (arr) => {
-  console.log(arr);
-  return false;
+  arr[1] = convertMonthToNumber(arr[1]);
+  return !moment(arr.join("-")).isValid();
 }
 
 const invalidEmail = (value) => {
@@ -58,4 +61,12 @@ export const formatInput = (str, id) => {
 
 const formatLengthError = (rule, num) => {
   return rule.replace(/#/g, num)
+}
+
+const convertMonthToNumber = (month) => {
+  const obj = monthOptions.find(item => {
+    return item.m === month
+  })
+
+  return obj.id;
 }
