@@ -16,3 +16,7 @@ export const sortByName = (obj) => {
     return a.name > b.name
   })
 }
+
+export const inEditingMode = (id) => {
+  return id !== undefined;
+}

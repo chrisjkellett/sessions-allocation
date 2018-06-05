@@ -34,7 +34,6 @@ export const addExaminer = (examiner) => {
   }
 }
 
-
 export const addExaminerSuccess = (examiner, data) => {
   return {
     type: actionTypes.ADD_EXAMINER_SUCCESS,
@@ -54,7 +53,6 @@ export const deleteExaminer = (id) => {
   }
 }
 
-
 export const deleteExaminerSuccess = (id) => {
   return {
     type: actionTypes.DELETE_EXAMINER_SUCCESS,
@@ -68,3 +66,10 @@ export const failedLoad = (error) => {
     error: error
   }
 } 
+
+export const isEditing = (id) => {
+  return {
+    type: actionTypes.IS_EDITING,
+    id: id
+  }
+}

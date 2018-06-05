@@ -1,9 +1,15 @@
 import * as actionTypes from '../actions/actionTypes';
-import {updateState, sortByName, removeElementById} from './utility';
+import {
+  updateState, 
+  sortByName, 
+  removeElementById,
+  inEditingMode
+} from './utility';
 
 const initialState = {
   examiners: null,
-  error: false
+  error: false,
+  editing: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +25,9 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: true})
+
+    case actionTypes.IS_EDITING:
+      return updateState(state, {editing: inEditingMode(action.id)})  
 
     default:
       return state;  

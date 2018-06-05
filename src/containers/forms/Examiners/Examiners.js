@@ -27,7 +27,7 @@ class Examiners extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props.match.params.id);
+    this.props.isEditing(this.props.match.params.id);
   }
 
   submitHandler = (event, validation) => {
@@ -40,7 +40,6 @@ class Examiners extends Component {
         pathname: '/'
       })
     }
-    
   }
 
   initialiseValidation = () => {
@@ -118,11 +117,18 @@ class Examiners extends Component {
 
     return(
       <form className={classes.Examiners} onSubmit={this.submitHandler}>
+        {this.props.editing ? <p>editing mode</p> : null}
         {groupToolbar}
         {formElements}
         <button>Submit</button>
       </form>
     )
+  }
+}
+
+const mapStateToProps = state => {
+  return{
+    editing: state.editing
   }
 }
 
@@ -133,4 +139,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Examiners);
+export default connect(mapStateToProps, mapDispatchToProps)(Examiners);
