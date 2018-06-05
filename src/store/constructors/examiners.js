@@ -19,6 +19,16 @@ export const constructExaminerState = () => {
       validation: constructValidation({...rules.required, ...rules.minLength})
       },
 
+    email: {
+      elementType: 'input',
+      elementConfig: {
+        type: 'text'
+      },
+      value: '',
+      group: 'personal',
+      validation: constructValidation({...rules.required, ...rules.checkEmail})
+      },
+
     roles: {
       elementType: 'select',
       elementConfig: {
@@ -40,7 +50,7 @@ export const constructExaminerState = () => {
       hide: true,
       value: '',
       group: 'roles',
-      validation: constructValidation({...rules.required, ...rules.validId})
+      validation: constructValidation({...rules.required, ...rules.checkId})
     },
 
     levels: {

@@ -9,8 +9,9 @@ export const constructValidation = (rules) => {
 export const rules = {
   required: {required: 'required field'},
   minLength: {minLength: 'min # characters'},
-  validId: {validId: 'incorrect format'},
-  checkDate: {checkDate: 'invalid date'}
+  checkId: {checkId: 'incorrect format'},
+  checkDate: {checkDate: 'invalid date'},
+  checkEmail: {checkEmail: 'not a valid email'}
 }
 
 export const distributeInitialErrors = (rules) => {
