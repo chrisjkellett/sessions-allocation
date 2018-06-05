@@ -42,18 +42,19 @@ const invalidID = (id) => {
   return !/[a-m][a-m][0-9][0-9][a-m][a-m]/i.test(id.trim())
 }
 
-const invalidDate = (arr) => {
-  arr[1] = convertMonthToNumber(arr[1]);
-  return !moment(arr.join("-")).isValid();
-}
-
 const invalidEmail = (value) => {
   return !/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value);
 }
 
+const invalidDate = (arr) => {
+  arr[1] = convertMonthToNumber(arr[1]);
+  arr[2] = checkZeros(arr[2]);
+  return !moment(arr.join("-")).isValid();
+}
+
 const NotBeforeToday = (arr) => {
   arr[1] = convertMonthToNumber(arr[1]);
-  console.log(arr);
+  arr[2] = checkZeros(arr[2]);
   return moment(arr.join("-"), 'YYYY-MM-DD').isAfter(moment());
 }
 
@@ -78,4 +79,8 @@ const convertMonthToNumber = (month) => {
   })
 
   return obj.id;
+}
+
+const checkZeros = (day) => {
+  return day.length === 1 ? '0' + day : day;
 }
