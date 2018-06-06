@@ -1,8 +1,8 @@
 export const examinerTableHeaders = [
-  'Examiner name',
-  'Roles',
-  'Levels',
-  'Availability',
+  'examiner name',
+  'roles',
+  'levels',
+  'availability',
   null
 ]
 
