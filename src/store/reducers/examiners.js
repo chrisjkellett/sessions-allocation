@@ -2,8 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 import {
   updateState, 
   sortByName, 
-  removeElementById,
-  inEditingMode
+  removeElementById
 } from './utility';
 
 const initialState = {
@@ -27,7 +26,7 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {error: true})
 
     case actionTypes.IS_EDITING:
-      return updateState(state, {editing: inEditingMode(action.id)})  
+      return updateState(state, {editing: true})  
 
     default:
       return state;  

@@ -1,46 +1,34 @@
-import React from 'react';
+import React, {Component} from 'react';
 import classes from './Rows.css';
-import {isPm} from './utility';
+import {connect} from 'react-redux';
+import {renderName, renderRoles, renderLevels, renderAvailability, renderBtns} from './utility';
 import BtnWithLink from '../../../../components/FormElements/Btns/BtnWithLink';
+import * as actions from '../../../../store/actions/examiners';
 
-const rows = (props) => {
-  return(
-    <tr className={classes.Row}>
-      <td>{props.examiner.name}</td>
+class Rows extends Component {
+  
+  handleEdit = (event, name) =>{
+    this.props.editModeOn();
+  }
 
-      <td>
-        {props.examiner.id_number}
-        {props.examiner.roles
-          .filter(role => role !== 'Speaking Examiner')
-          .map(role => {
-            return <div key={role} className={classes.Roles}>{role}</div>
-        })}
-      </td>
-
-      <td>
-        {!props.examiner.levels ? null : props.examiner.levels
-          .map(level => {
-            return <span key={level} className={classes.Icons}>{level}</span>
-        })}
-      </td>
-
-      <td>
-      {!props.examiner.availability ? null : props.examiner.availability
-          .map(day => {
-            return <span key={day} className={classes.Icons}>
-              {day.substring(0, 3)}
-              <span>{isPm(day)}</span>
-            </span>
-        })}
-      </td>
-
-      <td>
-        <BtnWithLink link={'edit-examiner/' + props.examiner.name.toLowerCase().split(" ").join("-")} label='edit' />
-        <span className={classes.Bar}> | </span>
-        <span className={classes.Btn} onClick={props.delete}>delete</span>
-      </td>
-    </tr>
-  )
+  render(){
+    return(
+      <tr className={classes.Row}>
+        {renderName(this.props.examiner)}
+        {renderRoles(this.props.examiner, classes)}
+        {renderLevels(this.props.examiner, classes)}
+        {renderAvailability(this.props.examiner, classes)}
+        {renderBtns(this.props.examiner, classes, this.props.delete, this.handleEdit)}
+      </tr>
+    )
+  }
 }
 
-export default rows;
+const mapDispatchToProps = dispatch => {
+  return {
+    editModeOn: () => dispatch(actions.isEditing())
+  }
+}
+
+
+export default connect(null, mapDispatchToProps)(Rows);

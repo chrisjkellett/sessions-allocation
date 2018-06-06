@@ -26,10 +26,6 @@ class Examiners extends Component {
     shouldValidate: false
   }
 
-  componentDidMount(){
-    this.props.isEditing(this.props.match.params.id);
-  }
-
   submitHandler = (event, validation) => {
     event.preventDefault();
     this.initialiseValidation();
@@ -135,8 +131,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    addExaminer: (examiner) => dispatch(actions.addExaminer(examiner)),
-    isEditing: (id) => dispatch(actions.isEditing(id))
+    addExaminer: (examiner) => dispatch(actions.addExaminer(examiner))
   }
 }
 
