@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import classes from './Examiners.css';
 import Input from '../../../components/FormElements/Input/Input';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import * as actions from '../../../store/actions/examiners';
 import {constructExaminerState} from '../../../store/constructors/examiners';
 import {
@@ -135,4 +136,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Examiners);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Examiners));

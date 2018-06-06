@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import * as actions from '../../../store/actions/examiners';
 import classes from './Examiners.css';
 import {examinerTableHeaders, renderName, renderRoles, renderLevels, renderAvailability, renderBtns, formatURL} from './utility';
@@ -8,7 +9,7 @@ import Loading from '../../../components/Misc/Loading';
 
 class Examiners extends Component{
   componentWillMount(){
-    this.props.loadExaminers();
+    // this.props.loadExaminers();
   }
 
   handleEdit = (name) =>{
@@ -55,4 +56,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Examiners);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Examiners));
