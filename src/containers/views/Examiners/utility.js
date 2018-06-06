@@ -73,4 +73,8 @@ export const renderBtns = (examiner, classes, deleteHandler, editHandler) => {
   )
 }
 
+export const formatURL = (str) => {
+  return str.toLowerCase().replace(" ", "");
+}
+
 

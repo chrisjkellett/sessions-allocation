@@ -12,7 +12,7 @@ class App extends Component {
         <Header />
         <Route path='/' exact component={Examiners} />
         <Route path='/examiners/add' exact component={AddExaminers} />
-        <Route path="/edit-examiner/:id" exact component={AddExaminers}/>
+        <Route path="/examiners/edit/:id" exact component={AddExaminers}/>
       </Wrapper>
     );
   }

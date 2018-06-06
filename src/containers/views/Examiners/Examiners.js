@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/examiners';
 import classes from './Examiners.css';
-import {examinerTableHeaders, renderName, renderRoles, renderLevels, renderAvailability, renderBtns} from './utility';
+import {examinerTableHeaders, renderName, renderRoles, renderLevels, renderAvailability, renderBtns, formatURL} from './utility';
 import Table from '../../wrappers/Table/Table';
 import Loading from '../../../components/Misc/Loading';
 
@@ -13,6 +13,7 @@ class Examiners extends Component{
 
   handleEdit = (name) =>{
     this.props.editModeOn();
+    this.props.history.push('/examiners/' + formatURL(name));
   }
 
   handleDelete = (id) => {
@@ -24,7 +25,7 @@ class Examiners extends Component{
       <section className={classes.Examiners}>
         <Table labels={examinerTableHeaders}>
           {this.props.examiners === null ? <Loading /> : this.props.examiners.map(examiner => (
-            <tr className={classes.Row}>
+            <tr className={classes.Row} key={examiner.id}>
               {renderName(examiner)}
               {renderRoles(examiner, classes)}
               {renderLevels(examiner, classes)}
