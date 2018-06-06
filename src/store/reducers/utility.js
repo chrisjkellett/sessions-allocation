@@ -16,3 +16,10 @@ export const sortByName = (obj) => {
     return a.name > b.name
   })
 }
+
+export const findExaminer = (arr, id) => {
+  const filtered = arr.find(item => {
+    return item.name === id;
+  })
+  return filtered;
+}

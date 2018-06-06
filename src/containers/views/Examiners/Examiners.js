@@ -7,12 +7,13 @@ import Table from '../../wrappers/Table/Table';
 import Loading from '../../../components/Misc/Loading';
 
 class Examiners extends Component{
-  componentDidMount(){
+  componentWillMount(){
     this.props.loadExaminers();
   }
 
   handleEdit = (name) =>{
     this.props.editModeOn();
+    this.props.fetchExaminerForEditing(name);
     this.props.history.push('/examiners/' + formatURL(name));
   }
 
@@ -25,7 +26,7 @@ class Examiners extends Component{
       <section className={classes.Examiners}>
         <Table labels={examinerTableHeaders}>
           {this.props.examiners === null ? <Loading /> : this.props.examiners.map(examiner => (
-            <tr className={classes.Row} key={examiner.id}>
+            <tr className={classes.Row} key={examiner.name}>
               {renderName(examiner)}
               {renderRoles(examiner, classes)}
               {renderLevels(examiner, classes)}
@@ -49,6 +50,7 @@ const mapDispatchToProps = dispatch => {
   return {
     loadExaminers: () => dispatch(actions.loadExaminers()),
     editModeOn: () => dispatch(actions.isEditing()),
+    fetchExaminerForEditing: (id) => dispatch(actions.fetchExaminerForEditing(id)),
     deleteExaminer: (id) => dispatch(actions.deleteExaminer(id))
   }
 }

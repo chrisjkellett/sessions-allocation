@@ -2,13 +2,15 @@ import * as actionTypes from '../actions/actionTypes';
 import {
   updateState, 
   sortByName, 
-  removeElementById
+  removeElementById, 
+  findExaminer
 } from './utility';
 
 const initialState = {
   examiners: null,
   error: false,
-  editing: false
+  editing: false, 
+  selectedExaminer: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -27,6 +29,9 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.IS_EDITING:
       return updateState(state, {editing: true})  
+
+    case actionTypes.FETCH_EXAMINER_FOR_EDITING:
+      return updateState(state, {selectedExaminer: findExaminer([...state.examiners], action.id)})
 
     default:
       return state;  

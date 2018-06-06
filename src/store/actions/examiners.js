@@ -73,3 +73,10 @@ export const isEditing = (id) => {
     id: id
   }
 }
+
+export const fetchExaminerForEditing = (id) => {
+  return {
+    type: actionTypes.FETCH_EXAMINER_FOR_EDITING,
+    id: id
+  }
+}
