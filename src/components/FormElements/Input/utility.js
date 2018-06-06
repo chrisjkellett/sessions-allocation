@@ -20,7 +20,8 @@ export const generateFormElement = (type, props, classes) =>{
 
     case 'checkbox' :
       return(
-        props.options.map(option => {
+        <div>
+        {props.options.map(option => {
           return (
             <div className={classes.Checkbox} key={option}>
               <label className={props.value.includes(option) ? classes.Active : null}>
@@ -28,8 +29,10 @@ export const generateFormElement = (type, props, classes) =>{
                 <input type='checkbox' id={option} onChange={props.change} value={props.value}/>
               </label>
             </div>
-          );
-      }))
+          )
+        })}
+        </div>
+      )
 
     case 'date' :
       return(

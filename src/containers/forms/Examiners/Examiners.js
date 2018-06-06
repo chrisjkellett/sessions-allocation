@@ -1,23 +1,11 @@
 import React, {Component} from 'react';
 import classes from './Examiners.css';
-import Input from '../../../components/FormElements/Input/Input';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import * as actions from '../../../store/actions/examiners';
 import {constructExaminerState} from '../../../store/constructors/examiners';
-import {
-  updateState, 
-  updateSimpleState,
-  getSelectedOptions, 
-  updateOptionArray, 
-  generateFormElementArray,
-  generateObjectForSubmitForm,
-  updateDateArray,
-  showHiddenFields, 
-  generateGroups,
-  generateGroupClasses,
-  distributeValuesForEditing
-} from './utility';
+import {updateState, updateSimpleState,getSelectedOptions, updateOptionArray, generateObjectForSubmitForm, updateDateArray, distributeValuesForEditing} from './utility';
+import {renderSubmit, renderFormElements, renderGroupToolbar} from './renders';
 import {checkValidity, checkFormValidity, formatInput} from './validation';
 
 
@@ -40,12 +28,21 @@ class Examiners extends Component {
     this.initialiseValidation();
     const isValid = checkFormValidity({...this.state.examiner});
     const examiner = generateObjectForSubmitForm(this.state.examiner);
-    if(isValid){
+    if(isValid && !this.props.editing){
       this.props.addExaminer(examiner);
       this.props.history.push({
         pathname: '/'
       })
     }
+
+    if(isValid && this.props.editing){
+      console.log('editing mode');
+      // this.props.history.push({
+      //   pathname: '/'
+      // })
+    }
+
+
   }
 
   initialiseValidation = () => {
@@ -89,44 +86,17 @@ class Examiners extends Component {
     this.setState(update);
   }
 
-  groupChange = (event, group) => {
+  groupChangeHandler = (event, group) => {
     this.setState(updateSimpleState({activeGroup: group}))
   }
 
   render(){
-    const formElements = generateFormElementArray(this.state.examiner).map(element => {
-      return (
-        <Input 
-          key={element.id}
-          label={element.id}
-          options={element.config.options}
-          elementtype={element.config.elementType} 
-          elementConfig={element.config.elementConfig}
-          value={element.config.value} 
-          hide={element.config.hide}
-          activeGroup={this.state.activeGroup}
-          group={element.config.group}
-          showHidden={showHiddenFields(this.state.examiner)}
-          valid={element.config.validation.valid}
-          shouldValidate={this.state.shouldValidate}
-          change={(event, index) => this.changeHandler(event, element.config.elementType, element.id, index)}/>
-      )
-    })
-
-    const groupToolbar = generateGroups(this.state.examiner).map(group =>(
-      <span 
-        key={group} 
-        className={generateGroupClasses(classes, group, this.state.activeGroup)} 
-        onClick={(event) => this.groupChange(event, group)}>{group}
-      </span>
-    ))
-
     return(
       <form className={classes.Examiners} onSubmit={this.submitHandler}>
         {this.props.editing ? <p>editing mode</p> : null}
-        {groupToolbar}
-        {formElements}
-        <button>Submit</button>
+        {renderGroupToolbar({...this.state}, classes, this.groupChangeHandler)}
+        {renderFormElements({...this.state}, this.changeHandler)}
+        {renderSubmit(this.props.editing)}
       </form>
     )
   }
