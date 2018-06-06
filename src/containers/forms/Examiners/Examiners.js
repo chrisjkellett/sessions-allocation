@@ -36,10 +36,11 @@ class Examiners extends Component {
     }
 
     if(isValid && this.props.editing){
-      console.log('editing mode');
-      // this.props.history.push({
-      //   pathname: '/'
-      // })
+      const id = this.props.examinerForEditing.id;
+      this.props.updateExaminer(examiner, id);
+      this.props.history.push({
+        pathname: '/'
+      })
     }
 
 
@@ -57,7 +58,7 @@ class Examiners extends Component {
   }
 
   inputHandler = (event, id) => {
-    const value = event.target.value;
+    const {value} = event.target;
     const update = updateState(this.state, id, {value: formatInput(value, id)});
     update.examiner[id].validation = checkValidity({...update.examiner[id]});
     this.setState(update);
@@ -111,7 +112,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    addExaminer: (examiner) => dispatch(actions.addExaminer(examiner))
+    addExaminer: (examiner) => dispatch(actions.addExaminer(examiner)),
+    updateExaminer: (examiner, id) => dispatch(actions.updateExaminer(examiner, id))
   }
 }
 

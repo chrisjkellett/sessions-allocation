@@ -22,7 +22,6 @@ export const loadExaminersSuccess = (data) => {
 }
 
 export const addExaminer = (examiner) => {
-  delete examiner.validation;
   return dispatch => {
     axios.post('/examiners.json', examiner)
       .then(response => {
@@ -34,10 +33,31 @@ export const addExaminer = (examiner) => {
   }
 }
 
-export const addExaminerSuccess = (examiner, data) => {
+export const addExaminerSuccess = (examiner) => {
   return {
     type: actionTypes.ADD_EXAMINER_SUCCESS,
     examiner: examiner
+  }
+}
+
+export const updateExaminer = (examiner, id) => {
+  return dispatch => {
+    console.log(examiner);
+    axios.put('/examiners/' + id + '.json', examiner)
+      .then(response => {
+        dispatch(updateExaminerSuccess(examiner, id))
+      })
+      .catch(error => {
+        dispatch(failedLoad(error))
+      })
+  }
+}
+
+export const updateExaminerSuccess = (examiner, id) => {
+  return {
+    type: actionTypes.UPDATE_EXAMINER_SUCCESS,
+    examiner: examiner,
+    id: id
   }
 }
 
@@ -74,9 +94,9 @@ export const isEditing = (id) => {
   }
 }
 
-export const fetchExaminerForEditing = (id) => {
+export const fetchExaminerForEditing = (examiner) => {
   return {
     type: actionTypes.FETCH_EXAMINER_FOR_EDITING,
-    id: id
+    examiner: examiner
   }
 }

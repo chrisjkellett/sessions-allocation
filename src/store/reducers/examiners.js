@@ -2,8 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 import {
   updateState, 
   sortByName, 
-  removeElementById, 
-  findExaminer
+  removeElementById,
+  replaceElementById
 } from './utility';
 
 const initialState = {
@@ -24,6 +24,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.DELETE_EXAMINER_SUCCESS:
       return updateState(state, {examiners: removeElementById(state.examiners, action.id), error: false})
 
+    case actionTypes.UPDATE_EXAMINER_SUCCESS:
+      return updateState(state, {examiners: replaceElementById(state.examiners, action.examiner, action.id), error: false, editing: false})
+
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: true})
 
@@ -31,7 +34,7 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {editing: true})  
 
     case actionTypes.FETCH_EXAMINER_FOR_EDITING:
-      return updateState(state, {selectedExaminer: findExaminer([...state.examiners], action.id)})
+      return updateState(state, {selectedExaminer: action.examiner})
 
     default:
       return state;  

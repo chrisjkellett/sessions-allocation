@@ -23,3 +23,12 @@ export const findExaminer = (arr, id) => {
   })
   return filtered;
 }
+
+export const replaceElementById = (arr, record, id) => {
+  const filtered = arr.filter(item => {
+    return item.id !== id;
+  })
+  const updated = filtered.concat(record);
+
+  return sortByName(updated);
+}

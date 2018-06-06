@@ -9,10 +9,10 @@ import Loading from '../../../components/Misc/Loading';
 
 class Examiners extends Component{
 
-  handleEdit = (name) =>{
+  handleEdit = (examiner) =>{
     this.props.editModeOn();
-    this.props.fetchExaminerForEditing(name);
-    this.props.history.push('/examiners/edit/' + formatURL(name));
+    this.props.fetchExaminerForEditing(examiner);
+    this.props.history.push('/examiners/edit/' + formatURL(examiner.name));
   }
 
   handleDelete = (id) => {

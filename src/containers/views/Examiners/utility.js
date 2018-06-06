@@ -66,7 +66,7 @@ const isPm = (day) => {
 export const renderBtns = (examiner, classes, deleteHandler, editHandler) => {
   return(
     <td>
-      <span className={classes.Btn} onClick={() => editHandler(examiner.name)}>edit</span>
+      <span className={classes.Btn} onClick={() => editHandler(examiner)}>edit</span>
       <span className={classes.Bar}> | </span>
       <span className={classes.Btn} onClick={() => deleteHandler(examiner.id)}>delete</span>
     </td>
