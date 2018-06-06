@@ -34,8 +34,9 @@ class Examiners extends Component {
     event.preventDefault();
     this.initialiseValidation();
     const isValid = checkFormValidity({...this.state.examiner});
+    const examiner = generateObjectForSubmitForm(this.state.examiner);
     if(isValid){
-      this.props.addExaminer(generateObjectForSubmitForm(this.state.examiner));
+      this.props.addExaminer(examiner);
       this.props.history.push({
         pathname: '/'
       })

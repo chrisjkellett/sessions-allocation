@@ -29,7 +29,7 @@ const rows = (props) => {
           .map(day => {
             return <span key={day} className={classes.Icons}>
               {day.substring(0, 3)}
-              {isPm(day) ? <span>pm</span> : <span>am</span>}
+              <span>{isPm(day)}</span>
             </span>
         })}
       </td>

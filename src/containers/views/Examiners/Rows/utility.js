@@ -11,6 +11,12 @@ export const objectToArray = (obj, keys) => {
 
 
 export const isPm = (day) => {
-  return day.substring(day.length - 2, day.length) === 'pm';
+  if(day.substring(day.length - 2, day.length) === 'pm'){
+    return 'pm';
+  }
+
+  if(day.substring(day.length - 2, day.length) === 'am'){
+    return 'am';
+  }
 }
 
