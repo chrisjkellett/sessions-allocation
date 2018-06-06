@@ -121,3 +121,10 @@ export const generateGroupClasses = (classes, group, active) => {
   if(group !== active) return classes.Group;
   else return classes.NotActiveGroup;
 }
+
+export const distributeValuesForEditing = (state, selected) => {   
+  for(let item in state){
+    state[item].value = selected[item];
+  }
+  return state; 
+}

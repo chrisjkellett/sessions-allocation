@@ -15,7 +15,8 @@ import {
   updateDateArray,
   showHiddenFields, 
   generateGroups,
-  generateGroupClasses
+  generateGroupClasses,
+  distributeValuesForEditing
 } from './utility';
 import {checkValidity, checkFormValidity, formatInput} from './validation';
 
@@ -25,6 +26,13 @@ class Examiners extends Component {
     examiner: constructExaminerState(),
     activeGroup: 'personal',
     shouldValidate: false
+  }
+
+  componentDidMount(){ 
+    if(this.props.examinerForEditing){
+      const update = distributeValuesForEditing({...this.state.examiner}, {...this.props.examinerForEditing});
+      this.setState(updateSimpleState({examiner: update}));
+    } 
   }
 
   submitHandler = (event, validation) => {
@@ -126,7 +134,8 @@ class Examiners extends Component {
 
 const mapStateToProps = state => {
   return{
-    editing: state.editing
+    editing: state.editing,
+    examinerForEditing: state.selectedExaminer
   }
 }
 
