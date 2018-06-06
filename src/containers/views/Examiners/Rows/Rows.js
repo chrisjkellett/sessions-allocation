@@ -7,8 +7,12 @@ import * as actions from '../../../../store/actions/examiners';
 
 class Rows extends Component {
   
-  handleEdit = (event, name) =>{
+  handleEdit = (name) =>{
     this.props.editModeOn();
+  }
+
+  handleDelete = (id) => {
+    this.props.deleteExaminer(id)
   }
 
   render(){
@@ -18,7 +22,7 @@ class Rows extends Component {
         {renderRoles(this.props.examiner, classes)}
         {renderLevels(this.props.examiner, classes)}
         {renderAvailability(this.props.examiner, classes)}
-        {renderBtns(this.props.examiner, classes, this.props.delete, this.handleEdit)}
+        {renderBtns(this.props.examiner, classes, this.handleDelete, this.handleEdit)}
       </tr>
     )
   }
@@ -26,7 +30,8 @@ class Rows extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editModeOn: () => dispatch(actions.isEditing())
+    editModeOn: () => dispatch(actions.isEditing()),
+    deleteExaminer: (id) => dispatch(actions.deleteExaminer(id))
   }
 }
 

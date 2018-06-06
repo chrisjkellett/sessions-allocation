@@ -34,8 +34,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadExaminers: () => dispatch(actions.loadExaminers()),
-    deleteExaminer: (id) => dispatch(actions.deleteExaminer(id))
+    loadExaminers: () => dispatch(actions.loadExaminers())
   }
 }
 
