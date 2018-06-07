@@ -37,9 +37,7 @@ const renderName = (examiner) => {
 const renderRoles = (examiner, classes) => {
   return (
     <td>
-    {examiner.id_number}
     {examiner.roles
-      .filter(role => role !== 'Speaking Examiner')
       .map(role => {
         return <div key={role} className={classes.Roles}>{role}</div>
       })}
