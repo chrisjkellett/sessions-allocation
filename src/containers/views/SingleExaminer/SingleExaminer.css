@@ -16,7 +16,7 @@
 .SingleExaminer tr .Label{
   width: 150px;
   border-right: 1px solid lightgrey;
-  background: lightgoldenrodyellow;
+  background: #F2F2F2;
 }
 
 .SingleExaminer .Data{

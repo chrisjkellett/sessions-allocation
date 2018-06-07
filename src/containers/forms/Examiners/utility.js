@@ -1,7 +1,4 @@
 
-// import {monthOptions} from '../../../store/data';
-// import moment from 'moment';
-
 export const updateState = (obj, id, updatedState) => {
   return{
     ...obj,

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import classes from './SingleExaminer.css';
-import {isPm} from '../utility';
+import {isPm, convertToDate} from '../utility';
 
 export const renderUL = (examiner) => {
   if(examiner === null){
@@ -83,7 +83,7 @@ const renderAsDate = (examiner, id) => {
   return(
     <tr>
       <td className={classes.Label}>{id}</td>
-      <td className={classes.Data}>{examiner[id]}</td>
+      <td className={classes.Data}>{convertToDate(examiner[id])}</td>
     </tr>
   )
 }
