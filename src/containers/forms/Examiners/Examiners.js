@@ -28,6 +28,7 @@ class Examiners extends Component {
     this.initialiseValidation();
     const isValid = checkFormValidity({...this.state.examiner});
     const examiner = generateObjectForSubmitForm(this.state.examiner);
+    
     if(isValid && !this.props.editing){
       this.props.addExaminer(examiner);
       this.props.history.push({
@@ -41,6 +42,7 @@ class Examiners extends Component {
       this.props.history.push({
         pathname: '/'
       })
+      //set selected examiner to null and editing to false
     }
 
 

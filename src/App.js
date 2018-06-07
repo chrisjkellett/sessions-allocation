@@ -17,7 +17,7 @@ class App extends Component {
       <Wrapper>
         <Header />
           <Route path='/' exact component={Examiners} />
-          <Route path='/examiners/add' exact component={AddExaminers} />
+          <Route path='/add-examiner' exact component={AddExaminers} />
           <Route path="/examiners/edit/:id" exact component={AddExaminers}/>
       </Wrapper>
     );

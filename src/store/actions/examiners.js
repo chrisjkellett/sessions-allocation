@@ -42,7 +42,6 @@ export const addExaminerSuccess = (examiner) => {
 
 export const updateExaminer = (examiner, id) => {
   return dispatch => {
-    console.log(examiner);
     axios.put('/examiners/' + id + '.json', examiner)
       .then(response => {
         dispatch(updateExaminerSuccess(examiner, id))

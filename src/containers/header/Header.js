@@ -9,7 +9,7 @@ const header = () => {
         <li>examiners</li>
       </NavLink>
 
-      <NavLink to='/examiners/add' exact activeClassName={classes.Active}>
+      <NavLink to='/add-examiner' exact activeClassName={classes.Active}>
         <li>add examiner</li>
       </NavLink>
     </ul>
