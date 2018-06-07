@@ -87,9 +87,9 @@ export const failedLoad = (error) => {
   }
 } 
 
-export const fetchExaminerForEditing = (examiner) => {
+export const fetchExaminer = (examiner) => {
   return {
-    type: actionTypes.FETCH_EXAMINER_FOR_EDITING,
+    type: actionTypes.FETCH_EXAMINER,
     examiner: examiner
   }
 }

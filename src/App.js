@@ -3,7 +3,7 @@ import {Route, withRouter, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Header from './containers/header/Header';
 import Examiners from './containers/views/Examiners/Examiners';
-import Examiner from './containers/views/Examiner/Examiner';
+import SingleExaminer from './containers/views/SingleExaminer/SingleExaminer';
 import AddExaminers from './containers/forms/Examiners/Examiners';
 import Wrapper from './containers/wrappers/Empty';
 import * as actions from './store/actions/examiners';
@@ -20,7 +20,7 @@ class App extends Component {
           <Switch>
             <Route path='/add-examiner' exact component={AddExaminers} />
             <Route path="/examiners/edit/:id" exact component={AddExaminers}/>
-            <Route path='/:name' exact component={Examiner} />
+            <Route path='/:name' exact component={SingleExaminer} />
             <Route path='/' component={Examiners} />
           </Switch>
       </Wrapper>

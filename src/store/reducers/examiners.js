@@ -32,7 +32,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: true})
 
-    case actionTypes.FETCH_EXAMINER_FOR_EDITING:
+    case actionTypes.FETCH_EXAMINER:
       return updateState(state, {selectedExaminer: action.examiner})
 
     case actionTypes.DEACTIVATE_SELECTED_EXAMINER:

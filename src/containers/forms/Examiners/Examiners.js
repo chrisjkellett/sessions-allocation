@@ -93,7 +93,6 @@ class Examiners extends Component {
   render(){
     return(
       <form className={classes.Examiners} onSubmit={this.submitHandler}>
-        {this.props.examinerForEditing ? <p>editing mode</p> : null}
         {renderGroupToolbar({...this.state}, classes, this.groupChangeHandler)}
         {renderFormElements({...this.state}, this.changeHandler)}
         {renderBtns(this.props.examinerForEditing, this.cancelHandler, classes)}

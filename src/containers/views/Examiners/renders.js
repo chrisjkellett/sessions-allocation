@@ -1,11 +1,10 @@
 import React from 'react';
 import classes from './Examiners.css';
-import {isPm, formatURL} from './utility';
-import {Link} from 'react-router-dom';
+import {isPm} from '../utility';
 import Notification from '../../../components/Misc/Notification';
 import * as notificationTypes from '../../../components/Misc/notificationTypes';
 
-export const renderTableContent = (examiners, handleDelete, handleEdit) => {
+export const renderTableContent = (examiners, handleDelete, handleEdit, handleLink) => {
   if(examiners === null){
     return <Notification message={notificationTypes.LOADING} />
   }
@@ -18,7 +17,7 @@ export const renderTableContent = (examiners, handleDelete, handleEdit) => {
     return (
       examiners.map(examiner => (
         <tr className={classes.Row} key={examiner.name}>
-          {renderName(examiner)}
+          {renderName(examiner, handleLink)}
           {renderRoles(examiner, classes)}
           {renderLevels(examiner, classes)}
           {renderAvailability(examiner, classes)}
@@ -28,10 +27,10 @@ export const renderTableContent = (examiners, handleDelete, handleEdit) => {
   }
 }
 
-const renderName = (examiner) => {
+const renderName = (examiner, linkHandler) => {
   return (
     <td>
-      <Link to={'/' + formatURL(examiner.name)}>{examiner.name}</Link>
+      <span className={classes.Btn} onClick={()=> linkHandler(examiner)}>{examiner.name}</span>
     </td>
   )
 }
@@ -62,7 +61,7 @@ const renderLevels = (examiner, classes) => {
 const renderAvailability = (examiner, classes) => {
   return(
     <td>
-      {!examiner.availability ? null : examiner.availability
+      {examiner.availability
         .map(day => {
           return <span key={day} className={classes.Icons}>
             {day.substring(0, 3)}
