@@ -4,8 +4,9 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import * as actions from '../../../store/actions/examiners';
 import {constructExaminerState} from '../../../store/constructors/examiners';
-import {updateState, updateSimpleState,getSelectedOptions, updateOptionArray, generateObjectForSubmitForm, updateDateArray, distributeValuesForEditing} from './utility';
-import {renderSubmit, renderFormElements, renderGroupToolbar} from './renders';
+import {updateState, updateSimpleState, getSelectedOptions, updateOptionArray, 
+  generateObjectForSubmitForm, updateDateArray, distributeValuesForEditing, backToView} from './utility';
+import {renderBtns, renderFormElements, renderGroupToolbar} from './renders';
 import {checkValidity, checkFormValidity, formatInput} from './validation';
 
 
@@ -32,22 +33,17 @@ class Examiners extends Component {
     
     if(isValid && !this.props.examinerForEditing){
       this.props.addExaminer(examiner);
-      this.props.history.push({
-        pathname: '/'
-      })
+      backToView(this.props.history);
     }
 
     if(isValid && this.props.examinerForEditing){
-      const id = this.props.examinerForEditing.id;
-      this.props.updateExaminer(examiner, id);
-      this.props.deActivateSelectedExaminer();
-      this.props.history.push({
-        pathname: '/'
-      })
-      
+      this.props.updateExaminer(examiner, this.props.examinerForEditing.id);
+      backToView(this.props.history);
     }
+  }
 
-
+  cancelHandler = () => {
+    backToView(this.props.history);
   }
 
   initialiseValidation = () => {
@@ -101,7 +97,7 @@ class Examiners extends Component {
         {this.props.examinerForEditing ? <p>editing mode</p> : null}
         {renderGroupToolbar({...this.state}, classes, this.groupChangeHandler)}
         {renderFormElements({...this.state}, this.changeHandler)}
-        {renderSubmit(this.props.examinerForEditing)}
+        {renderBtns(this.props.examinerForEditing, this.cancelHandler, classes)}
       </form>
     )
   }
@@ -116,8 +112,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return{
     addExaminer: (examiner) => dispatch(actions.addExaminer(examiner)),
-    updateExaminer: (examiner, id) => dispatch(actions.updateExaminer(examiner, id)),
-    deActivateSelectedExaminer: () => dispatch(actions.deActivateSelectedExaminer())
+    updateExaminer: (examiner, id) => dispatch(actions.updateExaminer(examiner, id))
   }
 }
 

@@ -8,6 +8,9 @@ import Table from '../../wrappers/Table/Table';
 import Loading from '../../../components/Misc/Loading';
 
 class Examiners extends Component{
+  componentDidMount(){
+    this.props.deActivateSelectedExaminer();
+  }
 
   handleEdit = (examiner) =>{
     this.props.fetchExaminerForEditing(examiner);
@@ -57,7 +60,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchExaminerForEditing: (id) => dispatch(actions.fetchExaminerForEditing(id)),
-    deleteExaminer: (id) => dispatch(actions.deleteExaminer(id))
+    deleteExaminer: (id) => dispatch(actions.deleteExaminer(id)),
+    deActivateSelectedExaminer: () => dispatch(actions.deActivateSelectedExaminer())
   }
 }
 

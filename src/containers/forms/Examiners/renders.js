@@ -2,9 +2,15 @@ import React from 'react';
 import {generateFormElementArray, showHiddenFields, generateGroupClasses, generateGroups} from './utility';
 import Input from '../../../components/FormElements/Input/Input';
 
-export const renderSubmit = (edit) => {
+export const renderGroupToolbar = (state, classes, groupChange) => {
   return(
-    <button>{edit ? 'Save changes' : 'Add Examiner'}</button>
+    generateGroups(state.examiner).map(group =>(
+      <span 
+        key={group} 
+        className={generateGroupClasses(classes, group, state.activeGroup)} 
+        onClick={(event) => groupChange(event, group)}>{group}
+      </span>
+    ))
   )
 }
 
@@ -30,14 +36,12 @@ export const renderFormElements = (state, changeHandler) => {
   )
 }
 
-export const renderGroupToolbar = (state, classes, groupChange) => {
+
+export const renderBtns = (edit, cancel, classes) => {
   return(
-    generateGroups(state.examiner).map(group =>(
-      <span 
-        key={group} 
-        className={generateGroupClasses(classes, group, state.activeGroup)} 
-        onClick={(event) => groupChange(event, group)}>{group}
-      </span>
-    ))
+    <div className={classes.SubmitBtns}>
+      <button>{edit ? 'Save changes' : 'Add Examiner'}</button>
+      <span onClick={() => cancel()}>cancel</span>
+    </div>
   )
 }

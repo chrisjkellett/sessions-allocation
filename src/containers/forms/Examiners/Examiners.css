@@ -15,3 +15,17 @@
 .NotActiveGroup{
   margin-right: 25px;
 }
+
+.SubmitBtns button{
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.SubmitBtns span{
+  cursor: pointer;
+  color: blue;
+}
+
+.SubmitBtns span:hover{
+  color: grey;
+}

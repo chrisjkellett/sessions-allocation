@@ -129,3 +129,9 @@ export const distributeValuesForEditing = (state, selected) => {
   }
   return state; 
 }
+
+export const backToView = (history) => {
+  history.push({
+    pathname: '/'
+  })
+}
