@@ -21,6 +21,7 @@ class Examiners extends Component {
       const update = distributeValuesForEditing({...this.state.examiner}, {...this.props.examinerForEditing});
       this.setState(updateSimpleState({examiner: update}));
     } 
+    console.log(this.props.examinerForEditing);
   }
 
   submitHandler = (event, validation) => {
@@ -29,20 +30,21 @@ class Examiners extends Component {
     const isValid = checkFormValidity({...this.state.examiner});
     const examiner = generateObjectForSubmitForm(this.state.examiner);
     
-    if(isValid && !this.props.editing){
+    if(isValid && !this.props.examinerForEditing){
       this.props.addExaminer(examiner);
       this.props.history.push({
         pathname: '/'
       })
     }
 
-    if(isValid && this.props.editing){
+    if(isValid && this.props.examinerForEditing){
       const id = this.props.examinerForEditing.id;
       this.props.updateExaminer(examiner, id);
+      this.props.deActivateSelectedExaminer();
       this.props.history.push({
         pathname: '/'
       })
-      //set selected examiner to null and editing to false
+      
     }
 
 
@@ -96,10 +98,10 @@ class Examiners extends Component {
   render(){
     return(
       <form className={classes.Examiners} onSubmit={this.submitHandler}>
-        {this.props.editing ? <p>editing mode</p> : null}
+        {this.props.examinerForEditing ? <p>editing mode</p> : null}
         {renderGroupToolbar({...this.state}, classes, this.groupChangeHandler)}
         {renderFormElements({...this.state}, this.changeHandler)}
-        {renderSubmit(this.props.editing)}
+        {renderSubmit(this.props.examinerForEditing)}
       </form>
     )
   }
@@ -107,7 +109,6 @@ class Examiners extends Component {
 
 const mapStateToProps = state => {
   return{
-    editing: state.editing,
     examinerForEditing: state.selectedExaminer
   }
 }
@@ -115,7 +116,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return{
     addExaminer: (examiner) => dispatch(actions.addExaminer(examiner)),
-    updateExaminer: (examiner, id) => dispatch(actions.updateExaminer(examiner, id))
+    updateExaminer: (examiner, id) => dispatch(actions.updateExaminer(examiner, id)),
+    deActivateSelectedExaminer: () => dispatch(actions.deActivateSelectedExaminer())
   }
 }
 

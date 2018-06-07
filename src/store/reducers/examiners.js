@@ -25,16 +25,16 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {examiners: removeElementById(state.examiners, action.id), error: false})
 
     case actionTypes.UPDATE_EXAMINER_SUCCESS:
-      return updateState(state, {examiners: replaceElementById(state.examiners, action.examiner, action.id), error: false, editing: false})
+      return updateState(state, {examiners: replaceElementById(state.examiners, action.examiner, action.id), error: false})
 
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: true})
 
-    case actionTypes.IS_EDITING:
-      return updateState(state, {editing: true})  
-
     case actionTypes.FETCH_EXAMINER_FOR_EDITING:
       return updateState(state, {selectedExaminer: action.examiner})
+
+    case actionTypes.DEACTIVATE_SELECTED_EXAMINER:
+      return updateState(state, {selectedExaminer: null})
 
     default:
       return state;  

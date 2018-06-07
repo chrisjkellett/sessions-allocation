@@ -86,16 +86,15 @@ export const failedLoad = (error) => {
   }
 } 
 
-export const isEditing = (id) => {
-  return {
-    type: actionTypes.IS_EDITING,
-    id: id
-  }
-}
-
 export const fetchExaminerForEditing = (examiner) => {
   return {
     type: actionTypes.FETCH_EXAMINER_FOR_EDITING,
     examiner: examiner
+  }
+}
+
+export const deActivateSelectedExaminer = () => {
+  return {
+    type: actionTypes.DEACTIVATE_SELECTED_EXAMINER
   }
 }

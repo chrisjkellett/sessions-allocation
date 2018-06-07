@@ -10,7 +10,6 @@ import Loading from '../../../components/Misc/Loading';
 class Examiners extends Component{
 
   handleEdit = (examiner) =>{
-    this.props.editModeOn();
     this.props.fetchExaminerForEditing(examiner);
     this.props.history.push('/examiners/edit/' + formatURL(examiner.name));
   }
@@ -57,7 +56,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editModeOn: () => dispatch(actions.isEditing()),
     fetchExaminerForEditing: (id) => dispatch(actions.fetchExaminerForEditing(id)),
     deleteExaminer: (id) => dispatch(actions.deleteExaminer(id))
   }
