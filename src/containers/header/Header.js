@@ -1,20 +1,24 @@
-import React from 'react';
+import React, {Component} from 'react';
 import classes from './Header.css';
-import {NavLink} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
+import {renderExaminerViewLink, renderExaminerFormLink} from './renders';
 
-const header = () => {
-  return(
-    <ul className={classes.Header}>
-      <NavLink to='/' exact activeClassName={classes.Active}>
-        <li>examiners</li>
-      </NavLink>
+class Header extends Component{
+  render(){
+    return(
+      <ul className={classes.Header}>
+        {renderExaminerViewLink()}
+        {renderExaminerFormLink(this.props.selectedExaminer)}
+      </ul>
+    )
+  }
+}
 
-      <NavLink to='/add-examiner' exact activeClassName={classes.Active}>
-        <li>add examiner</li>
-      </NavLink>
-    </ul>
-  )
-} 
+const mapStateToProps = state => {
+  return{
+    selectedExaminer: state.selectedExaminer
+  }
+}
 
-
-export default header;
+export default withRouter(connect(mapStateToProps)(Header));

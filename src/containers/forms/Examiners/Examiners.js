@@ -22,7 +22,6 @@ class Examiners extends Component {
       const update = distributeValuesForEditing({...this.state.examiner}, {...this.props.examinerForEditing});
       this.setState(updateSimpleState({examiner: update}));
     } 
-    console.log(this.props.examinerForEditing);
   }
 
   submitHandler = (event, validation) => {
