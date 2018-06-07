@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {Route, withRouter} from 'react-router-dom';
+import {Route, withRouter, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Header from './containers/header/Header';
 import Examiners from './containers/views/Examiners/Examiners';
+import Examiner from './containers/views/Examiner/Examiner';
 import AddExaminers from './containers/forms/Examiners/Examiners';
 import Wrapper from './containers/wrappers/Empty';
 import * as actions from './store/actions/examiners';
@@ -16,9 +17,12 @@ class App extends Component {
     return (
       <Wrapper>
         <Header />
-          <Route path='/' exact component={Examiners} />
-          <Route path='/add-examiner' exact component={AddExaminers} />
-          <Route path="/examiners/edit/:id" exact component={AddExaminers}/>
+          <Switch>
+            <Route path='/add-examiner' exact component={AddExaminers} />
+            <Route path="/examiners/edit/:id" exact component={AddExaminers}/>
+            <Route path='/:name' exact component={Examiner} />
+            <Route path='/' component={Examiners} />
+          </Switch>
       </Wrapper>
     );
   }

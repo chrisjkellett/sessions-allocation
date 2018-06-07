@@ -46,3 +46,7 @@
   color: grey;
 }
 
+.Examiners td a{
+  text-decoration: none;
+}
+

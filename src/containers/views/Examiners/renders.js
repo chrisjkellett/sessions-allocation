@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Examiners.css';
-import {isPm} from './utility';
+import {isPm, formatURL} from './utility';
+import {Link} from 'react-router-dom';
 import Notification from '../../../components/Misc/Notification';
 import * as notificationTypes from '../../../components/Misc/notificationTypes';
 
@@ -29,7 +30,9 @@ export const renderTableContent = (examiners, handleDelete, handleEdit) => {
 
 const renderName = (examiner) => {
   return (
-    <td>{examiner.name}</td>
+    <td>
+      <Link to={'/' + formatURL(examiner.name)}>{examiner.name}</Link>
+    </td>
   )
 }
 
