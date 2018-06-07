@@ -50,7 +50,7 @@ export const constructExaminerState = () => {
       hide: true,
       value: '',
       group: 'roles',
-      validation: constructValidation({...rules.required, ...rules.checkId})
+      validation: constructValidation({})
     },
 
     levels: {

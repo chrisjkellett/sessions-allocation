@@ -32,3 +32,8 @@ export const replaceElementById = (arr, record, id) => {
 
   return sortByName(updated);
 }
+
+export const addExaminerId = (examiner, id) => {
+  examiner.id = id;
+  return examiner;
+}

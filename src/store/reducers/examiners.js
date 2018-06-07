@@ -3,7 +3,8 @@ import {
   updateState, 
   sortByName, 
   removeElementById,
-  replaceElementById
+  replaceElementById,
+  addExaminerId
 } from './utility';
 
 const initialState = {
@@ -19,7 +20,8 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {examiners: action.examiners, error: false})
 
     case actionTypes.ADD_EXAMINER_SUCCESS:
-      return updateState(state, {examiners: sortByName(state.examiners.concat(action.examiner)), error: false})
+      const examinerUpdatedWithId = addExaminerId({...action.examiner}, action.id);
+      return updateState(state, {examiners: sortByName(state.examiners.concat(examinerUpdatedWithId)), error: false})
 
     case actionTypes.DELETE_EXAMINER_SUCCESS:
       return updateState(state, {examiners: removeElementById(state.examiners, action.id), error: false})

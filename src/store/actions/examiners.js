@@ -25,7 +25,7 @@ export const addExaminer = (examiner) => {
   return dispatch => {
     axios.post('/examiners.json', examiner)
       .then(response => {
-        dispatch(addExaminerSuccess(examiner))
+        dispatch(addExaminerSuccess(examiner, response.data.name))
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -33,10 +33,11 @@ export const addExaminer = (examiner) => {
   }
 }
 
-export const addExaminerSuccess = (examiner) => {
+export const addExaminerSuccess = (examiner, id) => {
   return {
     type: actionTypes.ADD_EXAMINER_SUCCESS,
-    examiner: examiner
+    examiner: examiner,
+    id: id
   }
 }
 

@@ -3,9 +3,10 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import * as actions from '../../../store/actions/examiners';
 import classes from './Examiners.css';
-import {examinerTableHeaders, renderName, renderRoles, renderLevels, renderAvailability, renderBtns, formatURL} from './utility';
+import {examinerTableHeaders, formatURL} from './utility';
+import {renderTableContent} from './renders';
 import Table from '../../wrappers/Table/Table';
-import Loading from '../../../components/Misc/Loading';
+
 
 class Examiners extends Component{
   componentDidMount(){
@@ -21,30 +22,11 @@ class Examiners extends Component{
     this.props.deleteExaminer(id)
   }
 
-  generateTableContents = () => {
-    if(this.props.examiners === null){
-      return <Loading />
-    }
-    
-    else{
-      return (
-        this.props.examiners.map(examiner => (
-          <tr className={classes.Row} key={examiner.name}>
-            {renderName(examiner)}
-            {renderRoles(examiner, classes)}
-            {renderLevels(examiner, classes)}
-            {renderAvailability(examiner, classes)}
-            {renderBtns(examiner, classes, this.handleDelete, this.handleEdit)}
-          </tr>
-      )))
-    }
-  }
-
   render(){
     return (
       <section className={classes.Examiners}>
         <Table labels={examinerTableHeaders}>
-          {this.generateTableContents()}
+          {renderTableContent(this.props.examiners, this.handleDelete, this.handleEdit)}
         </Table>
       </section>
     )
