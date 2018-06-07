@@ -30,7 +30,7 @@ export const renderTableContent = (examiners, handleDelete, handleEdit, handleLi
 const renderName = (examiner, linkHandler) => {
   return (
     <td>
-      <span className={classes.Btn} onClick={()=> linkHandler(examiner)}>{examiner.name}</span>
+      <span className={classes.NameBtn} onClick={()=> linkHandler(examiner)}>{examiner.name}</span>
     </td>
   )
 }

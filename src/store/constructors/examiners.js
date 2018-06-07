@@ -15,7 +15,7 @@ export const constructExaminerState = () => {
         type: 'text'
       },
       value: '',
-      group: 'personal',
+      group: 'personal + roles',
       validation: constructValidation({...rules.required, ...rules.minLength})
       },
 
@@ -25,7 +25,7 @@ export const constructExaminerState = () => {
         type: 'text'
       },
       value: '',
-      group: 'personal',
+      group: 'personal + roles',
       validation: constructValidation({...rules.required, ...rules.checkEmail})
       },
 
@@ -37,7 +37,7 @@ export const constructExaminerState = () => {
       },
       options: roleKeys,
       value: [],
-      group: 'roles',
+      group: 'personal + roles',
       validation: constructValidation({...rules.required})
     },
 
@@ -49,7 +49,7 @@ export const constructExaminerState = () => {
       },
       hide: true,
       value: '',
-      group: 'roles',
+      group: 'personal + roles',
       validation: constructValidation({})
     },
 
@@ -58,7 +58,7 @@ export const constructExaminerState = () => {
       options: levelKeys,
       hide: true,
       value: [],
-      group: 'roles',
+      group: 'personal + roles',
       validation: constructValidation({})
     },
     
@@ -70,7 +70,7 @@ export const constructExaminerState = () => {
       },
       options: availabilityKeys,
       value: [],
-      group: 'availability',
+      group: 'availability + monitoring',
       validation: constructValidation({...rules.required})
     },
 
@@ -82,7 +82,7 @@ export const constructExaminerState = () => {
         years: yearOptionsMonitoring
       },
       value: ['2018', 'January', '10'],
-      group: 'monitoring',
+      group: 'availability + monitoring',
       validation: constructValidation({...rules.checkDate, ...rules.beforeToday})
     },
 
@@ -90,7 +90,7 @@ export const constructExaminerState = () => {
       elementType: 'checkbox',
       options: levelKeys,
       value: [],
-      group: 'monitoring',
+      group: 'availability + monitoring',
       validation: constructValidation({})
     },
   } 

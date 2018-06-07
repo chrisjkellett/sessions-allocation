@@ -13,7 +13,7 @@ import {checkValidity, checkFormValidity, formatInput} from './validation';
 class Examiners extends Component {
   state = {
     examiner: constructExaminerState(),
-    activeGroup: 'personal',
+    activeGroup: 'personal + roles',
     shouldValidate: false
   }
 
