@@ -1,13 +1,15 @@
 import React from 'react';
 import classes from './Input.css';
-import { generateFormElement, formatLabel, generateClasses, generateErrorMessage } from './utility';
+import {formatLabel, generateClasses} from './utility';
+import {renderErrorMessage, renderFormElement} from './renders';
 
 const Input = (props) => {
+  console.log(props);
   return(
     <div className={generateClasses(props, classes)}>
       <label>{formatLabel(props.label)}</label>
-      {generateErrorMessage(props, classes)}
-      {generateFormElement(props.elementtype, props, classes)}
+      {renderErrorMessage(props)}
+      {renderFormElement(props.elementtype, props)}
     </div>
   )
 }

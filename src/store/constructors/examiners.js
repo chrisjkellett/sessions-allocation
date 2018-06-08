@@ -81,6 +81,7 @@ export const constructExaminerState = () => {
         months: monthOptions,
         years: yearOptionsMonitoring
       },
+      hide: true,
       value: ['2018', 'January', '10'],
       group: 'availability + monitoring',
       validation: constructValidation({...rules.checkDate, ...rules.beforeToday})
@@ -89,6 +90,7 @@ export const constructExaminerState = () => {
     monitoring_level: {
       elementType: 'checkbox',
       options: levelKeys,
+      hide: true,
       value: [],
       group: 'availability + monitoring',
       validation: constructValidation({})
