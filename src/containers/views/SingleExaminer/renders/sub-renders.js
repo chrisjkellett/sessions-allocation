@@ -1,5 +1,5 @@
 import React from 'react';
-import {isPm, formatLabel, convertToDate, timeAgo, renderTimeAgoClass} from '../../utility';
+import {isPm, formatLabel, convertToDate, timeAgo, renderTimeAgoClass, formatAvailability} from '../../utility';
 import classes from '../SingleExaminer.css';
 
 export const renderSimple = (examiner, id) => {
@@ -38,7 +38,7 @@ export const renderArrayAsDayIcons = (examiner, id) => {
     <tr>
       <td className={classes.Label}>{id}</td>
       <td className={classes.Data}>
-        {examiner[id].map(item => (
+        {formatAvailability([...examiner[id]]).map(item => (
           <span key={item} className={classes.Icons}>{item.substring(0, 3)}<span>{isPm(item)}</span></span>))}
       </td>
     </tr>

@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Examiners.css';
-import {isPm} from '../utility';
+import {isPm, formatAvailability} from '../utility';
 import Notification from '../../../components/Misc/Notification';
 import * as notificationTypes from '../../../components/Misc/notificationTypes';
 
@@ -61,7 +61,7 @@ const renderLevels = (examiner, classes) => {
 const renderAvailability = (examiner, classes) => {
   return(
     <td>
-      {examiner.availability
+      {formatAvailability([...examiner.availability])
         .map(day => {
           return <span key={day} className={classes.Icons}>
             {day.substring(0, 3)}

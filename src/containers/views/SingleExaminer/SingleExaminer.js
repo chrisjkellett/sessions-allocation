@@ -4,7 +4,7 @@ import {renderUL} from './renders/renders';
 
 class SingleExaminer extends Component{
   render(){
-    return renderUL(this.props.examiner);
+    return renderUL({...this.props.examiner});
   }
 }
 
