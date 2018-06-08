@@ -6,7 +6,7 @@
 }
 
 .SingleExaminer div{
-  width: 50%;
+  flex-basis: 700px;
 }
 
 .SingleExaminer tr td{

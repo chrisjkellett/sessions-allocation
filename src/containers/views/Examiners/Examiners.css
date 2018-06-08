@@ -56,3 +56,36 @@
   color: grey;
 }
 
+@media only screen and (max-width: 600px) {
+  .Examiners thead{
+    display: none;
+  }
+
+  .Examiners tr td{
+    display: block;
+    width: 100%; 
+    border-bottom: none !important;
+    text-align: center;
+    padding: 0 !important;
+  }
+
+  .Examiners tr td{
+    display: none;
+  }
+
+  .Examiners tr td:first-of-type{
+    display: block;
+    width: 100%; 
+    border-bottom: none !important;
+    text-align: center;
+    padding-top: 10px !important;
+  }
+
+  .Examiners tr td:last-of-type{
+    display: block;
+    width: 100%; 
+    border-bottom: none !important;
+    text-align: center;
+  }
+}
+
