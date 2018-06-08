@@ -1,37 +1,16 @@
 import React from 'react';
-import {generateFormElementArray, showHiddenFields, generateGroupClasses, generateGroups} from './utility';
+import {generateFormElementArray, generateInputProps} from './utility';
 import Input from '../../../components/FormElements/Input/Input';
 
-export const renderGroupToolbar = (state, classes, groupChange) => {
-  return(
-    generateGroups(state.examiner).map(group =>(
-      <span 
-        key={group} 
-        className={generateGroupClasses(classes, group, state.activeGroup)} 
-        onClick={(event) => groupChange(event, group)}>{group}
-      </span>
-    ))
-  )
-}
-
-export const renderFormElements = (state, changeHandler) => {
+export const renderFormElements = (state, changeHandler, group) => {
   return (
-    generateFormElementArray(state.examiner).map(element =>(
-        <Input 
-          key={element.id}
-          label={element.id}
-          options={element.config.options}
-          elementtype={element.config.elementType} 
-          elementConfig={element.config.elementConfig}
-          value={element.config.value} 
-          hide={element.config.hide}
-          activeGroup={state.activeGroup}
-          group={element.config.group}
-          showHidden={showHiddenFields(state.examiner)}
-          valid={element.config.validation.valid}
-          shouldValidate={state.shouldValidate}
-          change={(event, index) => changeHandler(event, element.config.elementType, element.id, index)}/>
-      )
+    generateFormElementArray(state.examiner)
+      .filter(element => {
+        return element.config.group === group;
+      })
+      .map(element =>{
+        return <Input {...generateInputProps(element, state, changeHandler)} />
+      }
     )
   )
 }

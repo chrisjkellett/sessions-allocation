@@ -6,14 +6,13 @@ import * as actions from '../../../store/actions/examiners';
 import {constructExaminerState} from '../../../store/constructors/examiners';
 import {updateState, updateSimpleState, getSelectedOptions, updateOptionArray, 
   generateObjectForSubmitForm, updateDateArray, distributeValuesForEditing, backToView} from './utility';
-import {renderBtns, renderFormElements, renderGroupToolbar} from './renders';
+import {renderBtns, renderFormElements} from './renders';
 import {checkValidity, checkFormValidity, formatInput} from './validation';
 
 
 class Examiners extends Component {
   state = {
     examiner: constructExaminerState(),
-    activeGroup: 'personal + roles',
     shouldValidate: false
   }
 
@@ -86,16 +85,16 @@ class Examiners extends Component {
     this.setState(update);
   }
 
-  groupChangeHandler = (event, group) => {
-    this.setState(updateSimpleState({activeGroup: group}))
-  }
-
   render(){
     return(
       <form className={classes.Examiners} onSubmit={this.submitHandler}>
-        {renderGroupToolbar({...this.state}, classes, this.groupChangeHandler)}
-        {renderFormElements({...this.state}, this.changeHandler)}
-        {renderBtns(this.props.examinerForEditing, this.cancelHandler, classes)}
+        <div className={classes.ExaminerFlexItem}>
+          {renderFormElements({...this.state}, this.changeHandler, 'personal + roles')}
+        </div>
+        <div className={classes.ExaminerFlexItem}>
+          {renderFormElements({...this.state}, this.changeHandler, 'availability + monitoring')}
+          {renderBtns(this.props.examinerForEditing, this.cancelHandler, classes)}
+        </div>
       </form>
     )
   }

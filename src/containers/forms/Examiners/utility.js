@@ -72,20 +72,6 @@ export const showHiddenFields = (obj) => {
   }
 }
 
-export const generateGroups = (obj) => {
-  let groups = [];
-
-  for (let item in obj){
-    groups.push(obj[item].group)
-  }
-
-  return Array.from(new Set(groups));
-}
-
-export const generateGroupClasses = (classes, group, active) => {
-  if(group !== active) return classes.Group;
-  else return classes.NotActiveGroup;
-}
 
 export const distributeValuesForEditing = (state, selected) => {   
   for(let item in state){
@@ -99,4 +85,21 @@ export const backToView = (history) => {
   history.push({
     pathname: '/'
   })
+}
+
+export const generateInputProps = (element, state, changeHandler) => {
+  const {config} = element
+  return {
+    key: element.id,
+    label: element.id,
+    options: config.options,
+    elementtype: config.elementType,
+    elementConfig: config.elementConfig,
+    value: config.value,
+    hide: config.hide,
+    showHidden: showHiddenFields(state.examiner),
+    valid: config.validation.valid,
+    shouldValidate: state.shouldValidate,
+    change: (event, index) => changeHandler(event, config.elementType, element.id, index)
+  }
 }

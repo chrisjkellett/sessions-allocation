@@ -1,5 +1,11 @@
 .Examiners{
   margin: 60px 10px 30px 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Examiners .ExaminerFlexItem{
+  flex-basis: 600px;
 }
 
 .Group{
