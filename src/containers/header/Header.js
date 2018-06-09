@@ -9,7 +9,7 @@ class Header extends Component{
     return(
       <ul className={classes.Header}>
         {renderExaminerViewLink()}
-        {renderExaminerFormLink(this.props.selectedExaminer)}
+        {renderExaminerFormLink(this.props)}
       </ul>
     )
   }

@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import * as actions from '../../../store/actions/examiners';
 import classes from './Examiners.css';
-import {examinerTableHeaders, formatURL} from '../utility';
+import {examinerTableHeaders} from '../utility';
+import {formatURL} from '../../../gen-utility';
 import {renderTableContent} from './renders';
 import Table from '../../wrappers/Table/Table';
 
