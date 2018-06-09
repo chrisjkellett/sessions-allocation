@@ -131,7 +131,7 @@ export const checkFormValidity = (obj) => {
   let isValid = true;
 
   for(let item in obj){
-    if(obj[item].validation.valid.length !== 0){
+    if(obj[item].validation.valid.length !== 0 && !obj[item].elementConfig.disabled){
       isValid = false
     }
   }

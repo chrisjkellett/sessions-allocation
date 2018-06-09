@@ -51,7 +51,7 @@ export const constructExaminerState = () => {
       hide: true,
       value: '',
       group: 'personal + roles',
-      validation: constructValidation({})
+      validation: constructValidation({...rules.required, ...rules.checkId})
     },
 
     levels: {
@@ -63,7 +63,7 @@ export const constructExaminerState = () => {
       hide: true,
       value: [],
       group: 'personal + roles',
-      validation: constructValidation({})
+      validation: constructValidation({...rules.required})
     },
     
     availability: {
@@ -75,7 +75,7 @@ export const constructExaminerState = () => {
       options: availabilityKeys,
       value: [],
       group: 'availability + monitoring',
-      validation: constructValidation({})
+      validation: constructValidation({...rules.required})
     },
 
     last_monitoring: {
@@ -89,7 +89,7 @@ export const constructExaminerState = () => {
         disabled: true
       },
       hide: true,
-      value: ['2018', 'January', '10'],
+      value: ['2018', 'June', '13'],
       group: 'availability + monitoring',
       validation: constructValidation({})
     },

@@ -7,7 +7,7 @@ export const formatLabel = (str) => {
 export const generateClasses = (props, classes) => {
   const styles = [classes.Input];
 
-  if(props.valid.length !== 0 && props.shouldValidate){
+  if(props.valid.length !== 0 && props.shouldValidate && !props.elementConfig.disabled){
     styles.push(classes.Invalid);
   }
 

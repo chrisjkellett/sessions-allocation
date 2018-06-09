@@ -22,7 +22,7 @@ export const renderFormElement = (type, props) =>{
         {props.options.map(option => {
           return (
             <div className={generateLabelClass(props)} key={option}>
-              <label className={props.value.includes(option) ? classes.Active : null}>
+              <label className={props.value && props.value.includes(option) ? classes.Active : null}>
                 {option}
                 <input type='checkbox' id={option} onChange={props.change} value={props.value} {...props.elementConfig}/>
               </label>
@@ -60,7 +60,7 @@ export const renderFormElement = (type, props) =>{
 }
 
 export const renderErrorMessage = (props) => {
-  if(props.valid && props.shouldValidate)
+  if(props.valid && props.shouldValidate && !props.elementConfig.disabled)
     return <span className={classes.ErrorMessage}>{props.valid[0]}</span>
   else
     return null;
