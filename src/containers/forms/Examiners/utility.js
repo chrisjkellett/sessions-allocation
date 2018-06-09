@@ -126,3 +126,15 @@ export const generateInputProps = (element, state, changeHandler) => {
     change: (event, index) => changeHandler(event, config.elementType, element.id, index)
   }
 }
+
+export const checkFormValidity = (obj) => {
+  let isValid = true;
+
+  for(let item in obj){
+    if(obj[item].validation.valid.length !== 0){
+      isValid = false
+    }
+  }
+
+  return isValid;
+}

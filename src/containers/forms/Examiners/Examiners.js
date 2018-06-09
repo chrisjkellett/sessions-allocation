@@ -5,9 +5,10 @@ import * as actions from '../../../store/actions/examiners';
 import {constructExaminerState} from '../../../store/constructors/examiners';
 import {updateState, updateSimpleState, getSelectedOptions, updateOptionArray, 
   generateObjectForSubmitForm, updateDateArray, distributeValuesForEditing, 
-  backToView, checkDisabledFields} from './utility';
+  backToView, checkDisabledFields, checkFormValidity} from './utility';
 import {renderUI} from './renders/';
-import {checkValidity, checkFormValidity, formatInput} from './validation';
+import {checkValidity} from './validation/validation';
+import {formatInput} from './validation/utility';
 
 
 class Examiners extends Component {
