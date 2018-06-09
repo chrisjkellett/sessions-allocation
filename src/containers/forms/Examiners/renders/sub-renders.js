@@ -1,6 +1,6 @@
 import React from 'react';
-import {generateFormElementArray, generateInputProps} from './utility';
-import Input from '../../../components/FormElements/Input/Input';
+import {generateFormElementArray, generateInputProps} from '../utility';
+import Input from '../../../../components/FormElements/Input/Input';
 
 export const renderFormElements = (state, changeHandler, group) => {
   return (

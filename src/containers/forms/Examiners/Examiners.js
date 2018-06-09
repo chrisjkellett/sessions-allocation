@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import classes from './Examiners.css';
+import {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import * as actions from '../../../store/actions/examiners';
@@ -7,7 +6,7 @@ import {constructExaminerState} from '../../../store/constructors/examiners';
 import {updateState, updateSimpleState, getSelectedOptions, updateOptionArray, 
   generateObjectForSubmitForm, updateDateArray, distributeValuesForEditing, 
   backToView, checkDisabledFields} from './utility';
-import {renderBtns, renderFormElements} from './renders';
+import {renderUI} from './renders/';
 import {checkValidity, checkFormValidity, formatInput} from './validation';
 
 
@@ -89,19 +88,7 @@ class Examiners extends Component {
   }
 
   render(){
-    return(
-      <form className={classes.Examiners} onSubmit={this.submitHandler}>
-        <div className={classes.ExaminerFlexContainer}>
-          <div className={classes.ExaminerFlexItem}>
-            {renderFormElements({...this.state}, this.changeHandler, 'personal + roles')}
-          </div>
-          <div className={classes.ExaminerFlexItem}>
-            {renderFormElements({...this.state}, this.changeHandler, 'availability + monitoring')}
-          </div>
-        </div>
-          {renderBtns(this.props.examinerForEditing, this.cancelHandler, classes)}
-      </form>
-    )
+    return renderUI(this.props, this.state, this.changeHandler, this.cancelHandler, this.submitHandler);
   }
 }
 
