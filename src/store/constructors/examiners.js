@@ -71,7 +71,7 @@ export const constructExaminerState = () => {
       options: availabilityKeys,
       value: [],
       group: 'availability + monitoring',
-      validation: constructValidation({...rules.required})
+      validation: constructValidation({})
     },
 
     last_monitoring: {
@@ -84,7 +84,7 @@ export const constructExaminerState = () => {
       hide: true,
       value: ['2018', 'January', '10'],
       group: 'availability + monitoring',
-      validation: constructValidation({...rules.checkDate, ...rules.beforeToday})
+      validation: constructValidation({})
     },
 
     monitoring_level: {

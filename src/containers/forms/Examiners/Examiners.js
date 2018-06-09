@@ -86,6 +86,7 @@ class Examiners extends Component {
   }
 
   render(){
+    console.log(this.state.examiner);
     return(
       <form className={classes.Examiners} onSubmit={this.submitHandler}>
         <div className={classes.ExaminerFlexItem}>
