@@ -5,7 +5,8 @@ import {withRouter} from 'react-router-dom';
 import * as actions from '../../../store/actions/examiners';
 import {constructExaminerState} from '../../../store/constructors/examiners';
 import {updateState, updateSimpleState, getSelectedOptions, updateOptionArray, 
-  generateObjectForSubmitForm, updateDateArray, distributeValuesForEditing, backToView} from './utility';
+  generateObjectForSubmitForm, updateDateArray, distributeValuesForEditing, 
+  backToView, checkDisabledFields} from './utility';
 import {renderBtns, renderFormElements} from './renders';
 import {checkValidity, checkFormValidity, formatInput} from './validation';
 
@@ -64,6 +65,8 @@ class Examiners extends Component {
 
   selectHandler = (event, id) => {
     const value = getSelectedOptions(event);
+    const examiner = checkDisabledFields({...this.state.examiner}, value);
+    this.setState({examiner: examiner});
     const update = updateState(this.state, id, {value: value});
     update.examiner[id].validation = checkValidity({...update.examiner[id]});
     this.setState(update);
@@ -79,7 +82,7 @@ class Examiners extends Component {
 
   dateHandler = (event, id, index) => {
     const copyArray = [...this.state.examiner[id].value];
-    const value = updateDateArray(copyArray, event, index)
+    const value = updateDateArray(copyArray, event, index);
     const update = updateState(this.state, id, {value: value})
     update.examiner[id].validation = checkValidity({...update.examiner[id]});
     this.setState(update);

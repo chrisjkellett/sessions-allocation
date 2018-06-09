@@ -20,9 +20,25 @@ export const updateSimpleState = (obj, updatedState) => {
 }
 
 export const getSelectedOptions = (event) => {
-  return [...event.target.options]
+  const optionsAsArray = [...event.target.options]
       .filter(({selected}) => selected)
       .map(({value}) => value);
+  return optionsAsArray;
+}
+
+export const conditionalItemCheck = (arr, check) => {
+  return !arr.includes(check);
+}
+
+export const checkDisabledFields = (examiner, value) => {
+  for (let item in examiner){
+    if(examiner[item].elementConfig){
+      if(examiner[item].elementConfig.disabled === true || examiner[item].elementConfig.disabled === false){
+        examiner[item].elementConfig.disabled = conditionalItemCheck(value, 'Speaking Examiner');
+      }
+    }
+  }
+  return examiner;
 }
 
 export const updateOptionArray = (options, event) => {
