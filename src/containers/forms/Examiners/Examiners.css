@@ -1,5 +1,8 @@
 .Examiners{
   margin: 60px 10px 30px 10px;
+}
+
+.ExaminerFlexContainer{
   display: flex;
   flex-wrap: wrap;
 }
@@ -8,19 +11,6 @@
   flex-basis: 600px;
 }
 
-.Group{
-  margin-right: 25px;
-  cursor: pointer;
-  color: #1a0dab;
-}
-
-.Group:hover{
-  color: grey;
-}
-
-.NotActiveGroup{
-  margin-right: 25px;
-}
 
 .SubmitBtns button{
   display: inline-block;

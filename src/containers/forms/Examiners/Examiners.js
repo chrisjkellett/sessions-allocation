@@ -88,13 +88,15 @@ class Examiners extends Component {
   render(){
     return(
       <form className={classes.Examiners} onSubmit={this.submitHandler}>
-        <div className={classes.ExaminerFlexItem}>
-          {renderFormElements({...this.state}, this.changeHandler, 'personal + roles')}
+        <div className={classes.ExaminerFlexContainer}>
+          <div className={classes.ExaminerFlexItem}>
+            {renderFormElements({...this.state}, this.changeHandler, 'personal + roles')}
+          </div>
+          <div className={classes.ExaminerFlexItem}>
+            {renderFormElements({...this.state}, this.changeHandler, 'availability + monitoring')}
+          </div>
         </div>
-        <div className={classes.ExaminerFlexItem}>
-          {renderFormElements({...this.state}, this.changeHandler, 'availability + monitoring')}
           {renderBtns(this.props.examinerForEditing, this.cancelHandler, classes)}
-        </div>
       </form>
     )
   }

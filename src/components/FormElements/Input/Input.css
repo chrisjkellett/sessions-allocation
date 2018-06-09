@@ -18,7 +18,7 @@
 }
 
 .NotVisible{
-  display: none;
+  opacity: 0.8;
 }
 
 .Invalid input, .Invalid select, input:-webkit-autofill{
