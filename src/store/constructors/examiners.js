@@ -85,6 +85,9 @@ export const constructExaminerState = () => {
         months: monthOptions,
         years: yearOptionsMonitoring
       },
+      elementConfig: {
+        disabled: true
+      },
       hide: true,
       value: ['2018', 'January', '10'],
       group: 'availability + monitoring',
@@ -94,6 +97,9 @@ export const constructExaminerState = () => {
     monitoring_level: {
       elementType: 'checkbox',
       options: levelKeys,
+      elementConfig: {
+        disabled: true
+      },
       hide: true,
       value: [],
       group: 'availability + monitoring',
