@@ -4,7 +4,7 @@ import {Redirect} from 'react-router-dom';
 import {renderBtns, renderFormElements} from './sub-renders';
 
 export const renderUI = (props, state, changeHandler, cancelHandler, submitHandler) => {
-  if(props.examinerForEditing === null)
+  if(props.examinerForEditing === null && props.location.pathname !== '/add-examiner')
     return <Redirect to='/' />
   else
     return(

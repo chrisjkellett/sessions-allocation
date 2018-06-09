@@ -5,7 +5,7 @@ import * as actions from '../../../store/actions/examiners';
 import classes from './Examiners.css';
 import {examinerTableHeaders} from '../utility';
 import {formatURL} from '../../../gen-utility';
-import {renderTableContent} from './renders';
+import {renderTableContent} from './renders/';
 import Table from '../../wrappers/Table/Table';
 
 

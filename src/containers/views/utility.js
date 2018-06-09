@@ -4,8 +4,8 @@ import {monthOptions} from '../../store/data';
 export const examinerTableHeaders = [
   'examiner name',
   'roles',
-  'levels',
   'availability',
+  'levels',
   null
 ]
 

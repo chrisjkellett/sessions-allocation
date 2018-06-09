@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import classes from './Header.css';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {renderExaminerViewLink, renderExaminerFormLink} from './renders';
+import {renderExaminerViewLink, renderExaminerFormLink} from './renders/';
 
 class Header extends Component{
   render(){

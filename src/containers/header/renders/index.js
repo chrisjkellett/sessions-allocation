@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import classes from './Header.css';
-import {formatURL} from '../../gen-utility';
+import classes from '../Header.css';
+import {formatURL} from '../../../gen-utility';
 
 export const renderExaminerViewLink = () => {
   return(
