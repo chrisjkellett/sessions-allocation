@@ -45,7 +45,8 @@ export const constructExaminerState = () => {
       elementType: 'input',
       elementConfig: {
         type: 'text',
-        maxLength: 6
+        maxLength: 6,
+        disabled: true
       },
       hide: true,
       value: '',
@@ -56,6 +57,9 @@ export const constructExaminerState = () => {
     levels: {
       elementType: 'checkbox',
       options: levelKeys,
+      elementConfig: {
+        disabled: true
+      },
       hide: true,
       value: [],
       group: 'personal + roles',

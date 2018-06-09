@@ -1,3 +1,5 @@
+import classes from './Input.css';
+
 export const formatLabel = (str) => {
   return str === undefined ? null : str.replace('_', ' ').toLowerCase();
 }
@@ -13,9 +15,13 @@ export const generateClasses = (props, classes) => {
     styles.push(classes.NotVisible);
   }
 
-  if(props.group !== props.activeGroup){
-    styles.push(classes.NotVisible);
-  }
-
   return styles.join(" ");
+}
+
+ export const generateLabelClass = (props) => {
+  const config = {...props.elementConfig};
+  if(config.disabled)
+    return classes.disabledCheckbox;
+  else
+    return classes.Checkbox;
 }

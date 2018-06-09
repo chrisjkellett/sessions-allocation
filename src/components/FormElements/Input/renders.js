@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Input.css';
+import {generateLabelClass} from './utility';
 
 export const renderFormElement = (type, props) =>{
   switch (type){
@@ -20,10 +21,10 @@ export const renderFormElement = (type, props) =>{
         <div>
         {props.options.map(option => {
           return (
-            <div className={classes.Checkbox} key={option}>
+            <div className={generateLabelClass(props)} key={option}>
               <label className={props.value.includes(option) ? classes.Active : null}>
                 {option}
-                <input type='checkbox' id={option} onChange={props.change} value={props.value}/>
+                <input type='checkbox' id={option} onChange={props.change} value={props.value} {...props.elementConfig}/>
               </label>
             </div>
           )
