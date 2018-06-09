@@ -43,12 +43,12 @@ export const checkDisabledFields = (examiner, value) => {
 
 export const updateOptionArray = (options, event) => {
   if (event.target.checked) {
-    options.push(event.target.id)
+    options.push(event.target.id);
   }else{
-    let index = options.indexOf(event.target.id)
+    let index = options.indexOf(event.target.id);
     options.splice(index, 1)
   }
-  return options;
+  return Array.from(new Set(options));
 }
 
 export const generateFormElementArray = (examiner) => {
