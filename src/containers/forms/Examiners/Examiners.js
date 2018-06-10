@@ -7,8 +7,8 @@ import {updateState, updateSimpleState, getSelectedOptions, updateOptionArray,
   generateObjectForSubmitForm, updateDateArray, distributeValuesForEditing, 
   backToView, checkDisabledFields, checkFormValidity} from './utility';
 import {renderUI} from './renders/';
-import {checkValidity} from './validation/validation';
-import {formatInput} from './validation/utility';
+import {checkValidity} from '../validation/validation';
+import {formatInput} from '../validation/utility';
 
 
 class Examiners extends Component {

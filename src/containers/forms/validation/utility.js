@@ -1,4 +1,4 @@
-import {monthOptions} from '../../../../store/data';
+import {monthOptions} from '../../../store/data';
 
 export const formatInput = (str, id) => {
   switch(id){
