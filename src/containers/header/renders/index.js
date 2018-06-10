@@ -5,7 +5,7 @@ import {formatURL} from '../../../gen-utility';
 
 export const renderExaminerViewLink = () => {
   return(
-    <NavLink to='/' exact activeClassName={classes.Active}>
+    <NavLink to='/examiners' exact activeClassName={classes.Active}>
       <li>examiners</li>
     </NavLink>
   )
@@ -14,14 +14,14 @@ export const renderExaminerViewLink = () => {
 export const renderExaminerFormLink = (props) => {
   const {selectedExaminer, location} = props;
   if(selectedExaminer)
-    if(location.pathname === '/' + formatURL(selectedExaminer.name)) 
-      return <li>{location.pathname.substring(1, location.pathname.length)}</li>
+    if(location.pathname === '/examiners/' + formatURL(selectedExaminer.name)) 
+      return <li>{formatURL(selectedExaminer.name)}</li>
     else{
       return <li>editing examiner</li>
     }
   else
     return(
-      <NavLink to='/add-examiner' exact activeClassName={classes.Active}>
+      <NavLink to='/examiners/add' exact activeClassName={classes.Active}>
         <li>add examiner</li>
       </NavLink>
     )

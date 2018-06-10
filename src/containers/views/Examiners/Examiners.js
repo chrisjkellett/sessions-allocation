@@ -25,7 +25,7 @@ class Examiners extends Component{
 
   handleLink = (examiner) => {
     this.props.fetchExaminer(examiner);
-    this.props.history.push('/' + formatURL(examiner.name));
+    this.props.history.push('/examiners/' + formatURL(examiner.name));
   }
 
   render(){
