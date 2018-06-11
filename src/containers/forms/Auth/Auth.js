@@ -7,6 +7,7 @@ import {renderForm} from './renders/';
 import {updateState} from '../form-utility';
 import {checkValidity} from '../validation/validation';
 import {formatInput} from '../validation/utility';
+import * as actions from '../../../store/actions/auth';
 
 class Auth extends Component{
   state = {
@@ -42,4 +43,11 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Auth));
+const mapDispatchToProps = dispatch => {
+  return{
+    initialiseLogin: (data) => actions.initialiseLogin(data)
+  }
+  
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Auth));
