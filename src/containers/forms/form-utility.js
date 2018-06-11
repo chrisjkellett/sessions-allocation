@@ -1,4 +1,17 @@
 
+export const updateState = (obj, id, updatedState, type) => {
+  return{
+    ...obj,
+    [type]: {
+      ...obj[type],
+      [id]: {
+        ...obj[type][id],
+        ...updatedState
+      }
+    }
+  }
+}
+
 export const updateSimpleState = (obj, updatedState) => {
   return{
     ...obj,
@@ -75,43 +88,10 @@ export const showHiddenFields = (obj) => {
   }
 }
 
-
-export const distributeValuesForEditing = (state, selected) => {  
-  for(let item in state){
-    state[item].value = selected[item];
-    state[item].validation.valid = [];
-  }
-
-  if(state['roles'].value.includes('Speaking Examiner')){
-    for(let item in state){
-      state[item].elementConfig.disabled = false;
-    }
-  }
-
-  return state; 
-}
-
 export const backToView = (history) => {
   history.push({
     pathname: '/'
   })
-}
-
-export const generateInputProps = (element, state, changeHandler) => {
-  const {config} = element
-  return {
-    key: element.id,
-    label: element.id,
-    options: config.options,
-    elementtype: config.elementType,
-    elementConfig: config.elementConfig,
-    value: config.value,
-    hide: config.hide,
-    showHidden: showHiddenFields(state.examiner),
-    valid: config.validation.valid,
-    shouldValidate: state.shouldValidate,
-    change: (event, index) => changeHandler(event, config.elementType, element.id, index)
-  }
 }
 
 export const checkFormValidity = (obj) => {

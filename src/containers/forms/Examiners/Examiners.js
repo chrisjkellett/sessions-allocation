@@ -3,9 +3,10 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import * as actions from '../../../store/actions/examiners';
 import {constructExaminerState} from '../../../store/constructors/examiners';
-import {updateState, updateSimpleState, getSelectedOptions, updateOptionArray, 
+import {updateSimpleState, getSelectedOptions, updateOptionArray, 
   generateObjectForSubmitForm, updateDateArray, distributeValuesForEditing, 
   backToView, checkDisabledFields, checkFormValidity} from './utility';
+import {updateState} from '../form-utility';
 import {renderUI} from './renders/';
 import {checkValidity} from '../validation/validation';
 import {formatInput} from '../validation/utility';
@@ -58,8 +59,9 @@ class Examiners extends Component {
 
   inputHandler = (event, id) => {
     const {value} = event.target;
-    const update = updateState(this.state, id, {value: formatInput(value, id)});
-    update.examiner[id].validation = checkValidity({...update.examiner[id]});
+    const type = Object.keys({...this.state})[0];
+    const update = updateState(this.state, id, {value: formatInput(value, id)}, type);
+    update[type][id].validation = checkValidity({...update[type][id]});
     this.setState(update);
   }
 

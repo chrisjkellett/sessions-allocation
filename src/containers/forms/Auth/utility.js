@@ -1,4 +1,4 @@
-export const generateInputProps = (element, state) => {
+export const generateInputProps = (element, state, inputHandler) => {
   const {config} = element;
   return {
     key: element.id,
@@ -7,6 +7,7 @@ export const generateInputProps = (element, state) => {
     elementConfig: config.elementConfig,
     value: config.value,
     valid: config.validation.valid,
-    shouldValidate: state.shouldValidate
+    shouldValidate: state.shouldValidate,
+    change: (event) => inputHandler(event, element.id)
   }
 }

@@ -1,3 +1,10 @@
 .Auth{
-  margin: 60px 10px 10px 10px;
+  margin-top: 125px;
+}
+
+.Auth form{
+  margin: auto;
+  width: 250px;
+  padding: 6px;
+  font-size: 120%;
 }
