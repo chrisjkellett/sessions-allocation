@@ -10,7 +10,7 @@ class SingleExaminer extends Component{
 
 const mapStateToProps = state => {
   return{
-    examiner: state.selectedExaminer
+    examiner: state.ex.selectedExaminer
   }
 }
 

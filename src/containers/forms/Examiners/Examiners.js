@@ -97,7 +97,7 @@ class Examiners extends Component {
 
 const mapStateToProps = state => {
   return{
-    examinerForEditing: state.selectedExaminer
+    examinerForEditing: state.ex.selectedExaminer
   }
 }
 

@@ -39,7 +39,7 @@ class Auth extends Component{
 
 const mapStateToProps = state => {
   return {
-    examiners: state.examiners
+    examiners: state.auth.session_user
   }
 }
 
