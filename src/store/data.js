@@ -19,4 +19,3 @@ export const yearOptionsMonitoring = [CURRENTYEAR - 2, CURRENTYEAR - 1, CURRENTY
 export const levelKeys = ['YLE', 'KET', 'PET', 'FCE', 'CAE', 'CPE'];
 export const roleKeys = ['Speaking Examiner', 'Supervisor', 'Invigilator', 'Support staff'];
 export const availabilityKeys = ['Monday', 'Monday pm', 'Tuesday', 'Tuesday pm', 'Wednesday', 'Wednesday pm', 'Thursday', 'Thursday pm', 'Friday', 'Friday pm', 'Saturday', 'Saturday pm']
-

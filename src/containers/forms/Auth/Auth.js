@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {constructAuthState} from '../../../store/constructors/auth';
 import {renderForm} from './renders/';
-import {updateState} from '../form-utility';
+import {updateState, generateObjectForSubmitForm} from '../form-utility';
 import {checkValidity} from '../validation/validation';
 import {formatInput} from '../validation/utility';
 import * as actions from '../../../store/actions/auth';
@@ -25,13 +25,14 @@ class Auth extends Component{
 
   submitHandler = (event) => {
     event.preventDefault();
-    console.log('submit');
+    const userToBeChecked = generateObjectForSubmitForm({...this.state.login});
+    this.props.initialiseLogin(this.props.examiners, userToBeChecked);
   }
 
   render(){
     return(
       <section className={classes.Auth}>
-        {renderForm({...this.state.login}, this.inputHandler, this.submitHandler)}
+        {renderForm({...this.state.login}, this.inputHandler, this.submitHandler, this.props.error)}
       </section>
     )
   }
@@ -39,13 +40,15 @@ class Auth extends Component{
 
 const mapStateToProps = state => {
   return {
-    examiners: state.auth.session_user
+    examiners: state.ex.examiners,
+    user: state.auth.session_user,
+    error: state.auth.error
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return{
-    initialiseLogin: (data) => actions.initialiseLogin(data)
+    initialiseLogin: (examiners, userToBeChecked) => dispatch(actions.initialiseLogin(examiners, userToBeChecked))
   }
   
 }

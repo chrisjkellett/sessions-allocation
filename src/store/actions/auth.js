@@ -1,9 +1,10 @@
 import * as actionTypes from './actionTypes';
 
-export const initialiseLogin = (data) => {
+export const initialiseLogin = (examiners, userToBeChecked) => {
   return {
     type: actionTypes.INITIALISE_LOGIN,
-    data: data
+    examiners: examiners,
+    userToBeChecked: userToBeChecked
   }
 
 }

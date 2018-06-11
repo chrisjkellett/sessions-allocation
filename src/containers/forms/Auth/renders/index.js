@@ -2,8 +2,9 @@ import React from 'react';
 import Input from '../../../../components/FormElements/Input/Input';
 import {generateFormElementArray} from '../../../../gen-utility';
 import {generateInputProps} from '../utility';
+import {renderError} from './sub-renders';
 
-export const renderForm = (state, inputHandler, submitHandler) => {
+export const renderForm = (state, inputHandler, submitHandler, error) => {
   return (
     <form onSubmit={submitHandler}>
       {generateFormElementArray(state)
@@ -12,6 +13,7 @@ export const renderForm = (state, inputHandler, submitHandler) => {
         }
       )}
       <button>login</button>
+      {renderError(error)}
     </form>
   )
 }

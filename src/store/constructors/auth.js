@@ -2,7 +2,7 @@ import {constructValidation} from './validation';
 
 export const constructAuthState = () => {
   return {
-    name: {
+    email: {
       elementType: 'input',
       elementConfig: {
         type: 'text'

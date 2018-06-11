@@ -8,3 +8,14 @@
   padding: 6px;
   font-size: 120%;
 }
+
+.Error{
+  font-size: 80%;
+  background: salmon;
+  position: fixed;
+  top: 40px;
+  padding: 15px 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}

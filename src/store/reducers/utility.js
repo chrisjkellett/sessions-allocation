@@ -37,3 +37,10 @@ export const addExaminerId = (examiner, id) => {
   examiner.id = id;
   return examiner;
 }
+
+export const isValidUser = (examiners, attempt) => {
+  const result = examiners.find(examiner => {
+    return examiner.email === attempt.email && attempt.password === 'test';
+  })
+  return result !== undefined ? result : 'not found';
+}
