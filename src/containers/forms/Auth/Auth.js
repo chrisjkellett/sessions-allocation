@@ -1,9 +1,8 @@
-import React, {Component} from 'react';
-import classes from './Auth.css';
+import {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {constructAuthState} from '../../../store/constructors/auth';
-import {renderForm} from './renders/';
+import {renderUI} from './renders/';
 import {updateState, generateObjectForSubmitForm} from '../form-utility';
 import {checkValidity} from '../validation/validation';
 import {formatInput} from '../validation/utility';
@@ -11,8 +10,7 @@ import * as actions from '../../../store/actions/auth';
 
 class Auth extends Component{
   state = {
-    login: constructAuthState(),
-    error: false
+    login: constructAuthState()
   }
 
   inputHandler = (event, id) => {
@@ -31,9 +29,7 @@ class Auth extends Component{
 
   render(){
     return(
-      <section className={classes.Auth}>
-        {renderForm({...this.state.login}, this.inputHandler, this.submitHandler, this.props.error)}
-      </section>
+      renderUI({...this.state.login}, this.inputHandler, this.submitHandler, this.props)
     )
   }
 }
