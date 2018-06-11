@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import classes from './Auth.css';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import {constructAuthState} from '../../../store/constructors/auth';
 import {renderForm} from './renders/';
 import {updateState} from '../form-utility';
@@ -17,19 +19,27 @@ class Auth extends Component{
     const type = Object.keys({...this.state})[0];
     const update = updateState(this.state, id, {value: formatInput(value, id)}, type);
     update[type][id].validation = checkValidity({...update[type][id]});
-    console.log(update);
     this.setState(update);
+  }
+
+  submitHandler = (event) => {
+    event.preventDefault();
+    console.log('submit');
   }
 
   render(){
     return(
       <section className={classes.Auth}>
-        <form>
-        {renderForm({...this.state.login}, this.inputHandler)}
-        </form>
+        {renderForm({...this.state.login}, this.inputHandler, this.submitHandler)}
       </section>
     )
   }
 }
 
-export default Auth;
+const mapStateToProps = state => {
+  return {
+    examiners: state.examiners
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(Auth));
