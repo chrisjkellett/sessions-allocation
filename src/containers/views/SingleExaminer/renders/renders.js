@@ -2,10 +2,11 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import classes from '../SingleExaminer.css';
 import {renderSimple, renderArrayAsDayIcons, renderArray, renderArrayAsIcons, renderAsDate} from './sub-renders';
+import * as routes from '../../../../store/app-data/routes';
 
 export const renderUL = (examiner) => {
   if(examiner === null){
-    return <Redirect to='/' />
+    return <Redirect to={routes.EXAMINERS} />
   }
 
   else{

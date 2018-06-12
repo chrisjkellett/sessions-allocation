@@ -9,6 +9,7 @@ import {updateState, backToView} from '../form-utility';
 import {renderUI} from './renders/';
 import {checkValidity} from '../validation/validation';
 import {formatInput} from '../validation/utility';
+import * as routes from '../../../store/app-data/routes';
 
 
 class Examiners extends Component {
@@ -32,17 +33,17 @@ class Examiners extends Component {
     
     if(isValid && !this.props.examinerForEditing){
       this.props.addExaminer(examiner);
-      backToView(this.props.history);
+      backToView(this.props.history, routes.EXAMINERS);
     }
 
     if(isValid && this.props.examinerForEditing){
       this.props.updateExaminer(examiner, this.props.examinerForEditing.id);
-      backToView(this.props.history, '/examiners');
+      backToView(this.props.history, routes.EXAMINERS);
     }
   }
 
   cancelHandler = () => {
-    backToView(this.props.history, '/examiners');
+    backToView(this.props.history, routes.EXAMINERS);
   }
 
   initialiseValidation = () => {

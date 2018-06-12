@@ -1,4 +1,8 @@
 .Header{
+  height: 40px;
+}
+
+.Header ul{
   margin: 0;
   padding: 0;
   position: fixed;

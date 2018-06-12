@@ -5,6 +5,7 @@ import {generateInputProps} from '../utility';
 import {renderError} from './sub-renders';
 import classes from '../Auth.css';
 import {Redirect} from 'react-router-dom';
+import * as routes from '../../../../store/app-data/routes';
 
 export const renderUI = (state, inputHandler, submitHandler, props) => {
   if(props.user === null || props.error){
@@ -24,7 +25,7 @@ export const renderUI = (state, inputHandler, submitHandler, props) => {
   }
 
   else{
-    return <Redirect to='/examiners' />
+    return <Redirect to={routes.EXAMINERS} />
   }
 
 }

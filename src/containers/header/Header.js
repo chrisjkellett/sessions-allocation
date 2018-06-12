@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import classes from './Header.css';
+import Logo from '../../components/Misc/Logo/Logo';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {renderExaminerViewLink, renderExaminerFormLink} from './renders/';
@@ -7,10 +8,13 @@ import {renderExaminerViewLink, renderExaminerFormLink} from './renders/';
 class Header extends Component{
   render(){
     return(
-      <ul className={classes.Header}>
-        {renderExaminerViewLink()}
-        {renderExaminerFormLink(this.props)}
-      </ul>
+      <div className={classes.Header}>
+        <ul>
+          {renderExaminerViewLink()}
+          {renderExaminerFormLink(this.props)}
+        </ul>
+        <Logo />
+      </div>
     )
   }
 }
