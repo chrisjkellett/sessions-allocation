@@ -27,3 +27,11 @@ export const renderExaminerFormLink = (props) => {
       </NavLink>
     )
 }
+
+export const renderLogout = (user) => {
+  return(
+      <NavLink to={routes.LOGIN_PAGE} exact activeClassName={classes.Active}>
+        <li>logout</li>
+      </NavLink>
+  )
+}

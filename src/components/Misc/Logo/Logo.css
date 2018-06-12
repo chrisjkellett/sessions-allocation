@@ -1,8 +1,9 @@
 .Logo{
-  display: inline;
+  height: 40px;
 }
 
 .Logo img{
   height: 98%;
   box-sizing: border-box;
+  float: right;
 }

@@ -1,16 +1,16 @@
 import React from 'react';
 import classes from '../Examiners.css';
 import Notification from '../../../../components/Misc/Notification';
-import * as notificationTypes from '../../../../components/Misc/notificationTypes';
+import * as notifications from '../../../../store/app-data/notifications';
 import {renderName, renderRoles, renderLevels, renderAvailability, renderBtns} from './sub-renders';
 
 export const renderTableContent = (examiners, handleDelete, handleEdit, handleLink) => {
   if(examiners === null){
-    return <Notification message={notificationTypes.LOADING} />
+    return <Notification message={notifications.LOADING} />
   }
   
   else if(examiners.length === 0){
-    return <Notification message={notificationTypes.NO_RECORDS} />
+    return <Notification message={notifications.NO_RECORDS} />
   }
 
   else{
