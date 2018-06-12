@@ -17,7 +17,7 @@ class Header extends Component{
 
 const mapStateToProps = state => {
   return{
-    selectedExaminer: state.selectedExaminer
+    selectedExaminer: state.ex.selectedExaminer
   }
 }
 

@@ -4,9 +4,8 @@ import {withRouter} from 'react-router-dom';
 import * as actions from '../../../store/actions/examiners';
 import {constructExaminerState} from '../../../store/constructors/examiners';
 import {updateSimpleState, getSelectedOptions, updateOptionArray, 
-  generateObjectForSubmitForm, updateDateArray, distributeValuesForEditing, 
-  backToView, checkDisabledFields, checkFormValidity} from './utility';
-import {updateState} from '../form-utility';
+  generateObjectForSubmitForm, updateDateArray, distributeValuesForEditing, checkDisabledFields, checkFormValidity} from './utility';
+import {updateState, backToView} from '../form-utility';
 import {renderUI} from './renders/';
 import {checkValidity} from '../validation/validation';
 import {formatInput} from '../validation/utility';
@@ -38,12 +37,12 @@ class Examiners extends Component {
 
     if(isValid && this.props.examinerForEditing){
       this.props.updateExaminer(examiner, this.props.examinerForEditing.id);
-      backToView(this.props.history);
+      backToView(this.props.history, '/examiners');
     }
   }
 
   cancelHandler = () => {
-    backToView(this.props.history);
+    backToView(this.props.history, '/examiners');
   }
 
   initialiseValidation = () => {
@@ -67,26 +66,29 @@ class Examiners extends Component {
 
   selectHandler = (event, id) => {
     const value = getSelectedOptions(event);
+    const type = Object.keys({...this.state})[0];
     const examiner = checkDisabledFields({...this.state.examiner}, value);
     this.setState({examiner: examiner});
-    const update = updateState(this.state, id, {value: value});
-    update.examiner[id].validation = checkValidity({...update.examiner[id]});
+    const update = updateState(this.state, id, {value: value}, type);
+    update[type][id].validation = checkValidity({...update[type][id]});
     this.setState(update);
   }
 
   checkBoxHandler = (event, id) => {
     const copyOptions = [...this.state.examiner[id].value];
     const value = updateOptionArray(copyOptions, event);
-    const update = updateState(this.state, id, {value: value});
-    update.examiner[id].validation = checkValidity({...update.examiner[id]});
+    const type = Object.keys({...this.state})[0];
+    const update = updateState(this.state, id, {value: value}, type);
+    update[type][id].validation = checkValidity({...update[type][id]});
     this.setState(update);
   }
 
   dateHandler = (event, id, index) => {
     const copyArray = [...this.state.examiner[id].value];
     const value = updateDateArray(copyArray, event, index);
-    const update = updateState(this.state, id, {value: value})
-    update.examiner[id].validation = checkValidity({...update.examiner[id]});
+    const type = Object.keys({...this.state})[0];
+    const update = updateState(this.state, id, {value: value}, type)
+    update[type][id].validation = checkValidity({...update[type][id]});
     this.setState(update);
   }
 

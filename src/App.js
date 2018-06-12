@@ -8,6 +8,7 @@ import SingleExaminer from './containers/views/SingleExaminer/SingleExaminer';
 import AddExaminers from './containers/forms/Examiners/Examiners';
 import Wrapper from './containers/wrappers/Empty';
 import * as actions from './store/actions/examiners';
+import * as routes from './store/app-data/routes';
 
 class App extends Component {
   componentDidMount(){
@@ -19,11 +20,11 @@ class App extends Component {
       <Wrapper>
         <Header />
           <Switch>
-            <Route path='/' exact component={Auth} />
-            <Route path='/examiners/add' exact component={AddExaminers} />
-            <Route path="/examiners/edit/:id" exact component={AddExaminers}/>
-            <Route path='/examiners' exact component={Examiners} />
-            <Route path='/examiners/:name' exact component={SingleExaminer} />
+            <Route path={routes.LOGIN_PAGE} exact component={Auth} />
+            <Route path={routes.ADD_EXAMINER} exact component={AddExaminers} />
+            <Route path={routes.EDIT_EXAMINER} exact component={AddExaminers}/>
+            <Route path={routes.EXAMINERS} exact component={Examiners} />
+            <Route path={routes.SINGLE_EXAMINER_VIEW} exact component={SingleExaminer} />
           </Switch>
       </Wrapper>
     );

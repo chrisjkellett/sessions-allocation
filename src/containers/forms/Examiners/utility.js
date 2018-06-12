@@ -91,12 +91,6 @@ export const distributeValuesForEditing = (state, selected) => {
   return state; 
 }
 
-export const backToView = (history) => {
-  history.push({
-    pathname: '/'
-  })
-}
-
 export const generateInputProps = (element, state, changeHandler) => {
   const {config} = element
   return {

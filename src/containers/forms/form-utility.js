@@ -88,9 +88,9 @@ export const showHiddenFields = (obj) => {
   }
 }
 
-export const backToView = (history) => {
+export const backToView = (history, route) => {
   history.push({
-    pathname: '/'
+    pathname: route
   })
 }
 
