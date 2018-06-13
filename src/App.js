@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import {Route, withRouter, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Header from './containers/header/Header';
-import Auth from './containers/forms/Auth/Auth';
+// import Auth from './containers/forms/Auth/Auth';
 import Examiners from './containers/views/Examiners/Examiners';
+import Sessions from './containers/views/Sessions/Sessions';
 import SingleExaminer from './containers/views/SingleExaminer/SingleExaminer';
 import AddExaminers from './containers/forms/Examiners/Examiners';
 import Wrapper from './containers/wrappers/Empty';
@@ -25,6 +26,7 @@ class App extends Component {
             <Route path={routes.EDIT_EXAMINER} exact component={AddExaminers}/>
             <Route path={routes.EXAMINERS} exact component={Examiners} />
             <Route path={routes.SINGLE_EXAMINER_VIEW} exact component={SingleExaminer} />
+            <Route path={routes.SESSIONS} exact component={Sessions} />
           </Switch>
       </Wrapper>
     );
