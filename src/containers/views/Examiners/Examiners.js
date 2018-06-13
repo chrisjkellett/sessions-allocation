@@ -6,7 +6,7 @@ import classes from './Examiners.css';
 import {examinerTableHeaders} from '../../../store/app-data/table-headers';
 import {formatURL} from '../../../gen-utility';
 import {renderTableContent} from './renders/';
-import Table from '../../wrappers/Table/Table';
+import Table from '../../../components/FormElements/Table/Table';
 
 
 class Examiners extends Component{

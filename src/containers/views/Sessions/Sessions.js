@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {renderTableContent} from './renders/';
 import classes from './Sessions.css';
-import Table from '../../wrappers/Table/Table';
+import Table from '../../../components/FormElements/Table/Table';
 import {sessionTableHeaders} from '../../../store/app-data/table-headers';
 
 class Sessions extends Component{

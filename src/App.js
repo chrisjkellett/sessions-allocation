@@ -7,7 +7,7 @@ import Examiners from './containers/views/Examiners/Examiners';
 import Sessions from './containers/views/Sessions/Sessions';
 import SingleExaminer from './containers/views/SingleExaminer/SingleExaminer';
 import AddExaminers from './containers/forms/Examiners/Examiners';
-import Wrapper from './containers/wrappers/Empty';
+import Wrapper from './components/Misc/Wrapper/Wrapper';
 import * as actions from './store/actions/examiners';
 import * as routes from './store/app-data/routes';
 
