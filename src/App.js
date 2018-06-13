@@ -20,7 +20,7 @@ class App extends Component {
       <Wrapper>
         <Header />
           <Switch>
-            <Route path={routes.LOGIN_PAGE} exact component={Auth} />
+            <Route path={routes.LOGIN_PAGE} exact component={Examiners} />
             <Route path={routes.ADD_EXAMINER} exact component={AddExaminers} />
             <Route path={routes.EDIT_EXAMINER} exact component={AddExaminers}/>
             <Route path={routes.EXAMINERS} exact component={Examiners} />
