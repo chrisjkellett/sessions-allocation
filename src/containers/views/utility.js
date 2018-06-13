@@ -1,14 +1,6 @@
 import moment from 'moment';
 import {monthOptions} from '../../store/data';
 
-export const examinerTableHeaders = [
-  'examiner name',
-  'roles',
-  'availability',
-  'levels',
-  null
-]
-
 export const isPm = (day) => {
   if(day.substring(day.length - 2, day.length) === 'pm'){
     return 'pm';
