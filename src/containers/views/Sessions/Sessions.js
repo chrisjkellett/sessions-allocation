@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import {renderTableContent} from './renders/';
 import classes from './Sessions.css';
 import Table from '../../../components/FormElements/Table/Table';
@@ -9,11 +11,17 @@ class Sessions extends Component{
     return (
       <section className={classes.Sessions}>
         <Table labels={sessionTableHeaders}>
-          {renderTableContent([])}
+          {renderTableContent(this.props.sessions)}
         </Table>
       </section>
     )
   }
 }
 
-export default Sessions;
+const mapStateToProps = state => {
+  return {
+    sessions: state.sess.sessions,
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(Sessions));

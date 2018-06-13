@@ -8,10 +8,12 @@ import {BrowserRouter} from 'react-router-dom';
 import thunk from 'redux-thunk';
 import examinersReducer from './store/reducers/examiners';
 import authReducer from './store/reducers/auth';
+import sessionReducer from './store/reducers/sessions';
 
 const reducer = combineReducers({
   ex: examinersReducer,
-  auth: authReducer
+  auth: authReducer,
+  sess: sessionReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

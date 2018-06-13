@@ -10,12 +10,14 @@ import SingleExaminer from '../views/SingleExaminer/SingleExaminer';
 import AddExaminers from '../forms/Examiners/Examiners';
 import AddSessions from '../forms/Sessions/Sessions';
 import Wrapper from '../../components/Misc/Wrapper/Wrapper';
-import * as actions from '../../store/actions/examiners';
+import {loadExaminers} from '../../store/actions/examiners';
+import {loadSessions} from '../../store/actions/sessions';
 import * as routes from '../../store/app-data/routes';
 
 class App extends Component {
   componentDidMount(){
     this.props.loadExaminers();
+    this.props.loadSessions();
   }
 
   render() {
@@ -40,7 +42,8 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return{
-    loadExaminers: () => dispatch(actions.loadExaminers())
+    loadExaminers: () => dispatch(loadExaminers()),
+    loadSessions: () => dispatch(loadSessions())
   }
 }
 
