@@ -1,20 +1,19 @@
 import React, {Component} from 'react';
 import classes from './Header.css';
-import Logo from '../../components/Misc/Logo/Logo';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {renderExaminerViewLink, renderExaminerFormLink, renderLogout} from './renders/';
+import * as navElements from './renders/';
 
 class Header extends Component{
   render(){
     return(
       <div className={classes.Header}>
         <ul>
-          {renderExaminerViewLink()}
-          {renderExaminerFormLink(this.props)}
-          {renderLogout(this.props.user)}
+          {navElements.renderExaminerViewLink(this.props)}
+          {navElements.renderSessionViewLink(this.props)}
+          {navElements.renderExaminerFormLink(this.props)}
+          {navElements.renderLogout(this.props.user)}
         </ul>
-        <Logo />
       </div>
     )
   }
