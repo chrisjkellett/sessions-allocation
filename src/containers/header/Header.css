@@ -11,6 +11,7 @@
   width: 100%;
   border-bottom: 1px solid lightgrey;
   top: 0;
+  display: flex;
 }
 
 .Header li{
@@ -21,4 +22,9 @@
 .Active{
   color: initial;
   cursor: initial;
+}
+
+.Header .RightMenu {
+  flex-grow: 1;
+  text-align: right;
 }

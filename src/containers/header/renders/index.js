@@ -30,8 +30,10 @@ export const renderExaminerFormLink = (props) => {
 
 export const renderLogout = (user) => {
   return(
+    <div className={classes.RightMenu}> 
       <NavLink to={routes.LOGIN_PAGE} exact activeClassName={classes.Active}>
         <li>logout</li>
       </NavLink>
+    </div>
   )
 }

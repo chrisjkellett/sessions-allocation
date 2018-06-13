@@ -11,11 +11,11 @@ class Header extends Component{
     return(
       <div className={classes.Header}>
         <ul>
-          <IsAuthenticated user={this.props.user}>
+          {/* <IsAuthenticated user={this.props.user}> */}
             {renderExaminerViewLink()}
             {renderExaminerFormLink(this.props)}
             {renderLogout(this.props.user)}
-          </IsAuthenticated>
+          {/* </IsAuthenticated> */}
         </ul>
         <Logo />
       </div>
