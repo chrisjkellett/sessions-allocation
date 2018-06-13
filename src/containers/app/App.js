@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import {Route, withRouter, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
-import Header from './containers/header/Header';
+import Header from '../header/Header';
 // import Auth from './containers/forms/Auth/Auth';
-import Examiners from './containers/views/Examiners/Examiners';
-import Sessions from './containers/views/Sessions/Sessions';
-import SingleExaminer from './containers/views/SingleExaminer/SingleExaminer';
-import AddExaminers from './containers/forms/Examiners/Examiners';
-import AddSessions from './containers/forms/Sessions/Sessions';
-import Wrapper from './components/Misc/Wrapper/Wrapper';
-import * as actions from './store/actions/examiners';
-import * as routes from './store/app-data/routes';
+import Examiners from '../views/Examiners/Examiners';
+import Sessions from '../views/Sessions/Sessions';
+import SingleExaminer from '../views/SingleExaminer/SingleExaminer';
+import AddExaminers from '../forms/Examiners/Examiners';
+import AddSessions from '../forms/Sessions/Sessions';
+import Wrapper from '../../components/Misc/Wrapper/Wrapper';
+import * as actions from '../../store/actions/examiners';
+import * as routes from '../../store/app-data/routes';
 
 class App extends Component {
   componentDidMount(){
