@@ -12,6 +12,7 @@ class Header extends Component{
           {navElements.renderExaminerViewLink(this.props)}
           {navElements.renderSessionViewLink(this.props)}
           {navElements.renderExaminerFormLink(this.props)}
+          {navElements.renderSessionFormLink(this.props)}
           {navElements.renderLogout(this.props.user)}
         </ul>
       </div>

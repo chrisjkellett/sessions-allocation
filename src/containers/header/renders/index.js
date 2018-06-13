@@ -41,6 +41,27 @@ export const renderExaminerFormLink = (props) => {
     return null;  
 }
 
+export const renderSessionFormLink = (props) => {
+  if(props.history.location.pathname.substring(0, 11) !== '/examiners/'){ 
+    // const {selectedExaminer, location} = props;
+    // if(selectedExaminer)
+    //   if(location.pathname === routes.EXAMINERS + formatURL(selectedExaminer.name)) 
+    //     return <li>{formatURL(selectedExaminer.name)}</li>
+    //   else
+    //     return <li>editing examiner</li>
+        
+    // else
+      return(
+        <NavLink to={routes.ADD_SESSION} exact activeClassName={classes.Active}>
+          <li>add session</li>
+        </NavLink>
+      )
+    }
+
+  else
+    return null;  
+}
+
 export const renderLogout = (user) => {
   return(
     <div className={classes.RightMenu}> 
