@@ -72,16 +72,10 @@
   .Examiners tr td:first-of-type{
     display: block;
     width: 100%; 
-    border-bottom: none !important;
+    border-bottom: 1px solid lightgrey !important;;
     text-align: center;
-    padding-top: 10px !important;
-  }
-
-  .Examiners tr td:last-of-type{
-    display: block;
-    width: 100%; 
-    border-bottom: none !important;
-    text-align: center;
+    padding: 10px !important;
+    box-sizing: border-box;
   }
 }
 

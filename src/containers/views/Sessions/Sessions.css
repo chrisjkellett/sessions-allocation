@@ -28,3 +28,37 @@
   margin: 0 2px;
   background: white;
 }
+
+@media only screen and (max-width: 600px) {
+  .Sessions thead{
+    display: none;
+  }
+
+  .Sessions tr td{
+    display: block;
+    width: 100%; 
+    border-bottom: none !important;
+    text-align: center;
+    padding: 0 !important;
+  }
+
+  .Sessions tr td{
+    display: none;
+  }
+
+  .Sessions tr td:first-of-type{
+    display: block;
+    width: 100%; 
+    border-bottom: none !important;
+    text-align: center;
+    padding-top: 10px !important;
+  }
+
+  .Sessions tr td:nth-of-type(2){
+    display: inline-block;
+    border-bottom: none !important;
+    text-align: center;
+  }
+
+  
+}
