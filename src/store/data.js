@@ -13,7 +13,8 @@ export const monthOptions = [
   {m: 'July', id: '07'}, {m: 'August', id: '08'}, 
   {m: 'September', id: '09'}, {m: 'October', id: '10'}, 
   {m: 'November', id: '11'}, {m: 'December', id: '12'}];
-export const yearOptionsMonitoring = [CURRENTYEAR - 2, CURRENTYEAR - 1, CURRENTYEAR]
+export const yearOptionsMonitoring = [CURRENTYEAR - 2, CURRENTYEAR - 1, CURRENTYEAR];
+export const yearOptions = [CURRENTYEAR, CURRENTYEAR + 1];
 
 //keys
 export const levelKeys = ['YLE', 'KET', 'PET', 'FCE', 'CAE', 'CPE'];
