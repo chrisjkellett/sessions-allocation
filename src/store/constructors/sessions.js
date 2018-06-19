@@ -30,7 +30,7 @@ export const constructSessionsState = () => {
         multiple: false
       },
       options: timeKeys,
-      value: '',
+      value: timeKeys[0],
       group: 'session-data',
       validation: constructValidation({})
     },

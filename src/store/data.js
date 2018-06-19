@@ -22,4 +22,4 @@ export const roleKeys = ['Speaking Examiner', 'Supervisor', 'Invigilator', 'Supp
 export const availabilityKeys = ['Monday', 'Monday pm', 'Tuesday', 'Tuesday pm', 'Wednesday', 'Wednesday pm', 'Thursday', 'Thursday pm', 'Friday', 'Friday pm', 'Saturday', 'Saturday pm']
 export const sessionTypeKeys = ['Speaking', 'Writing'];
 export const venueKeys = ['Lenguas Vivas', 'Hotel Puerta', 'NH Centre'];
-export const timeKeys = ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00'];
+export const timeKeys = ['08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '15:00', '15:30', '16:00'];
