@@ -61,14 +61,14 @@ export const renderFormElement = (type, props) =>{
   }
 }
 
-export const renderErrorMessage = (props) => {
+export const renderErrorMessageOrInfo = (props) => {
   if(props.valid && props.shouldValidate && !props.elementConfig.disabled)
     return <span className={classes.ErrorMessage}>{props.valid[0]}</span>
   else
-    return null;
+    return renderAdditionalInfo(props.label, props.value);
 }
 
-export const renderAdditionalInfo = (label, value) => {
+const renderAdditionalInfo = (label, value) => {
   if(label === 'session_date'){
     return <span>({moment(momentReadyArr(value)).format('dddd')})</span>
   }

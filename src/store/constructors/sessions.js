@@ -25,7 +25,7 @@ export const constructSessionsState = () => {
       },
       value: [CURRENTYEAR, monthOptions[CURRENTMONTH - 1].m, CURRENTDAY],
       group: 'session-data',
-      validation: constructValidation({})
+      validation: constructValidation({...rules.NotBeforeToday, ...rules.checkDate})
     },
 
     time: {
@@ -59,9 +59,9 @@ export const constructSessionsState = () => {
          disabled: false
       },
       options: venueKeys,
-      value: '',
+      value: venueKeys[0],
       group: 'session-data',
-      validation: constructValidation({...rules.required})
+      validation: constructValidation()
     },
 
     levels: {
@@ -84,7 +84,7 @@ export const constructSessionsState = () => {
       options: [],
       value: [],
       group: 'session-data',
-      validation: constructValidation({})
+      validation: constructValidation({...rules.required})
     },
 
     support: {
@@ -96,7 +96,7 @@ export const constructSessionsState = () => {
       options: [],
       value: [],
       group: 'session-data',
-      validation: constructValidation({})
+      validation: constructValidation({...rules.required})
     }
 
   } 

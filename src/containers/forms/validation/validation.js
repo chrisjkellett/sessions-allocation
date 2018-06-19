@@ -17,7 +17,7 @@ export const checkValidity = (obj) => {
 
   if(rules.checkEmail && tests.invalidEmail(value)) errors.push(rules.checkEmail);
 
-  if(rules.beforeToday && tests.NotBeforeToday([...value])) errors.push(rules.beforeToday);
+  if(rules.NotBeforeToday && tests.NotBeforeToday([...value])) errors.push(rules.NotBeforeToday);
 
   validation.valid = errors;
     

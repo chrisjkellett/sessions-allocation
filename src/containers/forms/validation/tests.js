@@ -18,5 +18,9 @@ export const invalidDate = (arr) => {
 export const NotBeforeToday = (arr) => {
   arr[1] = convertMonthToNumber(arr[1]);
   arr[2] = checkZeros(arr[2]);
-  return moment(arr.join("-"), 'YYYY-MM-DD').isAfter(moment());
+  return moment(arr.join("-"), 'YYYY-MM-DD').isBefore(moment());
+}
+
+export const notYLE = (levels) => {
+  return !levels.value.some(level => level === 'YLE');
 }
