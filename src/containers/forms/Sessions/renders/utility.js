@@ -1,4 +1,4 @@
-import {checkType} from './availability';
+import {checkType, checkLevels} from './availability';
 
 export const generateInputProps = (element, state, changeHandler, examiners) => {
   const {config} = element
@@ -20,6 +20,7 @@ export const examinerCheck = (element, examiners, config, session) => {
     return examiners
       .filter(e => !e.roles.includes('Support staff'))
       .filter(e => checkType(e, session.type.value))
+      .filter(e => checkLevels(e, session.levels.value))
       .map(e => e.name);
   }
 
