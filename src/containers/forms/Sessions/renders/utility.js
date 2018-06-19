@@ -1,9 +1,11 @@
+import {checkType} from './availability';
+
 export const generateInputProps = (element, state, changeHandler, examiners) => {
   const {config} = element
   return {
     key: element.id,
     label: element.id,
-    options: examinerCheck(element, examiners, config),
+    options: examinerCheck(element, examiners, config, state.session),
     elementtype: config.elementType,
     elementConfig: config.elementConfig,
     value: config.value,
@@ -13,10 +15,11 @@ export const generateInputProps = (element, state, changeHandler, examiners) => 
   }
 }
 
-export const examinerCheck = (element, examiners, config) => {
+export const examinerCheck = (element, examiners, config, session) => {
   if(element.id === 'examiners' && examiners !== null){
     return examiners
       .filter(e => !e.roles.includes('Support staff'))
+      .filter(e => checkType(e, session.type.value))
       .map(e => e.name);
   }
 

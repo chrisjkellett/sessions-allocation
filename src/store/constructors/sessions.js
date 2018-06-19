@@ -38,11 +38,10 @@ export const constructSessionsState = () => {
     type: {
       elementType: 'select',
       elementConfig: {
-        multiple: false,
-        size: sessionTypeKeys.length
+        multiple: false
       },
       options: sessionTypeKeys,
-      value: '',
+      value: sessionTypeKeys[0],
       group: 'session-data',
       validation: constructValidation({})
     },

@@ -20,10 +20,15 @@ export const updateSimpleState = (obj, updatedState) => {
 }
 
 export const getSelectedOptions = (event) => {
-  const optionsAsArray = [...event.target.options]
-      .filter(({selected}) => selected)
-      .map(({value}) => value);
-  return optionsAsArray;
+  if(event.target.multiple){
+    const optionsAsArray = [...event.target.options]
+        .filter(({selected}) => selected)
+        .map(({value}) => value);
+    return optionsAsArray;
+  }
+
+  else
+    return event.target.value;
 }
 
 export const conditionalItemCheck = (arr, check) => {
