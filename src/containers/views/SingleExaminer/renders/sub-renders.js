@@ -49,10 +49,11 @@ export const renderAsDate = (examiner, id) => {
   return(
     <tr>
       <td className={classes.Label}>{formatLabel(id)}</td>
+      {examiner.monitoring_level ?
       <td className={classes.Data}>
         {convertToDate([...examiner[id]])}
         <div className={classes[renderTimeAgoClass([...examiner[id]])]}>{timeAgo([...examiner[id]])}</div>
-      </td>
+      </td> : null}
     </tr>
   )
 }

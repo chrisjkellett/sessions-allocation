@@ -17,6 +17,11 @@
   overflow-y: auto;
 }
 
+.Input span{
+  font-size: 80%;
+  background: #FFFDCC;
+}
+
 .NotVisible{
   opacity: 0.5;
 }
