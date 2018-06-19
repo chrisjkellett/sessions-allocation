@@ -5,10 +5,14 @@ import {renderTableContent, renderError} from './renders/';
 import classes from './Sessions.css';
 import Table from '../../../components/FormElements/Table/Table';
 import {sessionTableHeaders} from '../../../store/app-data/table-headers';
+import {constructPeriodState} from '../../../store/constructors/periods';
 
 class Sessions extends Component{
+  state = {
+    period: constructPeriodState()
+  }
+
   render(){
-    console.log(this.props.errors);
     return (
       <section className={classes.Sessions}>
         {renderError(this.props.errors)}
