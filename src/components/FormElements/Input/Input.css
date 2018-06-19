@@ -19,7 +19,6 @@
 
 .Input span{
   font-size: 80%;
-  background: #FFFDCC;
 }
 
 .NotVisible{
@@ -30,6 +29,11 @@
   border:1px solid #dc3545;
   background: #f7d0cb;
   padding: 2px 1px;
+}
+
+.Invalid div{
+  background: #f7d0cb;
+  width: fit-content;
 }
 
 .Error{

@@ -2,13 +2,17 @@ import {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {constructSessionsState} from '../../../store/constructors/sessions';
-import {updateDateArray, updateState, getSelectedOptions, updateOptionArray} from '../form-utility';
+import {updateDateArray, updateState, getSelectedOptions, 
+  updateOptionArray, checkFormValidity, generateObjectForSubmitForm, 
+  backToView, updateSimpleState} from '../form-utility';
 import {checkValidity} from '../validation/validation';
 import {renderUI} from './renders';
+import * as routes from '../../../store/app-data/routes';
 
 class AddSessions extends Component{
   state = {
-    session: constructSessionsState()
+    session: constructSessionsState(),
+    shouldValidate: false
   }
 
   changeHandler = (event, type, id, index) => {
@@ -45,8 +49,40 @@ class AddSessions extends Component{
     this.setState(update);
   }
 
+  submitHandler = (event, validation) => {
+    event.preventDefault();
+    this.initialiseValidation();
+    const isValid = checkFormValidity({...this.state.session});
+    const session = generateObjectForSubmitForm(this.state.session);
+    console.log(isValid);
+    
+    // if(isValid && !this.props.examinerForEditing){
+    //   this.props.addExaminer(examiner);
+    //   backToView(this.props.history, routes.EXAMINERS);
+    // }
+
+    // if(isValid && this.props.examinerForEditing){
+    //   this.props.updateExaminer(examiner, this.props.examinerForEditing.id);
+    //   backToView(this.props.history, routes.EXAMINERS);
+    // }
+  }
+
+  cancelHandler = () => {
+    backToView(this.props.history, routes.SESSIONS);
+  }
+
+  initialiseValidation = () => {
+    this.setState(updateSimpleState(this.state, {shouldValidate: true}));
+  }
+
   render(){
-    return renderUI({...this.state}, this.changeHandler, this.props.examiners);
+    return renderUI(
+      {...this.state}, 
+      this.changeHandler, 
+      this.props.examiners, 
+      this.submitHandler, 
+      this.cancelHandler
+    );
   }
 }
 

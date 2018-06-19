@@ -2,6 +2,7 @@ import React from 'react';
 import {generateFormElementArray} from '../../form-utility';
 import {generateInputProps} from './utility';
 import Input from '../../../../components/FormElements/Input/Input';
+import classes from '../Sessions.css';
 
 export const renderFormElements = (state, changeHandler, examiners) => {
   return (
@@ -10,5 +11,14 @@ export const renderFormElements = (state, changeHandler, examiners) => {
         return <Input {...generateInputProps(element, state, changeHandler, examiners)} />
       }
     )
+  )
+}
+
+export const renderBtns = (cancel) => {
+  return(
+    <div className={classes.SubmitBtns}>
+      <button>Add Session</button>
+      <span onClick={() => cancel()}>cancel</span>
+    </div>
   )
 }

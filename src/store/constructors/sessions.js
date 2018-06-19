@@ -8,11 +8,10 @@ import {
 
 import {
   constructValidation,
-  // rules
+  rules
 } from './validation';
 
 export const constructSessionsState = () => {
-  console.log(CURRENTMONTH);
   return {
     session_date: {
       elementType: 'date',
@@ -32,7 +31,8 @@ export const constructSessionsState = () => {
     time: {
       elementType: 'select',
       elementConfig: {
-        multiple: false
+        multiple: false,
+        disabled: false
       },
       options: timeKeys,
       value: timeKeys[0],
@@ -43,7 +43,8 @@ export const constructSessionsState = () => {
     type: {
       elementType: 'select',
       elementConfig: {
-        multiple: false
+        multiple: false,
+        disabled: false
       },
       options: sessionTypeKeys,
       value: sessionTypeKeys[0],
@@ -54,26 +55,31 @@ export const constructSessionsState = () => {
     venue: {
       elementType: 'select',
       elementConfig: {
-        multiple: false
+        multiple: false,
+         disabled: false
       },
       options: venueKeys,
       value: '',
       group: 'session-data',
-      validation: constructValidation({})
+      validation: constructValidation({...rules.required})
     },
 
     levels: {
       elementType: 'checkbox',
       options: levelKeys,
+      elementConfig: {
+         disabled: false
+      },
       value: [],
       group: 'session-data',
-      validation: constructValidation({})
+      validation: constructValidation({...rules.required})
     },
 
     examiners: {
       elementType: 'select',
       elementConfig: {
-        multiple: true
+        multiple: true,
+        disabled: false
       },
       options: [],
       value: [],
@@ -84,7 +90,8 @@ export const constructSessionsState = () => {
     support: {
       elementType: 'select',
       elementConfig: {
-        multiple: true
+        multiple: true,
+        disabled: false
       },
       options: [],
       value: [],
