@@ -61,7 +61,7 @@ export const constructSessionsState = () => {
       options: venueKeys,
       value: venueKeys[0],
       group: 'session-data',
-      validation: constructValidation()
+      validation: constructValidation({})
     },
 
     levels: {

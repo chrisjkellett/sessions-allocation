@@ -1,11 +1,11 @@
 import React from 'react';
 import classes from '../Sessions.css';
 import Notification from '../../../../components/Misc/Notification';
-import {renderDate, renderType, renderVenue, renderLevels, renderExaminers, renderSupport} from './sub-renders';
+import {renderDate, renderTime, renderType, renderVenue, renderLevels, renderExaminers, renderSupport} from './sub-renders';
 import * as notifications from '../../../../store/app-data/notifications';
+import {NETWORK_FAIL} from '../../../../store/app-data/errors';
 
 export const renderTableContent = (sessions) => {
-  console.log(sessions);
   if(sessions === null){
     return <Notification message={notifications.LOADING} />
   }
@@ -19,6 +19,7 @@ export const renderTableContent = (sessions) => {
       sessions.map(session => (
         <tr className={classes.Row} key={session.id}>
           {renderDate(session)}
+          {renderTime(session)}
           {renderType(session)}
           {renderVenue(session)}
           {renderLevels(session)}
@@ -27,4 +28,14 @@ export const renderTableContent = (sessions) => {
         </tr>
     )))
   }
+}
+
+export const renderError = (error) => {
+  if(error){
+    console.log(error);
+    return <span className={classes.Error}>{NETWORK_FAIL}</span>
+  }
+
+  else 
+    return null;
 }

@@ -8,6 +8,7 @@ import {updateDateArray, updateState, getSelectedOptions,
 import {checkValidity} from '../validation/validation';
 import {renderUI} from './renders';
 import * as routes from '../../../store/app-data/routes';
+import * as actions from '../../../store/actions/sessions';
 
 class AddSessions extends Component{
   state = {
@@ -54,12 +55,11 @@ class AddSessions extends Component{
     this.initialiseValidation();
     const isValid = checkFormValidity({...this.state.session});
     const session = generateObjectForSubmitForm(this.state.session);
-    console.log(isValid);
     
-    // if(isValid && !this.props.examinerForEditing){
-    //   this.props.addExaminer(examiner);
-    //   backToView(this.props.history, routes.EXAMINERS);
-    // }
+    if(isValid){
+      this.props.addSession(session);
+      backToView(this.props.history, routes.SESSIONS);
+    }
 
     // if(isValid && this.props.examinerForEditing){
     //   this.props.updateExaminer(examiner, this.props.examinerForEditing.id);
@@ -92,4 +92,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(AddSessions));
+const mapDispatchToProps = dispatch => {
+  return {
+    addSession: (session) => dispatch(actions.addSession(session))
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AddSessions));

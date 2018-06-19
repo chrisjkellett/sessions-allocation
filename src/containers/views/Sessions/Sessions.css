@@ -29,6 +29,17 @@
   background: white;
 }
 
+.Error{
+  font-size: 80%;
+  background: salmon;
+  position: fixed;
+  top: 40px;
+  padding: 15px 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
 @media only screen and (max-width: 600px) {
   .Sessions thead{
     display: none;

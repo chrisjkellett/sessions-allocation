@@ -1,5 +1,6 @@
 export const sessionTableHeaders = [
   'date', 
+  'time',
   'type', 
   'venue', 
   'levels', 

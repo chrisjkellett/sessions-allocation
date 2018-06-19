@@ -27,3 +27,23 @@ export const failedLoad = (error) => {
     error: error
   }
 } 
+
+export const addSession = (session) => {
+  return dispatch => {
+    axios.post('/sessions.jsoN', session)
+      .then(response => {
+        dispatch(addSessionSuccess(session, response.data.name))
+      })
+      .catch(error => {
+        dispatch(failedLoad(error))
+      })
+  }
+}
+
+export const addSessionSuccess = (session, id) => {
+  return {
+    type: actionTypes.ADD_SESSION_SUCCESS,
+    session: session,
+    id: id
+  }
+}

@@ -36,9 +36,9 @@ export const formatLabel = (str) => {
 
 export const renderTimeAgoClass = (arr) => {
   arr[1] = convertMonthToNumber(arr[1]);
-  if(moment(arr.join("-")).from() < moment()){
-    console.log('hello');
-  }
+  // if(moment(arr.join("-")).from() < moment()){
+  //   console.log('hello');
+  // }
   return 'Sub';
 }
 

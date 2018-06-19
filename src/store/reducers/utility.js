@@ -33,9 +33,9 @@ export const replaceElementById = (arr, record, id) => {
   return sortByName(updated);
 }
 
-export const addExaminerId = (examiner, id) => {
-  examiner.id = id;
-  return examiner;
+export const addId = (obj, id) => {
+  obj.id = id;
+  return obj;
 }
 
 export const isValidUser = (examiners, attempt) => {
