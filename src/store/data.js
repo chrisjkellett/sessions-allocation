@@ -1,7 +1,9 @@
 import moment from 'moment';
 
 //non-imports
-const CURRENTYEAR = Number(moment().format('Y'));
+export const CURRENTYEAR = Number(moment().format('Y'));
+export const CURRENTMONTH = Number(moment().format('M'));
+export const CURRENTDAY = Number(moment().format('D'));
 
 //select options
 export const locationOptions = ['Valencia', 'Murcia']

@@ -3,11 +3,16 @@ import {
 } from '../data';
 
 import {
+  CURRENTYEAR, CURRENTMONTH, CURRENTDAY
+} from '../data';
+
+import {
   constructValidation,
   // rules
 } from './validation';
 
 export const constructSessionsState = () => {
+  console.log(CURRENTMONTH);
   return {
     session_date: {
       elementType: 'date',
@@ -19,7 +24,7 @@ export const constructSessionsState = () => {
       elementConfig: {
         disabled: false
       },
-      value: ['2018', 'June', '13'],
+      value: [CURRENTYEAR, monthOptions[CURRENTMONTH - 1].m, CURRENTDAY],
       group: 'session-data',
       validation: constructValidation({})
     },
