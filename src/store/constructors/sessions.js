@@ -1,5 +1,5 @@
 import {
-  dayOptions, monthOptions, yearOptions
+  dayOptions, monthOptions, yearOptions, sessionTypeKeys, venueKeys, timeKeys, levelKeys
 } from '../data';
 
 import {
@@ -23,6 +23,71 @@ export const constructSessionsState = () => {
       group: 'session-data',
       validation: constructValidation({})
     },
+
+    time: {
+      elementType: 'select',
+      elementConfig: {
+        multiple: false
+      },
+      options: timeKeys,
+      value: '',
+      group: 'session-data',
+      validation: constructValidation({})
+    },
+
+    type: {
+      elementType: 'select',
+      elementConfig: {
+        multiple: false,
+        size: sessionTypeKeys.length
+      },
+      options: sessionTypeKeys,
+      value: '',
+      group: 'session-data',
+      validation: constructValidation({})
+    },
+
+    venue: {
+      elementType: 'select',
+      elementConfig: {
+        multiple: false
+      },
+      options: venueKeys,
+      value: '',
+      group: 'session-data',
+      validation: constructValidation({})
+    },
+
+    levels: {
+      elementType: 'checkbox',
+      options: levelKeys,
+      value: [],
+      group: 'session-data',
+      validation: constructValidation({})
+    },
+
+    examiners: {
+      elementType: 'select',
+      elementConfig: {
+        multiple: true
+      },
+      options: [],
+      value: [],
+      group: 'session-data',
+      validation: constructValidation({})
+    },
+
+    support: {
+      elementType: 'select',
+      elementConfig: {
+        multiple: true
+      },
+      options: [],
+      value: [],
+      group: 'session-data',
+      validation: constructValidation({})
+    }
+
   } 
 }
 
