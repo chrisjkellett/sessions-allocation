@@ -47,3 +47,22 @@ export const addSessionSuccess = (session, id) => {
     id: id
   }
 }
+
+export const deleteSession = (id) => {
+  return dispatch => {
+    axios.delete('/sessions/' + id + '.json')
+      .then(response => {
+        dispatch(deleteSessionSuccess(id))
+      })
+      .catch(error => {
+        dispatch(failedLoad(error))
+      })
+  }
+}
+
+export const deleteSessionSuccess = (id) => {
+  return {
+    type: actionTypes.DELETE_SESSION_SUCCESS,
+    id: id
+  }
+}

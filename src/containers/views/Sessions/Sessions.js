@@ -6,6 +6,7 @@ import classes from './Sessions.css';
 import Table from '../../../components/FormElements/Table/Table';
 import {sessionTableHeaders} from '../../../store/app-data/table-headers';
 import {constructPeriodState} from '../../../store/constructors/periods';
+import * as actions from '../../../store/actions/sessions';
 
 class Sessions extends Component{
   state = {
@@ -16,8 +17,8 @@ class Sessions extends Component{
 
   }
 
-  handleDelete = () => {
-
+  handleDelete = (id) => {
+    this.props.deleteSession(id)
   }
 
   render(){
@@ -39,4 +40,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Sessions));
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteSession: (id) => dispatch(actions.deleteSession(id))
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sessions));
