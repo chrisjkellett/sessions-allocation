@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {renderTableContent, renderError} from './renders/';
+import {renderTableContent, renderError, renderPeriodSelector} from './renders/';
 import classes from './Sessions.css';
 import Table from '../../../components/FormElements/Table/Table';
 import {sessionTableHeaders} from '../../../store/app-data/table-headers';
@@ -16,6 +16,7 @@ class Sessions extends Component{
     return (
       <section className={classes.Sessions}>
         {renderError(this.props.errors)}
+        {renderPeriodSelector(['April', 'May'])}
         <Table labels={sessionTableHeaders}>
           {renderTableContent(this.props.sessions)}
         </Table>

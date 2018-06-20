@@ -39,3 +39,15 @@ export const renderError = (error) => {
   else 
     return null;
 }
+
+export const renderPeriodSelector = (periods) => {
+  return(
+    <div className={classes.Period}>
+      <select>
+        {periods.map(period => {
+          return <option>{period}</option>}
+        )}
+      </select>
+    </div>
+  )
+}
