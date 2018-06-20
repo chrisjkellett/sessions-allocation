@@ -1,11 +1,11 @@
 import React from 'react';
 import classes from '../Sessions.css';
 import Notification from '../../../../components/Misc/Notification';
-import {renderDate, renderTime, renderType, renderVenue, renderLevels, renderExaminers, renderSupport} from './sub-renders';
+import {renderDate, renderTime, renderType, renderVenue, renderLevels, renderExaminers, renderSupport, renderBtns} from './sub-renders';
 import * as notifications from '../../../../store/app-data/notifications';
 import {NETWORK_FAIL} from '../../../../store/app-data/errors';
 
-export const renderTableContent = (sessions) => {
+export const renderTableContent = (sessions, handleDelete, handleEdit) => {
   if(sessions === null){
     return <Notification message={notifications.LOADING} />
   }
@@ -25,6 +25,7 @@ export const renderTableContent = (sessions) => {
           {renderLevels(session)}
           {renderExaminers(session)}
           {renderSupport(session)}
+          {renderBtns(session, handleDelete, handleEdit)}
         </tr>
     )))
   }
@@ -38,16 +39,4 @@ export const renderError = (error) => {
 
   else 
     return null;
-}
-
-export const renderPeriodSelector = (periods) => {
-  return(
-    <div className={classes.Period}>
-      <select>
-        {periods.map(period => {
-          return <option>{period}</option>}
-        )}
-      </select>
-    </div>
-  )
 }

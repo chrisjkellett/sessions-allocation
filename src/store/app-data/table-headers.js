@@ -5,7 +5,8 @@ export const sessionTableHeaders = [
   'venue', 
   'levels', 
   'examiners', 
-  'support'
+  'support',
+  null
 ];
 
 export const examinerTableHeaders = [

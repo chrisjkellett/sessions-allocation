@@ -61,3 +61,13 @@ export const renderSupport = (session) => {
     </td>
   )
 }
+
+export const renderBtns = (session, deleteHandler, editHandler) => {
+  return(
+    <td>
+      <span className={classes.Btn} onClick={() => editHandler(session)}>edit</span>
+      <span className={classes.Bar}> | </span>
+      <span className={classes.Btn} onClick={() => deleteHandler(session.id)}>delete</span>
+    </td>
+  )
+}

@@ -40,8 +40,13 @@
   text-align: center;
 }
 
-.Period{
-  margin: 10px 0;
+.Btn{
+  cursor: pointer;
+  color: #0000EE;
+}
+
+.Btn:hover, .Bar{
+  color: grey;
 }
 
 @media only screen and (max-width: 600px) {
