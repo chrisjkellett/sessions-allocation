@@ -7,7 +7,9 @@ import {
 
 const initialState = {
   sessions: null,
-  error: false
+  error: false,
+  editing: false,
+  selectedSession: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -24,6 +26,13 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: action.error})
+
+    case actionTypes.FETCH_SESSION:
+      console.log(action.session);
+      return updateState(state, {selectedSession: action.session})
+
+    case actionTypes.DEACTIVATE_SELECTED_SESSION:
+      return updateState(state, {selectedSession: null})
 
     default:
       return state;  

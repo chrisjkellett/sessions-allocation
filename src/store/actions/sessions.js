@@ -66,3 +66,36 @@ export const deleteSessionSuccess = (id) => {
     id: id
   }
 }
+
+export const updateSession = (session, id) => {
+  return dispatch => {
+    axios.put('/sessions/' + id + '.json', session)
+      .then(response => {
+        dispatch(updateSessionSuccess(session, id))
+      })
+      .catch(error => {
+        dispatch(failedLoad(error))
+      })
+  }
+}
+
+export const updateSessionSuccess = (session, id) => {
+  return {
+    type: actionTypes.UPDATE_SESSION_SUCCESS,
+    session: session,
+    id: id
+  }
+}
+
+export const fetchSession = (session) => {
+  return {
+    type: actionTypes.FETCH_SESSION,
+    session: session
+  }
+}
+
+export const deActivateSelectedSession = () => {
+  return {
+    type: actionTypes.DEACTIVATE_SELECTED_SESSION
+  }
+}
