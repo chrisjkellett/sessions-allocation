@@ -28,7 +28,6 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {error: action.error})
 
     case actionTypes.FETCH_SESSION:
-      console.log(action.session);
       return updateState(state, {selectedSession: action.session})
 
     case actionTypes.DEACTIVATE_SELECTED_SESSION:

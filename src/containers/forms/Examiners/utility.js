@@ -75,22 +75,6 @@ export const showHiddenFields = (obj) => {
   }
 }
 
-
-export const distributeValuesForEditing = (state, selected) => {  
-  for(let item in state){
-    state[item].value = selected[item];
-    state[item].validation.valid = [];
-  }
-
-  if(state['roles'].value.includes('Speaking Examiner')){
-    for(let item in state){
-      state[item].elementConfig.disabled = false;
-    }
-  }
-
-  return state; 
-}
-
 export const generateInputProps = (element, state, changeHandler) => {
   const {config} = element
   return {

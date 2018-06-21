@@ -3,9 +3,8 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import * as actions from '../../../store/actions/examiners';
 import {constructExaminerState} from '../../../store/constructors/examiners';
-import {updateSimpleState, getSelectedOptions, updateOptionArray, 
-  generateObjectForSubmitForm, updateDateArray, distributeValuesForEditing, checkDisabledFields, checkFormValidity} from './utility';
-import {updateState, backToView} from '../form-utility';
+import {updateState, backToView, distributeValuesForEditing, updateSimpleState, getSelectedOptions, updateOptionArray, 
+  generateObjectForSubmitForm, updateDateArray, checkDisabledFields, checkFormValidity} from '../form-utility';
 import {renderUI} from './renders/';
 import {checkValidity} from '../validation/validation';
 import {formatInput} from '../validation/utility';

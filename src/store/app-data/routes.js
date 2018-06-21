@@ -7,3 +7,4 @@ export const ADD_EXAMINER = '/examiners/add';
 
 export const SESSIONS = '/sessions/';
 export const ADD_SESSION = '/sessions/add';
+export const EDIT_SESSION = '/sessions/edit/:id';

@@ -23,6 +23,7 @@ class Header extends Component{
 const mapStateToProps = state => {
   return{
     selectedExaminer: state.ex.selectedExaminer,
+    selectedSession: state.sess.selectedSession,
     user: state.auth.session_user
   }
 }

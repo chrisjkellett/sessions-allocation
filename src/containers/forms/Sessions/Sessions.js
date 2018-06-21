@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom';
 import {constructSessionsState} from '../../../store/constructors/sessions';
 import {updateDateArray, updateState, getSelectedOptions, 
   updateOptionArray, checkFormValidity, generateObjectForSubmitForm, 
-  backToView, updateSimpleState} from '../form-utility';
+  backToView, updateSimpleState, distributeValuesForEditing} from '../form-utility';
 import {checkValidity} from '../validation/validation';
 import {renderUI} from './renders';
 import * as routes from '../../../store/app-data/routes';
@@ -14,6 +14,13 @@ class AddSessions extends Component{
   state = {
     session: constructSessionsState(),
     shouldValidate: false
+  }
+
+  componentDidMount(){ 
+    if(this.props.sessionForEditing){
+      const update = distributeValuesForEditing({...this.state.session}, {...this.props.sessionForEditing});
+      this.setState(updateSimpleState({session: update}));
+    } 
   }
 
   changeHandler = (event, type, id, index) => {
@@ -56,15 +63,16 @@ class AddSessions extends Component{
     const isValid = checkFormValidity({...this.state.session});
     const session = generateObjectForSubmitForm(this.state.session);
     
-    if(isValid){
+    if(isValid && !this.props.sessionForEditing){
       this.props.addSession(session);
       backToView(this.props.history, routes.SESSIONS);
     }
 
-    // if(isValid && this.props.examinerForEditing){
-    //   this.props.updateExaminer(examiner, this.props.examinerForEditing.id);
-    //   backToView(this.props.history, routes.EXAMINERS);
-    // }
+    if(isValid && this.props.sessionForEditing){
+      console.log('editing submit');
+      this.props.updateSession(session, this.props.sessionForEditing.id);
+      backToView(this.props.history, routes.SESSIONS);
+    }
   }
 
   cancelHandler = () => {
@@ -76,25 +84,21 @@ class AddSessions extends Component{
   }
 
   render(){
-    return renderUI(
-      {...this.state}, 
-      this.changeHandler, 
-      this.props.examiners, 
-      this.submitHandler, 
-      this.cancelHandler
-    );
+    return renderUI({...this.state}, this.changeHandler, this.props, this.submitHandler, this.cancelHandler);
   }
 }
 
 const mapStateToProps = state => {
   return {
-    examiners: state.ex.examiners
+    examiners: state.ex.examiners,
+    sessionForEditing: state.sess.selectedSession
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    addSession: (session) => dispatch(actions.addSession(session))
+    addSession: (session) => dispatch(actions.addSession(session)),
+    updateSession: (session, id) => dispatch(actions.updateSession(session, id))
   }
 }
 

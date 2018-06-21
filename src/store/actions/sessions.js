@@ -30,7 +30,7 @@ export const failedLoad = (error) => {
 
 export const addSession = (session) => {
   return dispatch => {
-    axios.post('/sessions.jsoN', session)
+    axios.post('/sessions.json', session)
       .then(response => {
         dispatch(addSessionSuccess(session, response.data.name))
       })

@@ -14,10 +14,10 @@ export const renderFormElements = (state, changeHandler, examiners) => {
   )
 }
 
-export const renderBtns = (cancel) => {
+export const renderBtns = (cancel, edit) => {
   return(
     <div className={classes.SubmitBtns}>
-      <button>Add Session</button>
+      <button>{edit ? 'Save Changes' : 'Add Session'}</button>
       <span onClick={() => cancel()}>cancel</span>
     </div>
   )

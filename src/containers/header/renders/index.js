@@ -42,15 +42,15 @@ export const renderExaminerFormLink = (props) => {
 }
 
 export const renderSessionFormLink = (props) => {
-  if(props.history.location.pathname.substring(0, 11) !== '/examiners/'){ 
-    // const {selectedExaminer, location} = props;
-    // if(selectedExaminer)
-    //   if(location.pathname === routes.EXAMINERS + formatURL(selectedExaminer.name)) 
-    //     return <li>{formatURL(selectedExaminer.name)}</li>
-    //   else
-    //     return <li>editing examiner</li>
+  if(props.history.location.pathname.substring(0, 9) !== '/sessions/'){ 
+    const {selectedSession} = props;
+    if(selectedSession)
+      // if(location.pathname === routes.SESSIONS + formatURL(selectedSession.session_date)) 
+      //   return <li>{formatURL(selectedSession.session_date)}</li>
+      // else
+        return <li>editing session</li>
         
-    // else
+    else
       return(
         <NavLink to={routes.ADD_SESSION} exact activeClassName={classes.Active}>
           <li>add session</li>

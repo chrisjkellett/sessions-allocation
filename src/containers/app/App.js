@@ -33,6 +33,7 @@ class App extends Component {
               <Route path={routes.SINGLE_EXAMINER_VIEW} exact component={SingleExaminer} />
               <Route path={routes.SESSIONS} exact component={Sessions} />
               <Route path={routes.ADD_SESSION} exact component={AddSessions} />
+              <Route path={routes.EDIT_SESSION} exact component={AddSessions}/>
           </Switch>
         </section>
       </Wrapper>
