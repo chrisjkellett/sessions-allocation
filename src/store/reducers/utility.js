@@ -28,6 +28,9 @@ export const replaceElementById = (arr, record, id) => {
   const filtered = arr.filter(item => {
     return item.id !== id;
   })
+
+  record.id = id;
+  
   const updated = filtered.concat(record);
 
   return sortByName(updated);

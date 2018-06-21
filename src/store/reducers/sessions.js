@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 import {
   updateState,
   addId,
-  removeElementById
+  removeElementById,
+  replaceElementById
 } from './utility';
 
 const initialState = {
@@ -23,6 +24,11 @@ const reducer = (state = initialState, action) => {
     
     case actionTypes.DELETE_SESSION_SUCCESS:
       return updateState(state, {sessions: removeElementById(state.sessions, action.id), error: false})
+
+    case actionTypes.UPDATE_SESSION_SUCCESS:
+      console.log(action.id);
+      console.log(action.session);
+      return updateState(state, {sessions: replaceElementById(state.sessions, action.session, action.id), error: false})
 
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: action.error})
