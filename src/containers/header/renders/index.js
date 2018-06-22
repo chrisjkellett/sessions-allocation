@@ -42,12 +42,12 @@ export const renderExaminerFormLink = (props) => {
 }
 
 export const renderSessionFormLink = (props) => {
-  if(props.history.location.pathname.substring(0, 9) !== '/sessions/'){ 
-    const {selectedSession} = props;
+  if(props.history.location.pathname.substring(0, 11) !== '/examiners/'){ 
+    const {selectedSession, location} = props;
     if(selectedSession)
-      // if(location.pathname === routes.SESSIONS + formatURL(selectedSession.session_date)) 
-      //   return <li>{formatURL(selectedSession.session_date)}</li>
-      // else
+      if(location.pathname === routes.SESSIONS + formatURL(selectedSession.session_date)) 
+        return <li>{formatURL(selectedSession.session_date)}</li>
+      else
         return <li>editing session</li>
         
     else
@@ -62,7 +62,7 @@ export const renderSessionFormLink = (props) => {
     return null;  
 }
 
-export const renderLogout = (user) => {
+export const renderLogout = (props) => {
   return(
     <div className={classes.RightMenu}> 
       <NavLink to={routes.LOGIN_PAGE} exact activeClassName={classes.Active}>

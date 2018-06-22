@@ -3,7 +3,7 @@ import classes from './App.css';
 import {Route, withRouter, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Header from '../header/Header';
-// import Auth from './containers/forms/Auth/Auth';
+import Auth from '../forms/Auth/Auth';
 import Examiners from '../views/Examiners/Examiners';
 import Sessions from '../views/Sessions/Sessions';
 import SingleExaminer from '../views/SingleExaminer/SingleExaminer';
@@ -26,7 +26,7 @@ class App extends Component {
         <Header />
         <section className={classes.Section}>
           <Switch>
-              <Route path={routes.LOGIN_PAGE} exact component={Examiners} />
+              <Route path={routes.LOGIN_PAGE} exact component={Auth} />
               <Route path={routes.ADD_EXAMINER} exact component={AddExaminers} />
               <Route path={routes.EDIT_EXAMINER} exact component={AddExaminers}/>
               <Route path={routes.EXAMINERS} exact component={Examiners} />

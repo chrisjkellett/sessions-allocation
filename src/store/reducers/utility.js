@@ -30,7 +30,7 @@ export const replaceElementById = (arr, record, id) => {
   })
 
   record.id = id;
-  
+
   const updated = filtered.concat(record);
 
   return sortByName(updated);
@@ -46,4 +46,11 @@ export const isValidUser = (examiners, attempt) => {
     return examiner.email === attempt.email && attempt.password === 'test';
   })
   return result !== undefined ? result : 'not found';
+}
+
+export const checkIfAdmin = (user) => {
+  if(user === null || user === 'not found')
+    return false; 
+  else  
+    return user.roles.includes('Team Leader');
 }

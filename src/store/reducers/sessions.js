@@ -26,8 +26,6 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {sessions: removeElementById(state.sessions, action.id), error: false})
 
     case actionTypes.UPDATE_SESSION_SUCCESS:
-      console.log(action.id);
-      console.log(action.session);
       return updateState(state, {sessions: replaceElementById(state.sessions, action.session, action.id), error: false})
 
     case actionTypes.FAILED_LOAD:

@@ -1,8 +1,9 @@
 import * as actionTypes from '../actions/actionTypes';
-import {isValidUser} from './utility';
+import {isValidUser, checkIfAdmin} from './utility';
 
 const initialState = {
   session_user: null,
+  admin: false,
   error: false
 }
 
@@ -12,6 +13,7 @@ const reducer = (state = initialState, action) => {
       const user = isValidUser(action.examiners, action.userToBeChecked);
       return {
         session_user: user,
+        admin: checkIfAdmin(user),
         error: user === 'not found' ? true : false
       }
 

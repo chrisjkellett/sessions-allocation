@@ -6,6 +6,7 @@ import * as navElements from './renders/';
 
 class Header extends Component{
   render(){
+    console.log(this.props.user);
     return(
       <div className={classes.Header}>
         <ul>
@@ -13,7 +14,7 @@ class Header extends Component{
           {navElements.renderSessionViewLink(this.props)}
           {navElements.renderExaminerFormLink(this.props)}
           {navElements.renderSessionFormLink(this.props)}
-          {navElements.renderLogout(this.props.user)}
+          {navElements.renderLogout(this.props)}
         </ul>
       </div>
     )
