@@ -8,6 +8,7 @@ import {sessionTableHeaders} from '../../../store/app-data/table-headers';
 import {constructPeriodState} from '../../../store/constructors/periods';
 import {formatURL, formatDateURL} from '../../../gen-utility';
 import * as actions from '../../../store/actions/sessions';
+import {getSelectedOptions, updateState} from '../../forms/form-utility';
 
 class Sessions extends Component{
   state = {
@@ -27,9 +28,16 @@ class Sessions extends Component{
     this.props.deleteSession(id)
   }
 
-  periodHandler = () => {
-    console.log('handled');
+  periodHandler = (event, id) => {
+    const value = getSelectedOptions(event);
+    const type = Object.keys({...this.state})[0];
+    console.log(id);
+    const update = updateState(this.state, id, {value: value}, type);
+    console.log(update)
+    console.log(this.state);
+    this.setState(update);
   }
+
 
   render(){
     return (
