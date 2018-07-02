@@ -43,10 +43,10 @@ export const renderExaminerFormLink = (props) => {
 
 export const renderSessionFormLink = (props) => {
   if(props.history.location.pathname.substring(0, 11) !== '/examiners/'){ 
-    const {selectedSession, location} = props;
+    const {selectedSession} = props;
     if(selectedSession)
-      // if(location.pathname === routes.SESSIONS + formatURL(selectedSession.session_date)) 
-      // //   return <li>{formatURL(selectedSession.session_date)}</li>
+      // if(location.pathname === routes.SESSIONS + formatDateURL(selectedSession.session_date)) 
+      //   return <li>{formatDateURL(selectedSession.session_date)}</li>
       // else
         return <li>editing session</li>
         
