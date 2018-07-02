@@ -11,7 +11,7 @@ import AddExaminers from '../forms/Examiners/Examiners';
 import AddSessions from '../forms/Sessions/Sessions';
 import Wrapper from '../../components/Misc/Wrapper/Wrapper';
 import {loadExaminers} from '../../store/actions/examiners';
-import {loadSessions} from '../../store/actions/sessions';
+import {loadSessions, loadPeriods} from '../../store/actions/sessions';
 import * as routes from '../../store/app-data/routes';
 
 class App extends Component {
@@ -41,11 +41,18 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return{
-    loadExaminers: () => dispatch(loadExaminers()),
-    loadSessions: () => dispatch(loadSessions())
+const mapStateToProps = state => {
+  return {
+    sessions: state.sess.sessions
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+const mapDispatchToProps = dispatch => {
+  return{
+    loadExaminers: () => dispatch(loadExaminers()),
+    loadSessions: () => dispatch(loadSessions()),
+    loadPeriods: () => dispatch(loadPeriods())
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

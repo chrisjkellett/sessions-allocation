@@ -5,6 +5,7 @@ import {
   removeElementById,
   replaceElementById,
   objectToArray,
+  objectToSessionPeriods,
   sortBy
 } from './utility';
 
@@ -12,13 +13,19 @@ const initialState = {
   sessions: null,
   error: false,
   editing: false,
-  selectedSession: null
+  selectedSession: null,
+  periods: null
 }
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.LOAD_SESSIONS_SUCCESS:
       return updateState(state, {sessions: objectToArray(action.sessions, 'session_date'), error: false});
+
+    case actionTypes.LOAD_PERIODS: 
+      const periods = objectToSessionPeriods(action.sessions);
+      console.log(periods);
+      return state;
 
     case actionTypes.ADD_SESSION_SUCCESS:
       const sessionUpdatedWithId = addId({...action.session}, action.id);

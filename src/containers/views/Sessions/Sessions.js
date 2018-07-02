@@ -21,7 +21,7 @@ class Sessions extends Component{
 
   handleEdit = (session) => {
     this.props.fetchSession(session);
-    this.props.history.push('/sessions/edit/' + formatURL(session.venue) + '+' + formatDateURL([...session.session_date]));
+    this.props.history.push('/sessions/edit/' + formatURL(session.venue) + formatDateURL([...session.session_date]));
   }
 
   handleDelete = (id) => {
@@ -31,10 +31,7 @@ class Sessions extends Component{
   periodHandler = (event, id) => {
     const value = getSelectedOptions(event);
     const type = Object.keys({...this.state})[0];
-    console.log(id);
     const update = updateState(this.state, id, {value: value}, type);
-    console.log(update)
-    console.log(this.state);
     this.setState(update);
   }
 
@@ -43,7 +40,7 @@ class Sessions extends Component{
     return (
       <section className={classes.Sessions}>
         {renderError(this.props.errors)}
-        {renderFormPeriod({...this.state}, this.periodHandler)}
+        {renderFormPeriod({...this.state}, this.periodHandler, this.props.sessions)}
         <Table labels={sessionTableHeaders}>
           {renderTableContent(this.props.sessions, this.handleDelete, this.handleEdit)}
         </Table>

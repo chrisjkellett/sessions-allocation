@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const updateState = (obj, update) => {
   return{
     ...obj,
@@ -62,6 +64,20 @@ export const objectToArray = (obj, factor) => {
   });
 
   return sortBy(array, factor);
+}
+
+export const objectToSessionPeriods = (obj) => {
+  const copy = {
+    ...obj
+  }
+
+  const keys = Object.keys(copy);
+
+  const array = keys.map(item =>{
+    return moment(copy[item]['session_date'].join("-")).format('MMMM');
+  });
+
+  return Array.from(new Set(array));
 }
 
 export const sortBy = (obj, factor) => {
