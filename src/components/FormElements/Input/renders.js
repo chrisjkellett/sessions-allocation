@@ -39,7 +39,7 @@ export const renderFormElement = (type, props) =>{
         <div className={classes.DateSelect}>
           <select {...props.elementConfig} onChange={(event, index) => props.change(event, 2)} value={props.value[2]} >
             {props.options.days.map(option => (
-              <option key={option}>{option}</option>
+              <option key={option.d} value={option.id}>{option.d}</option>
             ))}
           </select>
           <select {...props.elementConfig} onChange={(event, index) => props.change(event, 1)}  value={props.value[1]} >

@@ -7,7 +7,16 @@ export const CURRENTDAY = Number(moment().format('D'));
 
 //select options
 export const locationOptions = ['Valencia', 'Murcia']
-export const dayOptions = [...Array(32).keys()].splice(1);
+export const dayOptions = [
+  {d: '1', id: '01'}, {d: '2', id: '02'}, {d: '3', id: '03'}, {d: '4', id: '04'},
+  {d: '5', id: '05'}, {d: '6', id: '06'}, {d: '7', id: '07'}, {d: '8', id: '08'},
+  {d: '9', id: '09'}, {d: '10', id: '10'}, {d: '11', id: '11'}, {d: '12', id: '12'},
+  {d: '13', id: '13'}, {d: '14', id: '14'}, {d: '15', id: '15'}, {d: '16', id: '16'},
+  {d: '17', id: '17'}, {d: '18', id: '18'}, {d: '19', id: '19'}, {d: '20', id: '20'},
+  {d: '21', id: '21'}, {d: '22', id: '22'}, {d: '23', id: '23'}, {d: '24', id: '24'},
+  {d: '25', id: '25'}, {d: '26', id: '26'}, {d: '27', id: '27'}, {d: '28', id: '28'},
+  {d: '29', id: '29'}, {d: '30', id: '30'}, {d: '31', id: '31'}
+];
 export const monthOptions = [
   {m: 'January', id: '01'}, {m: 'February', id: '02'}, 
   {m: 'March', id: '03'}, {m: 'April', id: '04'}, 
