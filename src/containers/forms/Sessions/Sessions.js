@@ -69,7 +69,6 @@ class AddSessions extends Component{
     }
 
     if(isValid && this.props.sessionForEditing){
-      console.log('editing submit');
       this.props.updateSession(session, this.props.sessionForEditing.id);
       backToView(this.props.history, routes.SESSIONS);
     }

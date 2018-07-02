@@ -1,12 +1,11 @@
 import React from 'react';
 import classes from '../Sessions.css';
-// import {momentReadyArr} from '../../../forms/form-utility';
-// import moment from 'moment';
+import moment from 'moment';
 
 export const renderDate = (session) => {
   return  (
     <td>
-     {session.session_date}
+     {moment(session.session_date).format('dddd Do MMMM')}
     </td>
   )
 }
