@@ -4,7 +4,8 @@ import {
   addId,
   removeElementById,
   replaceElementById,
-  objectToArray
+  objectToArray,
+  sortBy
 } from './utility';
 
 const initialState = {
@@ -21,7 +22,7 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.ADD_SESSION_SUCCESS:
       const sessionUpdatedWithId = addId({...action.session}, action.id);
-      return updateState(state, {sessions: state.sessions.concat(sessionUpdatedWithId), error: false})
+      return updateState(state, {sessions: sortBy(state.sessions.concat(sessionUpdatedWithId), 'session_date'), error: false})
     
     case actionTypes.DELETE_SESSION_SUCCESS:
       return updateState(state, {sessions: removeElementById(state.sessions, action.id), error: false})

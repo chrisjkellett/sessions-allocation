@@ -75,9 +75,9 @@ export const generateObjectForSubmitForm = (obj) => {
     const data = {};
 
     for (let id in obj){
-      if(id.substring(id.length - 5, id.length) === '_date')
-        data[id] = moment(obj[id].value.join("-")).format();
-      else
+      // if(id.substring(id.length - 5, id.length) === '_date')
+      //   data[id] = moment(obj[id].value.join("-")).format();
+      // else
         data[id] = obj[id].value;
     }  
     console.log(data);
@@ -116,26 +116,6 @@ export const checkFormValidity = (obj) => {
 
   return isValid;
 }
-
-// export const momentReadyArr = (Arr) => {
-//   const arr = [...Arr];
-//   arr[1] = convertMonthToNumber(arr[1]);
-//   arr[2] = checkZeros(arr[2]);
-//   return arr.join("-");
-// }
-
-
-// export const convertMonthToNumber = (month) => {
-//   const obj = monthOptions.find(item => {
-//     return item.m === month
-//   })
-
-//   return obj.id;
-// }
-
-// export const checkZeros = (day) => {
-//   return day.length === 1 ? '0' + day : day;
-// }
 
 export const distributeValuesForEditing = (state, selected) => {  
   for(let item in state){

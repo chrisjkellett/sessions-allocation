@@ -5,7 +5,7 @@ import moment from 'moment';
 export const renderDate = (session) => {
   return  (
     <td>
-     {moment(session.session_date).format('dddd Do MMMM')}
+     {moment([...session.session_date].join("-")).format('dddd Do MMMM')}
     </td>
   )
 }

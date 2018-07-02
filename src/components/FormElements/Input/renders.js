@@ -69,6 +69,7 @@ export const renderErrorMessageOrInfo = (props) => {
 
 const renderAdditionalInfo = (label, value) => {
   if(label === 'session_date'){
-   return <span>{moment(value.join("-")).format('dddd')}</span>
+    const checkedValue = typeof value === 'string' ? value : value.join("-")
+    return <span>{moment(checkedValue).format('dddd')}</span>
   }
 }
