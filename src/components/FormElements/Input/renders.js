@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './Input.css';
 import {generateLabelClass} from './utility';
-import {momentReadyArr} from '../../../containers/forms/form-utility';
-import moment from 'moment';
+// import {momentReadyArr} from '../../../containers/forms/form-utility';
+// import moment from 'moment';
 
 export const renderFormElement = (type, props) =>{
   switch (type){
@@ -44,7 +44,7 @@ export const renderFormElement = (type, props) =>{
           </select>
           <select {...props.elementConfig} onChange={(event, index) => props.change(event, 1)}  value={props.value[1]} >
             {props.options.months.map(option => (
-              <option key={option.m} id={option.id}>{option.m}</option>
+              <option key={option.m} value={option.id}>{option.m}</option>
             ))}
           </select>
           <select {...props.elementConfig} onChange={(event, index) => props.change(event, 0)}  value={props.value[0]} >
@@ -70,6 +70,7 @@ export const renderErrorMessageOrInfo = (props) => {
 
 const renderAdditionalInfo = (label, value) => {
   if(label === 'session_date'){
-    return <span>({moment(momentReadyArr(value)).format('dddd')})</span>
+    return null;
+    // return <span>({moment(momentReadyArr(value)).format('dddd')})</span>
   }
 }

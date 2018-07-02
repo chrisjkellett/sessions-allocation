@@ -6,7 +6,6 @@ import * as navElements from './renders/';
 
 class Header extends Component{
   render(){
-    console.log(this.props.user);
     return(
       <div className={classes.Header}>
         <ul>

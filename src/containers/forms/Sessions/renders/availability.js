@@ -1,5 +1,5 @@
-import moment from 'moment';
-import {momentReadyArr} from '../../form-utility';
+// import moment from 'moment';
+// import {momentReadyArr} from '../../form-utility';
  
 export const checkType = (examiner, sessionType) => {
   switch (sessionType){
@@ -16,16 +16,16 @@ export const checkLevels = (examiner, sessionLevels) => {
   return sessionLevels.every(level => examiner.levels.includes(level));
 }
 
-export const checkDay = (examiner, sessionDayArray, sessionTime) => {
-  const day = moment(momentReadyArr(sessionDayArray)).format('dddd');
-  const formattedDay = checkTime(day, sessionTime);
-  return examiner.availability.includes(formattedDay);
-}
+// export const checkDay = (examiner, sessionDayArray, sessionTime) => {
+//   const day = moment(momentReadyArr(sessionDayArray)).format('dddd');
+//   const formattedDay = checkTime(day, sessionTime);
+//   return examiner.availability.includes(formattedDay);
+// }
 
-const checkTime = (day, sessionTime) => {
-  if(sessionTime.slice(0, 2) >= 14)
-    return day + ' pm'
-  else
-    return day
-}
+// const checkTime = (day, sessionTime) => {
+//   if(sessionTime.slice(0, 2) >= 14)
+//     return day + ' pm'
+//   else
+//     return day
+// }
 

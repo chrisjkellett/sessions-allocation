@@ -23,9 +23,9 @@ export const constructSessionsState = () => {
       elementConfig: {
         disabled: false
       },
-      value: [CURRENTYEAR, monthOptions[CURRENTMONTH - 1].m, CURRENTDAY],
+      value: [CURRENTYEAR, monthOptions[CURRENTMONTH - 1].id, CURRENTDAY],
       group: 'session-data',
-      validation: constructValidation({...rules.NotBeforeToday, ...rules.checkDate})
+      validation: constructValidation({})
     },
 
     time: {

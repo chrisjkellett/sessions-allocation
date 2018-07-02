@@ -1,4 +1,4 @@
-import {monthOptions} from '../../store/data';
+// import {monthOptions} from '../../store/data';
 
 export const updateState = (obj, id, updatedState, type) => {
   return{
@@ -112,25 +112,25 @@ export const checkFormValidity = (obj) => {
   return isValid;
 }
 
-export const momentReadyArr = (Arr) => {
-  const arr = [...Arr];
-  arr[1] = convertMonthToNumber(arr[1]);
-  arr[2] = checkZeros(arr[2]);
-  return arr.join("-");
-}
+// export const momentReadyArr = (Arr) => {
+//   const arr = [...Arr];
+//   arr[1] = convertMonthToNumber(arr[1]);
+//   arr[2] = checkZeros(arr[2]);
+//   return arr.join("-");
+// }
 
 
-export const convertMonthToNumber = (month) => {
-  const obj = monthOptions.find(item => {
-    return item.m === month
-  })
+// export const convertMonthToNumber = (month) => {
+//   const obj = monthOptions.find(item => {
+//     return item.m === month
+//   })
 
-  return obj.id;
-}
+//   return obj.id;
+// }
 
-export const checkZeros = (day) => {
-  return day.length === 1 ? '0' + day : day;
-}
+// export const checkZeros = (day) => {
+//   return day.length === 1 ? '0' + day : day;
+// }
 
 export const distributeValuesForEditing = (state, selected) => {  
   for(let item in state){
