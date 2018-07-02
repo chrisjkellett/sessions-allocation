@@ -3,7 +3,6 @@ export const formatURL = (str) => {
 }
 
 export const formatDateURL = (arr) => {
-  console.log(arr);
   delete arr[0];
   return arr.join("");
 }
