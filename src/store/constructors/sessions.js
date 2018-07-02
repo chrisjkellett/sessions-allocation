@@ -23,7 +23,7 @@ export const constructSessionsState = () => {
       elementConfig: {
         disabled: false
       },
-      value: [CURRENTYEAR, monthOptions[CURRENTMONTH - 1].id, CURRENTDAY],
+      value: [CURRENTYEAR, monthOptions[CURRENTMONTH - 1].id, dayOptions[CURRENTDAY - 1].id],
       group: 'session-data',
       validation: constructValidation({})
     },

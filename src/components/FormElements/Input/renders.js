@@ -1,8 +1,7 @@
 import React from 'react';
 import classes from './Input.css';
 import {generateLabelClass} from './utility';
-// import {momentReadyArr} from '../../../containers/forms/form-utility';
-// import moment from 'moment';
+import moment from 'moment';
 
 export const renderFormElement = (type, props) =>{
   switch (type){
@@ -70,7 +69,6 @@ export const renderErrorMessageOrInfo = (props) => {
 
 const renderAdditionalInfo = (label, value) => {
   if(label === 'session_date'){
-    return null;
-    // return <span>({moment(momentReadyArr(value)).format('dddd')})</span>
+   return <span>{moment(value.join("-")).format('dddd')}</span>
   }
 }
