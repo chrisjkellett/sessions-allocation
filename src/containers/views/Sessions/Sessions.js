@@ -27,11 +27,15 @@ class Sessions extends Component{
     this.props.deleteSession(id)
   }
 
+  periodHandler = () => {
+    console.log('handled');
+  }
+
   render(){
     return (
       <section className={classes.Sessions}>
         {renderError(this.props.errors)}
-        {renderFormPeriod({...this.state})}
+        {renderFormPeriod({...this.state}, this.periodHandler)}
         <Table labels={sessionTableHeaders}>
           {renderTableContent(this.props.sessions, this.handleDelete, this.handleEdit)}
         </Table>

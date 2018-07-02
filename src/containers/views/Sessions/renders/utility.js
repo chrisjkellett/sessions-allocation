@@ -3,9 +3,10 @@ export const generateInputProps = (element, periodHandler) => {
   return {
     key: element.id,
     label: element.id,
-    elementtype: config.elementType,
-    elementConfig: config.elementConfig,
-    value: config.value,
+    options: config.period.options,
+    elementtype: config.period.elementType,
+    elementConfig: config.period.elementConfig,
+    value: config.period.value,
     valid: [],
     change: (event) => periodHandler(event, element.id)
   }
