@@ -25,7 +25,7 @@ export const constructSessionsState = () => {
       },
       value: [CURRENTYEAR, monthOptions[CURRENTMONTH - 1].id, dayOptions[CURRENTDAY - 1].id],
       group: 'session-data',
-      validation: constructValidation({})
+      validation: constructValidation({...rules.checkDate, ...rules.NotBeforeToday})
     },
 
     time: {
