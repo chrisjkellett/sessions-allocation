@@ -1,10 +1,10 @@
 import * as actionTypes from '../actions/actionTypes';
 import {
   updateState, 
-  sortByName, 
   removeElementById,
   replaceElementById,
-  addId
+  addId,
+  objectToArray
 } from './utility';
 
 const initialState = {
@@ -17,11 +17,11 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.LOAD_EXAMINERS_SUCCESS:
-      return updateState(state, {examiners: action.examiners, error: false})
+      return updateState(state, {examiners: objectToArray(action.examiners), error: false})
 
     case actionTypes.ADD_EXAMINER_SUCCESS:
       const examinerUpdatedWithId = addId({...action.examiner}, action.id);
-      return updateState(state, {examiners: sortByName(state.examiners.concat(examinerUpdatedWithId)), error: false})
+      return updateState(state, {examiners: state.examiners.concat(examinerUpdatedWithId), error: false})
 
     case actionTypes.DELETE_EXAMINER_SUCCESS:
       return updateState(state, {examiners: removeElementById(state.examiners, action.id), error: false})

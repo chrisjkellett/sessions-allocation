@@ -11,12 +11,6 @@ export const removeElementById = (arr, id) => {
   })
 }
 
-export const sortByName = (obj) => {
-  return obj.sort((a, b) =>{
-    return a.name > b.name
-  })
-}
-
 export const findExaminer = (arr, id) => {
   const filtered = arr.find(item => {
     return item.name === id;
@@ -33,7 +27,7 @@ export const replaceElementById = (arr, record, id) => {
 
   const updated = filtered.concat(record);
 
-  return sortByName(updated);
+  return updated;
 }
 
 export const addId = (obj, id) => {
@@ -53,4 +47,25 @@ export const checkIfAdmin = (user) => {
     return false; 
   else  
     return user.roles.includes('Team Leader');
+}
+
+export const objectToArray = (obj, factor) => {
+  const copy = {
+    ...obj
+  }
+
+  const keys = Object.keys(copy);
+
+  const array = keys.map(item =>{
+    copy[item].id = item;
+    return copy[item]
+  });
+
+  return sortBy(array, factor);
+}
+
+export const sortBy = (obj, factor) => {
+return obj.sort((a, b) =>{
+  return a[factor] > b[factor]
+})
 }

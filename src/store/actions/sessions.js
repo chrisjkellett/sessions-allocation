@@ -1,12 +1,11 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios';
-import {objectToArray} from './utility';
 
 export const loadSessions = () => {
   return dispatch => {
     axios.get('/sessions.json')
       .then(response => {
-        dispatch(loadSessionsSuccess(objectToArray(response.data)))
+        dispatch(loadSessionsSuccess(response.data))
       })
       .catch(error => {
         dispatch(failedLoad(error))

@@ -1,12 +1,11 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios';
-import {objectToArray} from './utility';
 
 export const loadExaminers = () => {
   return dispatch => {
     axios.get('/examiners.json')
       .then(response => {
-        dispatch(loadExaminersSuccess(objectToArray(response.data)))
+        dispatch(loadExaminersSuccess(response.data))
       })
       .catch(error => {
         dispatch(failedLoad(error))

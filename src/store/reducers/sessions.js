@@ -3,7 +3,8 @@ import {
   updateState,
   addId,
   removeElementById,
-  replaceElementById
+  replaceElementById,
+  objectToArray
 } from './utility';
 
 const initialState = {
@@ -16,7 +17,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.LOAD_SESSIONS_SUCCESS:
-      return updateState(state, {sessions: action.sessions, error: false});
+      return updateState(state, {sessions: objectToArray(action.sessions, 'session_date'), error: false});
 
     case actionTypes.ADD_SESSION_SUCCESS:
       const sessionUpdatedWithId = addId({...action.session}, action.id);
