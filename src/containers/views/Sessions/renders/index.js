@@ -3,6 +3,7 @@ import classes from '../Sessions.css';
 import Notification from '../../../../components/Misc/Notification';
 import {renderDate, renderTime, renderType, renderVenue, renderLevels, renderExaminers, renderSupport, renderBtns} from './sub-renders';
 import * as notifications from '../../../../store/app-data/notifications';
+import {generateFormElementArray} from '../../../forms/form-utility';
 import {NETWORK_FAIL} from '../../../../store/app-data/errors';
 
 export const renderTableContent = (sessions, handleDelete, handleEdit) => {
@@ -39,4 +40,9 @@ export const renderError = (error) => {
 
   else 
     return null;
+}
+
+export const renderFormPeriod = (state) => {
+  console.log(state);
+  return 'form goes here';
 }
