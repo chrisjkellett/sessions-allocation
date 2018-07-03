@@ -6,11 +6,13 @@ import {
   replaceElementById,
   objectToArray,
   objectToSessionPeriods,
-  sortBy
+  sortBy,
+  filterSessionsByMonth
 } from './utility';
 
 const initialState = {
   sessions: null,
+  filteredSessions: null,
   error: false,
   editing: false,
   selectedSession: null,
@@ -46,6 +48,9 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.DEACTIVATE_SELECTED_SESSION:
       return updateState(state, {selectedSession: null})
+
+    case actionTypes.FILTER_SESSIONS:
+      return updateState(state, {filteredSessions: filterSessionsByMonth([...state.sessions], action.period)})
 
     default:
       return state;  

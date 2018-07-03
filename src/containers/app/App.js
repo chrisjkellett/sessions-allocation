@@ -50,7 +50,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return{
     loadExaminers: () => dispatch(loadExaminers()),
-    loadSessions: () => dispatch(loadSessions())
+    loadSessions: () => dispatch(loadSessions()),
   }
 }
 

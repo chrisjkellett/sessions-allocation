@@ -116,3 +116,10 @@ export const deActivateSelectedSession = () => {
     type: actionTypes.DEACTIVATE_SELECTED_SESSION
   }
 }
+
+export const filterSessions = (period, sessions) => {
+  return {
+    type: actionTypes.FILTER_SESSIONS,
+    period: period
+  }
+}

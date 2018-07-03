@@ -81,7 +81,13 @@ export const objectToSessionPeriods = (obj) => {
 }
 
 export const sortBy = (obj, factor) => {
-return obj.sort((a, b) =>{
-  return a[factor] > b[factor]
-})
+  return obj.sort((a, b) =>{
+    return a[factor] > b[factor]
+  })
+}
+
+export const filterSessionsByMonth = (sessions, period) => {
+  return sessions.filter(session => {
+    return period === moment(session.session_date.join("-")).format('MMMM')
+  })
 }
