@@ -11,7 +11,7 @@ import AddExaminers from '../forms/Examiners/Examiners';
 import AddSessions from '../forms/Sessions/Sessions';
 import Wrapper from '../../components/Misc/Wrapper/Wrapper';
 import {loadExaminers} from '../../store/actions/examiners';
-import {loadSessions, loadPeriods} from '../../store/actions/sessions';
+import {loadSessions} from '../../store/actions/sessions';
 import * as routes from '../../store/app-data/routes';
 
 class App extends Component {
@@ -50,8 +50,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return{
     loadExaminers: () => dispatch(loadExaminers()),
-    loadSessions: () => dispatch(loadSessions()),
-    loadPeriods: () => dispatch(loadPeriods())
+    loadSessions: () => dispatch(loadSessions())
   }
 }
 

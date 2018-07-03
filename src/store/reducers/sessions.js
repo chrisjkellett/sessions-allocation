@@ -23,9 +23,7 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {sessions: objectToArray(action.sessions, 'session_date'), error: false});
 
     case actionTypes.LOAD_PERIODS: 
-      const periods = objectToSessionPeriods(action.sessions);
-      console.log(periods);
-      return state;
+      return updateState(state, {periods: objectToSessionPeriods(action.sessions), error: false});
 
     case actionTypes.ADD_SESSION_SUCCESS:
       const sessionUpdatedWithId = addId({...action.session}, action.id);
