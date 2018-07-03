@@ -28,6 +28,13 @@ export const loadPeriods = (sessions) => {
   }
 }
 
+
+export const updatePeriods = () => {
+  return {
+    type: actionTypes.UPDATE_PERIODS
+  }
+}
+
 export const failedLoad = (error) => {
   return {
     type: actionTypes.FAILED_LOAD,
@@ -40,6 +47,7 @@ export const addSession = (session) => {
     axios.post('/sessions.json', session)
       .then(response => {
         dispatch(addSessionSuccess(session, response.data.name))
+        dispatch(updatePeriods())
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -60,6 +68,7 @@ export const deleteSession = (id) => {
     axios.delete('/sessions/' + id + '.json')
       .then(response => {
         dispatch(deleteSessionSuccess(id))
+        dispatch(updatePeriods())
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -79,6 +88,7 @@ export const updateSession = (session, id) => {
     axios.put('/sessions/' + id + '.json', session)
       .then(response => {
         dispatch(updateSessionSuccess(session, id))
+        dispatch(updatePeriods())
       })
       .catch(error => {
         dispatch(failedLoad(error))

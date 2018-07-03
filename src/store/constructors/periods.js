@@ -4,7 +4,7 @@ export const constructPeriodState = () => {
   return {
     period:{
       elementType: 'select',
-      options: ['April', 'May'],
+      options: null,
       elementConfig: {
         disabled: false
       },
