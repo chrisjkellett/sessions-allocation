@@ -40,7 +40,7 @@ class Sessions extends Component{
     return (
       <section className={classes.Sessions}>
         {renderError(this.props.errors)}
-        {renderFormPeriod({...this.state}, this.periodHandler, this.props.sessions)}
+        {renderFormPeriod({...this.state}, this.periodHandler, this.props.periods)}
         <Table labels={sessionTableHeaders}>
           {renderTableContent(this.props.sessions, this.handleDelete, this.handleEdit)}
         </Table>
@@ -52,6 +52,7 @@ class Sessions extends Component{
 const mapStateToProps = state => {
   return {
     sessions: state.sess.sessions,
+    periods: state.sess.periods,
     errors: state.sess.error
   }
 }

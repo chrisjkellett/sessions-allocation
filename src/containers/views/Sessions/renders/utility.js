@@ -1,9 +1,9 @@
-export const generateInputProps = (element, periodHandler) => {
+export const generateInputProps = (element, periodHandler, periods) => {
   const {config} = element;
   return {
     key: element.id,
     label: element.id,
-    options: config.period.options,
+    options: periods,
     elementtype: config.period.elementType,
     elementConfig: config.period.elementConfig,
     value: config.period.value,

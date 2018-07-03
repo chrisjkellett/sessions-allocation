@@ -44,12 +44,14 @@ export const renderError = (error) => {
     return null;
 }
 
-export const renderFormPeriod = (state, periodHandler) => {
-  return (
-    generateFormElementArray(state)
-      .map(element =>{
-        return <Input {...generateInputProps(element, periodHandler)} />
-      }
+export const renderFormPeriod = (state, periodHandler, periods) => {
+  if(periods !== null && periods.length > 1){
+    return (
+      generateFormElementArray(state)
+        .map(element =>{
+          return <Input {...generateInputProps(element, periodHandler, periods)} />
+        }
+      )
     )
-  )
+  };
 }
