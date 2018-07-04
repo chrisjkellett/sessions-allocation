@@ -27,12 +27,9 @@ const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.LOAD_SESSIONS_SUCCESS:
       sessions = objectToArray(action.sessions, 'session_date');
-      return updateState(state, {sessions: sessions,  allSessions: sessions, error: false});
-
-    case actionTypes.LOAD_PERIODS: 
       periods = objectToSessionPeriods(action.sessions);
       initialPeriod = setInitialPeriod(periods);
-      return updateState(state, {periods: periods, currentPeriod: initialPeriod, error: false});
+      return updateState(state, {sessions: filterSessionsByMonth(sessions, initialPeriod),  allSessions: sessions, periods: periods, currentPeriod: initialPeriod, error: false});
 
     case actionTypes.UPDATE_PERIODS: 
       return updateState(state, {periods: objectToSessionPeriods({...state.sessions}), error: false});
@@ -59,11 +56,8 @@ const reducer = (state = initialState, action) => {
     case actionTypes.DEACTIVATE_SELECTED_SESSION:
       return updateState(state, {selectedSession: null})
 
-    case actionTypes.FILTER_SESSIONS:
-      return updateState(state, {sessions: filterSessionsByMonth([...state.allSessions], action.period)})
-
     case actionTypes.SET_PERIOD:
-      return updateState(state, {period: action.period});
+      return updateState(state, {period: action.period, sessions: filterSessionsByMonth([...state.allSessions], action.period)});
 
     default:
       return state;  

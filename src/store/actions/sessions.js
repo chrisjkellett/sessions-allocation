@@ -6,7 +6,6 @@ export const loadSessions = () => {
     axios.get('/sessions.json')
       .then(response => {
         dispatch(loadSessionsSuccess(response.data))
-        dispatch(loadPeriods(response.data))
       })
       .catch(error => {
         dispatch(failedLoad(error))
