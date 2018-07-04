@@ -7,7 +7,8 @@ import {
   objectToArray,
   objectToSessionPeriods,
   sortBy,
-  filterSessionsByMonth
+  filterSessionsByMonth,
+  setInitialPeriod
 } from './utility';
 
 const initialState = {
@@ -17,10 +18,10 @@ const initialState = {
   editing: false,
   selectedSession: null,
   periods: null,
-  period: null
+  currentPeriod: null
 }
 
-let sessions, periods;
+let sessions, periods, initialPeriod;
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
@@ -30,8 +31,8 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.LOAD_PERIODS: 
       periods = objectToSessionPeriods(action.sessions);
-      console.log(periods);
-      return updateState(state, {periods: periods, error: false});
+      initialPeriod = setInitialPeriod(periods);
+      return updateState(state, {periods: periods, currentPeriod: initialPeriod, error: false});
 
     case actionTypes.UPDATE_PERIODS: 
       return updateState(state, {periods: objectToSessionPeriods({...state.sessions}), error: false});

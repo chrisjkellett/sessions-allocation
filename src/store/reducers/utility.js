@@ -1,4 +1,5 @@
 import moment from 'moment';
+import {CURRENTMONTH_AS_STRING} from '../data';
 
 export const updateState = (obj, update) => {
   return{
@@ -90,4 +91,13 @@ export const filterSessionsByMonth = (sessions, period) => {
   return sessions.filter(session => {
     return period === moment(session.session_date.join("-")).format('MMMM')
   })
+}
+
+export const setInitialPeriod = (periods) => {
+  if(periods === null)
+    return '';
+  else if(periods.includes(CURRENTMONTH_AS_STRING))
+    return CURRENTMONTH_AS_STRING;
+  else
+   return periods[0];
 }
