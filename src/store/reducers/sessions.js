@@ -8,7 +8,8 @@ import {
   objectToSessionPeriods,
   sortBy,
   filterSessionsByMonth,
-  setInitialPeriod
+  setInitialPeriod,
+  periodCheck
 } from './utility';
 
 const initialState = {
@@ -32,20 +33,22 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {sessions: filterSessionsByMonth(sessions, initialPeriod),  allSessions: sessions, periods: periods, currentPeriod: initialPeriod, error: false});
 
     case actionTypes.UPDATE_PERIODS: 
-      return updateState(state, {periods: objectToSessionPeriods({...state.sessions}), error: false});
+      return updateState(state, {periods: objectToSessionPeriods({...state.allSessions}), error: false});
 
     case actionTypes.ADD_SESSION_SUCCESS:
       const sessionUpdatedWithId = addId({...action.session}, action.id);
-      sessions = sortBy(state.sessions.concat(sessionUpdatedWithId), 'session_date');
-      return updateState(state, {sessions: sessions, allSessions: sessions, error: false})
+      sessions = sortBy(state.allSessions.concat(sessionUpdatedWithId), 'session_date');
+      return updateState(state, {sessions: filterSessionsByMonth(sessions, state.currentPeriod), allSessions: sessions, error: false})
     
     case actionTypes.DELETE_SESSION_SUCCESS:
-      sessions = removeElementById(state.sessions, action.id);
-      return updateState(state, {sessions: sessions, allSessions: sessions, error: false})
+      sessions = removeElementById(state.allSessions, action.id);
+      initialPeriod = periodCheck(state.currentPeriod, sessions, state.periods);
+      return updateState(state, {sessions: filterSessionsByMonth(sessions, initialPeriod), currentPeriod: initialPeriod, allSessions: sessions, error: false})
 
     case actionTypes.UPDATE_SESSION_SUCCESS:
-      sessions = sortBy(replaceElementById(state.sessions, action.session, action.id), 'session_date');
-      return updateState(state, {sessions: sessions, allSessions: sessions, error: false})
+      sessions = sortBy(replaceElementById(state.allSessions, action.session, action.id), 'session_date');
+      initialPeriod = periodCheck(state.currentPeriod, sessions, state.periods);
+      return updateState(state, {sessions: filterSessionsByMonth(sessions, state.currentPeriod), currentPeriod: initialPeriod, allSessions: sessions, error: false})
 
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: action.error})
@@ -57,7 +60,7 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {selectedSession: null})
 
     case actionTypes.SET_PERIOD:
-      return updateState(state, {period: action.period, sessions: filterSessionsByMonth([...state.allSessions], action.period)});
+      return updateState(state, {currentPeriod: action.period, sessions: filterSessionsByMonth([...state.allSessions], action.period)});
 
     default:
       return state;  
