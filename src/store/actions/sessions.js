@@ -123,3 +123,10 @@ export const filterSessions = (period, sessions) => {
     period: period
   }
 }
+
+export const setPeriod = period => {
+  return {
+    type: actionTypes.SET_PERIOD,
+    period: period
+  }
+}

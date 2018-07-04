@@ -12,33 +12,42 @@ import {
 
 const initialState = {
   sessions: null,
-  filteredSessions: null,
+  allSessions: null,
   error: false,
   editing: false,
   selectedSession: null,
-  periods: null
+  periods: null,
+  period: null
 }
+
+let sessions, periods;
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.LOAD_SESSIONS_SUCCESS:
-      return updateState(state, {sessions: objectToArray(action.sessions, 'session_date'), error: false});
+      sessions = objectToArray(action.sessions, 'session_date');
+      return updateState(state, {sessions: sessions,  allSessions: sessions, error: false});
 
     case actionTypes.LOAD_PERIODS: 
-      return updateState(state, {periods: objectToSessionPeriods(action.sessions), error: false});
+      periods = objectToSessionPeriods(action.sessions);
+      console.log(periods);
+      return updateState(state, {periods: periods, error: false});
 
     case actionTypes.UPDATE_PERIODS: 
       return updateState(state, {periods: objectToSessionPeriods({...state.sessions}), error: false});
 
     case actionTypes.ADD_SESSION_SUCCESS:
       const sessionUpdatedWithId = addId({...action.session}, action.id);
-      return updateState(state, {sessions: sortBy(state.sessions.concat(sessionUpdatedWithId), 'session_date'), error: false})
+      sessions = sortBy(state.sessions.concat(sessionUpdatedWithId), 'session_date');
+      return updateState(state, {sessions: sessions, allSessions: sessions, error: false})
     
     case actionTypes.DELETE_SESSION_SUCCESS:
-      return updateState(state, {sessions: removeElementById(state.sessions, action.id), error: false})
+      sessions = removeElementById(state.sessions, action.id);
+      return updateState(state, {sessions: sessions, allSessions: sessions, error: false})
 
     case actionTypes.UPDATE_SESSION_SUCCESS:
-      return updateState(state, {sessions: sortBy(replaceElementById(state.sessions, action.session, action.id), 'session_date'), error: false})
+      sessions = sortBy(replaceElementById(state.sessions, action.session, action.id), 'session_date');
+      return updateState(state, {sessions: sessions, allSessions: sessions, error: false})
 
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: action.error})
@@ -50,7 +59,10 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {selectedSession: null})
 
     case actionTypes.FILTER_SESSIONS:
-      return updateState(state, {filteredSessions: filterSessionsByMonth([...state.sessions], action.period)})
+      return updateState(state, {sessions: filterSessionsByMonth([...state.allSessions], action.period)})
+
+    case actionTypes.SET_PERIOD:
+      return updateState(state, {period: action.period});
 
     default:
       return state;  

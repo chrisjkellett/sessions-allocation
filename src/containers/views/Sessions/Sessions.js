@@ -33,7 +33,8 @@ class Sessions extends Component{
     const type = Object.keys({...this.state})[0];
     const update = updateState(this.state, id, {value: value}, type);
     this.setState(update);
-    this.props.filterSessions(value, this.props.sessions);
+    this.props.setPeriod(value);
+    // this.props.filterSessions(value);
   }
 
 
@@ -52,7 +53,7 @@ class Sessions extends Component{
 
 const mapStateToProps = state => {
   return {
-    sessions: state.sess.filteredSessions,
+    sessions: state.sess.sessions,
     periods: state.sess.periods,
     errors: state.sess.error
   }
@@ -63,7 +64,8 @@ const mapDispatchToProps = dispatch => {
     deleteSession: (id) => dispatch(actions.deleteSession(id)),
     fetchSession: (id) => dispatch(actions.fetchSession(id)),
     deActivateSelectedSession: () => dispatch(actions.deActivateSelectedSession()),
-    filterSessions: (period, sessions) => dispatch(actions.filterSessions(period, sessions))
+    filterSessions: (period) => dispatch(actions.filterSessions(period)),
+    setPeriod: (period) => dispatch(actions.setPeriod(period))
   }
 }
 

@@ -1,15 +1,17 @@
 import {constructValidation} from './validation';
+import {CURRENTMONTH_AS_STRING} from '../data';
 
 export const constructPeriodState = () => {
   return {
     period:{
       elementType: 'select',
-      options: null,
       elementConfig: {
         disabled: false
       },
-      value: 'May',
+      value: CURRENTMONTH_AS_STRING,
       validation: constructValidation({})
     }
   }
 }
+
+

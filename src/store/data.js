@@ -3,6 +3,7 @@ import moment from 'moment';
 //non-imports
 export const CURRENTYEAR = Number(moment().format('Y'));
 export const CURRENTMONTH = Number(moment().format('M'));
+export const CURRENTMONTH_AS_STRING = moment().format('MMMM');
 export const CURRENTDAY = Number(moment().format('D'));
 
 //select options

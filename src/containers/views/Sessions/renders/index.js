@@ -36,7 +36,6 @@ export const renderTableContent = (sessions, handleDelete, handleEdit) => {
 
 export const renderError = (error) => {
   if(error){
-    console.log(error);
     return <span className={classes.Error}>{NETWORK_FAIL}</span>
   }
 
