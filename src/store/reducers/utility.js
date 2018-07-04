@@ -74,9 +74,16 @@ export const objectToSessionPeriods = (obj) => {
 
   const keys = Object.keys(copy);
 
-  const array = keys.map(item =>{
-    return moment(copy[item]['session_date'].join("-")).format('MMMM');
-  });
+  const array = keys
+    .map(item =>{
+      return moment(copy[item]['session_date'].join("-")).format('M');
+    })
+    .sort((a, b) => {
+      return Number(a) > Number(b)
+    })
+    .map(item =>{
+      return moment(item, 'M').format('MMMM');
+    })
 
   return Array.from(new Set(array));
 }
