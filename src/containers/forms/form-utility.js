@@ -73,12 +73,8 @@ export const generateObjectForSubmitForm = (obj) => {
     const data = {};
 
     for (let id in obj){
-      // if(id.substring(id.length - 5, id.length) === '_date')
-      //   data[id] = moment(obj[id].value.join("-")).format();
-      // else
         data[id] = obj[id].value;
     }  
-    console.log(data);
 
     return data;
 }

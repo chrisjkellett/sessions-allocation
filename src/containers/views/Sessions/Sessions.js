@@ -8,7 +8,7 @@ import {sessionTableHeaders} from '../../../store/app-data/table-headers';
 import {constructPeriodState} from '../../../store/constructors/periods';
 import {formatURL, formatDateURL} from '../../../gen-utility';
 import * as actions from '../../../store/actions/sessions';
-import {getSelectedOptions, updateState} from '../../forms/form-utility';
+import {getSelectedOptions} from '../../forms/form-utility';
 
 class Sessions extends Component{
   state = {

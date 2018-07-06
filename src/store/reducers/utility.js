@@ -114,7 +114,9 @@ export const periodCheck = (period, sessions, periods) => {
     return period;
   }
   else{
-    console.log(periods);
-    return periods[1];
+    return periods.filter(p => {
+      return p !== period
+    })[0]
+    //not working as needs to check if there are other records for this month
   }
 }
