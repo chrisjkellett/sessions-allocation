@@ -34,7 +34,6 @@ class Sessions extends Component{
     const update = updateState(this.state, id, {value: value}, type);
     this.setState(update);
     this.props.setPeriod(value);
-    // this.props.filterSessions(value);
   }
 
 
@@ -55,7 +54,8 @@ const mapStateToProps = state => {
   return {
     sessions: state.sess.sessions,
     periods: state.sess.periods,
-    errors: state.sess.error
+    errors: state.sess.error,
+    currentPeriod: state.sess.currentPeriod
   }
 }
 
