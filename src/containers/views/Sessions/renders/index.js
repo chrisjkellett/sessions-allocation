@@ -43,12 +43,12 @@ export const renderError = (error) => {
     return null;
 }
 
-export const renderFormPeriod = (state, periodHandler, periods) => {
+export const renderFormPeriod = (state, periodHandler, periods, currentPeriod) => {
   if(periods !== null && periods.length > 1){
     return (
       generateFormElementArray(state)
         .map(element =>{
-          return <Input {...generateInputProps(element, periodHandler, periods)} />
+          return <Input {...generateInputProps(element, periodHandler, periods, currentPeriod)} />
         }
       )
     )

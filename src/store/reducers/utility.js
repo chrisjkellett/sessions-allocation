@@ -110,8 +110,11 @@ export const setInitialPeriod = (periods) => {
 }
 
 export const periodCheck = (period, sessions, periods) => {
-  if(sessions.includes(period))
+  if(sessions.includes(period)){
     return period;
-  else
-    return periods[0];
+  }
+  else{
+    console.log(periods);
+    return periods[1];
+  }
 }

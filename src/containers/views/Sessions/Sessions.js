@@ -30,9 +30,6 @@ class Sessions extends Component{
 
   periodHandler = (event, id) => {
     const value = getSelectedOptions(event);
-    const type = Object.keys({...this.state})[0];
-    const update = updateState(this.state, id, {value: value}, type);
-    this.setState(update);
     this.props.setPeriod(value);
   }
 
@@ -41,7 +38,7 @@ class Sessions extends Component{
     return (
       <section className={classes.Sessions}>
         {renderError(this.props.errors)}
-        {renderFormPeriod({...this.state}, this.periodHandler, this.props.periods)}
+        {renderFormPeriod({...this.state}, this.periodHandler, this.props.periods, this.props.currentPeriod)}
         <Table labels={sessionTableHeaders}>
           {renderTableContent(this.props.sessions, this.handleDelete, this.handleEdit)}
         </Table>

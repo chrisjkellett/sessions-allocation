@@ -1,5 +1,3 @@
-import {constructValidation} from './validation';
-import {CURRENTMONTH_AS_STRING} from '../data';
 
 export const constructPeriodState = () => {
   return {
@@ -7,9 +5,7 @@ export const constructPeriodState = () => {
       elementType: 'select',
       elementConfig: {
         disabled: false
-      },
-      value: CURRENTMONTH_AS_STRING,
-      validation: constructValidation({})
+      }
     }
   }
 }
