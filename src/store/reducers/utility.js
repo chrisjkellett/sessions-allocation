@@ -109,14 +109,14 @@ export const setInitialPeriod = (periods) => {
    return periods[0];
 }
 
-export const periodCheck = (period, sessions, periods) => {
-  if(sessions.includes(period)){
+export const periodCheck = (period, sessions, periods, count, session) => {
+  if(sessions.includes(period) || count !== 1){
     return period;
   }
+
   else{
     return periods.filter(p => {
       return p !== period
     })[0]
-    //not working as needs to check if there are other records for this month
   }
 }

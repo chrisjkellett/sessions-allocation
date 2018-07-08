@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {renderTableContent, renderError, renderFormPeriod, renderUpdateSuccess} from './renders/';
+import {renderTableContent, renderError, renderFormPeriod} from './renders/';
 import classes from './Sessions.css';
 import Table from '../../../components/FormElements/Table/Table';
 import {sessionTableHeaders} from '../../../store/app-data/table-headers';
@@ -25,7 +25,8 @@ class Sessions extends Component{
   }
 
   handleDelete = (id) => {
-    this.props.deleteSession(id)
+    const sessionCount = this.props.sessions.length;
+    this.props.deleteSession(id, sessionCount)
   }
 
   periodHandler = (event, id) => {
@@ -39,7 +40,6 @@ class Sessions extends Component{
       <section className={classes.Sessions}>
         {renderError(this.props.errors)}
         {renderFormPeriod({...this.state}, this.periodHandler, this.props)}
-        {/* {renderUpdateSuccess()} */}
         <Table labels={sessionTableHeaders}>
           {renderTableContent(this.props.sessions, this.handleDelete, this.handleEdit)}
         </Table>
@@ -59,7 +59,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteSession: (id) => dispatch(actions.deleteSession(id)),
+    deleteSession: (id, sessionCount) => dispatch(actions.deleteSession(id, sessionCount)),
     fetchSession: (id) => dispatch(actions.fetchSession(id)),
     deActivateSelectedSession: () => dispatch(actions.deActivateSelectedSession()),
     filterSessions: (period) => dispatch(actions.filterSessions(period)),

@@ -62,11 +62,11 @@ export const addSessionSuccess = (session, id) => {
   }
 }
 
-export const deleteSession = (id) => {
+export const deleteSession = (id, sessionCount) => {
   return dispatch => {
     axios.delete('/sessions/' + id + '.json')
       .then(response => {
-        dispatch(deleteSessionSuccess(id))
+        dispatch(deleteSessionSuccess(id, sessionCount))
         dispatch(updatePeriods())
       })
       .catch(error => {
@@ -75,18 +75,19 @@ export const deleteSession = (id) => {
   }
 }
 
-export const deleteSessionSuccess = (id) => {
+export const deleteSessionSuccess = (id, sessionCount) => {
   return {
     type: actionTypes.DELETE_SESSION_SUCCESS,
-    id: id
+    id: id,
+    sessionCount: sessionCount
   }
 }
 
-export const updateSession = (session, id) => {
+export const updateSession = (session, id, counter) => {
   return dispatch => {
     axios.put('/sessions/' + id + '.json', session)
       .then(response => {
-        dispatch(updateSessionSuccess(session, id))
+        dispatch(updateSessionSuccess(session, id, counter))
         dispatch(updatePeriods())
       })
       .catch(error => {
@@ -95,11 +96,12 @@ export const updateSession = (session, id) => {
   }
 }
 
-export const updateSessionSuccess = (session, id) => {
+export const updateSessionSuccess = (session, id, counter) => {
   return {
     type: actionTypes.UPDATE_SESSION_SUCCESS,
     session: session,
-    id: id
+    id: id,
+    counter: counter
   }
 }
 

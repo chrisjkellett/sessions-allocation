@@ -1,6 +1,5 @@
 export const generateInputProps = (element, periodHandler, props) => {
   const {config} = element;
-  console.log(props.sessions);
   return {
     key: element.id,
     label: element.id,

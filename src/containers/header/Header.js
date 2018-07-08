@@ -24,7 +24,8 @@ const mapStateToProps = state => {
   return{
     selectedExaminer: state.ex.selectedExaminer,
     selectedSession: state.sess.selectedSession,
-    user: state.auth.session_user
+    user: state.auth.session_user,
+    updatedSession: state.sess.updated
   }
 }
 

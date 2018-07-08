@@ -57,7 +57,7 @@ class AddSessions extends Component{
     this.setState(update);
   }
 
-  submitHandler = (event, validation) => {
+  submitHandler = (event, props) => {
     event.preventDefault();
     this.initialiseValidation();
     const isValid = checkFormValidity({...this.state.session});
@@ -69,7 +69,8 @@ class AddSessions extends Component{
     }
 
     if(isValid && this.props.sessionForEditing){
-      this.props.updateSession(session, this.props.sessionForEditing.id);
+      const {sessionForEditing, sessions} = this.props
+      this.props.updateSession(session, sessionForEditing.id, sessions.length);
       backToView(this.props.history, routes.SESSIONS);
     }
   }
@@ -90,14 +91,15 @@ class AddSessions extends Component{
 const mapStateToProps = state => {
   return {
     examiners: state.ex.examiners,
-    sessionForEditing: state.sess.selectedSession
+    sessionForEditing: state.sess.selectedSession,
+    sessions: state.sess.sessions
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     addSession: (session) => dispatch(actions.addSession(session)),
-    updateSession: (session, id) => dispatch(actions.updateSession(session, id))
+    updateSession: (session, id, counter) => dispatch(actions.updateSession(session, id, counter))
   }
 }
 
