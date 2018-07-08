@@ -80,5 +80,18 @@
     text-align: center;
   }
 
-  
+}
+
+.PeriodSubNav{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.PeriodSubNav div{
+  flex-basis: 450px;
+}
+
+.OuterSuccessDiv{
+  display: flex;
 }

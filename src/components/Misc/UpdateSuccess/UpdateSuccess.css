@@ -1,0 +1,17 @@
+.UpdateSuccess {
+  border: 1px solid grey;
+  margin: 15px 10px;
+  background: palegreen;
+  text-align: center;
+  padding: 8px;
+  animation: fadeOut 3s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

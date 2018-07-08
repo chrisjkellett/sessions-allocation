@@ -6,6 +6,7 @@ import * as notifications from '../../../../store/app-data/notifications';
 import {generateFormElementArray} from '../../../forms/form-utility';
 import {NETWORK_FAIL} from '../../../../store/app-data/errors';
 import Input from '../../../../components/FormElements/Input/Input';
+import UpdateSuccess from '../../../../components/Misc/UpdateSuccess/UpdateSuccess';
 import {generateInputProps} from './utility';
 
 export const renderTableContent = (sessions, handleDelete, handleEdit) => {
@@ -46,11 +47,22 @@ export const renderError = (error) => {
 export const renderFormPeriod = (state, periodHandler, props) => {
   if(props.periods !== null && props.periods.length > 1){
     return (
-      generateFormElementArray(state)
-        .map(element =>{
-          return <Input {...generateInputProps(element, periodHandler, props)} />
-        }
-      )
+      <div className={classes.PeriodSubNav}>
+        {generateFormElementArray(state)
+          .map(element =>{
+            return <Input {...generateInputProps(element, periodHandler, props)} />
+          }
+        )}
+        {renderUpdateSuccess()}
+      </div>
     )
   };
+}
+
+export const renderUpdateSuccess = () => {
+  return(
+    <div className={classes.OuterSuccessDiv}>
+      <UpdateSuccess />
+    </div>
+  )
 }
