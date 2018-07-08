@@ -15,6 +15,7 @@ class Header extends Component{
           {navElements.renderSessionFormLink(this.props)}
           {navElements.renderLogout(this.props)}
         </ul>
+        <div className={classes.UpdateAlert}>Updated</div>
       </div>
     )
   }
