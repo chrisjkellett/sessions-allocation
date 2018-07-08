@@ -1,4 +1,5 @@
 import {checkType, checkLevels} from './availability';
+import {checkDay} from './availability';
 
 export const generateInputProps = (element, state, changeHandler, examiners) => {
   const {config} = element
@@ -21,14 +22,14 @@ export const examinerCheck = (element, examiners, config, session) => {
       .filter(e => !e.roles.includes('Support staff'))
       .filter(e => checkType(e, session.type.value))
       .filter(e => checkLevels(e, session.levels.value))
-      // .filter(e => checkDay(e, session.session_date.value, session.time.value))
+      .filter(e => checkDay(e, session.session_date.value, session.time.value))
       .map(e => e.name);
   }
 
   else if(element.id === 'support' && examiners !== null){
     return examiners
       .filter(e => e.roles.includes('Support staff'))
-      // .filter(e => checkDay(e, session.session_date.value, session.time.value))
+      .filter(e => checkDay(e, session.session_date.value, session.time.value))
       .map(e => e.name);
   }
   
