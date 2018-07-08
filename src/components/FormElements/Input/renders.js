@@ -64,12 +64,22 @@ export const renderErrorMessageOrInfo = (props) => {
   if(props.valid && props.shouldValidate && !props.elementConfig.disabled)
     return <span className={classes.ErrorMessage}>{props.valid[0]}</span>
   else
-    return renderAdditionalInfo(props.label, props.value);
+    return renderAdditionalInfo(props.label, props.value, props.sessionCount);
 }
 
-const renderAdditionalInfo = (label, value) => {
-  if(label === 'session_date'){
-    const checkedValue = typeof value === 'string' ? value : value.join("-")
-    return <span>{moment(checkedValue).format('dddd')}</span>
-  }
+const renderAdditionalInfo = (label, value, sessionCount) => {
+  switch(label){
+    case 'session_date':
+      const checkedValue = typeof value === 'string' ? value : value.join("-")
+      return <span>{moment(checkedValue).format('dddd')}</span> 
+
+    case 'period':
+      if(sessionCount === 1)
+        return <span>{sessionCount} available session</span>
+      else
+        return <span>{sessionCount} available sessions</span>
+
+    default:
+      return null;
+    }
 }

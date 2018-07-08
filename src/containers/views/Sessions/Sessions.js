@@ -38,7 +38,7 @@ class Sessions extends Component{
     return (
       <section className={classes.Sessions}>
         {renderError(this.props.errors)}
-        {renderFormPeriod({...this.state}, this.periodHandler, this.props.periods, this.props.currentPeriod)}
+        {renderFormPeriod({...this.state}, this.periodHandler, this.props)}
         <Table labels={sessionTableHeaders}>
           {renderTableContent(this.props.sessions, this.handleDelete, this.handleEdit)}
         </Table>
