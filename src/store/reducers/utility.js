@@ -110,8 +110,7 @@ export const setInitialPeriod = (periods) => {
 }
 
 export const periodCheck = (period, sessions, periods, count, session) => {
-  if(sessions.includes(period) || count !== 1 || checkPeriodAgainstUpdatedSession(session)){
-    console.log(period);
+  if(sessions.includes(period) || count !== 1 || checkPeriodAgainstUpdatedSession(period, session)){
     return period;
   }
 
@@ -123,5 +122,5 @@ export const periodCheck = (period, sessions, periods, count, session) => {
 }
 
 export const checkPeriodAgainstUpdatedSession = (period, session) =>{
-  return moment([...session.session_date].join("-")).format('MMMM') === 'period';
+  return moment([...session.session_date].join("-")).format('MMMM') === period;
 }
