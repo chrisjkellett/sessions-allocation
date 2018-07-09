@@ -7,9 +7,13 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.LOG_RESPONSE: 
-      console.log(action.response);
       return {
         updated: action.response
+      }
+
+    case actionTypes.REFRESH_LOG: 
+      return {
+        updated: null
       }
 
     default:

@@ -6,3 +6,9 @@ export const logResponse = response => {
     response: response
   }
 }
+
+export const refreshLog = () => {
+  return {
+    type: actionTypes.REFRESH_LOG
+  }
+}

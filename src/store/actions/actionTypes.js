@@ -21,3 +21,4 @@ export const UPDATE_PERIODS = 'UPDATE_PERIODS';
 export const SET_PERIOD = 'SET_PERIOD';
 
 export const LOG_RESPONSE = 'LOG_RESPONSE';
+export const REFRESH_LOG = 'REFRESH_LOG';

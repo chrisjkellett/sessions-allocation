@@ -4,7 +4,7 @@ import classes from '../Header.css';
 import {formatURL} from '../../../gen-utility';
 import * as routes from '../../../store/app-data/routes';
 
-export const renderExaminerViewLink = (props) => {
+export const renderExaminerViewLink = () => {
   return(
     <NavLink to={routes.EXAMINERS} exact activeClassName={classes.Active}>
       <li>examiners</li>
@@ -70,4 +70,11 @@ export const renderLogout = (props) => {
       </NavLink>
     </div>
   )
+}
+
+export const renderUpdateLog = update => {
+  if(update === null)
+    return null;
+  if(update.session_date)
+    return 'updated';
 }
