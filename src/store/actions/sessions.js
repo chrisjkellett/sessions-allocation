@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios';
+import {logResponse} from './general';
 
 export const loadSessions = () => {
   return dispatch => {
@@ -86,9 +87,10 @@ export const deleteSessionSuccess = (id, sessionCount) => {
 export const updateSession = (session, id, counter) => {
   return dispatch => {
     axios.put('/sessions/' + id + '.json', session)
-      .then(response => {
+      .then(() => {
         dispatch(updateSessionSuccess(session, id, counter))
         dispatch(updatePeriods())
+        dispatch(logResponse(session))
       })
       .catch(error => {
         dispatch(failedLoad(error))

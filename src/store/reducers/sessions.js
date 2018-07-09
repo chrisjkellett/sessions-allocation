@@ -61,7 +61,7 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.SET_PERIOD:
       return updateState(state, {currentPeriod: action.period, sessions: filterSessionsByMonth([...state.allSessions], action.period)});
-
+      
     default:
       return state;  
   }

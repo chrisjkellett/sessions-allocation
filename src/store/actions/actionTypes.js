@@ -19,3 +19,5 @@ export const FILTER_SESSIONS = 'FILTER_SESSIONS';
 export const LOAD_PERIODS = 'LOAD_PERIODS';
 export const UPDATE_PERIODS = 'UPDATE_PERIODS';
 export const SET_PERIOD = 'SET_PERIOD';
+
+export const LOG_RESPONSE = 'LOG_RESPONSE';

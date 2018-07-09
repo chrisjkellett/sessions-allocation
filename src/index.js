@@ -9,11 +9,13 @@ import thunk from 'redux-thunk';
 import examinersReducer from './store/reducers/examiners';
 import authReducer from './store/reducers/auth';
 import sessionReducer from './store/reducers/sessions';
+import generalReducer from './store/reducers/general';
 
 const reducer = combineReducers({
   ex: examinersReducer,
   auth: authReducer,
-  sess: sessionReducer
+  sess: sessionReducer,
+  gen: generalReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
