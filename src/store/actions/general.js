@@ -1,9 +1,10 @@
 import * as actionTypes from './actionTypes';
 
-export const logResponse = response => {
+export const logResponse = (response, map) => {
   return {
     type: actionTypes.LOG_RESPONSE,
-    response: response
+    response: response,
+    map: map
   }
 }
 

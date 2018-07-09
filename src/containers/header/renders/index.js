@@ -3,6 +3,7 @@ import {NavLink} from 'react-router-dom';
 import classes from '../Header.css';
 import {formatURL} from '../../../gen-utility';
 import * as routes from '../../../store/app-data/routes';
+import moment from 'moment';
 
 export const renderExaminerViewLink = () => {
   return(
@@ -72,9 +73,23 @@ export const renderLogout = (props) => {
   )
 }
 
-export const renderUpdateLog = update => {
+export const renderUpdateLog = (update, map) => {
   if(update === null)
     return null;
-  if(update.session_date)
-    return 'updated';
+
+  if(map.type === 'session'){
+    let string = '';
+    const formattedDate = moment(update.session_date.join("-")).format('dddd Do MMMM');
+
+    if(map.action === 'update')
+      string = 'updated session (' + formattedDate + ')';
+    if(map.action === 'delete')
+      string = 'deleted session (' + formattedDate + ')';
+    if(map.action === 'add')
+      string = 'added session (' + formattedDate + ')';
+    
+    return <div className={classes.UpdateAlert}>{string}</div>
+
+  }
+
 }

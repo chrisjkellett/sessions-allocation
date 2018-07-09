@@ -63,12 +63,13 @@ export const addSessionSuccess = (session, id) => {
   }
 }
 
-export const deleteSession = (id, sessionCount) => {
+export const deleteSession = (session, sessionCount) => {
   return dispatch => {
-    axios.delete('/sessions/' + id + '.json')
+    axios.delete('/sessions/' + session.id + '.json')
       .then(response => {
-        dispatch(deleteSessionSuccess(id, sessionCount))
+        dispatch(deleteSessionSuccess(session.id, sessionCount))
         dispatch(updatePeriods())
+        dispatch(logResponse(session, {type: 'session', action: 'delete'}))
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -90,7 +91,7 @@ export const updateSession = (session, id, counter) => {
       .then(() => {
         dispatch(updateSessionSuccess(session, id, counter))
         dispatch(updatePeriods())
-        dispatch(logResponse(session))
+        dispatch(logResponse(session, {type: 'session', action: 'update'}))
       })
       .catch(error => {
         dispatch(failedLoad(error))

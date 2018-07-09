@@ -10,13 +10,13 @@ class Header extends Component{
     if(next.updatedLog !== this.props.updatedLog){
       setTimeout(() => {  
         this.props.refreshLog();
-    }, 4000);
+    }, 6000);
     }
 
   }
 
   render(){
-    const {updatedLog} = this.props;
+    const {updatedLog, map} = this.props;
     return(
       <div className={classes.Header}>
         <ul>
@@ -26,7 +26,7 @@ class Header extends Component{
           {navElements.renderSessionFormLink(this.props)}
           {navElements.renderLogout(this.props)}
         </ul>
-        <div className={classes.UpdateAlert}>{navElements.renderUpdateLog(updatedLog)}</div>
+        {navElements.renderUpdateLog(updatedLog, map)}
       </div>
     )
   }
@@ -37,7 +37,8 @@ const mapStateToProps = state => {
     selectedExaminer: state.ex.selectedExaminer,
     selectedSession: state.sess.selectedSession,
     user: state.auth.session_user,
-    updatedLog: state.gen.updated
+    updatedLog: state.gen.updated,
+    map: state.gen.map
   }
 }
 

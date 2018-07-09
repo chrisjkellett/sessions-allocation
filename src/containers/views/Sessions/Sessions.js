@@ -24,9 +24,9 @@ class Sessions extends Component{
     this.props.history.push('/sessions/edit/' + formatURL(session.venue) + formatDateURL([...session.session_date]));
   }
 
-  handleDelete = (id) => {
+  handleDelete = (session) => {
     const sessionCount = this.props.sessions.length;
-    this.props.deleteSession(id, sessionCount)
+    this.props.deleteSession(session, sessionCount)
   }
 
   periodHandler = (event, id) => {

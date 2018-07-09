@@ -31,7 +31,19 @@
 
 .UpdateAlert{
   position: absolute;
-  top: 40px;
-  right: 0;
+  top: 42px;
+  right: 2px;
   padding: 2px 10px;
+  border: 1px solid grey;
+  background: lightgreen;
+  animation: fadeOut 5s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
