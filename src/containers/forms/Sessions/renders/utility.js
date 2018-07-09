@@ -1,12 +1,12 @@
-import {checkType, checkLevels} from './availability';
+import {checkType, checkLevels, checkOtherSessions} from './availability';
 import {checkDay} from './availability';
 
-export const generateInputProps = (element, state, changeHandler, examiners) => {
+export const generateInputProps = (element, state, changeHandler, examiners, sessions) => {
   const {config} = element
     return {
       key: element.id,
       label: element.id,
-      options: examinerCheck(element, examiners, config, state.session),
+      options: examinerCheck(element, examiners, config, state.session, sessions),
       elementtype: config.elementType,
       elementConfig: config.elementConfig,
       value: config.value,
@@ -16,13 +16,14 @@ export const generateInputProps = (element, state, changeHandler, examiners) => 
     }
 }
 
-export const examinerCheck = (element, examiners, config, session) => {
+export const examinerCheck = (element, examiners, config, session, sessions) => {
   if(element.id === 'examiners' && examiners !== null){
     return examiners
       .filter(e => !e.roles.includes('Support staff'))
       .filter(e => checkType(e, session.type.value))
       .filter(e => checkLevels(e, session.levels.value))
       .filter(e => checkDay(e, session.session_date.value, session.time.value))
+      .filter(e => checkOtherSessions(e, sessions))
       .map(e => e.name);
   }
 

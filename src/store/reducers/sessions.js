@@ -46,7 +46,6 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {sessions: filterSessionsByMonth(sessions, initialPeriod), currentPeriod: initialPeriod, allSessions: sessions, error: false})
 
     case actionTypes.UPDATE_SESSION_SUCCESS:
-      console.log(action.counter);
       sessions = sortBy(replaceElementById(state.allSessions, action.session, action.id), 'session_date');
       initialPeriod = periodCheck(state.currentPeriod, sessions, state.periods, action.counter, action.session);
       return updateState(state, {sessions: filterSessionsByMonth(sessions, state.currentPeriod), currentPeriod: initialPeriod, allSessions: sessions, error: false})

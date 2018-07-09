@@ -92,7 +92,8 @@ const mapStateToProps = state => {
   return {
     examiners: state.ex.examiners,
     sessionForEditing: state.sess.selectedSession,
-    sessions: state.sess.sessions
+    sessions: state.sess.sessions,
+    allSessions: state.sess.allSessions
   }
 }
 

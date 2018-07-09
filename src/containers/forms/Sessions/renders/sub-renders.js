@@ -4,11 +4,11 @@ import {generateInputProps} from './utility';
 import Input from '../../../../components/FormElements/Input/Input';
 import classes from '../Sessions.css';
 
-export const renderFormElements = (state, changeHandler, examiners) => {
+export const renderFormElements = (state, changeHandler, examiners, sessions) => {
   return (
     generateFormElementArray(state.session)
       .map(element =>{
-        return <Input {...generateInputProps(element, state, changeHandler, examiners)} />
+        return <Input {...generateInputProps(element, state, changeHandler, examiners, sessions)} />
       }
     )
   )

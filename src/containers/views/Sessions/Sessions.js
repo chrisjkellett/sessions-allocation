@@ -19,6 +19,11 @@ class Sessions extends Component{
     this.props.deActivateSelectedSession();
   }
 
+  componentWillReceiveProps(next){
+    console.log('current: ', this.props.currentPeriod);
+    console.log('next: ',  next.currentPeriod);
+  }
+
   handleEdit = (session) => {
     this.props.fetchSession(session);
     this.props.history.push('/sessions/edit/' + formatURL(session.venue) + formatDateURL([...session.session_date]));

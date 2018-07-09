@@ -28,3 +28,8 @@ const checkTime = (day, sessionTime) => {
     return day
 }
 
+export const checkOtherSessions = (examiner, sessions) => {
+  console.log(sessions);
+  return true;
+}
+

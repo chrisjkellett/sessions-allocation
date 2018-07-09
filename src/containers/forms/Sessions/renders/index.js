@@ -8,7 +8,7 @@ export const renderUI = (state, changeHandler, props, submitHandler, cancelHandl
       <form className={classes.Examiners} onSubmit={submitHandler}>
         <div className={classes.ExaminerFlexContainer}>
           <div className={classes.ExaminerFlexItem}>
-            {renderFormElements(state, changeHandler, props.examiners)}
+            {renderFormElements(state, changeHandler, props.examiners, props.allSessions)}
           </div>
         </div>
           {renderBtns(cancelHandler, props.sessionForEditing)}
