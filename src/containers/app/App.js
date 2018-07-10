@@ -23,19 +23,29 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Header />
-        <section className={classes.Section}>
-          <Switch>
-              <Route path={routes.LOGIN_PAGE} exact component={Auth} />
-              <Route path={routes.ADD_EXAMINER} exact component={AddExaminers} />
-              <Route path={routes.EDIT_EXAMINER} exact component={AddExaminers}/>
-              <Route path={routes.EXAMINERS} exact component={Examiners} />
-              <Route path={routes.SINGLE_EXAMINER_VIEW} exact component={SingleExaminer} />
-              <Route path={routes.SESSIONS} exact component={Sessions} />
-              <Route path={routes.ADD_SESSION} exact component={AddSessions} />
-              <Route path={routes.EDIT_SESSION} exact component={AddSessions}/>
-          </Switch>
-        </section>
+        <Switch>
+          <Route path={routes.LOGIN_PAGE} exact component={Auth} />
+        </Switch>
+
+        <Route 
+          path='/(.+)'
+          render={() => (
+          <div>
+            <Header />
+            <section className={classes.Section}>
+              <Switch>
+                <Route path={routes.ADD_EXAMINER} exact component={AddExaminers} />
+                <Route path={routes.EDIT_EXAMINER} exact component={AddExaminers}/>
+                <Route path={routes.EXAMINERS} exact component={Examiners} />
+                <Route path={routes.SINGLE_EXAMINER_VIEW} exact component={SingleExaminer} />
+                <Route path={routes.SESSIONS} exact component={Sessions} />
+                <Route path={routes.ADD_SESSION} exact component={AddSessions} />
+                <Route path={routes.EDIT_SESSION} exact component={AddSessions}/>
+              </Switch>
+            </section>
+          </div>
+          )}
+          />
       </Wrapper>
     );
   }
