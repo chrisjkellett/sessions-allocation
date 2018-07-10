@@ -7,8 +7,8 @@ import classes from '../Auth.css';
 import {Redirect} from 'react-router-dom';
 import * as routes from '../../../../store/app-data/routes';
 
-export const renderUI = (state, inputHandler, submitHandler, props) => {
-  if(props.user === null || props.error){
+export const renderUI = (state, inputHandler, submitHandler, {user, error, history}) => {
+  if(user === null || error){
     return(
       <section className={classes.Auth}>
         <form onSubmit={submitHandler}>
@@ -17,8 +17,8 @@ export const renderUI = (state, inputHandler, submitHandler, props) => {
               return <Input {...generateInputProps(element, state, inputHandler)} />
             }
           )}
-          <button>login</button>
-          {renderError(props.error)}
+          <button onClick={() => history.push('/sessions')}>login</button>
+          {renderError(error)}
         </form>
       </section>
     )
