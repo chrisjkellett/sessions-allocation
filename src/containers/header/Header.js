@@ -26,7 +26,7 @@ class Header extends Component{
           {navElements.renderSessionFormLink(this.props)}
           {navElements.renderLogout(this.props)}
         </ul>
-        {navElements.renderUpdateLog(updatedLog, map)}
+        {updatedLog && navElements.renderUpdateLog(updatedLog, map)}
       </div>
     )
   }

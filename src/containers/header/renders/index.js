@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 import classes from '../Header.css';
 import {formatURL} from '../../../gen-utility';
 import * as routes from '../../../store/app-data/routes';
-import moment from 'moment';
+import {getLogData, getLogType} from './utility';
 
 export const renderExaminerViewLink = () => {
   return(
@@ -21,9 +21,8 @@ export const renderSessionViewLink = () => {
   )
 }
 
-export const renderExaminerFormLink = (props) => {
-  if(props.history.location.pathname.substring(0, 10) !== '/sessions/'){ 
-    const {selectedExaminer, location} = props;
+export const renderExaminerFormLink = ({history, selectedExaminer, location}) => {
+  if(history.location.pathname.substring(0, 10) !== '/sessions/'){ 
     if(selectedExaminer)
       if(location.pathname === routes.EXAMINERS + formatURL(selectedExaminer.name)) 
         return <li>{formatURL(selectedExaminer.name)}</li>
@@ -42,9 +41,8 @@ export const renderExaminerFormLink = (props) => {
     return null;  
 }
 
-export const renderSessionFormLink = (props) => {
-  if(props.history.location.pathname.substring(0, 11) !== '/examiners/'){ 
-    const {selectedSession} = props;
+export const renderSessionFormLink = ({selectedSession, history}) => {
+  if(history.location.pathname.substring(0, 11) !== '/examiners/'){ 
     if(selectedSession)
       // if(location.pathname === routes.SESSIONS + formatDateURL(selectedSession.session_date)) 
       //   return <li>{formatDateURL(selectedSession.session_date)}</li>
@@ -73,35 +71,14 @@ export const renderLogout = (props) => {
   )
 }
 
-export const renderUpdateLog = (update, map) => {
-  let string, data;
-  let dataSecondary = '';
-  if(update === null)
-    return null;
-
-  else if(map.type === 'session'){
-    const formattedDate = moment(update.session_date.join("-")).format('dddd Do MMMM');
-    data = formattedDate;
-    dataSecondary = '(' + update.venue + ')';
-  }
-
-  else if(map.type === 'examiners'){
-    data = update.name;
-  }
-
-  if(map.action === 'update')
-    string = ' updated ';
-  if(map.action === 'delete')
-    string = ' deleted ';
-  if(map.action === 'add')
-    string = ' added ';
-    
-  return (<div className={classes.UpdateAlert}>
-            <i className="far fa-check-circle"></i>
-            {string}
-            <b>{data}</b>
-            <span>{dataSecondary}.</span>
-          </div>);
-
-
+export const renderUpdateLog = (update, {type, action}) => {
+  const data = getLogData(type, update);   
+  return (
+    <div className={classes.UpdateAlert}>
+      <i className="far fa-check-circle"></i>
+      {getLogType(action)}
+      <b>{data.primary}</b>
+      <span>{data.secondary}.</span>
+    </div>
+  );
 }
