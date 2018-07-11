@@ -40,6 +40,11 @@
   /* animation: fadeOut 5s forwards; */
 }
 
+.UpdateAlert span{
+  margin-left: 2px;
+  font-size: 90%;
+}
+
 @keyframes fadeOut {
   0% {
     opacity: 1;

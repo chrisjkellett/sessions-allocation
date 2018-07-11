@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios';
+import {logResponse} from './general';
 
 export const loadExaminers = () => {
   return dispatch => {
@@ -24,7 +25,8 @@ export const addExaminer = (examiner) => {
   return dispatch => {
     axios.post('/examiners.json', examiner)
       .then(response => {
-        dispatch(addExaminerSuccess(examiner, response.data.name))
+        dispatch(addExaminerSuccess(examiner, response.data.name));
+        dispatch(logResponse(examiner, {type: 'examiners', action: 'add'}));
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -44,7 +46,8 @@ export const updateExaminer = (examiner, id) => {
   return dispatch => {
     axios.put('/examiners/' + id + '.json', examiner)
       .then(response => {
-        dispatch(updateExaminerSuccess(examiner, id))
+        dispatch(updateExaminerSuccess(examiner, id));
+        dispatch(logResponse(examiner, {type: 'examiners', action: 'update'}));
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -60,11 +63,13 @@ export const updateExaminerSuccess = (examiner, id) => {
   }
 }
 
-export const deleteExaminer = (id) => {
+export const deleteExaminer = (examiner) => {
+  const {id} = examiner;
   return dispatch => {
     axios.delete('/examiners/' + id + '.json')
       .then(response => {
-        dispatch(deleteExaminerSuccess(id))
+        dispatch(deleteExaminerSuccess(id));
+        dispatch(logResponse(examiner, {type: 'examiners', action: 'delete'}));
       })
       .catch(error => {
         dispatch(failedLoad(error))

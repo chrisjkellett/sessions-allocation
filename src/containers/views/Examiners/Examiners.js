@@ -19,8 +19,8 @@ class Examiners extends Component{
     this.props.history.push('/examiners/edit/' + formatURL(examiner.name));
   }
 
-  handleDelete = (id) => {
-    this.props.deleteExaminer(id)
+  handleDelete = (examiner) => {
+    this.props.deleteExaminer(examiner)
   }
 
   handleLink = (examiner) => {

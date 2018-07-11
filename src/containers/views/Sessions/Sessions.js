@@ -51,9 +51,7 @@ class Sessions extends Component{
 const mapStateToProps = state => {
   return {
     sessions: state.sess.sessions,
-    periods: state.sess.periods,
-    errors: state.sess.error,
-    currentPeriod: state.sess.currentPeriod
+    errors: state.sess.error
   }
 }
 
@@ -62,8 +60,7 @@ const mapDispatchToProps = dispatch => {
     deleteSession: (id, sessionCount) => dispatch(actions.deleteSession(id, sessionCount)),
     fetchSession: (id) => dispatch(actions.fetchSession(id)),
     deActivateSelectedSession: () => dispatch(actions.deActivateSelectedSession()),
-    filterSessions: (period) => dispatch(actions.filterSessions(period)),
-    setPeriod: (period) => dispatch(actions.setPeriod(period))
+    filterSessions: (period) => dispatch(actions.filterSessions(period))
   }
 }
 

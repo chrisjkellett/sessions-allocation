@@ -74,23 +74,34 @@ export const renderLogout = (props) => {
 }
 
 export const renderUpdateLog = (update, map) => {
+  let string, data;
+  let dataSecondary = '';
   if(update === null)
     return null;
 
-  if(map.type === 'session'){
-    let string = '';
+  else if(map.type === 'session'){
     const formattedDate = moment(update.session_date.join("-")).format('dddd Do MMMM');
-    const data = `(${update.venue} / ${formattedDate})`;
-
-    if(map.action === 'update')
-      string = ' updated session ';
-    if(map.action === 'delete')
-      string = ' deleted session ';
-    if(map.action === 'add')
-      string = ' added session ';
-    
-    return <div className={classes.UpdateAlert}><i className="far fa-check-circle"></i>{string + data}</div>
-
+    data = formattedDate;
+    dataSecondary = '(' + update.venue + ')';
   }
+
+  else if(map.type === 'examiners'){
+    data = update.name;
+  }
+
+  if(map.action === 'update')
+    string = ' updated ';
+  if(map.action === 'delete')
+    string = ' deleted ';
+  if(map.action === 'add')
+    string = ' added ';
+    
+  return (<div className={classes.UpdateAlert}>
+            <i className="far fa-check-circle"></i>
+            {string}
+            <b>{data}</b>
+            <span>{dataSecondary}.</span>
+          </div>);
+
 
 }

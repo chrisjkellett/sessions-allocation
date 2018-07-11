@@ -46,12 +46,10 @@ export const addSession = (session) => {
   return dispatch => {
     axios.post('/sessions.json', session)
       .then(response => {
-        dispatch(addSessionSuccess(session, response.data.name))
-        dispatch(updatePeriods())
-        dispatch(logResponse(session, {type: 'session', action: 'add'}))
+        dispatch(addSessionSuccess(session, response.data.name));
       })
       .catch(error => {
-        dispatch(failedLoad(error))
+        dispatch(failedLoad(error));
       })
   }
 }
@@ -69,7 +67,6 @@ export const deleteSession = (session, sessionCount) => {
     axios.delete('/sessions/' + session.id + '.json')
       .then(response => {
         dispatch(deleteSessionSuccess(session.id, sessionCount))
-        dispatch(updatePeriods())
         dispatch(logResponse(session, {type: 'session', action: 'delete'}))
       })
       .catch(error => {
@@ -91,7 +88,6 @@ export const updateSession = (session, id, counter) => {
     axios.put('/sessions/' + id + '.json', session)
       .then(() => {
         dispatch(updateSessionSuccess(session, id, counter))
-        dispatch(updatePeriods())
         dispatch(logResponse(session, {type: 'session', action: 'update'}))
       })
       .catch(error => {
@@ -129,9 +125,3 @@ export const filterSessions = (period, sessions) => {
   }
 }
 
-export const setPeriod = period => {
-  return {
-    type: actionTypes.SET_PERIOD,
-    period: period
-  }
-}

@@ -52,7 +52,7 @@ export const renderBtns = (examiner, classes, deleteHandler, editHandler) => {
     <td>
       <span className={classes.Btn} onClick={() => editHandler(examiner)}>edit</span>
       <span className={classes.Bar}> | </span>
-      <span className={classes.Btn} onClick={() => deleteHandler(examiner.id)}>delete</span>
+      <span className={classes.Btn} onClick={() => deleteHandler(examiner)}>delete</span>
     </td>
   )
 }
