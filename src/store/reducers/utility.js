@@ -124,3 +124,12 @@ export const periodCheck = (period, sessions, periods, count, session) => {
 export const checkPeriodAgainstUpdatedSession = (period, session) =>{
   return moment([...session.session_date].join("-")).format('MMMM') === period;
 }
+
+export const checkPeriodExists = (period, session) => {
+  if(period){
+    console.log(period);
+    return period
+  }else
+    console.log(period);
+    return 'August';
+}

@@ -29,7 +29,6 @@ const checkTime = (day, sessionTime) => {
 }
 
 export const checkOtherSessions = (examiner, sessions) => {
-  console.log(sessions);
   return true;
 }
 
