@@ -10,12 +10,14 @@ import examinersReducer from './store/reducers/examiners';
 import authReducer from './store/reducers/auth';
 import sessionReducer from './store/reducers/sessions';
 import generalReducer from './store/reducers/general';
+import periodsReducer from './store/reducers/periods/periods';
 
 const reducer = combineReducers({
   ex: examinersReducer,
   auth: authReducer,
   sess: sessionReducer,
-  gen: generalReducer
+  gen: generalReducer,
+  per: periodsReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -1,5 +1,3 @@
-import moment from 'moment';
-import {CURRENTMONTH_AS_STRING} from '../data';
 
 export const updateState = (obj, update) => {
   return{
@@ -67,69 +65,9 @@ export const objectToArray = (obj, factor) => {
   return sortBy(array, factor);
 }
 
-export const objectToSessionPeriods = (obj) => {
-  const copy = {
-    ...obj
-  }
-
-  const keys = Object.keys(copy);
-
-  const array = keys
-    .map(item =>{
-      return moment(copy[item]['session_date'].join("-")).format('M');
-    })
-    .sort((a, b) => {
-      return Number(a) > Number(b)
-    })
-    .map(item =>{
-      return moment(item, 'M').format('MMMM');
-    })
-
-  return Array.from(new Set(array));
-}
-
 export const sortBy = (obj, factor) => {
   return obj.sort((a, b) =>{
     return a[factor] > b[factor]
   })
 }
 
-export const filterSessionsByMonth = (sessions, period) => {
-  return sessions.filter(session => {
-    return period === moment(session.session_date.join("-")).format('MMMM')
-  })
-}
-
-export const setInitialPeriod = (periods) => {
-  if(periods === null)
-    return '';
-  else if(periods.includes(CURRENTMONTH_AS_STRING))
-    return CURRENTMONTH_AS_STRING;
-  else
-   return periods[0];
-}
-
-export const periodCheck = (period, sessions, periods, count, session) => {
-  if(sessions.includes(period) || count !== 1 || checkPeriodAgainstUpdatedSession(period, session)){
-    return period;
-  }
-
-  else{
-    return periods.filter(p => {
-      return p !== period
-    })[0]
-  }
-}
-
-export const checkPeriodAgainstUpdatedSession = (period, session) =>{
-  return moment([...session.session_date].join("-")).format('MMMM') === period;
-}
-
-export const checkPeriodExists = (period, session) => {
-  if(period){
-    console.log(period);
-    return period
-  }else
-    console.log(period);
-    return 'August';
-}

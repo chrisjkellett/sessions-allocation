@@ -1,12 +1,14 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios';
 import {logResponse} from './general';
+import {loadPeriods} from './periods';
 
 export const loadSessions = () => {
   return dispatch => {
     axios.get('/sessions.json')
       .then(response => {
         dispatch(loadSessionsSuccess(response.data))
+        dispatch(loadPeriods(response.data))
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -18,20 +20,6 @@ export const loadSessionsSuccess = (data) => {
   return {
     type: actionTypes.LOAD_SESSIONS_SUCCESS,
     sessions: data
-  }
-}
-
-export const loadPeriods = (sessions) => {
-  return {
-    type: actionTypes.LOAD_PERIODS,
-    sessions: sessions
-  }
-}
-
-
-export const updatePeriods = () => {
-  return {
-    type: actionTypes.UPDATE_PERIODS
   }
 }
 

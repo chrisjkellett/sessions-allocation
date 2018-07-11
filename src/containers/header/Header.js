@@ -16,7 +16,7 @@ class Header extends Component{
   }
 
   render(){
-    const {updatedLog, map} = this.props;
+    const {updatedLog, mapOfLog} = this.props;
     return(
       <div className={classes.Header}>
         <ul>
@@ -26,7 +26,7 @@ class Header extends Component{
           {navElements.renderSessionFormLink(this.props)}
           {navElements.renderLogout(this.props)}
         </ul>
-        {updatedLog && navElements.renderUpdateLog(updatedLog, map)}
+        {updatedLog && navElements.renderUpdateLog(updatedLog, mapOfLog)}
       </div>
     )
   }
@@ -38,7 +38,7 @@ const mapStateToProps = state => {
     selectedSession: state.sess.selectedSession,
     user: state.auth.session_user,
     updatedLog: state.gen.updated,
-    map: state.gen.map
+    mapOfLog: state.gen.map
   }
 }
 

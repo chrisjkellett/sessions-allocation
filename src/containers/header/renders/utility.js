@@ -22,9 +22,9 @@ export const getLogType = (action) => {
     case 'update':
       return ' updated ';
     case 'delete':
-      return ' deleted';
+      return ' deleted ';
     case 'add':
-      return ' added'; 
+      return ' added '; 
     default:
       return null;
   }
