@@ -10,7 +10,7 @@ class Header extends Component{
     if(next.updatedLog !== this.props.updatedLog){
       setTimeout(() => {  
         this.props.refreshLog();
-    }, 6000);
+    }, 4000);
     }
 
   }

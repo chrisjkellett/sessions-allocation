@@ -80,15 +80,16 @@ export const renderUpdateLog = (update, map) => {
   if(map.type === 'session'){
     let string = '';
     const formattedDate = moment(update.session_date.join("-")).format('dddd Do MMMM');
+    const data = `(${update.venue} / ${formattedDate})`;
 
     if(map.action === 'update')
-      string = 'updated session (' + formattedDate + ')';
+      string = ' updated session ';
     if(map.action === 'delete')
-      string = 'deleted session (' + formattedDate + ')';
+      string = ' deleted session ';
     if(map.action === 'add')
-      string = 'added session (' + formattedDate + ')';
+      string = ' added session ';
     
-    return <div className={classes.UpdateAlert}>{string}</div>
+    return <div className={classes.UpdateAlert}><i className="far fa-check-circle"></i>{string + data}</div>
 
   }
 

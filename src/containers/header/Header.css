@@ -31,12 +31,13 @@
 
 .UpdateAlert{
   position: absolute;
+  font-size: 90%;
   top: 42px;
   right: 2px;
   padding: 2px 10px;
   border: 1px solid grey;
   background: lightgreen;
-  animation: fadeOut 5s forwards;
+  /* animation: fadeOut 5s forwards; */
 }
 
 @keyframes fadeOut {

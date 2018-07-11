@@ -48,6 +48,7 @@ export const addSession = (session) => {
       .then(response => {
         dispatch(addSessionSuccess(session, response.data.name))
         dispatch(updatePeriods())
+        dispatch(logResponse(session, {type: 'session', action: 'add'}))
       })
       .catch(error => {
         dispatch(failedLoad(error))
