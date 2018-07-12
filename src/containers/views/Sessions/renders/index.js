@@ -37,6 +37,7 @@ export const renderTableContent = (sessions, handleDelete, handleEdit) => {
 
 export const renderError = (error) => {
   if(error){
+    console.log(error);
     return <span className={classes.Error}>{NETWORK_FAIL}</span>
   }
 
@@ -57,11 +58,3 @@ export const renderFormPeriod = (state, periodHandler, props) => {
     )
   };
 }
-
-// export const renderUpdateSuccess = () => {
-//   return(
-//     <div className={classes.OuterSuccessDiv}>
-//       <UpdateSuccess />
-//     </div>
-//   )
-// }
