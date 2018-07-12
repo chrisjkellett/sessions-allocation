@@ -76,7 +76,7 @@ export const renderUpdateLog = (update, {type, action}) => {
   return (
     <div className={classes.UpdateAlert}>
       <i className="far fa-check-circle"></i>
-      <span className={classes.Action}>{action.toString()}</span>
+      <span className={classes.Action}>{action}</span>
       <b>{data.primary}</b>
       <span className={classes.Secondary}>{data.secondary}.</span>
     </div>

@@ -64,13 +64,17 @@ class AddSessions extends Component{
     const session = generateObjectForSubmitForm(this.state.session);
     
     if(isValid && !this.props.sessionForEditing){
+      const updated = [...this.props.sessions, Object.assign({}, session)];
+      console.log(updated);
       this.props.addSession(session);
       backToView(this.props.history, routes.SESSIONS);
     }
 
     if(isValid && this.props.sessionForEditing){
-      const {sessionForEditing, sessions} = this.props
-      this.props.updateSession(session, sessionForEditing.id, sessions.length);
+      const {sessionForEditing, sessions} = this.props;
+      const updated = [...sessions.filter(item => item.id !== sessionForEditing.id), Object.assign({}, session)];
+      console.log(updated);
+      this.props.updateSession(session, sessionForEditing.id);
       backToView(this.props.history, routes.SESSIONS);
     }
   }
@@ -92,8 +96,7 @@ const mapStateToProps = state => {
   return {
     examiners: state.ex.examiners,
     sessionForEditing: state.sess.selectedSession,
-    sessions: state.sess.sessions,
-    allSessions: state.sess.allSessions
+    sessions: state.sess.sessions
   }
 }
 

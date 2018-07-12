@@ -72,11 +72,11 @@ export const deleteSessionSuccess = (id, sessionCount) => {
   }
 }
 
-export const updateSession = (session, id, counter) => {
+export const updateSession = (session, id) => {
   return dispatch => {
     axios.put('/sessions/' + id + '.json', session)
       .then(() => {
-        dispatch(updateSessionSuccess(session, id, counter))
+        dispatch(updateSessionSuccess(session, id))
         dispatch(logResponse(session, {type: 'session', action: 'updated'}))
       })
       .catch(error => {
