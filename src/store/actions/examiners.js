@@ -26,7 +26,7 @@ export const addExaminer = (examiner) => {
     axios.post('/examiners.json', examiner)
       .then(response => {
         dispatch(addExaminerSuccess(examiner, response.data.name));
-        dispatch(logResponse(examiner, {type: 'examiners', action: 'add'}));
+        dispatch(logResponse(examiner, {type: 'examiners', action: 'added'}));
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -47,7 +47,7 @@ export const updateExaminer = (examiner, id) => {
     axios.put('/examiners/' + id + '.json', examiner)
       .then(response => {
         dispatch(updateExaminerSuccess(examiner, id));
-        dispatch(logResponse(examiner, {type: 'examiners', action: 'update'}));
+        dispatch(logResponse(examiner, {type: 'examiners', action: 'updated'}));
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -69,7 +69,7 @@ export const deleteExaminer = (examiner) => {
     axios.delete('/examiners/' + id + '.json')
       .then(response => {
         dispatch(deleteExaminerSuccess(id));
-        dispatch(logResponse(examiner, {type: 'examiners', action: 'delete'}));
+        dispatch(logResponse(examiner, {type: 'examiners', action: 'deleted'}));
       })
       .catch(error => {
         dispatch(failedLoad(error))

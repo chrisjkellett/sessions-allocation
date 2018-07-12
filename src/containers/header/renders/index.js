@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 import classes from '../Header.css';
 import {formatURL} from '../../../gen-utility';
 import * as routes from '../../../store/app-data/routes';
-import {getLogData, getLogType} from './utility';
+import {getLogData} from './utility';
 
 export const renderExaminerViewLink = () => {
   return(
@@ -76,9 +76,9 @@ export const renderUpdateLog = (update, {type, action}) => {
   return (
     <div className={classes.UpdateAlert}>
       <i className="far fa-check-circle"></i>
-      {getLogType(action)}
+      <span className={classes.Action}>{action.toString()}</span>
       <b>{data.primary}</b>
-      <span>{data.secondary}.</span>
+      <span className={classes.Secondary}>{data.secondary}.</span>
     </div>
   );
 }

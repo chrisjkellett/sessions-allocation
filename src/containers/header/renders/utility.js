@@ -16,16 +16,3 @@ export const getLogData = (type, update) => {
       return null;
   }
 }
-
-export const getLogType = (action) => {
-  switch(action){
-    case 'update':
-      return ' updated ';
-    case 'delete':
-      return ' deleted ';
-    case 'add':
-      return ' added '; 
-    default:
-      return null;
-  }
-}

@@ -35,6 +35,7 @@ export const addSession = (session) => {
     axios.post('/sessions.json', session)
       .then(response => {
         dispatch(addSessionSuccess(session, response.data.name));
+        dispatch(logResponse(session, {type: 'session', action: 'added'}));
       })
       .catch(error => {
         dispatch(failedLoad(error));
@@ -54,8 +55,8 @@ export const deleteSession = (session, sessionCount) => {
   return dispatch => {
     axios.delete('/sessions/' + session.id + '.json')
       .then(response => {
-        dispatch(deleteSessionSuccess(session.id, sessionCount))
-        dispatch(logResponse(session, {type: 'session', action: 'delete'}))
+        dispatch(deleteSessionSuccess(session.id, sessionCount));
+        dispatch(logResponse(session, {type: 'session', action: 'deleted'}));
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -76,7 +77,7 @@ export const updateSession = (session, id, counter) => {
     axios.put('/sessions/' + id + '.json', session)
       .then(() => {
         dispatch(updateSessionSuccess(session, id, counter))
-        dispatch(logResponse(session, {type: 'session', action: 'update'}))
+        dispatch(logResponse(session, {type: 'session', action: 'updated'}))
       })
       .catch(error => {
         dispatch(failedLoad(error))

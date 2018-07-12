@@ -40,7 +40,11 @@
   /* animation: fadeOut 5s forwards; */
 }
 
-.UpdateAlert span{
+.UpdateAlert .Action{
+  margin: 0 3px;
+}
+
+.UpdateAlert .Secondary{
   margin-left: 2px;
   font-size: 90%;
 }
