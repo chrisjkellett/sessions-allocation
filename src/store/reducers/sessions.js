@@ -2,8 +2,6 @@ import * as actionTypes from '../actions/actionTypes';
 import {
   updateState,
   addId,
-  removeElementById,
-  replaceElementById,
   objectToArray,
   sortBy
 } from './utility';
@@ -24,17 +22,14 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {sessions: sessions, error: false});
 
     case actionTypes.ADD_SESSION_SUCCESS:
-      const sessionUpdatedWithId = addId({...action.session}, action.id);
-      sessions = sortBy(state.sessions.concat(sessionUpdatedWithId), 'session_date');
-      return updateState(state, {sessions: sessions, error: false})
+      sessions = state.sessions.concat(addId(action.session, action.id));
+      return updateState(state, {sessions: sortBy(sessions, 'session_date'), error: false})
     
     case actionTypes.DELETE_SESSION_SUCCESS:
-      sessions = removeElementById(state.sessions, action.id);
-      return updateState(state, {sessions: sessions, error: false})
+      return updateState(state, {sessions: action.sessions, error: false})
 
     case actionTypes.UPDATE_SESSION_SUCCESS:
-      sessions = sortBy(replaceElementById(state.sessions, action.session, action.id), 'session_date');
-      return updateState(state, {sessions: sessions, error: false})
+      return updateState(state, {sessions: sortBy(action.sessions, 'session_date'), error: false})
 
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: action.error})

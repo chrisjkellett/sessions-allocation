@@ -25,8 +25,9 @@ class Sessions extends Component{
   }
 
   handleDelete = (session) => {
-    const sessionCount = this.props.sessions.length;
-    this.props.deleteSession(session, sessionCount)
+    const {sessions} = this.props;
+    const updated = [...sessions.filter(s => s.id !== session.id)];
+    this.props.deleteSession(updated, session);
   }
 
   periodHandler = (event, id) => {
@@ -57,7 +58,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteSession: (id, sessionCount) => dispatch(actions.deleteSession(id, sessionCount)),
+    deleteSession: (sessions, session) => dispatch(actions.deleteSession(sessions, session)),
     fetchSession: (id) => dispatch(actions.fetchSession(id)),
     deActivateSelectedSession: () => dispatch(actions.deActivateSelectedSession()),
     filterSessions: (period) => dispatch(actions.filterSessions(period))

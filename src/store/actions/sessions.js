@@ -7,8 +7,8 @@ export const loadSessions = () => {
   return dispatch => {
     axios.get('/sessions.json')
       .then(response => {
-        dispatch(loadSessionsSuccess(response.data))
-        dispatch(loadPeriods(response.data))
+        dispatch(loadSessionsSuccess(response.data));
+        dispatch(loadPeriods(response.data));
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -30,7 +30,7 @@ export const failedLoad = (error) => {
   }
 } 
 
-export const addSession = (session) => {
+export const addSession = (sessions, session) => {
   return dispatch => {
     axios.post('/sessions.json', session)
       .then(response => {
@@ -51,11 +51,11 @@ export const addSessionSuccess = (session, id) => {
   }
 }
 
-export const deleteSession = (session, sessionCount) => {
+export const deleteSession = (sessions, session) => {
   return dispatch => {
     axios.delete('/sessions/' + session.id + '.json')
-      .then(response => {
-        dispatch(deleteSessionSuccess(session.id, sessionCount));
+      .then(() => {
+        dispatch(deleteSessionSuccess(sessions));
         dispatch(logResponse(session, {type: 'session', action: 'deleted'}));
       })
       .catch(error => {
@@ -64,19 +64,18 @@ export const deleteSession = (session, sessionCount) => {
   }
 }
 
-export const deleteSessionSuccess = (id, sessionCount) => {
+export const deleteSessionSuccess = (sessions) => {
   return {
     type: actionTypes.DELETE_SESSION_SUCCESS,
-    id: id,
-    sessionCount: sessionCount
+    sessions: sessions
   }
 }
 
-export const updateSession = (session, id) => {
+export const updateSession = (sessions, session, id) => {
   return dispatch => {
     axios.put('/sessions/' + id + '.json', session)
       .then(() => {
-        dispatch(updateSessionSuccess(session, id))
+        dispatch(updateSessionSuccess(sessions));
         dispatch(logResponse(session, {type: 'session', action: 'updated'}))
       })
       .catch(error => {
@@ -85,12 +84,10 @@ export const updateSession = (session, id) => {
   }
 }
 
-export const updateSessionSuccess = (session, id, counter) => {
+export const updateSessionSuccess = (sessions) => {
   return {
     type: actionTypes.UPDATE_SESSION_SUCCESS,
-    session: session,
-    id: id,
-    counter: counter
+    sessions: sessions
   }
 }
 

@@ -65,16 +65,16 @@ class AddSessions extends Component{
     
     if(isValid && !this.props.sessionForEditing){
       const updated = [...this.props.sessions, Object.assign({}, session)];
-      console.log(updated);
-      this.props.addSession(session);
+      this.props.addSession(updated, session);
       backToView(this.props.history, routes.SESSIONS);
     }
 
     if(isValid && this.props.sessionForEditing){
       const {sessionForEditing, sessions} = this.props;
-      const updated = [...sessions.filter(item => item.id !== sessionForEditing.id), Object.assign({}, session)];
-      console.log(updated);
-      this.props.updateSession(session, sessionForEditing.id);
+      const {id} = sessionForEditing;
+      session.id = id;
+      const updated = [...sessions.filter(item => item.id !== id), Object.assign({}, session)];
+      this.props.updateSession(updated, session, id);
       backToView(this.props.history, routes.SESSIONS);
     }
   }
@@ -102,8 +102,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addSession: (session) => dispatch(actions.addSession(session)),
-    updateSession: (session, id, counter) => dispatch(actions.updateSession(session, id, counter))
+    addSession: (sessions, session) => dispatch(actions.addSession(sessions, session)),
+    updateSession: (sessions, session, id) => dispatch(actions.updateSession(sessions, session, id))
   }
 }
 
