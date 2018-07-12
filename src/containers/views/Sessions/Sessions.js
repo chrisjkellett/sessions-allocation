@@ -31,7 +31,7 @@ class Sessions extends Component{
     this.props.deleteSession(updated, session);
   }
 
-  periodHandler = (event, id) => {
+  periodHandler = (event) => {
     const {sessions} = this.props;
     const value = getSelectedOptions(event);
     this.props.handlePeriodSelect(sessions, value);
@@ -39,7 +39,7 @@ class Sessions extends Component{
 
   handleLink = (session) => {
     this.props.fetchSession(session);
-    this.props.history.push('/sessions/12septest');
+    this.props.history.push('/sessions/' + formatDateURL([...session.session_date]) + '-' + formatURL(session.venue));
   }
 
   handlersObj = () => {

@@ -1,18 +1,16 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {connect} from 'react-redux';
-// import {renderUL} from './renders/renders';
+import {renderUL} from './renders/';
 
 class SingleExaminer extends Component{
   render(){
-    return (
-      <div>Single session page</div>
-    )
+    return renderUL(this.props.session);
   }
 }
 
 const mapStateToProps = state => {
   return{
-    examiner: state.ex.selectedExaminer
+    session: state.sess.selectedSession
   }
 }
 
