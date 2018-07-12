@@ -39,11 +39,11 @@ class Sessions extends Component{
 
 
   render(){
-    const {errors, periods, currentPeriod, sessionsByPeriod} = this.props;
+    const {errors, sessionsByPeriod} = this.props;
     return (
       <section className={classes.Sessions}>
         {renderError(errors)}
-        {renderFormPeriod(this.state, this.periodHandler, periods, currentPeriod)}
+        {renderFormPeriod(this.state, this.periodHandler, this.props)}
         <Table labels={sessionTableHeaders}>
           {renderTableContent(sessionsByPeriod, this.handleDelete, this.handleEdit)}
         </Table>
