@@ -6,10 +6,9 @@ import * as notifications from '../../../../store/app-data/notifications';
 import {generateFormElementArray} from '../../../forms/form-utility';
 import {NETWORK_FAIL} from '../../../../store/app-data/errors';
 import Input from '../../../../components/FormElements/Input/Input';
-// import UpdateSuccess from '../../../../components/Misc/UpdateSuccess/UpdateSuccess';
 import {generateInputProps} from './utility';
 
-export const renderTableContent = (sessions, handleDelete, handleEdit) => {
+export const renderTableContent = (sessions, handleDelete, handleEdit, handleLink) => {
   if(sessions === null){
     return <Notification message={notifications.LOADING} />
   }
@@ -19,10 +18,11 @@ export const renderTableContent = (sessions, handleDelete, handleEdit) => {
   }
 
   else{
+    console.log(handleLink);
     return (
       sessions.map(session => (
         <tr className={classes.Row} key={session.id}>
-          {renderDate(session)}
+          {renderDate(session, handleLink)}
           {renderTime(session)}
           {renderType(session)}
           {renderVenue(session)}

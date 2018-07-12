@@ -37,6 +37,17 @@ class Sessions extends Component{
     this.props.handlePeriodSelect(sessions, value);
   }
 
+  handleLink = (session) => {
+    this.props.fetchSession(session);
+    this.props.history.push('/sessions/12septest');
+  }
+
+  handlersObj = () => {
+    return {
+      linkHandler: this.handleLink
+    }
+  }
+
 
   render(){
     const {errors, sessionsByPeriod} = this.props;
@@ -45,7 +56,7 @@ class Sessions extends Component{
         {renderError(errors)}
         {renderFormPeriod(this.state, this.periodHandler, this.props)}
         <Table labels={sessionTableHeaders}>
-          {renderTableContent(sessionsByPeriod, this.handleDelete, this.handleEdit)}
+          {renderTableContent(sessionsByPeriod, this.handleDelete, this.handleEdit, this.handleLink)}
         </Table>
       </section>
     )

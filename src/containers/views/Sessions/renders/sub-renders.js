@@ -2,10 +2,12 @@ import React from 'react';
 import classes from '../Sessions.css';
 import moment from 'moment';
 
-export const renderDate = (session) => {
+export const renderDate = (session, handleLink) => {
   return  (
     <td>
-     {moment([...session.session_date].join("-")).format('dddd Do MMMM')}
+     <span className={classes.LinkToSingleView} onClick={()=> handleLink(session)}>
+       {moment([...session.session_date].join("-")).format('dddd Do MMMM')}
+      </span>
     </td>
   )
 }

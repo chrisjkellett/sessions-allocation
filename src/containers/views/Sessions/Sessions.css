@@ -49,6 +49,16 @@
   color: grey;
 }
 
+.LinkToSingleView{
+  color: initial;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.LinkToSingleView:hover{
+  color: grey;
+}
+
 @media only screen and (max-width: 600px) {
   .Sessions thead{
     display: none;
