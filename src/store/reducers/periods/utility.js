@@ -1,19 +1,11 @@
 import moment from 'moment';
 import {CURRENTMONTH_AS_STRING} from '../../data';
 
-export const objectToSessionPeriods = ({...obj}) => {
-  const array = Object.keys(obj)
-    .map(item =>{
-      return moment(obj[item]['session_date'].join("-")).format('M');
-    })
-    .sort((a, b) => {
-      return Number(a) > Number(b)
-    })
-    .map(item =>{
-      return moment(item, 'M').format('MMMM');
-    });
-
-  return setFromSessionPeriods(array);
+export const monthsFromObject = ({...obj}) => {
+  return Object.keys(obj)
+    .map(item => moment(obj[item]['session_date'].join("-")).format('M'))
+    .sort((a, b) => Number(a) > Number(b))
+    .map(item => moment(item, 'M').format('MMMM'));
 }
 
 export const monthsFromArray = (arr) => {

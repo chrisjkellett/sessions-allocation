@@ -1,6 +1,6 @@
 import * as actionTypes from '../../actions/actionTypes';
 import {
-  objectToSessionPeriods, 
+  monthsFromObject, 
   setCurrentPeriod, 
   filterSessionsByMonth,
   setFromSessionPeriods,
@@ -18,7 +18,8 @@ const reducer = (state = initialState, action) => {
 
   switch(action.type){
     case actionTypes.LOAD_PERIODS: 
-      periods = objectToSessionPeriods(action.sessions);
+      months = monthsFromObject(action.sessions);
+      periods = setFromSessionPeriods(months);
       current = setCurrentPeriod(periods);
       sessions = filterSessionsByMonth(objectToArray(action.sessions), current);
       return updateState(state, {periods: periods, current: current, sessions_by_period: sessions});
