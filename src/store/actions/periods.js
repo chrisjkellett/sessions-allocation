@@ -6,3 +6,10 @@ export const loadPeriods = (sessions) => {
     sessions: sessions
   }
 }
+
+export const updatePeriods = (sessions) => {
+  return {
+    type: actionTypes.UPDATE_PERIODS,
+    sessions: sessions
+  }
+}

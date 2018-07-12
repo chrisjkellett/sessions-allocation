@@ -16,6 +16,14 @@ export const objectToSessionPeriods = ({...obj}) => {
   return setFromSessionPeriods(array);
 }
 
+export const monthsFromArray = (arr) => {
+  return [
+    ...arr.map(s => moment([...s.session_date].join("-")).format('M'))
+    .sort((a, b) => Number(a) > Number(b))
+    .map(s => moment(s, 'M').format('MMMM'))
+ ]
+}
+
 export const setFromSessionPeriods = (array) => {
   const set = Array.from(new Set(array));
   return set.length > 0 ? set : null;

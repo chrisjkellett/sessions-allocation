@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios';
 import {logResponse} from './general';
-import {loadPeriods} from './periods';
+import {loadPeriods, updatePeriods} from './periods';
 
 export const loadSessions = () => {
   return dispatch => {
@@ -36,6 +36,7 @@ export const addSession = (sessions, session) => {
       .then(response => {
         dispatch(addSessionSuccess(session, response.data.name));
         dispatch(logResponse(session, {type: 'session', action: 'added'}));
+        dispatch(updatePeriods(sessions));
       })
       .catch(error => {
         dispatch(failedLoad(error));
@@ -57,6 +58,7 @@ export const deleteSession = (sessions, session) => {
       .then(() => {
         dispatch(deleteSessionSuccess(sessions));
         dispatch(logResponse(session, {type: 'session', action: 'deleted'}));
+        dispatch(updatePeriods(sessions));
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -76,7 +78,8 @@ export const updateSession = (sessions, session, id) => {
     axios.put('/sessions/' + id + '.json', session)
       .then(() => {
         dispatch(updateSessionSuccess(sessions));
-        dispatch(logResponse(session, {type: 'session', action: 'updated'}))
+        dispatch(logResponse(session, {type: 'session', action: 'updated'}));
+        dispatch(updatePeriods(sessions));
       })
       .catch(error => {
         dispatch(failedLoad(error))
