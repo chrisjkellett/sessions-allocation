@@ -39,7 +39,7 @@ class Sessions extends Component{
 
   handleLink = (session) => {
     this.props.fetchSession(session);
-    this.props.history.push('/sessions/' + formatDateURL([...session.session_date]) + '-' + formatURL(session.venue));
+    this.props.history.push('/sessions/' + formatDateURL([...session.session_date]));
   }
 
   handlersObj = () => {

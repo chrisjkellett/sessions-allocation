@@ -5,7 +5,6 @@ import {renderAsDate} from './sub-renders';
 import * as routes from '../../../../store/app-data/routes';
 
 export const renderUL = (session) => {
-  console.log(session);
   if(session === null){
     return <Redirect to={routes.SESSIONS} />
   }

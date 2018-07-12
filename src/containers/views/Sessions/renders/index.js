@@ -18,7 +18,6 @@ export const renderTableContent = (sessions, handleDelete, handleEdit, handleLin
   }
 
   else{
-    console.log(handleLink);
     return (
       sessions.map(session => (
         <tr className={classes.Row} key={session.id}>
