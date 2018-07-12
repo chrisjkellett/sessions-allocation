@@ -1,13 +1,13 @@
-export const generateInputProps = (element, periodHandler, props) => {
+export const generateInputProps = (element, periodHandler, periods, currentPeriod) => {
   const {config} = element;
   return {
     key: element.id,
     label: element.id,
-    sessionCount: props.sessions.length,
-    options: props.periods,
+    sessionCount: 0,
+    options: periods,
     elementtype: config.period.elementType,
     elementConfig: config.period.elementConfig,
-    value: props.currentPeriod,
+    value: currentPeriod,
     valid: [],
     change: (event) => periodHandler(event, element.id)
   }

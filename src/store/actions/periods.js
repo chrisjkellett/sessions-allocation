@@ -13,3 +13,11 @@ export const updatePeriods = (sessions) => {
     sessions: sessions
   }
 }
+
+export const handlePeriodSelect = (sessions, period) => {
+  return {
+    type: actionTypes.HANDLE_PERIOD_SELECT,
+    sessions: sessions,
+    period: period
+  }
+}

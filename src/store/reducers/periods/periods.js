@@ -10,7 +10,7 @@ import {updateState, objectToArray} from '../utility';
 const initialState = {
   periods: null,
   current: null,
-  sessions_by_period: null
+  sessionsByPeriod: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -22,14 +22,18 @@ const reducer = (state = initialState, action) => {
       periods = setFromSessionPeriods(months);
       current = setCurrentPeriod(periods);
       sessions = filterSessionsByMonth(objectToArray(action.sessions), current);
-      return updateState(state, {periods: periods, current: current, sessions_by_period: sessions});
+      return updateState(state, {periods: periods, current: current, sessionsByPeriod: sessions});
 
     case actionTypes.UPDATE_PERIODS: 
       months = monthsFromArray(action.sessions);
       periods = setFromSessionPeriods(months);
       current = setCurrentPeriod(periods);
       sessions = filterSessionsByMonth(action.sessions, current);
-      return updateState(state, {periods: periods, current: current, sessions_by_period: sessions});
+      return updateState(state, {periods: periods, current: current, sessionsByPeriod: sessions});
+
+    case actionTypes.HANDLE_PERIOD_SELECT: 
+      sessions = filterSessionsByMonth(action.sessions, action.period);
+      return updateState(state, {current: action.period, sessionsByPeriod: sessions});
 
     default:
       return state;  

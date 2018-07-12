@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {renderTableContent, renderError} from './renders/';
+import {renderTableContent, renderError, renderFormPeriod} from './renders/';
 import classes from './Sessions.css';
 import Table from '../../../components/FormElements/Table/Table';
 import {sessionTableHeaders} from '../../../store/app-data/table-headers';
 import {constructPeriodState} from '../../../store/constructors/periods';
 import {formatURL, formatDateURL} from '../../../gen-utility';
 import * as actions from '../../../store/actions/sessions';
+import {handlePeriodSelect} from '../../../store/actions/periods';
 import {getSelectedOptions} from '../../forms/form-utility';
 
 class Sessions extends Component{
@@ -31,18 +32,20 @@ class Sessions extends Component{
   }
 
   periodHandler = (event, id) => {
+    const {sessions} = this.props;
     const value = getSelectedOptions(event);
-    this.props.setPeriod(value);
+    this.props.handlePeriodSelect(sessions, value);
   }
 
 
   render(){
+    const {errors, periods, currentPeriod, sessionsByPeriod} = this.props;
     return (
       <section className={classes.Sessions}>
-        {renderError(this.props.errors)}
-        {/* {renderFormPeriod({...this.state}, this.periodHandler, this.props)} */}
+        {renderError(errors)}
+        {renderFormPeriod(this.state, this.periodHandler, periods, currentPeriod)}
         <Table labels={sessionTableHeaders}>
-          {renderTableContent(this.props.sessions, this.handleDelete, this.handleEdit)}
+          {renderTableContent(sessionsByPeriod, this.handleDelete, this.handleEdit)}
         </Table>
       </section>
     )
@@ -52,7 +55,11 @@ class Sessions extends Component{
 const mapStateToProps = state => {
   return {
     sessions: state.sess.sessions,
-    errors: state.sess.error
+    errors: state.sess.error,
+    periods: state.per.periods,
+    currentPeriod: state.per.current,
+    sessionsByPeriod: state.per.sessionsByPeriod
+
   }
 }
 
@@ -61,7 +68,7 @@ const mapDispatchToProps = dispatch => {
     deleteSession: (sessions, session) => dispatch(actions.deleteSession(sessions, session)),
     fetchSession: (id) => dispatch(actions.fetchSession(id)),
     deActivateSelectedSession: () => dispatch(actions.deActivateSelectedSession()),
-    filterSessions: (period) => dispatch(actions.filterSessions(period))
+    handlePeriodSelect: (sessions, period) => dispatch(handlePeriodSelect(sessions, period))
   }
 }
 
