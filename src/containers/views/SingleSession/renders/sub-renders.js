@@ -2,12 +2,22 @@ import React from 'react';
 import {isPm, formatLabel, convertToDate, timeAgo, renderTimeAgoClass, formatAvailability} from '../../utility';
 import classes from '../SingleSession.css';
 
-export const renderSimple = (examiner, id) => {
+export const renderSimple = (session, id) => {
   return(
     <tr>
       <td className={classes.Label}>{formatLabel(id)}</td>
-      <td className={classes.Data}>{examiner[id]}</td>
+      <td className={classes.Data}>{session[id]}</td>
     </tr>
+  )
+}
+
+export const renderExaminer = (session, examiner, id) => {
+  return(
+    
+    <tr key={id}>
+      <td className={classes.Label}>{formatLabel(id)}</td>
+    </tr>
+
   )
 }
 

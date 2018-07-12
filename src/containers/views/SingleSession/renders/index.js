@@ -1,10 +1,11 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import classes from '../SingleSession.css';
-import {renderAsDate} from './sub-renders';
+import {renderAsDate, renderSimple, renderExaminer} from './sub-renders';
 import * as routes from '../../../../store/app-data/routes';
 
-export const renderUL = (session) => {
+export const renderUL = ({session, examiners}) => {
+  console.log(examiners);
   if(session === null){
     return <Redirect to={routes.SESSIONS} />
   }
@@ -16,6 +17,7 @@ export const renderUL = (session) => {
           <table className={classes.Table}>
             <tbody>
             {renderAsDate(session, 'session_date')}
+            {renderSimple(session, 'venue')}
             </tbody>
           </table>
         </div>
@@ -23,6 +25,9 @@ export const renderUL = (session) => {
         <div>
           <table className={classes.Table}>
             <tbody>
+              {session.examiners.map(examiner => {
+                return renderExaminer(session, examiners.find(ex => ex.name === examiner), 'examiners')
+              })}
             </tbody>
           </table>
         </div>

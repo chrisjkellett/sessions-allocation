@@ -4,13 +4,14 @@ import {renderUL} from './renders/';
 
 class SingleExaminer extends Component{
   render(){
-    return renderUL(this.props.session);
+    return renderUL(this.props);
   }
 }
 
 const mapStateToProps = state => {
   return{
-    session: state.sess.selectedSession
+    session: state.sess.selectedSession,
+    examiners: state.ex.examiners
   }
 }
 
