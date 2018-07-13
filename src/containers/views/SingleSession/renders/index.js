@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import classes from '../SingleSession.css';
-import {renderAsDate, renderSimple, renderExaminer} from './sub-renders';
+import {renderAsDate, renderSimple, renderExaminer, renderArrayAsIcons} from './sub-renders';
 import * as routes from '../../../../store/app-data/routes';
 
 export const renderUL = ({session, examiners}) => {
@@ -17,21 +17,29 @@ export const renderUL = ({session, examiners}) => {
           <table className={classes.Table}>
             <tbody>
             {renderAsDate(session, 'session_date')}
+            {renderSimple(session, 'time')}
             {renderSimple(session, 'venue')}
+            {renderArrayAsIcons(session, 'levels')}
+            {renderSimple(session, 'type')}
+            {renderSimple(session, 'support')}
             </tbody>
           </table>
         </div>
 
         <div>
-          <table className={classes.Table}>
-            <tbody>
-              {session.examiners.map(examiner => {
-                return renderExaminer(session, examiners.find(ex => ex.name === examiner), 'examiners')
-              })}
-            </tbody>
-          </table>
+        {session.examiners.map((examiner, i) => {
+          return (
+            <div key={examiner} className={classes.StackedTable}>
+              <table className={classes.Table}>
+                <tbody>
+                  {renderExaminer(session, examiners.find(ex => ex.name === examiner), 'examiner ' + (i + 1))}
+                </tbody>
+              </table>
+            </div>
+          )
+        })}
         </div>
-      </div>
+    </div>
     )
   }
 }

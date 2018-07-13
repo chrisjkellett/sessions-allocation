@@ -1,6 +1,7 @@
 import React from 'react';
 import {isPm, formatLabel, convertToDate, timeAgo, renderTimeAgoClass, formatAvailability} from '../../utility';
 import classes from '../SingleSession.css';
+import Wrapper from '../../../../components/Misc/Wrapper/Wrapper';
 
 export const renderSimple = (session, id) => {
   return(
@@ -13,11 +14,12 @@ export const renderSimple = (session, id) => {
 
 export const renderExaminer = (session, examiner, id) => {
   return(
-    
-    <tr key={id}>
-      <td className={classes.Label}>{formatLabel(id)}</td>
-    </tr>
-
+    <Wrapper>
+      {renderSimple(examiner, 'name')} 
+      {renderSimple(examiner, 'id_number')}
+      {renderArrayAsIcons(examiner, 'levels')}
+      {renderAsDate(examiner, 'last_monitoring')}
+    </Wrapper>
   )
 }
 
@@ -32,12 +34,12 @@ export const renderArray = (examiner, id) => {
   )
 }
 
-export const renderArrayAsIcons = (examiner, id) => {
+export const renderArrayAsIcons = (session, id) => {
   return(
     <tr>
       <td className={classes.Label}>{formatLabel(id)}</td>
       <td className={classes.Data}>
-        {examiner[id] ? examiner[id].map(item => <span key={item} className={classes.Icons}>{item}</span>) : null}
+        {session[id] ? session[id].map(item => <span key={item} className={classes.Icons}>{item}</span>) : null}
       </td>
     </tr>
   )
@@ -62,6 +64,11 @@ export const renderAsDate = (session, id) => {
       {session.session_date ?
       <td className={classes.Data}>
         {convertToDate([...session[id]])}
+        <div className={classes[renderTimeAgoClass([...session[id]])]}>{timeAgo([...session[id]])}</div>
+      </td> : null}
+
+      {session.last_monitoring ?
+      <td className={classes.Data}>
         <div className={classes[renderTimeAgoClass([...session[id]])]}>{timeAgo([...session[id]])}</div>
       </td> : null}
     </tr>
