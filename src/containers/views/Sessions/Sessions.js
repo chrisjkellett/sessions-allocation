@@ -6,7 +6,7 @@ import classes from './Sessions.css';
 import Table from '../../../components/FormElements/Table/Table';
 import {sessionTableHeaders} from '../../../store/app-data/table-headers';
 import {constructPeriodState} from '../../../store/constructors/periods';
-import {formatURL, formatDateURL} from '../../../gen-utility';
+import {formatURL, formatDateURLPretty} from '../../../gen-utility';
 import * as actions from '../../../store/actions/sessions';
 import {handlePeriodSelect} from '../../../store/actions/periods';
 import {getSelectedOptions} from '../../forms/form-utility';
@@ -21,8 +21,9 @@ class Sessions extends Component{
   }
 
   handleEdit = (session) => {
+    const url = '/sessions/edit/' + formatURL(session.venue) + '-' + formatDateURLPretty([...session.session_date])
     this.props.fetchSession(session);
-    this.props.history.push('/sessions/edit/' + formatURL(session.venue) + formatDateURL([...session.session_date]));
+    this.props.history.push(url);
   }
 
   handleDelete = (session) => {
@@ -39,7 +40,7 @@ class Sessions extends Component{
 
   handleLink = (session) => {
     this.props.fetchSession(session);
-    this.props.history.push('/sessions/' + formatDateURL([...session.session_date]));
+    this.props.history.push('/sessions/' + formatURL(session.venue) + '-' + formatDateURLPretty([...session.session_date]));
   }
 
   handlersObj = () => {

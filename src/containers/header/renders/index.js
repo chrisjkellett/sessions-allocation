@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import classes from '../Header.css';
-import {formatURL, formatDateURL, formatDateURLPretty} from '../../../gen-utility';
+import {formatURL, formatDateURLPretty} from '../../../gen-utility';
 import * as routes from '../../../store/app-data/routes';
 import {getLogData} from './utility';
 
@@ -44,15 +44,16 @@ export const renderExaminerFormLink = ({history, selectedExaminer, location}) =>
 export const renderSessionFormLink = ({selectedSession, history, location}) => {
   if(history.location.pathname.substring(0, 11) !== '/examiners/'){ 
     if(selectedSession){
-      console.log(location.pathname);
-      if(location.pathname === routes.SESSIONS + formatDateURL([...selectedSession.session_date])) 
+      const {venue, session_date} = selectedSession;
+      const caption = formatDateURLPretty([...session_date]) + '@' + formatURL(venue)
+      if(location.pathname === routes.SESSIONS + formatURL(venue) + '-' + formatDateURLPretty([...session_date])){ 
         return (
           <li>
-            {formatDateURLPretty([...selectedSession.session_date]) + '@' + selectedSession.venue.toLowerCase()} 
+            {caption} 
           </li>
         )
-      else
-        return <li>editing session</li>
+      }else
+        return <li>{'[editing] ' + caption}</li>
         
     }else
       return(

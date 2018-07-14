@@ -17,7 +17,7 @@ export const renderUI = (state, inputHandler, submitHandler, {user, error, histo
               return <Input {...generateInputProps(element, state, inputHandler)} />
             }
           )}
-          <button onClick={() => history.push('/sessions')}>login</button>
+          <button>login</button>
           {renderError(error)}
         </form>
       </section>

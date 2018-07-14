@@ -23,8 +23,9 @@ class Auth extends Component{
 
   submitHandler = (event) => {
     event.preventDefault();
-    const userToBeChecked = generateObjectForSubmitForm({...this.state.login});
-    this.props.initialiseLogin(this.props.examiners, userToBeChecked);
+    const user = generateObjectForSubmitForm({...this.state.login});
+    console.log(user);
+    this.props.authStart(user);
   }
 
   render(){
@@ -44,7 +45,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    initialiseLogin: (examiners, userToBeChecked) => dispatch(actions.initialiseLogin(examiners, userToBeChecked))
+    // initialiseLogin: (examiners, userToBeChecked) => dispatch(actions.initialiseLogin(examiners, userToBeChecked)),
+    authStart: (user) => dispatch(actions.authStart()) 
   }
   
 }
