@@ -16,3 +16,12 @@ export const getLogData = (type, update) => {
       return null;
   }
 }
+
+export const formatError = (message) => {
+  switch (message) {
+    case 'EMAIL_EXISTS':
+      return 'account already exists with this email'
+    default:
+      return 'an unknown error has occured'
+  }
+}

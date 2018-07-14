@@ -7,16 +7,17 @@ import {refreshLog} from '../../store/actions/general';
 
 class Header extends Component{
   componentWillReceiveProps(next){
-    if(next.updatedLog !== this.props.updatedLog){
+    const {updatedLog, refreshLog} = this.props;
+    if(next.updatedLog !== updatedLog){
       setTimeout(() => {  
-        this.props.refreshLog();
+        refreshLog();
     }, 4000);
     }
 
   }
 
   render(){
-    const {updatedLog, mapOfLog} = this.props;
+    const {updatedLog, mapOfLog, exError} = this.props;
     return(
       <div className={classes.Header}>
         <ul>
@@ -27,6 +28,7 @@ class Header extends Component{
           {navElements.renderLogout(this.props)}
         </ul>
         {updatedLog && navElements.renderUpdateLog(updatedLog, mapOfLog)}
+        {exError && navElements.renderErrorLog(exError, mapOfLog)}
       </div>
     )
   }
@@ -38,7 +40,8 @@ const mapStateToProps = state => {
     selectedSession: state.sess.selectedSession,
     user: state.auth.session_user,
     updatedLog: state.gen.updated,
-    mapOfLog: state.gen.map
+    mapOfLog: state.gen.map,
+    exError: state.ex.error
   }
 }
 

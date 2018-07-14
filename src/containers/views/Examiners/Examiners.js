@@ -41,7 +41,7 @@ class Examiners extends Component{
 
 const mapStateToProps = state => {
   return {
-    examiners: state.ex.examiners,
+    examiners: state.ex.examiners
   }
 }
 

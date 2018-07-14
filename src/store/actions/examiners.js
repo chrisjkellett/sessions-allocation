@@ -24,20 +24,20 @@ export const loadExaminersSuccess = (data) => {
 
 export const registerExaminerStart = () => {
   return {
-    type: actionTypes.AUTH_START
+    type: actionTypes.REGISTER_EXAMINER_START
   }
 }
 
 export const registerExaminerSuccess = (data) => {
   return {
-    type: actionTypes.AUTH_SUCCESS,
+    type: actionTypes.REGISTER_EXAMINER_SUCCESS,
     data: data
   }
 }
 
 export const registerExaminerFail = (error) => {
   return {
-    type: actionTypes.AUTH_FAIL,
+    type: actionTypes.REGISTER_EXAMINER_FAIL,
     error: error
   }
 }
@@ -48,7 +48,6 @@ export const registerExaminer = (userForAuth, user) => {
     dispatch(registerExaminerStart());
     axios.post(SIGNUP_API, userForAuth)
       .then(res => {
-        console.log(res);
         dispatch(registerExaminerSuccess(res.data));
         dispatch(addExaminer(user));
     })

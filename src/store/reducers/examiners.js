@@ -33,6 +33,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: true})
 
+    case actionTypes.REGISTER_EXAMINER_FAIL:
+      return updateState(state, {error: action.error.response.data.error})
+
     case actionTypes.FETCH_EXAMINER:
       return updateState(state, {selectedExaminer: action.examiner})
 

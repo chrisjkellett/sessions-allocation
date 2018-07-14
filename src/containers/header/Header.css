@@ -40,7 +40,19 @@
   /* animation: fadeOut 5s forwards; */
 }
 
-.UpdateAlert .Action{
+.ErrorAlert{
+  position: absolute;
+  font-size: 90%;
+  top: 42px;
+  right: 2px;
+  padding: 2px 10px;
+  border: 1px solid grey;
+  background:#ff777d;
+  /* animation: fadeOut 5s forwards; */
+}
+
+.UpdateAlert .Action,
+.ErrorAlert .Action{
   margin: 0 3px;
 }
 

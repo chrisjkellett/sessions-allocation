@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 import classes from '../Header.css';
 import {formatURL, formatDateURLPretty} from '../../../gen-utility';
 import * as routes from '../../../store/app-data/routes';
-import {getLogData} from './utility';
+import {getLogData, formatError} from './utility';
 
 export const renderExaminerViewLink = () => {
   return(
@@ -85,6 +85,15 @@ export const renderUpdateLog = (update, {type, action}) => {
       <span className={classes.Action}>{action}</span>
       <b>{data.primary}</b>
       <span className={classes.Secondary}>{data.secondary}.</span>
+    </div>
+  );
+}
+
+export const renderErrorLog = ({message}) => {  
+  return (
+    <div className={classes.ErrorAlert}>
+      <i className="fas fa-exclamation-circle"></i>
+      <span className={classes.Action}>{formatError(message)}</span>
     </div>
   );
 }
