@@ -69,7 +69,7 @@ export const generateFormElementArray = (examiner) => {
   return formElementArray;
 }
 
-export const generateObjectForSubmitForm = (obj) => {
+export const forSubmit = (obj) => {
     const data = {};
 
     for (let id in obj){
@@ -91,12 +91,6 @@ export const showHiddenFields = (obj) => {
   }else{
     return false;
   }
-}
-
-export const backToView = (history, route) => {
-  history.push({
-    pathname: route
-  })
 }
 
 export const checkFormValidity = (obj) => {

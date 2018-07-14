@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import * as actions from '../../../store/actions/examiners';
 import {constructExaminerState} from '../../../store/constructors/examiners';
-import {updateState, backToView, distributeValuesForEditing, updateSimpleState, getSelectedOptions, updateOptionArray, 
-  generateObjectForSubmitForm, updateDateArray, checkDisabledFields, checkFormValidity} from '../form-utility';
+import {updateState, distributeValuesForEditing, updateSimpleState, getSelectedOptions, updateOptionArray, 
+  forSubmit, updateDateArray, checkDisabledFields, checkFormValidity} from '../form-utility';
+import {examinerForAuth} from './utility';
 import {renderUI} from './renders/';
 import {checkValidity} from '../validation/validation';
 import {formatInput} from '../validation/utility';
-import * as routes from '../../../store/app-data/routes';
 
 
 class Examiners extends Component {
@@ -18,31 +18,28 @@ class Examiners extends Component {
   }
 
   componentDidMount(){ 
-    if(this.props.examinerForEditing){
-      const update = distributeValuesForEditing({...this.state.examiner}, {...this.props.examinerForEditing});
+    if(this.props.exEdit){
+      const update = distributeValuesForEditing({...this.state.examiner}, {...this.props.exEdit});
       this.setState(updateSimpleState({examiner: update}));
     } 
   }
 
-  submitHandler = (event, validation) => {
+  submitHandler = (event) => {
+    const {examiner} = this.state;
+    const {exEdit, updateExaminer, registerExaminer, history} = this.props;
+    const data = forSubmit(examiner);
     event.preventDefault();
     this.initialiseValidation();
-    const isValid = checkFormValidity({...this.state.examiner});
-    const examiner = generateObjectForSubmitForm(this.state.examiner);
-    
-    if(isValid && !this.props.examinerForEditing){
-      this.props.addExaminer(examiner);
-      backToView(this.props.history, routes.EXAMINERS);
-    }
 
-    if(isValid && this.props.examinerForEditing){
-      this.props.updateExaminer(examiner, this.props.examinerForEditing.id);
-      backToView(this.props.history, routes.EXAMINERS);
+    if (checkFormValidity(examiner)) {
+      exEdit ? updateExaminer(data, exEdit.id) : registerExaminer(examinerForAuth(examiner), data);
+      history.goBack();
     }
+    
   }
 
   cancelHandler = () => {
-    backToView(this.props.history, routes.EXAMINERS);
+   this.props.history.goBack();
   }
 
   initialiseValidation = () => {
@@ -99,14 +96,14 @@ class Examiners extends Component {
 
 const mapStateToProps = state => {
   return{
-    examinerForEditing: state.ex.selectedExaminer
+    exEdit: state.ex.selectedExaminer
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return{
-    addExaminer: (examiner) => dispatch(actions.addExaminer(examiner)),
-    updateExaminer: (examiner, id) => dispatch(actions.updateExaminer(examiner, id))
+    updateExaminer: (examiner, id) => dispatch(actions.updateExaminer(examiner, id)),
+    registerExaminer: (userForAuth, user) => dispatch(actions.registerExaminer(userForAuth, user)) 
   }
 }
 

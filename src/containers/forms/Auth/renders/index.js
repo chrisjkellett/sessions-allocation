@@ -8,7 +8,10 @@ import {Redirect} from 'react-router-dom';
 import * as routes from '../../../../store/app-data/routes';
 
 export const renderUI = (state, inputHandler, submitHandler, {user, error, history}) => {
-  if(user === null || error){
+  if(true)
+    return <Redirect to='sessions' />;
+    //temp code to skip login page
+  else if(user === null || error){
     return(
       <section className={classes.Auth}>
         <form onSubmit={submitHandler}>

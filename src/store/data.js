@@ -5,6 +5,9 @@ export const CURRENTYEAR = Number(moment().format('Y'));
 export const CURRENTMONTH = Number(moment().format('M'));
 export const CURRENTMONTH_AS_STRING = moment().format('MMMM');
 export const CURRENTDAY = Number(moment().format('D'));
+export const API_KEY = 'AIzaSyD7szxktlOq6NWXS-RMzkw-AJ_9KbfaZ6E';
+export const SIGNUP_API = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + API_KEY;
+
 
 //select options
 export const locationOptions = ['Valencia', 'Murcia']

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {constructAuthState} from '../../../store/constructors/auth';
 import {renderUI} from './renders/';
-import {updateState, generateObjectForSubmitForm} from '../form-utility';
+import {updateState, forSubmit} from '../form-utility';
 import {checkValidity} from '../validation/validation';
 import {formatInput} from '../validation/utility';
 import * as actions from '../../../store/actions/auth';
@@ -23,9 +23,9 @@ class Auth extends Component{
 
   submitHandler = (event) => {
     event.preventDefault();
-    const user = generateObjectForSubmitForm({...this.state.login});
+    const user = forSubmit({...this.state.login});
     console.log(user);
-    this.props.authStart(user);
+    // // this.props.registerExaminerHandler(Object.assign({...user}, {returnSecureToken: true}));
   }
 
   render(){
@@ -46,7 +46,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return{
     // initialiseLogin: (examiners, userToBeChecked) => dispatch(actions.initialiseLogin(examiners, userToBeChecked)),
-    authStart: (user) => dispatch(actions.authStart()) 
+    registerExaminer: (user) => dispatch(actions.registerExaminer(user)) 
   }
   
 }

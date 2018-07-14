@@ -3,11 +3,9 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {constructSessionsState} from '../../../store/constructors/sessions';
 import {updateDateArray, updateState, getSelectedOptions, 
-  updateOptionArray, checkFormValidity, generateObjectForSubmitForm, 
-  backToView, updateSimpleState, distributeValuesForEditing} from '../form-utility';
+  updateOptionArray, checkFormValidity, forSubmit, updateSimpleState, distributeValuesForEditing} from '../form-utility';
 import {checkValidity} from '../validation/validation';
 import {renderUI} from './renders';
-import * as routes from '../../../store/app-data/routes';
 import * as actions from '../../../store/actions/sessions';
 
 class AddSessions extends Component{
@@ -61,12 +59,12 @@ class AddSessions extends Component{
     event.preventDefault();
     this.initialiseValidation();
     const isValid = checkFormValidity({...this.state.session});
-    const session = generateObjectForSubmitForm(this.state.session);
+    const session = forSubmit(this.state.session);
     
     if(isValid && !this.props.sessionForEditing){
       const updated = [...this.props.sessions, Object.assign({}, session)];
       this.props.addSession(updated, session);
-      backToView(this.props.history, routes.SESSIONS);
+      this.props.history.goBack();
     }
 
     if(isValid && this.props.sessionForEditing){
@@ -75,12 +73,12 @@ class AddSessions extends Component{
       session.id = id;
       const updated = [...sessions.filter(item => item.id !== id), Object.assign({}, session)];
       this.props.updateSession(updated, session, id);
-      backToView(this.props.history, routes.SESSIONS);
+      this.props.history.goBack();
     }
   }
 
   cancelHandler = () => {
-    backToView(this.props.history, routes.SESSIONS);
+    this.props.history.goBack();
   }
 
   initialiseValidation = () => {

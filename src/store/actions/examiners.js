@@ -1,6 +1,7 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios';
 import {logResponse} from './general';
+import {SIGNUP_API} from '../data';
 
 export const loadExaminers = () => {
   return dispatch => {
@@ -18,6 +19,43 @@ export const loadExaminersSuccess = (data) => {
   return {
     type: actionTypes.LOAD_EXAMINERS_SUCCESS,
     examiners: data
+  }
+}
+
+export const registerExaminerStart = () => {
+  return {
+    type: actionTypes.AUTH_START
+  }
+}
+
+export const registerExaminerSuccess = (data) => {
+  return {
+    type: actionTypes.AUTH_SUCCESS,
+    data: data
+  }
+}
+
+export const registerExaminerFail = (error) => {
+  return {
+    type: actionTypes.AUTH_FAIL,
+    error: error
+  }
+}
+
+export const registerExaminer = (userForAuth, user) => {
+  return dispatch => {
+    console.log(userForAuth);
+    dispatch(registerExaminerStart());
+    axios.post(SIGNUP_API, userForAuth)
+      .then(res => {
+        console.log(res);
+        dispatch(registerExaminerSuccess(res.data));
+        dispatch(addExaminer(user));
+    })
+      .catch(error => {
+        console.log(error);
+        dispatch(registerExaminerFail(error));
+    })
   }
 }
 
