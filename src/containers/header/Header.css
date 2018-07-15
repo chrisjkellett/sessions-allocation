@@ -51,8 +51,19 @@
   /* animation: fadeOut 5s forwards; */
 }
 
+.UserBar{
+  position: absolute;
+  font-size: 90%;
+  top: 42px;
+  right: 2px;
+  padding: 2px 10px;
+  border: 1px solid lightgrey;
+  background: white;
+}
+
 .UpdateAlert .Action,
-.ErrorAlert .Action{
+.ErrorAlert .Action,
+.UserBar .Action{
   margin: 0 3px;
 }
 
@@ -68,4 +79,13 @@
   100% {
     opacity: 0;
   }
+}
+
+.ActiveLink{
+  color: #0000EE;
+  cursor: pointer;
+}
+
+.ActiveLink:hover{
+  color: grey;
 }

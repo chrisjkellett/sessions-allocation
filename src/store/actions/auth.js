@@ -29,13 +29,28 @@ export const authUser = (user) => {
     dispatch(authUserStart());
     axios.post(AUTH_API, user)
       .then(res => {
-        console.log(res);
+        console.log(res.data);
         dispatch(authUserSuccess(res.data));
+        dispatch(checkAuthTimeout(res.data.expiresIn));
     })
       .catch(error => {
         console.log(error);
         dispatch(authUserFail(error));
         //dispatch(regularUserStart())
     })
+  }
+}
+
+export const checkAuthTimeout = (expiresIn) => {
+  return dispatch => {
+    setTimeout(()=> {
+      dispatch(logout())
+    }, expiresIn * 1000)
+  }
+}
+
+export const logout = () => {
+  return {
+    type: actionTypes.AUTH_LOGOUT
   }
 }

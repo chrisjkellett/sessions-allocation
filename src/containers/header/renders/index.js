@@ -67,12 +67,10 @@ export const renderSessionFormLink = ({selectedSession, history, location}) => {
     return null;  
 }
 
-export const renderLogout = (props) => {
+export const renderLogout = (logout) => {
   return(
     <div className={classes.RightMenu}> 
-      <NavLink to={routes.LOGIN_PAGE} exact activeClassName={classes.Active}>
-        <li>logout</li>
-      </NavLink>
+        <li onClick={logout} className={classes.ActiveLink}>logout</li>
     </div>
   )
 }
@@ -94,6 +92,16 @@ export const renderErrorLog = ({message}) => {
     <div className={classes.ErrorAlert}>
       <i className="fas fa-exclamation-circle"></i>
       <span className={classes.Action}>{formatError(message)}</span>
+    </div>
+  );
+}
+
+export const renderUserBar = (user) => {  
+  return (
+    <div className={classes.UserBar}>
+      <span className={classes.Action}>
+        Logged in as {user}.
+      </span>
     </div>
   );
 }

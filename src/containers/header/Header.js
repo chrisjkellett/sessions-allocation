@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import * as navElements from './renders/';
 import {refreshLog} from '../../store/actions/general';
+import {logout} from '../../store/actions/auth';
 
 class Header extends Component{
   componentWillReceiveProps(next){
@@ -11,13 +12,18 @@ class Header extends Component{
     if(next.updatedLog !== updatedLog){
       setTimeout(() => {  
         refreshLog();
-    }, 4000);
+      }, 4000);
     }
+  }
 
+  logoutHandler = () => {
+    const {history, logout} = this.props;
+    logout();
+    history.push('/');
   }
 
   render(){
-    const {updatedLog, mapOfLog, exError} = this.props;
+    const {updatedLog, mapOfLog, exError, user} = this.props;
     return(
       <div className={classes.Header}>
         <ul>
@@ -25,10 +31,11 @@ class Header extends Component{
           {navElements.renderSessionViewLink()}
           {navElements.renderExaminerFormLink(this.props)}
           {navElements.renderSessionFormLink(this.props)}
-          {navElements.renderLogout(this.props)}
+          {navElements.renderLogout(this.logoutHandler)}
         </ul>
         {updatedLog && navElements.renderUpdateLog(updatedLog, mapOfLog)}
-        {exError && navElements.renderErrorLog(exError, mapOfLog)}
+        {exError && navElements.renderErrorLog(exError)}
+        {user && navElements.renderUserBar(user)}
       </div>
     )
   }
@@ -47,7 +54,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    refreshLog: () => dispatch(refreshLog())
+    refreshLog: () => dispatch(refreshLog()),
+    logout: () => dispatch(logout())
   }
 }
 
