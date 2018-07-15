@@ -13,6 +13,7 @@ import AddSessions from '../forms/Sessions/Sessions';
 import Wrapper from '../../components/Misc/Wrapper/Wrapper';
 import {loadExaminers} from '../../store/actions/examiners';
 import {loadSessions} from '../../store/actions/sessions';
+import {Redirect} from 'react-router-dom';
 import * as routes from '../../store/app-data/routes';
 
 class App extends Component {
@@ -22,15 +23,14 @@ class App extends Component {
   }
 
   render() {
+    // const {isAuthenticated} = this.props;
     return (
       <Wrapper>
         <Switch>
           <Route path={routes.LOGIN_PAGE} exact component={Auth} />
         </Switch>
 
-        <Route 
-          path='/(.+)'
-          render={() => (
+        {true ? <Route path='/(.+)' render={() => (
           <div>
             <Header />
             <section className={classes.Section}>
@@ -47,7 +47,7 @@ class App extends Component {
             </section>
           </div>
           )}
-          />
+          />: <Redirect to={routes.LOGIN_PAGE} />}
       </Wrapper>
     );
   }
@@ -55,7 +55,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    sessions: state.sess.sessions
+    sessions: state.sess.sessions,
+    isAuthenticated: state.auth.token !== null
   }
 }
 

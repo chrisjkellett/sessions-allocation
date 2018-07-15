@@ -17,7 +17,7 @@ export const renderTableContent = ({examiners, isAuthenticated}, handleDelete, h
     return (
       examiners.map(examiner => (
         <tr className={classes.Row} key={examiner.name}>
-          {renderName(examiner)}
+          {renderName(examiner, handleLink)}
           {renderRoles(examiner)}
           {renderAvailability(examiner)}
           {renderLevels(examiner)}

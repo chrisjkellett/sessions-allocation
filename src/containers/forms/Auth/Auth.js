@@ -24,9 +24,10 @@ class Auth extends Component{
 
   submitHandler = (event) => {
     event.preventDefault();
-    const {authUser} = this.props;
+    const {authUser, examiners} = this.props;
     const user = forSubmit({...this.state.login});
-    authUser(Object.assign({...user}, {returnSecureToken: true}));
+    const regularUser = examiners.find(ex => ex.email === user.email);
+    authUser(Object.assign({...user}, {returnSecureToken: true}), regularUser);
   }
 
   render(){
@@ -51,7 +52,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    authUser: (user) => dispatch(actions.authUser(user))
+    authUser: (user, regularUser) => dispatch(actions.authUser(user, regularUser))
   }
   
 }

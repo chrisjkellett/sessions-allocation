@@ -17,29 +17,43 @@ export const authUserSuccess = ({email, idToken}) => {
   }
 }
 
-export const authUserFail = (error) => {
+export const authFail = (error) => {
   return {
     type: actionTypes.AUTH_USER_FAIL,
     error: error
   }
 }
 
-export const authUser = (user) => {
+export const authUser = (user, regUser) => {
   return dispatch => {
     dispatch(authUserStart());
     axios.post(AUTH_API, user)
       .then(res => {
-        console.log(res.data);
         dispatch(authUserSuccess(res.data));
         dispatch(checkAuthTimeout(res.data.expiresIn));
     })
       .catch(error => {
-        console.log(error);
-        dispatch(authUserFail(error));
-        //dispatch(regularUserStart())
+        dispatch(authRegularUser(regUser, error));
     })
   }
 }
+
+export const authRegularUser = (user, error) => {
+  return dispatch => {
+    if(user)
+      dispatch(authRegularUserSuccess(user))
+    else 
+      dispatch(authFail(error))
+  }
+}
+
+export const authRegularUserSuccess = (user) => {
+  return {
+    type: actionTypes.AUTH_REGULAR_USER_SUCCESS,
+    user: user
+  }
+}
+
 
 export const checkAuthTimeout = (expiresIn) => {
   return dispatch => {
