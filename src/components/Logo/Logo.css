@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:800|Roboto:100');
+
+.Centre-Mid{
+  margin: auto;
+  width: 250px;
+  padding: 6px;
+}
+
+.Title {
+  font-size: 160%;
+  font-family: 'Raleway';
+}
+
+.Title span{
+  font-family: 'Roboto';
+  padding: 5px;
+}

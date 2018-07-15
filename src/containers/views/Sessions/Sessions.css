@@ -4,8 +4,12 @@
   border-bottom: 1px solid lightgrey;
 }
 
+.Row{
+  background: aliceblue;
+}
+
 .Row:nth-child(odd){
-  background: #F2F2F2;
+  background: white;
 }
 
 .Row:last-child td{

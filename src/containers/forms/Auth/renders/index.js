@@ -2,18 +2,17 @@ import React from 'react';
 import Input from '../../../../components/FormElements/Input/Input';
 import {generateFormElementArray} from '../../../../gen-utility';
 import {generateInputProps} from '../utility';
+import Logo from '../../../../components/Logo/Logo';
 import {renderError} from './sub-renders';
 import classes from '../Auth.css';
 import {Redirect} from 'react-router-dom';
 import * as routes from '../../../../store/app-data/routes';
 
 export const renderUI = (state, inputHandler, submitHandler, {user, error, history}) => {
-  if(true)
-    return <Redirect to='sessions' />;
-    //temp code to skip login page
-  else if(user === null || error){
+  if(user === null || error){
     return(
       <section className={classes.Auth}>
+        <Logo styles='Centre-Mid'/>
         <form onSubmit={submitHandler}>
           {generateFormElementArray(state)
             .map(element =>{
