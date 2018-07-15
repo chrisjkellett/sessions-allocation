@@ -23,9 +23,9 @@ class Auth extends Component{
 
   submitHandler = (event) => {
     event.preventDefault();
+    const {authUser} = this.props;
     const user = forSubmit({...this.state.login});
-    console.log(user);
-    // // this.props.registerExaminerHandler(Object.assign({...user}, {returnSecureToken: true}));
+    authUser(Object.assign({...user}, {returnSecureToken: true}));
   }
 
   render(){
@@ -45,8 +45,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    // initialiseLogin: (examiners, userToBeChecked) => dispatch(actions.initialiseLogin(examiners, userToBeChecked)),
-    registerExaminer: (user) => dispatch(actions.registerExaminer(user)) 
+    authUser: (user) => dispatch(actions.authUser(user))
   }
   
 }

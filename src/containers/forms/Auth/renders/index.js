@@ -27,7 +27,7 @@ export const renderUI = (state, inputHandler, submitHandler, {user, error, histo
   }
 
   else{
-    return <Redirect to={routes.EXAMINERS} />
+    return <Redirect to={routes.SESSIONS} />
   }
 
 }
