@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios';
-import {logResponse} from './general';
+import {logResponse, logError} from './general';
 import {loadPeriods, updatePeriods} from './periods';
 
 export const loadSessions = () => {
@@ -8,7 +8,7 @@ export const loadSessions = () => {
     axios.get('/sessions.json')
       .then(response => {
         dispatch(loadSessionsSuccess(response.data));
-        dispatch(loadPeriods(response.data));
+        response.data && dispatch(loadPeriods(response.data));
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -30,16 +30,16 @@ export const failedLoad = (error) => {
   }
 } 
 
-export const addSession = (sessions, session) => {
+export const addSession = (sessions, session, token) => {
   return dispatch => {
-    axios.post('/sessions.json', session)
+    axios.post('/sessions.json?auth=' + token, session)
       .then(response => {
         dispatch(addSessionSuccess(session, response.data.name));
         dispatch(logResponse(session, {type: 'session', action: 'added'}));
         dispatch(updatePeriods(sessions));
       })
       .catch(error => {
-        dispatch(failedLoad(error));
+        dispatch(logError(error, {type: 'session', action: 'added'}));
       })
   }
 }
@@ -52,16 +52,16 @@ export const addSessionSuccess = (session, id) => {
   }
 }
 
-export const deleteSession = (sessions, session) => {
+export const deleteSession = (sessions, session, token) => {
   return dispatch => {
-    axios.delete('/sessions/' + session.id + '.json')
+    axios.delete('/sessions/' + session.id + '.json?auth=' + token)
       .then(() => {
         dispatch(deleteSessionSuccess(sessions));
         dispatch(logResponse(session, {type: 'session', action: 'deleted'}));
         dispatch(updatePeriods(sessions));
       })
       .catch(error => {
-        dispatch(failedLoad(error))
+        dispatch(logError(error, {type: 'session', action: 'delete'}));
       })
   }
 }
@@ -73,16 +73,16 @@ export const deleteSessionSuccess = (sessions) => {
   }
 }
 
-export const updateSession = (sessions, session, id) => {
+export const updateSession = (sessions, session, id, token) => {
   return dispatch => {
-    axios.put('/sessions/' + id + '.json', session)
+    axios.put('/sessions/' + id + '.json?auth=' + token, session)
       .then(() => {
         dispatch(updateSessionSuccess(sessions));
         dispatch(logResponse(session, {type: 'session', action: 'updated'}));
         dispatch(updatePeriods(sessions));
       })
       .catch(error => {
-        dispatch(failedLoad(error))
+        dispatch(logError(error, {type: 'session', action: 'update'}));
       })
   }
 }

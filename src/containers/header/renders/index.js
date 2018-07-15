@@ -67,10 +67,11 @@ export const renderSessionFormLink = ({selectedSession, history, location}) => {
     return null;  
 }
 
-export const renderLogout = (logout) => {
+export const renderLogout = (logout, user) => {
   return(
     <div className={classes.RightMenu}> 
-        <li onClick={logout} className={classes.ActiveLink}>logout</li>
+      {user && "[" + user + "]"}
+      <li onClick={logout} className={classes.ActiveLink}>logout</li>
     </div>
   )
 }
@@ -87,11 +88,11 @@ export const renderUpdateLog = (update, {type, action}) => {
   );
 }
 
-export const renderErrorLog = ({message}) => {  
+export const renderErrorLog = ({error}) => {  
   return (
     <div className={classes.ErrorAlert}>
       <i className="fas fa-exclamation-circle"></i>
-      <span className={classes.Action}>{formatError(message)}</span>
+      <span className={classes.Action}>{formatError(error)}</span>
     </div>
   );
 }

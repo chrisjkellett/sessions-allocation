@@ -9,6 +9,7 @@ import Input from '../../../../components/FormElements/Input/Input';
 import {generateInputProps} from './utility';
 
 export const renderTableContent = (sessions, handleDelete, handleEdit, handleLink) => {
+  console.log(sessions);
   if(sessions === null){
     return <Notification message={notifications.LOADING} />
   }

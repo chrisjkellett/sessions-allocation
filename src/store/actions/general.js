@@ -8,6 +8,14 @@ export const logResponse = (response, map) => {
   }
 }
 
+export const logError = (error, map) => {
+  return {
+    type: actionTypes.LOG_ERROR,
+    errorMessage: error.response.data,
+    map: map
+  }
+}
+
 export const refreshLog = () => {
   return {
     type: actionTypes.REFRESH_LOG

@@ -10,7 +10,7 @@ import {updateState, objectToArray} from '../utility';
 const initialState = {
   periods: null,
   current: null,
-  sessionsByPeriod: null
+  sessionsByPeriod: []
 }
 
 const reducer = (state = initialState, action) => {

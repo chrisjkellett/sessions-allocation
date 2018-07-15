@@ -8,8 +8,8 @@ import {logout} from '../../store/actions/auth';
 
 class Header extends Component{
   componentWillReceiveProps(next){
-    const {updatedLog, refreshLog} = this.props;
-    if(next.updatedLog !== updatedLog){
+    const {updatedLog, refreshLog, error} = this.props;
+    if(next.updatedLog !== updatedLog || next.error !== error){
       setTimeout(() => {  
         refreshLog();
       }, 4000);
@@ -23,7 +23,7 @@ class Header extends Component{
   }
 
   render(){
-    const {updatedLog, mapOfLog, exError, user} = this.props;
+    const {updatedLog, mapOfLog, error, user} = this.props;
     return(
       <div className={classes.Header}>
         <ul>
@@ -31,11 +31,10 @@ class Header extends Component{
           {navElements.renderSessionViewLink()}
           {navElements.renderExaminerFormLink(this.props)}
           {navElements.renderSessionFormLink(this.props)}
-          {navElements.renderLogout(this.logoutHandler)}
+          {navElements.renderLogout(this.logoutHandler, user)}
         </ul>
         {updatedLog && navElements.renderUpdateLog(updatedLog, mapOfLog)}
-        {exError && navElements.renderErrorLog(exError)}
-        {user && navElements.renderUserBar(user)}
+        {error && navElements.renderErrorLog(error, mapOfLog)}
       </div>
     )
   }
@@ -48,7 +47,8 @@ const mapStateToProps = state => {
     user: state.auth.session_user,
     updatedLog: state.gen.updated,
     mapOfLog: state.gen.map,
-    exError: state.ex.error
+    exError: state.ex.error,//not needed ?
+    error: state.gen.error
   }
 }
 
