@@ -62,17 +62,18 @@ class AddSessions extends Component{
     const session = forSubmit(this.state.session);
     
     if(isValid && !this.props.sessionForEditing){
-      const updated = [...this.props.sessions, Object.assign({}, session)];
-      this.props.addSession(updated, session);
-      this.props.history.goBack();
+      const {history, addSession, token, sessions} = this.props;
+      const updated = [...sessions, Object.assign({}, session)];
+      addSession(updated, session, token);
+      history.goBack();
     }
 
     if(isValid && this.props.sessionForEditing){
-      const {sessionForEditing, sessions} = this.props;
+      const {sessionForEditing, sessions, token} = this.props;
       const {id} = sessionForEditing;
       session.id = id;
       const updated = [...sessions.filter(item => item.id !== id), Object.assign({}, session)];
-      this.props.updateSession(updated, session, id);
+      this.props.updateSession(updated, session, id, token);
       this.props.history.goBack();
     }
   }
@@ -94,14 +95,15 @@ const mapStateToProps = state => {
   return {
     examiners: state.ex.examiners,
     sessionForEditing: state.sess.selectedSession,
-    sessions: state.sess.sessions
+    sessions: state.sess.sessions,
+    token: state.auth.token
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    addSession: (sessions, session) => dispatch(actions.addSession(sessions, session)),
-    updateSession: (sessions, session, id) => dispatch(actions.updateSession(sessions, session, id))
+    addSession: (sessions, session, token) => dispatch(actions.addSession(sessions, session, token)),
+    updateSession: (sessions, session, id, token) => dispatch(actions.updateSession(sessions, session, id, token))
   }
 }
 

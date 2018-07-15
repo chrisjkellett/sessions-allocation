@@ -23,14 +23,14 @@ class Header extends Component{
   }
 
   render(){
-    const {updatedLog, mapOfLog, error, user} = this.props;
+    const {updatedLog, mapOfLog, error, user, isAuthenticated} = this.props;
     return(
       <div className={classes.Header}>
         <ul>
           {navElements.renderExaminerViewLink()}
           {navElements.renderSessionViewLink()}
-          {navElements.renderExaminerFormLink(this.props)}
-          {navElements.renderSessionFormLink(this.props)}
+          {isAuthenticated && navElements.renderExaminerFormLink(this.props)}
+          {isAuthenticated && navElements.renderSessionFormLink(this.props)}
           {navElements.renderLogout(this.logoutHandler, user)}
         </ul>
         {updatedLog && navElements.renderUpdateLog(updatedLog, mapOfLog)}
@@ -48,7 +48,8 @@ const mapStateToProps = state => {
     updatedLog: state.gen.updated,
     mapOfLog: state.gen.map,
     exError: state.ex.error,//not needed ?
-    error: state.gen.error
+    error: state.gen.error,
+    isAuthenticated: state.auth.token !== null
   }
 }
 

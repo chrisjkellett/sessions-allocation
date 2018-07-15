@@ -18,7 +18,7 @@ let sessions;
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.LOAD_SESSIONS_SUCCESS:
-      sessions = action.sessions !== null ? objectToArray(action.sessions, 'session_date'): [];
+      sessions = objectToArray(action.sessions, 'session_date');
       return updateState(state, {sessions: sessions, error: false});
 
     case actionTypes.ADD_SESSION_SUCCESS:

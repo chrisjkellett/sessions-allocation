@@ -32,7 +32,7 @@ class Examiners extends Component{
     return (
       <section className={classes.Examiners}>
         <Table labels={examinerTableHeaders}>
-          {renderTableContent(this.props.examiners, this.handleDelete, this.handleEdit, this.handleLink)}
+          {renderTableContent(this.props, this.handleDelete, this.handleEdit, this.handleLink)}
         </Table>
       </section>
     )
@@ -41,7 +41,8 @@ class Examiners extends Component{
 
 const mapStateToProps = state => {
   return {
-    examiners: state.ex.examiners
+    examiners: state.ex.examiners,
+    isAuthenticated: state.auth.session_user
   }
 }
 

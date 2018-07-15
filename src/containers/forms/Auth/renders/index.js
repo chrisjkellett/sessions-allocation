@@ -3,13 +3,11 @@ import Input from '../../../../components/FormElements/Input/Input';
 import {generateFormElementArray} from '../../../../gen-utility';
 import {generateInputProps} from '../utility';
 import Logo from '../../../../components/Logo/Logo';
-import {renderError} from './sub-renders';
 import classes from '../Auth.css';
-import {Redirect} from 'react-router-dom';
-import * as routes from '../../../../store/app-data/routes';
 
-export const renderUI = (state, inputHandler, submitHandler, {user, error, history}) => {
-  if(user === null || error){
+
+
+export const renderUI = (state, inputHandler, submitHandler) => {
     return(
       <section className={classes.Auth}>
         <Logo styles='Centre-Mid'/>
@@ -20,14 +18,8 @@ export const renderUI = (state, inputHandler, submitHandler, {user, error, histo
             }
           )}
           <button>login</button>
-          {renderError(error)}
+          {/* {renderError(error)} */}
         </form>
       </section>
     )
-  }
-
-  else{
-    return <Redirect to={routes.SESSIONS} />
-  }
-
 }

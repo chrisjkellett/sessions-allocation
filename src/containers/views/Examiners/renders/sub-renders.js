@@ -11,7 +11,7 @@ export const renderName = (examiner, linkHandler) => {
 }
 
 
-export const renderRoles = (examiner, classes) => {
+export const renderRoles = (examiner) => {
   return (
     <td>
     {examiner.roles
@@ -22,7 +22,7 @@ export const renderRoles = (examiner, classes) => {
   )
 }
 
-export const renderLevels = (examiner, classes) => {
+export const renderLevels = (examiner) => {
   return(
     <td>
       {!examiner.levels ? null : examiner.levels
@@ -33,7 +33,7 @@ export const renderLevels = (examiner, classes) => {
   )
 }
 
-export const renderAvailability = (examiner, classes) => {
+export const renderAvailability = (examiner) => {
   return(
     <td>
       {formatAvailability([...examiner.availability])
@@ -47,12 +47,12 @@ export const renderAvailability = (examiner, classes) => {
   )
 }
 
-export const renderBtns = (examiner, classes, deleteHandler, editHandler) => {
+export const renderBtns = (examiner, deleteHandler, editHandler, isAuthenticated) => {
   return(
     <td>
       <span className={classes.Btn} onClick={() => editHandler(examiner)}>edit</span>
-      <span className={classes.Bar}> | </span>
-      <span className={classes.Btn} onClick={() => deleteHandler(examiner)}>delete</span>
+      {isAuthenticated && <span className={classes.Bar}> | </span>}
+      {isAuthenticated && <span className={classes.Btn} onClick={() => deleteHandler(examiner)}>delete</span>}
     </td>
   )
 }

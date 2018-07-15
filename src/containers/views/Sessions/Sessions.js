@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {renderTableContent, renderError, renderFormPeriod} from './renders/';
+import {renderTableContent, renderFormPeriod} from './renders/';
 import classes from './Sessions.css';
 import Table from '../../../components/FormElements/Table/Table';
 import {sessionTableHeaders} from '../../../store/app-data/table-headers';
@@ -51,13 +51,12 @@ class Sessions extends Component{
 
 
   render(){
-    const {errors, sessionsByPeriod} = this.props;
+    const {sessionsByPeriod, isAuthenticated} = this.props;
     return (
       <section className={classes.Sessions}>
-        {renderError(errors)}
         {renderFormPeriod(this.state, this.periodHandler, this.props)}
         <Table labels={sessionTableHeaders}>
-          {renderTableContent(sessionsByPeriod, this.handleDelete, this.handleEdit, this.handleLink)}
+          {renderTableContent(sessionsByPeriod, this.handleDelete, this.handleEdit, this.handleLink, isAuthenticated)}
         </Table>
       </section>
     )
@@ -71,7 +70,8 @@ const mapStateToProps = state => {
     periods: state.per.periods,
     currentPeriod: state.per.current,
     sessionsByPeriod: state.per.sessionsByPeriod,
-    token: state.auth.token
+    token: state.auth.token,
+    isAuthenticated: state.auth.token !== null
   }
 }
 
