@@ -47,12 +47,12 @@ export const renderAvailability = (examiner) => {
   )
 }
 
-export const renderBtns = (examiner, deleteHandler, editHandler, isAuthenticated) => {
+export const renderBtns = (examiner, deleteHandler, editHandler) => {
   return(
     <td>
       <span className={classes.Btn} onClick={() => editHandler(examiner)}>edit</span>
-      {isAuthenticated && <span className={classes.Bar}> | </span>}
-      {isAuthenticated && <span className={classes.Btn} onClick={() => deleteHandler(examiner)}>delete</span>}
+      <span className={classes.Bar}> | </span>
+      <span className={classes.Btn} onClick={() => deleteHandler(examiner)}>delete</span>
     </td>
   )
 }

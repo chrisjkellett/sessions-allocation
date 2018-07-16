@@ -4,7 +4,7 @@ import Notification from '../../../../components/Misc/Notification';
 import * as notifications from '../../../../store/app-data/notifications';
 import {renderName, renderRoles, renderLevels, renderAvailability, renderBtns} from './sub-renders';
 
-export const renderTableContent = ({examiners, isAuthenticated}, handleDelete, handleEdit, handleLink) => {
+export const renderTableContent = ({examiners}, handleDelete, handleEdit, handleLink) => {
   if(examiners === null){
     return <Notification message={notifications.LOADING} />
   }
@@ -21,7 +21,7 @@ export const renderTableContent = ({examiners, isAuthenticated}, handleDelete, h
           {renderRoles(examiner)}
           {renderAvailability(examiner)}
           {renderLevels(examiner)}
-          {renderBtns(examiner, handleDelete, handleEdit, isAuthenticated)}
+          {renderBtns(examiner, handleDelete, handleEdit)}
         </tr>
     )))
   }

@@ -13,6 +13,11 @@ export const renderExaminerViewLink = () => {
   )  
 }
 
+export const renderSingleExaminerViewLink = (user) => {
+  console.log(user);
+  return null;
+}
+
 export const renderSessionViewLink = () => {
   return(
     <NavLink to={routes.SESSIONS} exact activeClassName={classes.Active}>

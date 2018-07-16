@@ -43,8 +43,7 @@ class Examiners extends Component{
 const mapStateToProps = state => {
   return {
     examiners: state.ex.examiners,
-    token: state.auth.token,
-    isAuthenticated: state.auth.token !== null && state.auth.token !== '9999'
+    token: state.auth.token
   }
 }
 

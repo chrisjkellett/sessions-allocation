@@ -10,6 +10,7 @@ import {formatURL, formatDateURLPretty} from '../../../gen-utility';
 import * as actions from '../../../store/actions/sessions';
 import {handlePeriodSelect} from '../../../store/actions/periods';
 import {getSelectedOptions} from '../../forms/form-utility';
+import {filterByUser} from './renders/utility';
 
 class Sessions extends Component{
   state = {
@@ -51,12 +52,13 @@ class Sessions extends Component{
 
 
   render(){
-    const {sessionsByPeriod, isAuthenticated} = this.props;
+    const {sessionsByPeriod, isAuthenticated, user} = this.props;
+    const sessions = filterByUser(sessionsByPeriod, isAuthenticated, user)
     return (
       <section className={classes.Sessions}>
-        {renderFormPeriod(this.state, this.periodHandler, this.props)}
+        {renderFormPeriod(this.state, this.periodHandler, this.props, sessions)}
         <Table labels={sessionTableHeaders}>
-          {renderTableContent(sessionsByPeriod, this.handleDelete, this.handleEdit, this.handleLink, isAuthenticated)}
+          {renderTableContent(sessions, this.handleDelete, this.handleEdit, this.handleLink, isAuthenticated, user)}
         </Table>
       </section>
     )
@@ -72,7 +74,8 @@ const mapStateToProps = state => {
     sessionsByPeriod: state.per.sessionsByPeriod,
     token: state.auth.token,
     isAuthenticated: state.auth.token !== null && state.auth.token !== '9999',
-    isUser: state.auth.token !== null
+    isUser: state.auth.token !== null,
+    user: state.auth.session_user
   }
 }
 

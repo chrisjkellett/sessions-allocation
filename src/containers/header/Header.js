@@ -27,8 +27,9 @@ class Header extends Component{
     return(
       <div className={classes.Header}>
         <ul>
-          {navElements.renderExaminerViewLink()}
           {navElements.renderSessionViewLink()}
+          {isAuthenticated && navElements.renderExaminerViewLink()}
+          {!isAuthenticated && navElements.renderSingleExaminerViewLink(user)}
           {isAuthenticated && navElements.renderExaminerFormLink(this.props)}
           {isAuthenticated && navElements.renderSessionFormLink(this.props)}
           {navElements.renderLogout(this.logoutHandler, user)}
@@ -47,7 +48,6 @@ const mapStateToProps = state => {
     user: state.auth.session_user,
     updatedLog: state.gen.updated,
     mapOfLog: state.gen.map,
-    exError: state.ex.error,//not needed ?
     error: state.gen.error,
     isAuthenticated: state.auth.token !== null && state.auth.token !== '9999'
   }

@@ -7,7 +7,7 @@ import {generateFormElementArray} from '../../../forms/form-utility';
 import Input from '../../../../components/FormElements/Input/Input';
 import {generateInputProps} from './utility';
 
-export const renderTableContent = (sessions, handleDelete, handleEdit, handleLink, isAuthenticated) => {
+export const renderTableContent = (sessions, handleDelete, handleEdit, handleLink, isAuthenticated, user) => {
   if(sessions === null){
     return <Notification message={notifications.LOADING} />
   }
@@ -33,13 +33,13 @@ export const renderTableContent = (sessions, handleDelete, handleEdit, handleLin
   }
 }
 
-export const renderFormPeriod = (state, periodHandler, props) => {
+export const renderFormPeriod = (state, periodHandler, props, sessions) => {
   if(props.periods !== null && props.periods.length > 1){
     return (
       <div className={classes.PeriodSubNav}>
         {generateFormElementArray(state)
           .map(element =>{
-            return <Input {...generateInputProps(element, periodHandler, props)} />
+            return <Input {...generateInputProps(element, periodHandler, props, sessions)} />
           }
         )}
       </div>
