@@ -13,6 +13,7 @@ import AddSessions from '../forms/Sessions/Sessions';
 import Wrapper from '../../components/Misc/Wrapper/Wrapper';
 import {loadExaminers} from '../../store/actions/examiners';
 import {loadSessions} from '../../store/actions/sessions';
+import {checkAuthState} from '../../store/actions/auth/auth';
 import {Redirect} from 'react-router-dom';
 import * as routes from '../../store/app-data/routes';
 
@@ -20,6 +21,7 @@ class App extends Component {
   componentDidMount(){
     this.props.loadExaminers();
     this.props.loadSessions();
+    this.props.checkAuthState();
   }
 
   render() {
@@ -64,6 +66,7 @@ const mapDispatchToProps = dispatch => {
   return{
     loadExaminers: () => dispatch(loadExaminers()),
     loadSessions: () => dispatch(loadSessions()),
+    checkAuthState: () => dispatch(checkAuthState())
   }
 }
 
