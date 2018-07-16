@@ -26,10 +26,10 @@ class Auth extends Component{
   submitHandler = (event) => {
     event.preventDefault();
     const {authUser, examiners} = this.props;
-    this.setState({...this.state, showErrors: true})
     const user = forSubmit({...this.state.login});
-    const regularUser = examiners.find(ex => ex.email === user.email);
+    const regularUser = examiners.find(ex => ex.email === user.email && user.password === 'test');
     authUser(Object.assign({...user}, {returnSecureToken: true}), regularUser);
+    this.setState({...this.state, showErrors: true})
   }
 
   render(){

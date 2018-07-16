@@ -75,10 +75,10 @@ export const renderSessionFormLink = ({selectedSession, history, location}) => {
     return null;  
 }
 
-export const renderLogout = (logout, user) => {
+export const renderLogout = (logout, user, isAuthenticated) => {
   return(
     <div className={classes.RightMenu}> 
-      {user && "[" + user + "]"}
+      {isAuthenticated && "[" + user + "]"}
       <li onClick={logout} className={classes.ActiveLink}>logout</li>
     </div>
   )

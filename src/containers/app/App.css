@@ -2,8 +2,8 @@
 
 .Section{
   padding: 30px 5px;
-  background: rgba(251,251,251, 0.8);
-  min-height: 75vh;
+  background: linear-gradient(rgba(240,240,240, 0.8), rgba(251,251,251, 0.8)); 
+  min-height: 80vh;
 }
 
 body {

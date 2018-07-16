@@ -12,6 +12,8 @@ import Table from '../../../components/FormElements/Table/Table';
 class Examiners extends Component{
   componentDidMount(){
     this.props.deActivateSelectedExaminer();
+    const examiner = this.props.examiners;
+    console.log(examiner);
   }
 
   handleEdit = (examiner) =>{
@@ -43,7 +45,9 @@ class Examiners extends Component{
 const mapStateToProps = state => {
   return {
     examiners: state.ex.examiners,
-    token: state.auth.token
+    token: state.auth.token,
+    isAuthenticated: state.auth.token !== null && state.auth.token !== '9999',
+    user: state.auth.session_user
   }
 }
 
