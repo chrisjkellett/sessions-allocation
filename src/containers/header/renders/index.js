@@ -13,9 +13,9 @@ export const renderExaminerViewLink = () => {
   )  
 }
 
-export const renderSingleExaminerViewLink = (user) => {
+export const renderSingleExaminerViewLink = (user, examiner) => {
   return (
-  <NavLink to={routes.EXAMINERS} exact activeClassName={classes.Active}>
+  <NavLink to={routes.EXAMINERS + formatURL(user)} exact activeClassName={classes.Active}>
     <li>{formatURL(user)}</li>
     </NavLink>
   )  

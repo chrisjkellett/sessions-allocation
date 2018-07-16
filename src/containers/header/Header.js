@@ -23,13 +23,13 @@ class Header extends Component{
   }
 
   render(){
-    const {updatedLog, mapOfLog, error, user, isAuthenticated} = this.props;
+    const {updatedLog, mapOfLog, error, user, isAuthenticated, selectedExaminer} = this.props;
     return(
       <div className={classes.Header}>
         <ul>
           {navElements.renderSessionViewLink()}
           {isAuthenticated && navElements.renderExaminerViewLink()}
-          {!isAuthenticated && user && navElements.renderSingleExaminerViewLink(user)}
+          {!isAuthenticated && user && navElements.renderSingleExaminerViewLink(user, selectedExaminer)}
           {isAuthenticated && navElements.renderExaminerFormLink(this.props)}
           {isAuthenticated && navElements.renderSessionFormLink(this.props)}
           {navElements.renderLogout(this.logoutHandler, user, isAuthenticated)}
