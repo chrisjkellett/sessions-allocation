@@ -7,19 +7,20 @@ import {updateState, distributeValuesForEditing, updateSimpleState, getSelectedO
   forSubmit, updateDateArray, checkDisabledFields, checkFormValidity} from '../form-utility';
 import {renderUI} from './renders/';
 import {checkValidity} from '../validation/validation';
-import {formatInput} from '../validation/utility';
+import {formatInput} from '../validation/utility';;
 
 
 class Examiners extends Component {
   state = {
     examiner: constructExaminerState(),
+    editing: false,
     shouldValidate: false
   }
 
   componentDidMount(){ 
     if(this.props.exEdit){
       const update = distributeValuesForEditing({...this.state.examiner}, {...this.props.exEdit});
-      this.setState(updateSimpleState({examiner: update}));
+      this.setState({...this.state, examiner: update, editing: true});
     } 
   }
 

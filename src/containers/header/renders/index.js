@@ -27,7 +27,7 @@ export const renderExaminerFormLink = ({history, selectedExaminer, location}) =>
       if(location.pathname === routes.EXAMINERS + formatURL(selectedExaminer.name)) 
         return <li>{formatURL(selectedExaminer.name)}</li>
       else
-        return <li>editing examiner</li>
+        return <li>{'[editing] ' + formatURL(selectedExaminer.name)}</li>
         
     else
       return(
