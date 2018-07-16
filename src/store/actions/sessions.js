@@ -36,7 +36,7 @@ export const addSession = (sessions, session, token) => {
       .then(response => {
         dispatch(addSessionSuccess(session, response.data.name));
         dispatch(logResponse(session, {type: 'session', action: 'added'}));
-        dispatch(updatePeriods(sessions));
+        dispatch(updatePeriods(sessions.concat({...session})));
       })
       .catch(error => {
         dispatch(logError(error, {type: 'session', action: 'added'}));

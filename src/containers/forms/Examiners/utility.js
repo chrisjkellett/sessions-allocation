@@ -36,11 +36,3 @@ export const generateInputProps = (element, state, changeHandler) => {
     change: (event, index) => changeHandler(event, config.elementType, element.id, index)
   }
 }
-
-export const examinerForAuth = ({email}) => {
-  return {
-    email: email.value,
-    password: 'lenguasvivas',
-    returnSecureToken: true
-  }
-}

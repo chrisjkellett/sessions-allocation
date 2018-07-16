@@ -37,7 +37,6 @@ export const authRegularUser = (user, error) => {
 export const checkAuthState = () => {
   return dispatch => {
     const cache = getStorage();
-    console.log(cache);
     if(!cache.token){ 
       dispatch(logout()); 
     }

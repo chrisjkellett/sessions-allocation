@@ -107,7 +107,7 @@ export const checkFormValidity = (obj) => {
 
 export const distributeValuesForEditing = (state, selected) => {  
   for(let item in state){
-    state[item].value = selected[item];
+    state[item].value = selected[item] !== undefined ? selected[item]: state[item].value;
     state[item].validation.valid = [];
   }
 

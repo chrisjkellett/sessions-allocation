@@ -5,7 +5,6 @@ import * as actions from '../../../store/actions/examiners';
 import {constructExaminerState} from '../../../store/constructors/examiners';
 import {updateState, distributeValuesForEditing, updateSimpleState, getSelectedOptions, updateOptionArray, 
   forSubmit, updateDateArray, checkDisabledFields, checkFormValidity} from '../form-utility';
-import {examinerForAuth} from './utility';
 import {renderUI} from './renders/';
 import {checkValidity} from '../validation/validation';
 import {formatInput} from '../validation/utility';
@@ -26,13 +25,13 @@ class Examiners extends Component {
 
   submitHandler = (event) => {
     const {examiner} = this.state;
-    const {exEdit, updateExaminer, registerExaminer, history} = this.props;
+    const {exEdit, updateExaminer, addExaminer, history, token} = this.props;
     const data = forSubmit(examiner);
     event.preventDefault();
     this.initialiseValidation();
 
     if (checkFormValidity(examiner)) {
-      exEdit ? updateExaminer(data, exEdit.id) : registerExaminer(examinerForAuth(examiner), data);
+      exEdit ? updateExaminer(data, exEdit.id, token) : addExaminer(data, token);
       history.goBack();
     }
     
@@ -96,14 +95,15 @@ class Examiners extends Component {
 
 const mapStateToProps = state => {
   return{
-    exEdit: state.ex.selectedExaminer
+    exEdit: state.ex.selectedExaminer,
+    token: state.auth.token
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return{
-    updateExaminer: (examiner, id) => dispatch(actions.updateExaminer(examiner, id)),
-    registerExaminer: (userForAuth, user) => dispatch(actions.registerExaminer(userForAuth, user)) 
+    updateExaminer: (examiner, id, token) => dispatch(actions.updateExaminer(examiner, id, token)),
+    addExaminer: (user, token) => dispatch(actions.addExaminer(user, token)) 
   }
 }
 

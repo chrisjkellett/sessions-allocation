@@ -20,7 +20,8 @@ class Examiners extends Component{
   }
 
   handleDelete = (examiner) => {
-    this.props.deleteExaminer(examiner)
+    const {token, deleteExaminer} = this.props;
+    deleteExaminer(examiner, token)
   }
 
   handleLink = (examiner) => {
@@ -42,14 +43,15 @@ class Examiners extends Component{
 const mapStateToProps = state => {
   return {
     examiners: state.ex.examiners,
-    isAuthenticated: state.auth.session_user
+    token: state.auth.token,
+    isAuthenticated: state.auth.token !== null && state.auth.token !== '9999'
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchExaminer: (id) => dispatch(actions.fetchExaminer(id)),
-    deleteExaminer: (id) => dispatch(actions.deleteExaminer(id)),
+    deleteExaminer: (examiner, token) => dispatch(actions.deleteExaminer(examiner, token)),
     deActivateSelectedExaminer: () => dispatch(actions.deActivateSelectedExaminer())
   }
 }

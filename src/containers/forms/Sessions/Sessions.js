@@ -63,7 +63,7 @@ class AddSessions extends Component{
     
     if(isValid && !this.props.sessionForEditing){
       const {history, addSession, token, sessions} = this.props;
-      const updated = [...sessions, Object.assign({}, session)];
+      const updated = [...sessions];
       addSession(updated, session, token);
       history.goBack();
     }

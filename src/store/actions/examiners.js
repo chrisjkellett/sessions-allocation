@@ -1,7 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios';
 import {logResponse} from './general';
-import {SIGNUP_API} from '../data';
 
 export const loadExaminers = () => {
   return dispatch => {
@@ -22,45 +21,9 @@ export const loadExaminersSuccess = (data) => {
   }
 }
 
-export const registerExaminerStart = () => {
-  return {
-    type: actionTypes.REGISTER_EXAMINER_START
-  }
-}
-
-export const registerExaminerSuccess = (data) => {
-  return {
-    type: actionTypes.REGISTER_EXAMINER_SUCCESS,
-    data: data
-  }
-}
-
-export const registerExaminerFail = (error) => {
-  return {
-    type: actionTypes.REGISTER_EXAMINER_FAIL,
-    error: error
-  }
-}
-
-export const registerExaminer = (userForAuth, user) => {
+export const addExaminer = (examiner, token) => {
   return dispatch => {
-    console.log(userForAuth);
-    dispatch(registerExaminerStart());
-    axios.post(SIGNUP_API, userForAuth)
-      .then(res => {
-        dispatch(registerExaminerSuccess(res.data));
-        dispatch(addExaminer(user));
-    })
-      .catch(error => {
-        console.log(error);
-        dispatch(registerExaminerFail(error));
-    })
-  }
-}
-
-export const addExaminer = (examiner) => {
-  return dispatch => {
-    axios.post('/examiners.json', examiner)
+    axios.post('/examiners.json?auth=' + token, examiner)
       .then(response => {
         dispatch(addExaminerSuccess(examiner, response.data.name));
         dispatch(logResponse(examiner, {type: 'examiners', action: 'added'}));
@@ -79,9 +42,9 @@ export const addExaminerSuccess = (examiner, id) => {
   }
 }
 
-export const updateExaminer = (examiner, id) => {
+export const updateExaminer = (examiner, id, token) => {
   return dispatch => {
-    axios.put('/examiners/' + id + '.json', examiner)
+    axios.put('/examiners/' + id + '.json?auth=' + token, examiner)
       .then(response => {
         dispatch(updateExaminerSuccess(examiner, id));
         dispatch(logResponse(examiner, {type: 'examiners', action: 'updated'}));
@@ -100,11 +63,11 @@ export const updateExaminerSuccess = (examiner, id) => {
   }
 }
 
-export const deleteExaminer = (examiner) => {
+export const deleteExaminer = (examiner, token) => {
   const {id} = examiner;
   return dispatch => {
-    axios.delete('/examiners/' + id + '.json')
-      .then(response => {
+    axios.delete('/examiners/' + id + '.json?auth=' + token)
+      .then(() => {
         dispatch(deleteExaminerSuccess(id));
         dispatch(logResponse(examiner, {type: 'examiners', action: 'deleted'}));
       })

@@ -12,7 +12,7 @@ const reducer = (state = initial, action) => {
       return {...state, session_user: action.email, token: action.token};
 
     case actionTypes.AUTH_REGULAR_USER_SUCCESS:
-      return {...state, session_user: action.user.name}
+      return {...state, session_user: action.user.name, token: localStorage.getItem('token')}
 
     case actionTypes.AUTH_USER_FAIL:
       return {...state, error: action.error}

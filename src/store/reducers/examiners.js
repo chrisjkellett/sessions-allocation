@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {examiners: removeElementById(state.examiners, action.id), error: false})
 
     case actionTypes.UPDATE_EXAMINER_SUCCESS:
-      return updateState(state, {examiners: replaceElementById(state.examiners, action.examiner, action.id), error: false})
+      return updateState(state, {examiners: sortBy(replaceElementById(state.examiners, action.examiner, action.id), 'name'), error: false})
 
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: true})

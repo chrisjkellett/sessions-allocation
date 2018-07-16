@@ -71,7 +71,8 @@ const mapStateToProps = state => {
     currentPeriod: state.per.current,
     sessionsByPeriod: state.per.sessionsByPeriod,
     token: state.auth.token,
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null && state.auth.token !== '9999',
+    isUser: state.auth.token !== null
   }
 }
 

@@ -49,7 +49,7 @@ const mapStateToProps = state => {
     mapOfLog: state.gen.map,
     exError: state.ex.error,//not needed ?
     error: state.gen.error,
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null && state.auth.token !== '9999'
   }
 }
 

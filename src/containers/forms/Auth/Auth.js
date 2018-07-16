@@ -31,9 +31,9 @@ class Auth extends Component{
   }
 
   render(){
-    const {isAuthenticated} = this.props;
+    const {isUser} = this.props;
     const {login} = this.state;
-    if(isAuthenticated)
+    if(isUser)
       return <Redirect to={routes.SESSIONS} />;
     else
       return renderUI({...login}, this.inputHandler, this.submitHandler);
@@ -45,7 +45,7 @@ const mapStateToProps = state => {
   return {
     examiners: state.ex.examiners,
     user: state.auth.session_user,
-    isAuthenticated: state.auth.token !== null,
+    isUser: state.auth.token !== null,
     error: state.auth.error
   }
 }
