@@ -12,8 +12,9 @@
 .Error{
   font-size: 80%;
   background: salmon;
+  border-bottom: 1px solid grey;
   position: fixed;
-  top: 40px;
+  top: 0;
   padding: 15px 0;
   left: 0;
   width: 100%;

@@ -11,7 +11,8 @@ import * as routes from '../../../store/app-data/routes';
 
 class Auth extends Component{
   state = {
-    login: constructAuthState()
+    login: constructAuthState(),
+    showErrors: true
   }
 
   inputHandler = (event, id) => {
@@ -19,24 +20,25 @@ class Auth extends Component{
     const type = Object.keys({...this.state})[0];
     const update = updateState(this.state, id, {value: formatInput(value, id)}, type);
     update[type][id].validation = checkValidity({...update[type][id]});
-    this.setState(update);
+    this.setState({...update, showErrors: false});
   }
 
   submitHandler = (event) => {
     event.preventDefault();
     const {authUser, examiners} = this.props;
+    this.setState({...this.state, showErrors: true})
     const user = forSubmit({...this.state.login});
     const regularUser = examiners.find(ex => ex.email === user.email);
     authUser(Object.assign({...user}, {returnSecureToken: true}), regularUser);
   }
 
   render(){
-    const {isUser} = this.props;
-    const {login} = this.state;
+    const {isUser, error} = this.props;
+    const {login, showErrors} = this.state;
     if(isUser)
       return <Redirect to={routes.SESSIONS} />;
     else
-      return renderUI({...login}, this.inputHandler, this.submitHandler);
+      return renderUI({...login}, this.inputHandler, this.submitHandler, error, showErrors);
     
   }
 }
