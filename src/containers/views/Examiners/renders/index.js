@@ -22,7 +22,7 @@ export const renderTableContent = ({examiners, isAuthenticated, user}, handleDel
           {renderRoles(examiner)}
           {renderAvailability(examiner)}
           {renderLevels(examiner)}
-          {renderBtns(examiner, handleDelete, handleEdit)}
+          {renderBtns(examiner, handleDelete, handleEdit, isAuthenticated)}
         </tr>
     )))
   }

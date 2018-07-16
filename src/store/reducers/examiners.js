@@ -1,11 +1,12 @@
-import * as actionTypes from '../actions/actionTypes';
+import * as actionTypes from '../actions/examiners/actionTypes';
 import {
   updateState, 
   removeElementById,
   replaceElementById,
   addId,
   objectToArray,
-  sortBy
+  sortBy,
+  checkExaminerOnLoad
 } from './utility';
 
 const initialState = {
@@ -33,11 +34,11 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FAILED_LOAD:
       return updateState(state, {error: true})
 
-    case actionTypes.REGISTER_EXAMINER_FAIL:
-      return updateState(state, {error: action.error.response.data.error})
-
     case actionTypes.FETCH_EXAMINER:
       return updateState(state, {selectedExaminer: action.examiner})
+
+    case actionTypes.FETCH_EXAMINER_ON_LOAD:
+      return {...state, selectedExaminer: checkExaminerOnLoad(action)};
 
     case actionTypes.DEACTIVATE_SELECTED_EXAMINER:
       return updateState(state, {selectedExaminer: null})

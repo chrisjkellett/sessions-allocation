@@ -71,3 +71,6 @@ export const sortBy = (obj, factor) => {
   })
 }
 
+export const checkExaminerOnLoad = ({user, examiners}) => {
+  return user ? objectToArray(examiners).find(e => e.name === user) : null;
+}

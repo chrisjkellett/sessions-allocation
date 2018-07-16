@@ -1,7 +1,7 @@
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import * as actions from '../../../store/actions/examiners';
+import * as actions from '../../../store/actions/examiners/examiners';
 import {constructExaminerState} from '../../../store/constructors/examiners';
 import {updateState, distributeValuesForEditing, updateSimpleState, getSelectedOptions, updateOptionArray, 
   forSubmit, updateDateArray, checkDisabledFields, checkFormValidity} from '../form-utility';

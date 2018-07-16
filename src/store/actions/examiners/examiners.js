@@ -1,12 +1,14 @@
 import * as actionTypes from './actionTypes';
-import axios from '../../axios';
-import {logResponse} from './general';
+import axios from '../../../axios';
+import {logResponse} from '../general';
 
 export const loadExaminers = () => {
   return dispatch => {
     axios.get('/examiners.json')
       .then(response => {
+        const user = localStorage.getItem('name');
         dispatch(loadExaminersSuccess(response.data))
+        dispatch(fetchExaminerOnLoad(response.data, user))
       })
       .catch(error => {
         dispatch(failedLoad(error))
@@ -14,10 +16,11 @@ export const loadExaminers = () => {
   }
 }
 
-export const loadExaminersSuccess = (data) => {
+export const loadExaminersSuccess = (examiners, user) => {
   return {
     type: actionTypes.LOAD_EXAMINERS_SUCCESS,
-    examiners: data
+    examiners: examiners,
+    user: user
   }
 }
 
@@ -95,6 +98,14 @@ export const fetchExaminer = (examiner) => {
   return {
     type: actionTypes.FETCH_EXAMINER,
     examiner: examiner
+  }
+}
+
+export const fetchExaminerOnLoad = (examiners, user) => {
+  return {
+    type: actionTypes.FETCH_EXAMINER_ON_LOAD,
+    examiners: examiners,
+    user: user
   }
 }
 

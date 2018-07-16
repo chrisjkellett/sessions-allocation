@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import * as actions from '../../../store/actions/examiners';
+import * as actions from '../../../store/actions/examiners/examiners';
 import classes from './Examiners.css';
 import {examinerTableHeaders} from '../../../store/app-data/table-headers';
 import {formatURL} from '../../../gen-utility';
@@ -12,8 +12,6 @@ import Table from '../../../components/FormElements/Table/Table';
 class Examiners extends Component{
   componentDidMount(){
     this.props.deActivateSelectedExaminer();
-    const examiner = this.props.examiners;
-    console.log(examiner);
   }
 
   handleEdit = (examiner) =>{

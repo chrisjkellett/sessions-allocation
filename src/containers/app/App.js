@@ -11,7 +11,7 @@ import SingleSession from '../views/SingleSession/SingleSession';
 import AddExaminers from '../forms/Examiners/Examiners';
 import AddSessions from '../forms/Sessions/Sessions';
 import Wrapper from '../../components/Misc/Wrapper/Wrapper';
-import {loadExaminers} from '../../store/actions/examiners';
+import {loadExaminers} from '../../store/actions/examiners/examiners';
 import {loadSessions} from '../../store/actions/sessions';
 import {checkAuthState} from '../../store/actions/auth/auth';
 import {Redirect} from 'react-router-dom';

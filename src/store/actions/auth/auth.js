@@ -2,6 +2,7 @@ import * as actionTypes from './actionTypes';
 import axios from 'axios';
 import {AUTH_API} from '../../data';
 import {setStorage, deleteStorage, getStorage, checkTokenValidity} from './utility';
+import {fetchExaminer} from '../examiners/examiners';
 
 export const authUserStart = () => {
   return {
@@ -29,6 +30,7 @@ export const authRegularUser = (user, error) => {
     if(user){
       setStorage({idToken: '9999', expiresIn: 3600, email: null}, user.name);
       dispatch(authRegularUserSuccess(user))
+      dispatch(fetchExaminer(user))
     }else 
       dispatch(authFail(error))
   }
