@@ -3,3 +3,8 @@ export const setStorage = ({idToken, expiresIn}) => {
   localStorage.setItem('token', idToken)
   localStorage.setItem('expiration', expiration);
 }
+
+export const deleteStorage = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('expiration');
+}

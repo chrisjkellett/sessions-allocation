@@ -1,7 +1,7 @@
 import * as actionTypes from './../actionTypes';
 import axios from 'axios';
 import {AUTH_API} from '../../data';
-import {setStorage} from './utility';
+import {setStorage, deleteStorage} from './utility';
 
 export const authUserStart = () => {
   return {
@@ -66,6 +66,7 @@ export const checkAuthTimeout = (expiresIn) => {
 }
 
 export const logout = () => {
+  deleteStorage();
   return {
     type: actionTypes.AUTH_LOGOUT
   }
