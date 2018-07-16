@@ -1,7 +1,7 @@
-import * as actionTypes from './actionTypes';
+import * as actionTypes from './../actionTypes';
 import axios from 'axios';
-import {AUTH_API} from '../data';
-
+import {AUTH_API} from '../../data';
+import {setStorage} from './utility';
 
 export const authUserStart = () => {
   return {
@@ -29,6 +29,7 @@ export const authUser = (user, regUser) => {
     dispatch(authUserStart());
     axios.post(AUTH_API, user)
       .then(res => {
+        setStorage(res.data);
         dispatch(authUserSuccess(res.data));
         dispatch(checkAuthTimeout(res.data.expiresIn));
     })
@@ -40,9 +41,10 @@ export const authUser = (user, regUser) => {
 
 export const authRegularUser = (user, error) => {
   return dispatch => {
-    if(user)
+    if(user){
+      setStorage({idToken: '9999', expiresIn: 3600});
       dispatch(authRegularUserSuccess(user))
-    else 
+    }else 
       dispatch(authFail(error))
   }
 }

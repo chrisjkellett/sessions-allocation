@@ -6,7 +6,7 @@ import {renderUI} from './renders/';
 import {updateState, forSubmit} from '../form-utility';
 import {checkValidity} from '../validation/validation';
 import {formatInput} from '../validation/utility';
-import * as actions from '../../../store/actions/auth';
+import * as actions from '../../../store/actions/auth/auth';
 import * as routes from '../../../store/app-data/routes';
 
 class Auth extends Component{

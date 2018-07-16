@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import * as navElements from './renders/';
 import {refreshLog} from '../../store/actions/general';
-import {logout} from '../../store/actions/auth';
+import {logout} from '../../store/actions/auth/auth';
 
 class Header extends Component{
   componentWillReceiveProps(next){
