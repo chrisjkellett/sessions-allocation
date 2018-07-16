@@ -14,8 +14,11 @@ export const renderExaminerViewLink = () => {
 }
 
 export const renderSingleExaminerViewLink = (user) => {
-  console.log(user);
-  return null;
+  return (
+  <NavLink to={routes.EXAMINERS} exact activeClassName={classes.Active}>
+    <li>{formatURL(user)}</li>
+    </NavLink>
+  )  
 }
 
 export const renderSessionViewLink = () => {

@@ -29,7 +29,7 @@ class Header extends Component{
         <ul>
           {navElements.renderSessionViewLink()}
           {isAuthenticated && navElements.renderExaminerViewLink()}
-          {!isAuthenticated && navElements.renderSingleExaminerViewLink(user)}
+          {!isAuthenticated && user && navElements.renderSingleExaminerViewLink(user)}
           {isAuthenticated && navElements.renderExaminerFormLink(this.props)}
           {isAuthenticated && navElements.renderSessionFormLink(this.props)}
           {navElements.renderLogout(this.logoutHandler, user)}
