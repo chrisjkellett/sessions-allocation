@@ -17,6 +17,7 @@ export const renderExaminer = (session, examiner, id) => {
     <Wrapper>
       {renderSimple(examiner, 'name')} 
       {renderSimple(examiner, 'id_number')}
+      {renderArray(examiner, 'roles')}
       {renderArrayAsIcons(examiner, 'levels')}
       {renderAsMonitoring(examiner, 'last_monitoring')}
     </Wrapper>
@@ -93,5 +94,14 @@ export const renderEmpty = (str, warning) => {
         {str}
       </span>
     </td>  
+  )
+}
+
+export const renderArrivalTime = (session, id) => {
+  return(
+    <tr>
+      <td className={classes.Label}>{formatLabel(id)}</td>
+      <td className={classes.Data}></td>
+    </tr>
   )
 }

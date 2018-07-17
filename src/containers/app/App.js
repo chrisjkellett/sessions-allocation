@@ -17,6 +17,7 @@ import {checkAuthState} from '../../store/actions/auth/auth';
 import {Redirect} from 'react-router-dom';
 import * as routes from '../../store/app-data/routes';
 import AsyncLoad from './components/AsyncLoad/AsyncLoad';
+import AuthUser from './components/AuthUser/AuthUser';
 
 class App extends Component {
   componentDidMount(){
@@ -26,13 +27,14 @@ class App extends Component {
   }
 
   render() {
-    const {isAuthenticated, examiners} = this.props;
+    const {isAuthenticated, examiners, user} = this.props;
     return (
       <Wrapper>
         <Switch>
           <Route path={routes.LOGIN_PAGE} exact component={Auth} />
         </Switch>
 
+        <AuthUser user={user}>
         <Route path='/(.+)' render={() => (
           <AsyncLoad waitFor={examiners}>
             <Header />
@@ -46,12 +48,13 @@ class App extends Component {
                 {isAuthenticated && <Route path={routes.ADD_SESSION} exact component={AddSessions} />}
                 {isAuthenticated && <Route path={routes.EDIT_SESSION} exact component={AddSessions}/>}
                 <Route path={routes.SINGLE_SESSION_VIEW} exact component={SingleSession} />
-                <Redirect to={routes.SESSIONS} />
               </Switch>
             </section>
           </AsyncLoad>
           )} />
+          </AuthUser>
       </Wrapper>
+
     );
   }
 }
@@ -61,6 +64,7 @@ const mapStateToProps = state => {
     sessions: state.sess.sessions,
     isAuthenticated: state.auth.token !== null && state.auth.token !== '9999',
     examiners: state.ex.examiners,
+    user: state.auth.session_user,
     selected: state.ex.selectedExaminer
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import classes from '../SingleSession.css';
-import {renderAsDate, renderSimple, renderExaminer, renderArrayAsIcons} from './sub-renders';
+import {renderAsDate, renderSimple, renderExaminer, renderArrayAsIcons, renderArrivalTime} from './sub-renders';
 import * as routes from '../../../../store/app-data/routes';
 
 export const renderUL = ({session, examiners}) => {
@@ -18,10 +18,12 @@ export const renderUL = ({session, examiners}) => {
             <tbody>
             {renderAsDate(session, 'session_date')}
             {renderSimple(session, 'time')}
+            {renderArrivalTime(session, 'arrival time')}
             {renderSimple(session, 'venue')}
             {renderArrayAsIcons(session, 'levels')}
             {renderSimple(session, 'type')}
             {renderSimple(session, 'support')}
+            {renderSimple(session, 'notes')}
             </tbody>
           </table>
         </div>

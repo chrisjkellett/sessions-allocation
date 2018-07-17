@@ -25,6 +25,8 @@ export const renderUL = (examiner, sessions) => {
             <tbody>
             {renderSimple(examiner, 'name')}
             {renderSimple(examiner, 'email')}
+            {renderSimple(examiner, 'phone')}
+            {renderSimple(examiner, 'date of birth')}
             {renderArrayAsDayIcons(examiner, 'availability')}
             {renderArray(examiner, 'roles')}
             {isSE && renderSimple(examiner, 'id_number')}
@@ -39,6 +41,7 @@ export const renderUL = (examiner, sessions) => {
             {isSE && renderAsDate(examiner, 'last_monitoring')}
             {isSE && examiner.monitoring_level && renderArrayAsIcons(examiner, 'monitoring_level')}
             {renderSessionDate(mysessions, 'next session')}
+            {renderSimple(examiner, 'notes')}
             </tbody>
           </table>
         </div>

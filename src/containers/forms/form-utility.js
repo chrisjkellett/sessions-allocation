@@ -111,13 +111,13 @@ export const distributeValuesForEditing = (state, selected) => {
     state[item].validation.valid = [];
   }
 
-  if(state.roles){
-    if(state['roles'].value.includes('Speaking Examiner')){
-      for(let item in state){
-        state[item].elementConfig.disabled = false;
-      }
-    }
-  }
+  // if(state.roles){
+  //   if(state['roles'].value.includes('Speaking Examiner')){
+  //     for(let item in state){
+  //       state[item].elementConfig.disabled = false;
+  //     }
+  //   }
+  // }
 
   return state; 
 }

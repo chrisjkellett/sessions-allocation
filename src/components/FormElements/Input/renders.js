@@ -75,9 +75,9 @@ const renderAdditionalInfo = (label, value, sessionCount) => {
 
     case 'period':
       if(sessionCount === 1)
-        return <span>{sessionCount} available session</span>
+        return <span>{sessionCount} session</span>
       else
-        return <span>{sessionCount} available sessions</span>
+        return <span>{sessionCount} sessions</span>
 
     default:
       return null;
