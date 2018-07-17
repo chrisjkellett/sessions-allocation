@@ -19,6 +19,7 @@ export const examinerTableHeaders = [
 
 export const venueTableHeaders = [
   'name',
-  'address',
-  'phone'
+  'type',
+  'phone',
+  null
 ]

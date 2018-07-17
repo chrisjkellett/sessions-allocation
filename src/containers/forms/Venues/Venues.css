@@ -5,6 +5,67 @@
 
 .Venues .Box{
   flex-basis: 650px;
-  border: 1px solid grey;
   margin: 0 10px;
+}
+
+.FlexContainer{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.FlexItem{
+  flex-basis: 300px;
+}
+
+.Row td{
+  padding: 15px 0;
+  height: 20px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.Row td i{
+  padding: 0 2px;
+  font-size: 90%;
+}
+
+.Row td:first-child{
+  font-weight: 500;
+}
+
+.Row span{
+  font-weight: normal;
+  font-size: 75%;
+  padding-left:5px;
+}
+
+.Row{
+  background: #F2F2F2;
+}
+
+.Row:nth-child(odd){
+  background: white;
+}
+
+.Row:last-child td{
+  border-bottom: 1px solid grey;
+}
+
+.Row td span span {
+  font-size: 70%;
+  margin-left: 1px;
+}
+
+
+.SubmitBtns button{
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.SubmitBtns span{
+  cursor: pointer;
+  color: blue;
+}
+
+.SubmitBtns span:hover{
+  color: grey;
 }

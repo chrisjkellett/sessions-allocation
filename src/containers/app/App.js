@@ -17,7 +17,6 @@ import {loadSessions} from '../../store/actions/sessions';
 import {checkAuthState} from '../../store/actions/auth/auth';
 import * as routes from '../../store/app-data/routes';
 import AsyncLoad from './components/AsyncLoad/AsyncLoad';
-import AuthUser from './components/AuthUser/AuthUser';
 
 class App extends Component {
   componentDidMount(){
@@ -27,14 +26,13 @@ class App extends Component {
   }
 
   render() {
-    const {isAuthenticated, examiners, user} = this.props;
+    const {isAuthenticated, examiners} = this.props;
     return (
       <Wrapper>
         <Switch>
           <Route path={routes.LOGIN_PAGE} exact component={Auth} />
         </Switch>
 
-        <AuthUser user={user}>
         <Route path='/(.+)' render={() => (
           <AsyncLoad waitFor={examiners}>
             <Header />
@@ -53,7 +51,6 @@ class App extends Component {
             </section>
           </AsyncLoad>
           )} />
-          </AuthUser>
       </Wrapper>
 
     );

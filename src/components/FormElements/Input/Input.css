@@ -11,6 +11,10 @@
   color: #dc3545;
 }
 
+.Input input{
+  min-width: 200px;
+}
+
 .Input select{
   min-width: 200px;
   padding: 3px 0;

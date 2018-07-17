@@ -1,7 +1,7 @@
 import {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {constructSessionsState} from '../../../store/constructors/sessions';
+import {constructVenuesState} from '../../../store/constructors/venues';
 import {updateDateArray, updateState, getSelectedOptions, 
   updateOptionArray} from '../form-utility';
 import {checkValidity} from '../validation/validation';
@@ -9,7 +9,7 @@ import {renderUI} from './renders';
 
 class Venues extends Component{
   state = {
-    session: constructSessionsState(),
+    venue: constructVenuesState(),
     shouldValidate: false
   }
 
@@ -18,6 +18,14 @@ class Venues extends Component{
     if(type === 'select') this.selectHandler(event, id);
     if(type === 'checkbox') this.checkBoxHandler(event, id);
     if(type === 'date') this.dateHandler(event, id, index);
+  }
+
+  inputHandler = (event, id) => {
+    const {value} = event.target;
+    const type = Object.keys({...this.state})[0];
+    const update = updateState(this.state, id, {value: value, id}, type);
+    update[type][id].validation = checkValidity({...update[type][id]});
+    this.setState(update);
   }
 
   dateHandler = (event, id, index) => {
