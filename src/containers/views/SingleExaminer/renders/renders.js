@@ -37,7 +37,7 @@ export const renderUL = (examiner, sessions) => {
             <tbody>
             {isSE && renderArrayAsIcons(examiner, 'levels')}
             {isSE && renderAsDate(examiner, 'last_monitoring')}
-            {isSE && renderArrayAsIcons(examiner, 'monitoring_level')}
+            {isSE && examiner.monitoring_level && renderArrayAsIcons(examiner, 'monitoring_level')}
             {renderSessionDate(mysessions, 'next session')}
             </tbody>
           </table>

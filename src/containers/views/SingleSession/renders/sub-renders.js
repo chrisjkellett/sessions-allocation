@@ -18,7 +18,7 @@ export const renderExaminer = (session, examiner, id) => {
       {renderSimple(examiner, 'name')} 
       {renderSimple(examiner, 'id_number')}
       {renderArrayAsIcons(examiner, 'levels')}
-      {renderAsDate(examiner, 'last_monitoring')}
+      {renderAsMonitoring(examiner, 'last_monitoring')}
     </Wrapper>
   )
 }
@@ -66,11 +66,32 @@ export const renderAsDate = (session, id) => {
         {convertToDate([...session[id]])}
         <div className={classes[renderTimeAgoClass([...session[id]])]}>{timeAgo([...session[id]])}</div>
       </td> : null}
+    </tr>
+  )
+}
 
-      {session.last_monitoring ?
+export const renderAsMonitoring = (session, id) => {
+  return(
+    <tr>
+    <td className={classes.Label}>{formatLabel(id)}</td>
+    {session.monitoring_level ?
       <td className={classes.Data}>
         <div className={classes[renderTimeAgoClass([...session[id]])]}>{timeAgo([...session[id]])}</div>
-      </td> : null}
+      </td> : renderEmpty('not yet monitored', true)}
     </tr>
+  )
+}
+
+export const renderEmpty = (str, warning) => {
+  let warningCl;
+  if(warning)
+    warningCl = classes.Warning;
+  return (
+    <td className={classes.Data}>
+      <span className={warningCl}>
+      {warningCl && <i className="fas fa-exclamation-triangle"></i>}
+        {str}
+      </span>
+    </td>  
   )
 }
