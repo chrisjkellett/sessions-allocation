@@ -63,6 +63,17 @@ export const renderSupport = (session) => {
   )
 }
 
+export const renderStatus = (session) => {
+  return (
+    <td>
+      <form className={classes.Radios}>
+        <input type="radio" name="status" value="accept" /><span>accept</span>
+        <input type="radio" name="status" value="reject" /><span>reject</span>
+      </form>
+    </td>
+  )
+}
+
 export const renderBtns = (session, deleteHandler, editHandler) => {
   return(
     <td>

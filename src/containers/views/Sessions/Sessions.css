@@ -109,3 +109,11 @@
 .OuterSuccessDiv{
   display: flex;
 }
+
+.Radios input{
+  display: inline;
+}
+
+.Radios span{
+  padding-right: 8px;
+}

@@ -1,7 +1,16 @@
 import React from 'react';
 import classes from '../Sessions.css';
 import Notification from '../../../../components/Misc/Notification';
-import {renderDate, renderTime, renderType, renderVenue, renderLevels, renderExaminers, renderSupport, renderBtns} from './sub-renders';
+import {
+  renderDate, 
+  renderTime, 
+  renderType, 
+  renderVenue, 
+  renderLevels, 
+  renderExaminers, 
+  renderSupport, 
+  renderStatus,
+  renderBtns} from './sub-renders';
 import * as notifications from '../../../../store/app-data/notifications';
 import {generateFormElementArray} from '../../../forms/form-utility';
 import Input from '../../../../components/FormElements/Input/Input';
@@ -27,6 +36,7 @@ export const renderTableContent = (sessions, handleDelete, handleEdit, handleLin
           {renderLevels(session)}
           {renderExaminers(session)}
           {renderSupport(session)}
+          {!isAuthenticated && renderStatus(session)}
           {isAuthenticated && renderBtns(session, handleDelete, handleEdit)}
         </tr>
     )))
