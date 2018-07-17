@@ -1,0 +1,10 @@
+.Venues{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Venues .Box{
+  flex-basis: 650px;
+  border: 1px solid grey;
+  margin: 0 10px;
+}
