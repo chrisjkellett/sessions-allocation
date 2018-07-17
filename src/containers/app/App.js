@@ -25,31 +25,31 @@ class App extends Component {
   }
 
   render() {
-    // const {isAuthenticated} = this.props;
+    const {isAuthenticated} = this.props;
     return (
       <Wrapper>
         <Switch>
           <Route path={routes.LOGIN_PAGE} exact component={Auth} />
         </Switch>
 
-        {true ? <Route path='/(.+)' render={() => (
+        <Route path='/(.+)' render={() => (
           <div>
             <Header />
             <section className={classes.Section}>
               <Switch>
-                <Route path={routes.ADD_EXAMINER} exact component={AddExaminers} />
+                {isAuthenticated && <Route path={routes.ADD_EXAMINER} exact component={AddExaminers} />}
                 <Route path={routes.EDIT_EXAMINER} exact component={AddExaminers}/>
-                <Route path={routes.EXAMINERS} exact component={Examiners} />
+                {isAuthenticated && <Route path={routes.EXAMINERS} exact component={Examiners} />}
                 <Route path={routes.SINGLE_EXAMINER_VIEW} exact component={SingleExaminer} />
                 <Route path={routes.SESSIONS} exact component={Sessions} />
-                <Route path={routes.ADD_SESSION} exact component={AddSessions} />
-                <Route path={routes.EDIT_SESSION} exact component={AddSessions}/>
+                {isAuthenticated && <Route path={routes.ADD_SESSION} exact component={AddSessions} />}
+                {isAuthenticated && <Route path={routes.EDIT_SESSION} exact component={AddSessions}/>}
                 <Route path={routes.SINGLE_SESSION_VIEW} exact component={SingleSession} />
+                <Redirect to={routes.SESSIONS} />
               </Switch>
             </section>
           </div>
-          )}
-          />: <Redirect to={routes.LOGIN_PAGE} />}
+          )} />
       </Wrapper>
     );
   }
@@ -58,7 +58,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     sessions: state.sess.sessions,
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null && state.auth.token !== '9999'
   }
 }
 
