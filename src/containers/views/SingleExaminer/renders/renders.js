@@ -1,15 +1,23 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import classes from '../SingleExaminer.css';
-import {renderSimple, renderArrayAsDayIcons, renderArray, renderArrayAsIcons, renderAsDate} from './sub-renders';
+import {
+  renderSimple, 
+  renderArrayAsDayIcons, 
+  renderArray, 
+  renderArrayAsIcons, 
+  renderAsDate, 
+  renderSessionDate} from './sub-renders';
 import * as routes from '../../../../store/app-data/routes';
 
-export const renderUL = (examiner) => {
+export const renderUL = (examiner, sessions) => {
   if(examiner === null){
     return <Redirect to={routes.EXAMINERS} />
   }
 
   else{
+    const mysessions = sessions.filter(s => s.examiners.includes(examiner.name) || s.support.includes(examiner.name));
+    const isSE = examiner.roles.includes('Speaking Examiner');
     return(
       <div className={classes.SingleExaminer}>
         <div>
@@ -19,7 +27,7 @@ export const renderUL = (examiner) => {
             {renderSimple(examiner, 'email')}
             {renderArrayAsDayIcons(examiner, 'availability')}
             {renderArray(examiner, 'roles')}
-            {renderSimple(examiner, 'id_number')}
+            {isSE && renderSimple(examiner, 'id_number')}
             </tbody>
           </table>
         </div>
@@ -27,9 +35,10 @@ export const renderUL = (examiner) => {
         <div>
           <table className={classes.Table}>
             <tbody>
-            {renderArrayAsIcons(examiner, 'levels')}
-            {renderAsDate(examiner, 'last_monitoring')}
-            {renderArrayAsIcons(examiner, 'monitoring_level')}
+            {isSE && renderArrayAsIcons(examiner, 'levels')}
+            {isSE && renderAsDate(examiner, 'last_monitoring')}
+            {isSE && renderArrayAsIcons(examiner, 'monitoring_level')}
+            {renderSessionDate(mysessions, 'next session')}
             </tbody>
           </table>
         </div>

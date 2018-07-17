@@ -53,7 +53,39 @@ export const renderAsDate = (examiner, id) => {
       <td className={classes.Data}>
         {convertToDate([...examiner[id]])}
         <div className={classes[renderTimeAgoClass([...examiner[id]])]}>{timeAgo([...examiner[id]])}</div>
-      </td> : null}
+      </td> : renderEmpty('not yet monitored', true)}
     </tr>
+  )
+}
+
+export const renderSessionDate = (sessions, id) => {
+  const session = sessions[0];
+  return (
+     <tr>
+      <td className={classes.Label}>{formatLabel(id)}</td>
+      {sessions.length !== 0 ?
+      <td className={classes.Data}>
+        <div className={classes.SessionItem}>
+          <span>{convertToDate([...session.session_date], 'dddd Do MMMM')}</span>
+          <span>{session.time}</span>
+          <span>{session.venue}</span>
+          <span>{session.levels.join(" ") + " " + session.type}</span>
+        </div>
+      </td> : renderEmpty('no upcoming sessions')}
+    </tr>
+  )
+}
+
+export const renderEmpty = (str, warning) => {
+  let warningCl;
+  if(warning)
+    warningCl = classes.Warning;
+  return (
+    <td className={classes.Data}>
+      <span className={warningCl}>
+      {warningCl && <i className="fas fa-exclamation-triangle"></i>}
+        {str}
+      </span>
+    </td>  
   )
 }

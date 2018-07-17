@@ -12,9 +12,9 @@ export const isPm = (day) => {
 }
 
 
-export const convertToDate = (arr) => {
+export const convertToDate = (arr, format="Do MMMM YYYY") => {
   arr[1] = convertMonthToNumber(arr[1]);
-  return moment(arr.join("-")).format("Do MMMM YYYY");
+  return moment(arr.join("-")).format(format);
 }
 
 export const timeAgo = (arr) => {

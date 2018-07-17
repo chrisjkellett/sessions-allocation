@@ -23,6 +23,28 @@
   padding-left: 10px;
 }
 
+.SingleExaminer .Data .SessionItem span{
+  padding: 10px;
+  font-size: 90%;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  background: white;
+}
+
+.SingleExaminer .Data .SessionItem .IconInRow{
+  border: 1px solid grey;
+  padding: 1px 8px;
+  font-weight: 500;
+}
+
+.Warning{
+  background: salmon;
+}
+
+.Warning i{
+  padding-right: 5px;
+}
+
 .Icons{
   border: 1px solid grey;
   padding: 3px 5px;
