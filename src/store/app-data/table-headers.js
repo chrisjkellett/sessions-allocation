@@ -16,3 +16,9 @@ export const examinerTableHeaders = [
   'levels',
   null
 ];
+
+export const venueTableHeaders = [
+  'name',
+  'address',
+  'phone'
+]
