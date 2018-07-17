@@ -13,6 +13,14 @@ export const renderExaminerViewLink = () => {
   )  
 }
 
+export const renderVenuesLink = () => {
+  return(
+    <NavLink to={routes.VENUES} exact activeClassName={classes.Active}>
+      <li>venues</li>
+    </NavLink>
+  )  
+}
+
 export const renderSingleExaminerViewLink = (user, examiner) => {
   return (
   <NavLink to={routes.EXAMINERS + formatURL(user)} exact activeClassName={classes.Active}>
@@ -29,8 +37,8 @@ export const renderSessionViewLink = () => {
   )
 }
 
-export const renderExaminerFormLink = ({history, selectedExaminer, location}) => {
-  if(history.location.pathname.substring(0, 10) !== '/sessions/'){ 
+export const renderExaminerFormLink = ({history, match, selectedExaminer, location}) => {
+  if(history.location.pathname.substring(0, 10) !== '/sessions/' && match.url !== '/venues/'){ 
     if(selectedExaminer)
       if(location.pathname === routes.EXAMINERS + formatURL(selectedExaminer.name)) 
         return <li>{formatURL(selectedExaminer.name)}</li>
@@ -49,8 +57,8 @@ export const renderExaminerFormLink = ({history, selectedExaminer, location}) =>
     return null;  
 }
 
-export const renderSessionFormLink = ({selectedSession, history, location}) => {
-  if(history.location.pathname.substring(0, 11) !== '/examiners/'){ 
+export const renderSessionFormLink = ({selectedSession, history, location, match}) => {
+  if(history.location.pathname.substring(0, 11) !== '/examiners/' && match.url !== '/venues/'){ 
     if(selectedSession){
       const {venue, session_date} = selectedSession;
       const caption = formatDateURLPretty([...session_date]) + '@' + formatURL(venue)

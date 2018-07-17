@@ -32,6 +32,7 @@ class Header extends Component{
           {!isAuthenticated && user && navElements.renderSingleExaminerViewLink(user, selectedExaminer)}
           {isAuthenticated && navElements.renderExaminerFormLink(this.props)}
           {isAuthenticated && navElements.renderSessionFormLink(this.props)}
+          {isAuthenticated && navElements.renderVenuesLink()}
           {navElements.renderLogout(this.logoutHandler, user, isAuthenticated)}
         </ul>
         {updatedLog && navElements.renderUpdateLog(updatedLog, mapOfLog)}
