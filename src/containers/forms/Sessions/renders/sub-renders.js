@@ -3,6 +3,7 @@ import {generateFormElementArray} from '../../form-utility';
 import {generateInputProps} from './utility';
 import Input from '../../../../components/FormElements/Input/Input';
 import classes from '../Sessions.css';
+import viewCSS from '../../../css/views.css';
 
 export const renderFormElements = (state, changeHandler, examiners, sessions) => {
   return (
@@ -21,4 +22,13 @@ export const renderBtns = (cancel, edit) => {
       <span onClick={() => cancel()}>cancel</span>
     </div>
   )
+}
+
+export const renderTableContent = (examiners) => {
+  return (
+    examiners.map(e => (
+      <tr className={viewCSS.Row} key={e.name}>
+        <td>{e.name}</td>
+      </tr>
+  )))
 }
