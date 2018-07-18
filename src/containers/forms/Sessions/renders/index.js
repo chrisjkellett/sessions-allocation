@@ -2,7 +2,7 @@ import React from 'react';
 import classes from '../../../css/views.css';
 import {renderFormElements, renderBtns, renderTableContent} from './sub-renders';
 import Table from '../../../../components/FormElements/Table/Table';
-import {examinerTableHeaders} from '../../../../store/app-data/table-headers';
+import {examinerAvailableHeaders} from '../../../../store/app-data/table-headers';
 
 export const renderUI = (state, changeHandler, props, submitHandler, cancelHandler) => {
   const {examiners, allSessions} = props;
@@ -15,8 +15,8 @@ export const renderUI = (state, changeHandler, props, submitHandler, cancelHandl
             {renderBtns(cancelHandler, props.sessionForEditing)}
           </div>
           <div className={classes.Box}>
-            <Table labels={examinerTableHeaders}>
-              {renderTableContent(examiners)}
+            <Table labels={examinerAvailableHeaders}>
+              {renderTableContent(examiners, state)}
             </Table>
           </div>
         </div>

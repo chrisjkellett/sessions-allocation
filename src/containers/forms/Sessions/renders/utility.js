@@ -38,3 +38,7 @@ export const examinerCheck = (element, examiners, config, session, sessions) => 
     return config.options;
   }
 }
+
+export const examinerAdvancedCheck = (examiners) => {
+  return examiners
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {generateFormElementArray} from '../../form-utility';
-import {generateInputProps} from './utility';
+import {generateInputProps, examinerAdvancedCheck} from './utility';
 import Input from '../../../../components/FormElements/Input/Input';
 import classes from '../Sessions.css';
 import viewCSS from '../../../css/views.css';
@@ -24,11 +24,12 @@ export const renderBtns = (cancel, edit) => {
   )
 }
 
-export const renderTableContent = (examiners) => {
+export const renderTableContent = ([...examiners], {session}) => {
   return (
-    examiners.map(e => (
+    examinerAdvancedCheck(examiners, session).map(e => (
       <tr className={viewCSS.Row} key={e.name}>
         <td>{e.name}</td>
+        <td></td>
       </tr>
   )))
 }

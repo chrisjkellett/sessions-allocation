@@ -6,6 +6,7 @@ import {updateDateArray, updateState, getSelectedOptions,
   updateOptionArray, checkFormValidity, forSubmit, updateSimpleState, distributeValuesForEditing} from '../form-utility';
 import {checkValidity} from '../validation/validation';
 import {renderUI} from './renders';
+import {calculateAvailableExaminers} from '../../../store/actions/examiner-options/examiner-options';
 import * as actions from '../../../store/actions/sessions';
 
 class AddSessions extends Component{
@@ -19,6 +20,8 @@ class AddSessions extends Component{
       const update = distributeValuesForEditing({...this.state.session}, {...this.props.sessionForEditing});
       this.setState(updateSimpleState({session: update}));
     } 
+    const {calculateAvailableExaminers, examiners} = this.props;
+    calculateAvailableExaminers(examiners, this.state.session)
   }
 
   changeHandler = (event, type, id, index) => {
@@ -47,6 +50,8 @@ class AddSessions extends Component{
   }
 
   selectHandler = (event, id) => {
+    const {calculateAvailableExaminers, examiners} = this.props;
+    calculateAvailableExaminers(examiners, this.state.session)
     const value = getSelectedOptions(event);
     const type = Object.keys({...this.state})[0];
     this.setState({session: value});
@@ -103,7 +108,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addSession: (sessions, session, token) => dispatch(actions.addSession(sessions, session, token)),
-    updateSession: (sessions, session, id, token) => dispatch(actions.updateSession(sessions, session, id, token))
+    updateSession: (sessions, session, id, token) => dispatch(actions.updateSession(sessions, session, id, token)),
+    calculateAvailableExaminers: (examiners, session) => dispatch(calculateAvailableExaminers(examiners, session))
   }
 }
 
