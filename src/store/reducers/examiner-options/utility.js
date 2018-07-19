@@ -7,5 +7,6 @@ export const examinerCheck = ({examiners, session}) => {
       .map(e => check.levels(e, session.levels.value))
       .map(e => check.day(e, session.session_date.value, session.time.value))
       // .filter(e => checkOtherSessions(e, sessions))
+      .map(e => check.isAvailable(e))
   }
 

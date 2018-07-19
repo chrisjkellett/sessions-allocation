@@ -2,3 +2,12 @@
   opacity: 0.3;
   background: lightgrey !important;
 }
+
+.ErrorLog{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ErrorLog span{
+  padding: 0 10px;
+}

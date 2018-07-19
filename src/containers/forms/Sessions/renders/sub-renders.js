@@ -3,6 +3,7 @@ import {generateFormElementArray} from '../../form-utility';
 import {generateInputProps, generateStyles, generateErrorMessage} from './utility';
 import Input from '../../../../components/FormElements/Input/Input';
 import classes from '../../../css/forms.css';
+import availCSS from './availability.css';
 
 export const renderFormElements = (state, changeHandler, examiners, sessions) => {
   return (
@@ -26,12 +27,12 @@ export const renderBtns = (cancel, edit) => {
 export const renderAvailableExaminers = (examiners) => {
   return (
     examiners
-      .filter(e => !e.avail.failsAvailability && !e.avail.failsLevel)
+      .filter(e => e.available)
       .map(e => {
         return (
           <tr className={generateStyles(e)} key={e.name}>
             <td>{e.name}</td>
-            <td className={classes.RightAlign}><i className="far fa-calendar-check"></i></td>
+            <td><i className="fas fa-check"></i></td>
           </tr>
           )
         })
@@ -41,12 +42,12 @@ export const renderAvailableExaminers = (examiners) => {
 export const renderUnAvailableExaminers = (examiners) => {
   return (
     examiners
-      .filter(e => e.avail.failsAvailability || e.avail.failsLevel)
+      .filter(e => !e.available)
       .map(e => {
         return (
           <tr className={generateStyles(e)} key={e.name}>
             <td>{e.name}</td>
-            <td>{generateErrorMessage(e)}</td>
+            <td className={availCSS.ErrorLog}>{generateErrorMessage(e)}</td>
           </tr>
           )
         })

@@ -51,7 +51,6 @@ export const checkIfAdmin = (user) => {
 
 const Availability = (available) => {
   return{
-    available: true,
     failsAvailability: false,
     failsLevel: false
   }
@@ -62,7 +61,10 @@ export const objectToArray = ({...obj}, factor, isExaminers) => {
 
   const array = keys.map(item =>{
     obj[item].id = item;
-    if(isExaminers) obj[item].avail = Availability()
+    if(isExaminers){
+      obj[item].avail = Availability();
+      obj[item].available = true;
+    } 
     return obj[item]
   });
 

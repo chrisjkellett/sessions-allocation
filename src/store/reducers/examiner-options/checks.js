@@ -35,3 +35,10 @@ const time = (day, sessionTime) => {
   else
     return day
 }
+
+export const isAvailable = (e) => {
+  if(!Object.keys(e.avail).every(item => !e.avail[item])){
+    e.available = false;
+  }
+  return e;
+}

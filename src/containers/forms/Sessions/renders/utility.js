@@ -1,3 +1,4 @@
+import React from 'react';
 import {checkType, checkLevels, checkOtherSessions} from './availability';
 import {checkDay} from './availability';
 import classes from '../../../css/views.css';
@@ -43,13 +44,20 @@ export const examinerCheck = (element, examiners, config, session, sessions) => 
 
 export const generateStyles = (examiner) => {
   let styles = [classes.Row]
-  if(examiner.avail.failsAvailability || examiner.avail.failsLevel){
+  if(!examiner.available){
     styles.push(availCSS.FailedTest)
   }
   return styles.join(" ");
 }
 
 export const generateErrorMessage = (examiner) => {
-  if(examiner.avail.failsAvailability) return '*day/time' 
-  if(examiner.avail.failsLevel) return '*level'
+  let errors = [];
+  if(examiner.avail.failsAvailability) errors.push('date'); 
+  if(examiner.avail.failsLevel) errors.push('levels');
+  return errors.map((e, i) => (
+    <span key={i}>
+      <i className="fas fa-times"></i>
+      {e}
+    </span>)
+    )
 }
