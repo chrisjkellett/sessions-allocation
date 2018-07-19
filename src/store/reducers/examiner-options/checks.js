@@ -36,6 +36,20 @@ const time = (day, sessionTime) => {
     return day
 }
 
+export const type = (examiner, sessionType) => {
+  if(sessionType === 'Writing'){
+    if(!(examiner.roles.includes('Invigilator') || examiner.roles.includes('Supervisor'))){
+      examiner.avail.failsRoles = true;
+    }
+  }
+  else{
+    examiner.avail.failsRoles = false;
+  }
+
+  return examiner;
+}
+
+//always final check
 export const isAvailable = (e) => {
   if(!Object.keys(e.avail).every(item => !e.avail[item])){
     e.available = false;
