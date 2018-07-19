@@ -11,3 +11,15 @@
 .ErrorLog span{
   padding: 0 10px;
 }
+
+.Count{
+  background: skyblue;
+  padding: 1px 8px 1px 7px;
+  border-radius: 20px;
+  font-size: 80%;
+  margin-left: 5px;
+}
+
+.Bolder{
+  font-weight: 500;
+}

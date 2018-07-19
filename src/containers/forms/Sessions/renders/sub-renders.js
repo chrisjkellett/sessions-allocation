@@ -5,7 +5,6 @@ import Input from '../../../../components/FormElements/Input/Input';
 import classes from '../../../css/forms.css';
 import viewCSS from '../../../css/views.css';
 import availCSS from './availability.css';
-import moment from 'moment';
 
 export const renderFormElements = (state, changeHandler, examiners, sessions) => {
   return (
@@ -56,10 +55,9 @@ export const renderUnAvailableExaminers = (examiners) => {
   )
 }
 
-export const renderSameDaySessions = (sessions, session) => {
+export const renderSameDaySessions = (sameDaySessions) => {
   return (
-    sessions
-      .filter(s => moment(s.session_date).isSame(session.session_date.value))
+    sameDaySessions
       .map(s => {
         return (
           <tr className={viewCSS.Row} key={s.id}>

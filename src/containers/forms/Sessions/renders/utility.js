@@ -3,6 +3,7 @@ import {checkType, checkLevels, checkOtherSessions} from './availability';
 import {checkDay} from './availability';
 import classes from '../../../css/views.css';
 import availCSS from './availability.css';
+import moment from 'moment';
 
 export const generateInputProps = (element, state, changeHandler, examiners, sessions) => {
   const {config} = element
@@ -61,4 +62,8 @@ export const generateErrorMessage = (examiner) => {
       {e}
     </span>)
     )
+}
+
+export const calculateDate = ({session}) => {
+  return moment([...session.session_date.value].join("-")).format('dddd Do MMMM')
 }
