@@ -54,5 +54,8 @@ export const isAvailable = (e) => {
   if(!Object.keys(e.avail).every(item => !e.avail[item])){
     e.available = false;
   }
+  else{
+    e.available = true;
+  }
   return e;
 }
