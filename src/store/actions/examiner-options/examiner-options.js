@@ -7,3 +7,11 @@ export const calculateAvailableExaminers = (examiners, session) => {
     session: session
   }
 }
+
+export const calculateSameDaySessions = (sessions, sessionDate) => {
+  return {
+    type: actionTypes.CALCULATE_SAME_DAY_SESSIONS,
+    sessions: sessions,
+    sessionDate: sessionDate
+  }
+}

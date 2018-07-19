@@ -1,4 +1,5 @@
 import * as check from './checks';
+import moment from 'moment';
 
 export const examinerCheck = ({examiners, session}) => {
     return examiners
@@ -10,3 +11,6 @@ export const examinerCheck = ({examiners, session}) => {
       .map(e => check.isAvailable(e))
   }
 
+export const sameDayCheck = ({sessions, sessionDate}) => {
+  return sessions.filter(s => moment(s.session_date).isSame(sessionDate));
+}

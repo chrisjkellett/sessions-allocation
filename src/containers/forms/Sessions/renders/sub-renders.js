@@ -3,7 +3,9 @@ import {generateFormElementArray} from '../../form-utility';
 import {generateInputProps, generateStyles, generateErrorMessage} from './utility';
 import Input from '../../../../components/FormElements/Input/Input';
 import classes from '../../../css/forms.css';
+import viewCSS from '../../../css/views.css';
 import availCSS from './availability.css';
+import moment from 'moment';
 
 export const renderFormElements = (state, changeHandler, examiners, sessions) => {
   return (
@@ -48,6 +50,22 @@ export const renderUnAvailableExaminers = (examiners) => {
           <tr className={generateStyles(e)} key={e.name}>
             <td>{e.name}</td>
             <td className={availCSS.ErrorLog}>{generateErrorMessage(e)}</td>
+          </tr>
+          )
+        })
+  )
+}
+
+export const renderSameDaySessions = (sessions, session) => {
+  return (
+    sessions
+      .filter(s => moment(s.session_date).isSame(session.session_date.value))
+      .map(s => {
+        return (
+          <tr className={viewCSS.Row} key={s.id}>
+            <td>{s.venue}</td>
+            <td>{s.time}</td>
+            <td>{s.examiners.join(" ")}</td>
           </tr>
           )
         })

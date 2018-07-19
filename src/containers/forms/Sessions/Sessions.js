@@ -6,7 +6,7 @@ import {updateDateArray, updateState, getSelectedOptions,
   updateOptionArray, checkFormValidity, forSubmit, updateSimpleState, distributeValuesForEditing} from '../form-utility';
 import {checkValidity} from '../validation/validation';
 import {renderUI} from './renders';
-import {calculateAvailableExaminers} from '../../../store/actions/examiner-options/examiner-options';
+import {calculateAvailableExaminers, calculateSameDaySessions} from '../../../store/actions/examiner-options/examiner-options';
 import * as actions from '../../../store/actions/sessions';
 
 class AddSessions extends Component{
@@ -20,8 +20,9 @@ class AddSessions extends Component{
       const update = distributeValuesForEditing({...this.state.session}, {...this.props.sessionForEditing});
       this.setState(updateSimpleState({session: update}));
     } 
-    const {calculateAvailableExaminers, examiners} = this.props;
-    calculateAvailableExaminers(examiners, this.state.session)
+    const {calculateAvailableExaminers, calculateSameDaySessions, examiners, sessions} = this.props;
+    calculateAvailableExaminers(examiners, this.state.session);
+    calculateSameDaySessions(sessions, this.state.session.session_date.value)
   }
 
   changeHandler = (event, type, id, index) => {
@@ -37,8 +38,9 @@ class AddSessions extends Component{
     const value = updateDateArray(copyArray, event, index);
     const update = updateState(this.state, id, {value: value}, type)
     update[type][id].validation = checkValidity({...update[type][id]});
-    const {calculateAvailableExaminers, examiners} = this.props;
+    const {calculateAvailableExaminers, calculateSameDaySessions, examiners, sessions} = this.props;
     calculateAvailableExaminers(examiners, update.session);
+    calculateSameDaySessions(sessions, value)
     this.setState(update);
   }
 
@@ -114,7 +116,8 @@ const mapDispatchToProps = dispatch => {
   return {
     addSession: (sessions, session, token) => dispatch(actions.addSession(sessions, session, token)),
     updateSession: (sessions, session, id, token) => dispatch(actions.updateSession(sessions, session, id, token)),
-    calculateAvailableExaminers: (examiners, session) => dispatch(calculateAvailableExaminers(examiners, session))
+    calculateAvailableExaminers: (examiners, session) => dispatch(calculateAvailableExaminers(examiners, session)),
+    calculateSameDaySessions: (sessions, sessionDate) => dispatch(calculateSameDaySessions(sessions, sessionDate))
   }
 }
 
