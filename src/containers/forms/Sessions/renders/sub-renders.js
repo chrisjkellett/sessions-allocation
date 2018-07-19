@@ -26,7 +26,7 @@ export const renderBtns = (cancel, edit) => {
 export const renderAvailableExaminers = (examiners) => {
   return (
     examiners
-      .filter(e => e.avail.available)
+      .filter(e => !e.avail.failsAvailability && !e.avail.failsLevel)
       .map(e => {
         return (
           <tr className={generateStyles(e)} key={e.name}>
@@ -41,7 +41,7 @@ export const renderAvailableExaminers = (examiners) => {
 export const renderUnAvailableExaminers = (examiners) => {
   return (
     examiners
-      .filter(e => !e.avail.available)
+      .filter(e => e.avail.failsAvailability || e.avail.failsLevel)
       .map(e => {
         return (
           <tr className={generateStyles(e)} key={e.name}>

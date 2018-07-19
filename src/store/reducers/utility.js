@@ -52,7 +52,8 @@ export const checkIfAdmin = (user) => {
 const Availability = (available) => {
   return{
     available: true,
-    failsAvailability: false
+    failsAvailability: false,
+    failsLevel: false
   }
 }
 

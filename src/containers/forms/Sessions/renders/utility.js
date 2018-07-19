@@ -43,14 +43,13 @@ export const examinerCheck = (element, examiners, config, session, sessions) => 
 
 export const generateStyles = (examiner) => {
   let styles = [classes.Row]
-  if(examiner.avail.failsAvailability){
+  if(examiner.avail.failsAvailability || examiner.avail.failsLevel){
     styles.push(availCSS.FailedTest)
   }
   return styles.join(" ");
 }
 
 export const generateErrorMessage = (examiner) => {
-  if(examiner.avail.failsAvailability){
-    return 'not available on this day/time'
-  }
+  if(examiner.avail.failsAvailability) return '*day/time' 
+  if(examiner.avail.failsLevel) return '*level'
 }

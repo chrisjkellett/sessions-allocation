@@ -48,6 +48,8 @@ class AddSessions extends Component{
     const value = updateOptionArray(copyOptions, event);
     const update = updateState(this.state, id, {value: value}, type);
     update[type][id].validation = checkValidity({...update[type][id]});
+    const {calculateAvailableExaminers, examiners} = this.props;
+    calculateAvailableExaminers(examiners, update.session);
     this.setState(update);
   }
 
