@@ -101,7 +101,8 @@ const mapStateToProps = state => {
     examiners: state.ex.examiners,
     sessionForEditing: state.sess.selectedSession,
     sessions: state.sess.sessions,
-    token: state.auth.token
+    token: state.auth.token,
+    availableExaminers: state.op.options
   }
 }
 

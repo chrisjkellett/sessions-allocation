@@ -5,7 +5,7 @@ import Table from '../../../../components/FormElements/Table/Table';
 import {examinerAvailableHeaders} from '../../../../store/app-data/table-headers';
 
 export const renderUI = (state, changeHandler, props, submitHandler, cancelHandler) => {
-  const {examiners, allSessions} = props;
+  const {examiners, allSessions, availableExaminers} = props;
   return(
     <section>
       <form onSubmit={submitHandler}>
@@ -16,7 +16,7 @@ export const renderUI = (state, changeHandler, props, submitHandler, cancelHandl
           </div>
           <div className={classes.Box}>
             <Table labels={examinerAvailableHeaders}>
-              {renderTableContent(examiners, state)}
+              {renderTableContent(availableExaminers, state)}
             </Table>
           </div>
         </div>

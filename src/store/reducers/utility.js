@@ -1,4 +1,3 @@
-
 export const updateState = (obj, update) => {
   return{
     ...obj,
@@ -50,16 +49,20 @@ export const checkIfAdmin = (user) => {
     return user.roles.includes('Team Leader');
 }
 
-export const objectToArray = (obj, factor) => {
-  const copy = {
-    ...obj
+const Availability = (available) => {
+  return{
+    available: false,
+    failsAvailability: false
   }
+}
 
-  const keys = Object.keys(copy);
+export const objectToArray = ({...obj}, factor, isExaminers) => {
+  const keys = Object.keys(obj);
 
   const array = keys.map(item =>{
-    copy[item].id = item;
-    return copy[item]
+    obj[item].id = item;
+    if(isExaminers) obj[item].avail = Availability()
+    return obj[item]
   });
 
   return sortBy(array, factor);

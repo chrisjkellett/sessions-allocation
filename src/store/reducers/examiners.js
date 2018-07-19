@@ -19,7 +19,8 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.LOAD_EXAMINERS_SUCCESS:
-      return updateState(state, {examiners: objectToArray(action.examiners, 'name'), error: false})
+      const isExaminers = true;
+      return updateState(state, {examiners: objectToArray(action.examiners, 'name', isExaminers), error: false})
 
     case actionTypes.ADD_EXAMINER_SUCCESS:
       const examinerUpdatedWithId = addId({...action.examiner}, action.id);
