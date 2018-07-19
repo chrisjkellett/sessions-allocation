@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from '../../../css/views.css';
-import {renderFormElements, renderBtns, renderTableContent} from './sub-renders';
+import {renderFormElements, renderBtns, renderAvailableExaminers, renderUnAvailableExaminers} from './sub-renders';
 import Table from '../../../../components/FormElements/Table/Table';
 import {examinerAvailableHeaders} from '../../../../store/app-data/table-headers';
 
@@ -16,7 +16,8 @@ export const renderUI = (state, changeHandler, props, submitHandler, cancelHandl
           </div>
           <div className={classes.Box}>
             <Table labels={examinerAvailableHeaders}>
-              {renderTableContent(availableExaminers, state)}
+              {renderAvailableExaminers(availableExaminers, state)}
+              {renderUnAvailableExaminers(availableExaminers, state)}
             </Table>
           </div>
         </div>

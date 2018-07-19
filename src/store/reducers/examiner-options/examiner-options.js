@@ -8,7 +8,6 @@ const initial = {
 const reducer = (state = initial, action) => {
   switch(action.type){
     case actionTypes.CALCULATE_AVAILABLE_EXAMINERS: 
-      console.log(action.session);
       return {...state, options: examinerCheck(action)};
 
     default:

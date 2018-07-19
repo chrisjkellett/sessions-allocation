@@ -37,6 +37,8 @@ class AddSessions extends Component{
     const value = updateDateArray(copyArray, event, index);
     const update = updateState(this.state, id, {value: value}, type)
     update[type][id].validation = checkValidity({...update[type][id]});
+    const {calculateAvailableExaminers, examiners} = this.props;
+    calculateAvailableExaminers(examiners, update.session);
     this.setState(update);
   }
 
@@ -50,8 +52,6 @@ class AddSessions extends Component{
   }
 
   selectHandler = (event, id) => {
-    const {calculateAvailableExaminers, examiners} = this.props;
-    calculateAvailableExaminers(examiners, this.state.session)
     const value = getSelectedOptions(event);
     const type = Object.keys({...this.state})[0];
     this.setState({session: value});

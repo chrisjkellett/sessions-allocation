@@ -2,7 +2,7 @@ import React from 'react';
 import {generateFormElementArray} from '../../form-utility';
 import {generateInputProps, generateStyles, generateErrorMessage} from './utility';
 import Input from '../../../../components/FormElements/Input/Input';
-import classes from '../Sessions.css';
+import classes from '../../../css/forms.css';
 
 export const renderFormElements = (state, changeHandler, examiners, sessions) => {
   return (
@@ -23,14 +23,32 @@ export const renderBtns = (cancel, edit) => {
   )
 }
 
-export const renderTableContent = ([...examiners]) => {
+export const renderAvailableExaminers = (examiners) => {
   return (
-    examiners.map(e => {
-      return (
-      <tr className={generateStyles(e)} key={e.name}>
-        <td>{e.name}</td>
-        <td>{generateErrorMessage(e)}</td>
-      </tr>
-      )
-    }))
+    examiners
+      .filter(e => e.avail.available)
+      .map(e => {
+        return (
+          <tr className={generateStyles(e)} key={e.name}>
+            <td>{e.name}</td>
+            <td className={classes.RightAlign}><i className="far fa-calendar-check"></i></td>
+          </tr>
+          )
+        })
+  )
+}
+
+export const renderUnAvailableExaminers = (examiners) => {
+  return (
+    examiners
+      .filter(e => !e.avail.available)
+      .map(e => {
+        return (
+          <tr className={generateStyles(e)} key={e.name}>
+            <td>{e.name}</td>
+            <td>{generateErrorMessage(e)}</td>
+          </tr>
+          )
+        })
+  )
 }

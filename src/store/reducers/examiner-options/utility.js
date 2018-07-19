@@ -12,7 +12,17 @@ export const examinerCheck = ({examiners, session}) => {
   export const checkDay = (examiner, sessionDayArray, sessionTime) => {
     const day = moment([...sessionDayArray].join("-")).format('dddd');
     const formattedDay = checkTime(day, sessionTime);
-    if (!examiner.availability.includes(formattedDay)) examiner.avail.failsAvailability = true;
+    const {availability, avail} = examiner;
+
+     if (!availability.includes(formattedDay)){
+      avail.available = false;
+      avail.failsAvailability = true;
+    }
+
+    else{
+      avail.available = true;
+      avail.failsAvailability = false;
+    }
     return examiner;
   }
   
