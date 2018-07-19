@@ -19,6 +19,9 @@ export const renderUI = (state, changeHandler, props, submitHandler, cancelHandl
               {renderAvailableExaminers(availableExaminers, state)}
               {renderUnAvailableExaminers(availableExaminers, state)}
             </Table>
+
+            <Table labels={['venue', 'time', 'examiners']}>
+            </Table>
           </div>
         </div>
         </form>

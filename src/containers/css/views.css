@@ -8,6 +8,10 @@
   margin: 0 10px;
 }
 
+.Box table{
+  margin-bottom: 40px;
+}
+
 .FlexItem{
   flex-basis: 300px;
 }
