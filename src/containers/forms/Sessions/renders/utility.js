@@ -1,5 +1,7 @@
 import {checkType, checkLevels, checkOtherSessions} from './availability';
 import {checkDay} from './availability';
+import classes from '../../../css/views.css';
+import availCSS from './availability.css';
 
 export const generateInputProps = (element, state, changeHandler, examiners, sessions) => {
   const {config} = element
@@ -39,6 +41,16 @@ export const examinerCheck = (element, examiners, config, session, sessions) => 
   }
 }
 
-export const examinerAdvancedCheck = (examiners) => {
-  return examiners
+export const generateStyles = (examiner) => {
+  let styles = [classes.Row]
+  if(examiner.avail.failsAvailability){
+    styles.push(availCSS.FailedTest)
+  }
+  return styles.join(" ");
+}
+
+export const generateErrorMessage = (examiner) => {
+  if(examiner.avail.failsAvailability){
+    return 'not available on this day/time'
+  }
 }
