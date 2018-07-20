@@ -78,7 +78,5 @@ export const lastNameOnly = (names) => {
     formattedNames.push(arr)
   })
 
-  console.log(formattedNames);
-
   return formattedNames.join("-");
 }

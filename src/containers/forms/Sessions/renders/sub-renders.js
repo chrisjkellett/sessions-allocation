@@ -6,17 +6,17 @@ import classes from '../../../css/forms.css';
 import viewCSS from '../../../css/views.css';
 import availCSS from './availability.css';
 
-export const renderFormElements = (state, changeHandler, examiners, sessions) => {
+export const renderFormElements = (state, {change}, examiners, sessions) => {
   return (
     generateFormElementArray(state.session)
       .map(element =>{
-        return <Input {...generateInputProps(element, state, changeHandler, examiners, sessions)} />
+        return <Input {...generateInputProps(element, state, change, examiners, sessions)} />
       }
     )
   )
 }
 
-export const renderBtns = (cancel, edit) => {
+export const renderBtns = ({cancel}, edit) => {
   return(
     <div className={classes.SubmitBtns}>
       <button>{edit ? 'Save Changes' : 'Add Session'}</button>
@@ -73,5 +73,13 @@ export const renderSameDaySessions = (sameDaySessions) => {
           </tr>
           )
         })
+  )
+}
+
+export const renderFilter = ({filter}) => {
+  return(
+    <div className={availCSS.RightAlign}>
+      <input onChange={filter}/>
+    </div>
   )
 }

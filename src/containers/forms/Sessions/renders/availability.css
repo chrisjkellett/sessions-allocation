@@ -29,3 +29,12 @@
   font-weight: 400;
   padding-left: 3px;
 }
+
+.RightAlign{
+  text-align: right;
+}
+
+.RightAlign input{
+  display: inline-block;
+  margin-bottom: 2px;
+}

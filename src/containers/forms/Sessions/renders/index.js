@@ -5,24 +5,24 @@ import {
   renderBtns, 
   renderAvailableExaminers, 
   renderUnAvailableExaminers,
+  renderFilter,
   renderSameDaySessions} from './sub-renders';
 import {calculateDate} from './utility';
 import Table from '../../../../components/FormElements/Table/Table';
-import {examinerAvailableHeaders} from '../../../../store/app-data/table-headers';
 import availCSS from './availability.css';
 
-export const renderUI = (state, changeHandler, props, submitHandler, cancelHandler) => {
+export const renderUI = (state, props, handlers) => {
   const {examiners, sessions, availableExaminers, sameDaySessions} = props;
   return(
     <section>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={handlers.submit}>
         <div className={classes.Container}>
           <div className={classes.Box}>
-            {renderFormElements(state, changeHandler, examiners, sessions)}
-            {renderBtns(cancelHandler, props.sessionForEditing)}
+            {renderFormElements(state, handlers, examiners, sessions)}
+            {renderBtns(handlers, props.sessionForEditing)}
           </div>
           <div className={classes.Box}>
-            <Table labels={examinerAvailableHeaders}>
+            <Table labels={['name', renderFilter(handlers)]}>
               {renderAvailableExaminers(availableExaminers, state)}
               {renderUnAvailableExaminers(availableExaminers, state)}
             </Table>

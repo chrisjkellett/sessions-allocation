@@ -66,39 +66,53 @@ class AddSessions extends Component{
     this.setState(update);
   }
 
-  submitHandler = (event, props) => {
-    event.preventDefault();
-    this.initialiseValidation();
-    const isValid = checkFormValidity({...this.state.session});
-    const session = forSubmit(this.state.session);
-    
-    if(isValid && !this.props.sessionForEditing){
-      const {history, addSession, token, sessions} = this.props;
-      const updated = [...sessions];
-      addSession(updated, session, token);
-      history.goBack();
-    }
+  handlers = {
+    filter: () => {
+      console.log('filters');
+    },
 
-    if(isValid && this.props.sessionForEditing){
-      const {sessionForEditing, sessions, token} = this.props;
-      const {id} = sessionForEditing;
-      session.id = id;
-      const updated = [...sessions.filter(item => item.id !== id), Object.assign({}, session)];
-      this.props.updateSession(updated, session, id, token);
+    cancel: () => {
       this.props.history.goBack();
+    },
+
+    change: (event, type, id, index) => {
+      if(type === 'input') this.inputHandler(event, id);
+      if(type === 'select') this.selectHandler(event, id);
+      if(type === 'checkbox') this.checkBoxHandler(event, id);
+      if(type === 'date') this.dateHandler(event, id, index);
+    },
+
+    submit: (event) => {
+      event.preventDefault();
+      this.initialiseValidation();
+      const isValid = checkFormValidity({...this.state.session});
+      const session = forSubmit(this.state.session);
+      
+      if(isValid && !this.props.sessionForEditing){
+        const {history, addSession, token, sessions} = this.props;
+        const updated = [...sessions];
+        addSession(updated, session, token);
+        history.goBack();
+      }
+  
+      if(isValid && this.props.sessionForEditing){
+        const {sessionForEditing, sessions, token, updateSession, history} = this.props;
+        const {id} = sessionForEditing;
+        session.id = id;
+        const updated = [...sessions.filter(item => item.id !== id), Object.assign({}, session)];
+        updateSession(updated, session, id, token);
+        history.goBack();
+      }
     }
   }
 
-  cancelHandler = () => {
-    this.props.history.goBack();
-  }
 
   initialiseValidation = () => {
     this.setState(updateSimpleState(this.state, {shouldValidate: true}));
   }
 
   render(){
-    return renderUI({...this.state}, this.changeHandler, this.props, this.submitHandler, this.cancelHandler);
+    return renderUI({...this.state}, this.props, this.handlers);
   }
 }
 
