@@ -67,3 +67,18 @@ export const generateErrorMessage = (examiner) => {
 export const calculateDate = ({session}) => {
   return moment([...session.session_date.value].join("-")).format('dddd Do MMMM')
 }
+
+export const lastNameOnly = (names) => {
+  let formattedNames = [];
+
+  names.forEach(name => {
+    let arr = name.split(" ");
+    arr.shift();
+    arr.join(" ")
+    formattedNames.push(arr)
+  })
+
+  console.log(formattedNames);
+
+  return formattedNames.join("-");
+}

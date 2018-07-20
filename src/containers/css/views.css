@@ -68,3 +68,15 @@
 .SubmitBtns span:hover{
   color: grey;
 }
+
+.Icons, .Levels .Icons{
+  border: 1px solid grey;
+  padding: 3px 5px;
+  font-weight: 500;
+  width: 45px;
+  display: inline-block;  
+  text-align: center;
+  font-size: 90%;
+  margin: 0 2px;
+  background: white;
+}

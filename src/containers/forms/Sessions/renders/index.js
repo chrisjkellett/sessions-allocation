@@ -32,7 +32,7 @@ export const renderUI = (state, changeHandler, props, submitHandler, cancelHandl
               <p>Other sessions on <span className={availCSS.Bolder}>{calculateDate(state)}</span>
                 <span className={availCSS.Count}>{sameDaySessions.length}</span>
               </p>
-              <Table labels={['venue', 'time', 'examiners']}>
+              <Table labels={['venue', 'time', 'level', 'examiners']}>
                 {renderSameDaySessions(sameDaySessions)}
               </Table>
             </div>}

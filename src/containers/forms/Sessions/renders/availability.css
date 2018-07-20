@@ -23,3 +23,9 @@
 .Bolder{
   font-weight: 500;
 }
+
+.Lighter{
+  font-size: 60%;
+  font-weight: 400;
+  padding-left: 3px;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {generateFormElementArray} from '../../form-utility';
-import {generateInputProps, generateStyles, generateErrorMessage} from './utility';
+import {generateInputProps, generateStyles, generateErrorMessage, lastNameOnly} from './utility';
 import Input from '../../../../components/FormElements/Input/Input';
 import classes from '../../../css/forms.css';
 import viewCSS from '../../../css/views.css';
@@ -61,9 +61,15 @@ export const renderSameDaySessions = (sameDaySessions) => {
       .map(s => {
         return (
           <tr className={viewCSS.Row} key={s.id}>
-            <td>{s.venue}</td>
+            <td>{s.venue} 
+              <span className={availCSS.Lighter}>{s.type}</span>
+            </td>
             <td>{s.time}</td>
-            <td>{s.examiners.join(" ")}</td>
+            <td className={viewCSS.Levels}>{s.levels.map(l => {
+              return <span key={l} className={viewCSS.Icons}>{l}</span>
+              })}
+            </td>
+            <td>{lastNameOnly(s.examiners)}</td>
           </tr>
           )
         })
