@@ -15,3 +15,11 @@ export const calculateSameDaySessions = (sessions, sessionDate) => {
     sessionDate: sessionDate
   }
 }
+
+export const filterExaminers = (examiners, filterValue) => {
+  return {
+    type: actionTypes.FILTER_EXAMINERS,
+    examiners: examiners,
+    filterValue: filterValue
+  }
+}

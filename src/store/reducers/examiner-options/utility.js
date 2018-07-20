@@ -14,3 +14,10 @@ export const examinerCheck = ({examiners, session}) => {
 export const sameDayCheck = ({sessions, sessionDate}) => {
   return sessions.filter(s => moment(s.session_date).isSame(sessionDate));
 }
+
+export const filterExaminers = ({examiners, filterValue}) => {
+  const {length} = filterValue;
+  return examiners
+    .filter(e => e.roles.includes('Speaking Examiner'))
+    .filter(e => e.name.substring(0, length).toLowerCase() === filterValue.toLowerCase());
+}

@@ -1,5 +1,5 @@
 import * as actionTypes from '../../actions/examiner-options/actionTypes';
-import {examinerCheck, sameDayCheck} from './utility';
+import {examinerCheck, sameDayCheck, filterExaminers} from './utility';
 
 const initial = {
   options: [],
@@ -12,8 +12,10 @@ const reducer = (state = initial, action) => {
       return {...state, options: examinerCheck(action)};
 
     case actionTypes.CALCULATE_SAME_DAY_SESSIONS:  
-      console.log(sameDayCheck(action));
       return {...state, sameDaySessions: sameDayCheck(action)};
+
+    case actionTypes.FILTER_EXAMINERS:  
+      return {...state, options: filterExaminers(action)};
 
     default:
       return state;  

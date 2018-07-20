@@ -6,7 +6,10 @@ import {updateDateArray, updateState, getSelectedOptions,
   updateOptionArray, checkFormValidity, forSubmit, updateSimpleState, distributeValuesForEditing} from '../form-utility';
 import {checkValidity} from '../validation/validation';
 import {renderUI} from './renders';
-import {calculateAvailableExaminers, calculateSameDaySessions} from '../../../store/actions/examiner-options/examiner-options';
+import {
+  calculateAvailableExaminers, 
+  calculateSameDaySessions,
+  filterExaminers} from '../../../store/actions/examiner-options/examiner-options';
 import * as actions from '../../../store/actions/sessions';
 
 class AddSessions extends Component{
@@ -67,8 +70,9 @@ class AddSessions extends Component{
   }
 
   handlers = {
-    filter: () => {
-      console.log('filters');
+    filter: ({target: {value}}) => {
+      const {filterExaminers, examiners} = this.props;
+      filterExaminers(examiners, value)
     },
 
     cancel: () => {
@@ -132,7 +136,8 @@ const mapDispatchToProps = dispatch => {
     addSession: (sessions, session, token) => dispatch(actions.addSession(sessions, session, token)),
     updateSession: (sessions, session, id, token) => dispatch(actions.updateSession(sessions, session, id, token)),
     calculateAvailableExaminers: (examiners, session) => dispatch(calculateAvailableExaminers(examiners, session)),
-    calculateSameDaySessions: (sessions, sessionDate) => dispatch(calculateSameDaySessions(sessions, sessionDate))
+    calculateSameDaySessions: (sessions, sessionDate) => dispatch(calculateSameDaySessions(sessions, sessionDate)),
+    filterExaminers: (examiners, filterValue) => dispatch(filterExaminers(examiners, filterValue))
   }
 }
 
