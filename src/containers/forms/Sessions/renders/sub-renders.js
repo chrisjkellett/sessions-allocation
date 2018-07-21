@@ -83,3 +83,7 @@ export const renderFilter = ({filter}) => {
     </div>
   )
 }
+
+export const renderHeader = ({length}) => {
+  return <span>examiners available<span className={availCSS.Count}>{length}</span></span>
+}

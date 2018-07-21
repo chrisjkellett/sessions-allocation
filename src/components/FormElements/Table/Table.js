@@ -5,8 +5,8 @@ const table = (props) => (
     <table>
       <thead>
         <tr className={classes.RowHeader}>
-          {props.labels.map(label=>(
-            <td key={label}>{label === 'x' ? null : label}</td>
+          {props.labels.map((label, i)=>(
+            <td key={i}>{label === 'x' ? null : label}</td>
           ))}
         </tr>
       </thead>
