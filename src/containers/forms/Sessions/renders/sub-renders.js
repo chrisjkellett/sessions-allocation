@@ -25,7 +25,8 @@ export const renderBtns = ({cancel}, edit) => {
   )
 }
 
-export const renderAvailableExaminers = (examiners) => {
+export const renderAvailableExaminers = (examiners, {session: {levels}}) => {
+  console.log(levels.value)
   return (
     examiners
       .filter(e => e.available)
@@ -33,14 +34,19 @@ export const renderAvailableExaminers = (examiners) => {
         return (
           <tr className={generateStyles(e)} key={e.name}>
             <td>{e.name}</td>
-            <td><i className="fas fa-check"></i></td>
+            <td className={viewCSS.Levels}>{renderLevels(e, levels.value)}</td>
+            <td className={availCSS.ErrorLog}>
+              <span>
+                <i className="fas fa-check"></i>
+              </span>
+              </td>
           </tr>
           )
         })
   )
 }
 
-export const renderUnAvailableExaminers = (examiners) => {
+export const renderUnAvailableExaminers = (examiners, {session: {levels}}) => {
   return (
     examiners
       .filter(e => !e.available)
@@ -48,6 +54,7 @@ export const renderUnAvailableExaminers = (examiners) => {
         return (
           <tr className={generateStyles(e)} key={e.name}>
             <td>{e.name}</td>
+            <td className={viewCSS.Levels}>{renderLevels(e, levels.value)}</td>
             <td className={availCSS.ErrorLog}>{generateErrorMessage(e)}</td>
           </tr>
           )
@@ -86,4 +93,12 @@ export const renderFilter = ({filter}) => {
 
 export const renderHeader = ({length}) => {
   return <span>examiners available<span className={availCSS.Count}>{length}</span></span>
+}
+
+export const renderLevels = (e, selectedLevels) => {
+    return e.levels
+      .filter(l => selectedLevels.includes(l))
+      .map(l => {
+        return <span key={l} className={viewCSS.Icons}>{l}</span>
+        })
 }

@@ -17,8 +17,8 @@
 }
 
 .Row td{
-  padding: 15px 0;
-  height: 20px;
+  padding: 11px 0;
+  height: 26px;
   border-bottom: 1px solid lightgrey;
 }
 
@@ -30,12 +30,6 @@
 .Row td:first-child{
   font-weight: 500;
 }
-
-/* .Row span{
-  font-weight: normal;
-  font-size: 90%;
-  padding-left:5px;
-} */
 
 .Row{
   background: #F2F2F2;
@@ -71,9 +65,9 @@
 
 .Icons, .Levels .Icons{
   border: 1px solid grey;
-  padding: 3px 5px;
+  padding: 3px;
   font-weight: 500;
-  width: 45px;
+  width: 40px;
   display: inline-block;  
   text-align: center;
   font-size: 90%;

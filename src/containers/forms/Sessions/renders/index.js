@@ -25,7 +25,7 @@ export const renderUI = (state, props, handlers) => {
             {renderBtns(handlers, props.sessionForEditing)}
           </div>
           <div className={classes.Box}>
-            <Table labels={[renderHeader(filterAvailable), renderFilter(handlers)]}>
+            <Table labels={[renderHeader(filterAvailable), null, renderFilter(handlers)]}>
               {filterAvailable.length !== 0 ?
                 <Wrapper>
                 {renderAvailableExaminers(filterAvailable, state)}
