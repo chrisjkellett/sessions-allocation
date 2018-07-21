@@ -70,9 +70,15 @@ class AddSessions extends Component{
   }
 
   handlers = {
-    filter: ({target: {value}}) => {
+    ex_filter: ({target: {value}}) => {
       const {filterExaminers, examiners} = this.props;
       filterExaminers(examiners, value)
+    },
+
+    supp_filter: ({target: {value}}) => {
+      console.log(value);
+      // const {filterExaminers, examiners} = this.props;
+      // filterExaminers(examiners, value)
     },
 
     cancel: () => {
@@ -126,7 +132,8 @@ const mapStateToProps = state => {
     sessionForEditing: state.sess.selectedSession,
     sessions: state.sess.sessions,
     token: state.auth.token,
-    availableExaminers: state.op.options,
+    availableExaminers: state.op.ex_options,
+    availableSupport: state.op.supp_options,
     sameDaySessions: state.op.sameDaySessions
   }
 }

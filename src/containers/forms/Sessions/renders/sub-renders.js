@@ -26,7 +26,6 @@ export const renderBtns = ({cancel}, edit) => {
 }
 
 export const renderAvailableExaminers = (examiners, {session: {levels}}) => {
-  console.log(levels.value)
   return (
     examiners
       .filter(e => e.available)
@@ -83,7 +82,7 @@ export const renderSameDaySessions = (sameDaySessions) => {
   )
 }
 
-export const renderFilter = ({filter}) => {
+export const renderFilter = (filter) => {
   return(
     <div className={availCSS.RightAlign}>
       <input onChange={filter}/>
@@ -91,14 +90,20 @@ export const renderFilter = ({filter}) => {
   )
 }
 
-export const renderHeader = ({length}) => {
-  return <span>examiners available<span className={availCSS.Count}>{length}</span></span>
+export const renderHeader = ({length}, str) => {
+  return <span>{str} available<span className={availCSS.Count}>{length}</span></span>
 }
 
 export const renderLevels = (e, selectedLevels) => {
+  if(e.levels){
     return e.levels
       .filter(l => selectedLevels.includes(l))
       .map(l => {
         return <span key={l} className={viewCSS.Icons}>{l}</span>
         })
+  }
+
+  else{
+    return null;
+  }
 }

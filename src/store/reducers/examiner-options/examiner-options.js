@@ -1,21 +1,22 @@
 import * as actionTypes from '../../actions/examiner-options/actionTypes';
-import {examinerCheck, sameDayCheck, filterExaminers} from './utility';
+import {examinerCheck, sameDayCheck, filterExaminers, supportCheck} from './utility';
 
 const initial = {
-  options: [],
+  ex_options: [],
+  supp_options: [],
   sameDaySessions: []
 }
 
 const reducer = (state = initial, action) => {
   switch(action.type){
     case actionTypes.CALCULATE_AVAILABLE_EXAMINERS: 
-      return {...state, options: examinerCheck(action)};
+      return {...state, ex_options: examinerCheck(action), supp_options: supportCheck(action)};
 
     case actionTypes.CALCULATE_SAME_DAY_SESSIONS:  
       return {...state, sameDaySessions: sameDayCheck(action)};
 
     case actionTypes.FILTER_EXAMINERS:  
-      return {...state, options: filterExaminers(action)};
+      return {...state, ex_options: filterExaminers(action)};
 
     default:
       return state;  

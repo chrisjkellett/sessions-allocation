@@ -9,13 +9,13 @@ import {
   renderHeader,
   renderSameDaySessions} from './sub-renders';
 import {calculateDate} from './utility';
-import Wrapper from '../../../../components/Misc/Wrapper/Wrapper';
 import Table from '../../../../components/FormElements/Table/Table';
 import availCSS from './availability.css';
 
 export const renderUI = (state, props, handlers) => {
-  const {examiners, sessions, availableExaminers, sameDaySessions} = props;
+  const {examiners, sessions, availableExaminers, availableSupport, sameDaySessions} = props;
   const filterAvailable = availableExaminers.filter(e => e.available);
+  const filterSupport = availableSupport.filter(e => e.available);
   return(
     <section>
       <form onSubmit={handlers.submit}>
@@ -25,13 +25,14 @@ export const renderUI = (state, props, handlers) => {
             {renderBtns(handlers, props.sessionForEditing)}
           </div>
           <div className={classes.Box}>
-            <Table labels={[renderHeader(filterAvailable), null, renderFilter(handlers)]}>
-              {filterAvailable.length !== 0 ?
-                <Wrapper>
-                {renderAvailableExaminers(filterAvailable, state)}
-                {renderUnAvailableExaminers(availableExaminers, state)}
-                </Wrapper> : <tr><td>No examiners available</td></tr>
-              }
+            <Table labels={[renderHeader(filterAvailable, 'examiners'), null, renderFilter(handlers.ex_filter)]}>
+              {renderAvailableExaminers(filterAvailable, state)}
+              {renderUnAvailableExaminers(availableExaminers, state)}
+            </Table>
+
+            <Table labels={[renderHeader(filterSupport, 'support'), null, renderFilter(handlers.supp_filter)]}>
+              {renderAvailableExaminers(filterSupport, state)}
+              {renderUnAvailableExaminers(availableSupport, state)}
             </Table>
 
             {sameDaySessions.length !== 0 &&

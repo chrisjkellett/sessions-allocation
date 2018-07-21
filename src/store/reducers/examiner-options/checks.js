@@ -2,8 +2,10 @@ import moment from 'moment';
 
 export const levels = (examiner, sessionLevels) => {
   const {levels, avail} = examiner;
-  if(!sessionLevels.every(level => levels.includes(level))){
-    avail.failsLevel = true;
+  if(examiner.levels){
+    if(!sessionLevels.every(level => levels.includes(level))){
+      avail.failsLevel = true;
+    }
   }
 
   else{
@@ -39,6 +41,11 @@ const time = (day, sessionTime) => {
 export const type = (examiner, sessionType) => {
   if(sessionType === 'Writing'){
     if(!(examiner.roles.includes('Invigilator') || examiner.roles.includes('Supervisor'))){
+      examiner.avail.failsRoles = true;
+    }
+  }
+  if(sessionType === 'Speaking'){
+    if(!examiner.roles.includes('Speaking Examiner')){
       examiner.avail.failsRoles = true;
     }
   }
