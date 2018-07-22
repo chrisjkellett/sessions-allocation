@@ -17,7 +17,9 @@ import * as actions from '../../../store/actions/sessions';
 class AddSessions extends Component{
   state = {
     session: constructSessionsState(),
-    shouldValidate: false
+    shouldValidate: false,
+    showAllExaminers: false,
+    showAllSupport: false
   }
 
   componentDidMount(){ 
@@ -80,6 +82,12 @@ class AddSessions extends Component{
     supp_filter: ({target: {value}}) => {
       const {filterSupport, examiners} = this.props;
       filterSupport(examiners, value)
+    },
+
+    showHideAll: (type) => {
+      this.setState(prev => ({
+        [type]: prev[type] ? false : true
+      }));
     },
 
     cancel: () => {

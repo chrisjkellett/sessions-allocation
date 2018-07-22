@@ -14,6 +14,7 @@ import availCSS from './availability.css';
 
 export const renderUI = (state, props, handlers) => {
   const {examiners, sessions, availableExaminers, availableSupport, sameDaySessions} = props;
+  const {showAllExaminers, showAllSupport} = state;
   const filterAvailable = availableExaminers.filter(e => e.available);
   const filterSupport = availableSupport.filter(e => e.available);
   return(
@@ -26,15 +27,15 @@ export const renderUI = (state, props, handlers) => {
           </div>
           <div className={[classes.Box, classes.ViewMode].join(" ")}>
             <div className={classes.BoxWithMaxHeight}>
-              <Table labels={[renderHeader(filterAvailable, 'examiners'), null, renderFilter(handlers.ex_filter, 'examiners')]}>
-                {renderAvailableExaminers(filterAvailable, state)}
-                {renderUnAvailableExaminers(availableExaminers, state)}
+              <Table labels={[renderHeader(filterAvailable, 'examiners'), null, renderFilter(handlers.ex_filter, handlers, showAllExaminers, 'showAllExaminers')]}>
+                {renderAvailableExaminers(filterAvailable, state, showAllExaminers)}
+                {showAllExaminers && renderUnAvailableExaminers(availableExaminers, state)}
               </Table>
             </div>
             <div className={classes.BoxWithMaxHeight}>
-            <Table labels={[renderHeader(filterSupport, 'support'), null, renderFilter(handlers.supp_filter, 'support')]}>
-              {renderAvailableExaminers(filterSupport, state)}
-              {renderUnAvailableExaminers(availableSupport, state)}
+            <Table labels={[renderHeader(filterSupport, 'support'), null, renderFilter(handlers.supp_filter, handlers, showAllSupport, 'showAllSupport')]}>
+              {renderAvailableExaminers(filterSupport, state, showAllSupport)}
+              {showAllSupport && renderUnAvailableExaminers(availableSupport, state)}
             </Table>
             </div>
             {sameDaySessions.length !== 0 &&

@@ -13,24 +13,22 @@
 }
 
 .ViewMode .BoxWithMaxHeight{
-  max-height: 28%;
-  overflow-y: auto;
-  margin-bottom: 20px;
-  border-bottom: 1px solid darkgray;
+  height: 180px;
+  overflow-y: scroll;
+  margin-bottom: 30px;
 }
 
 .FormMode{
   flex-basis: 450px;
 }
 
-
 .FlexItem{
   flex-basis: 300px;
 }
 
 .Row td{
-  padding: 11px 0;
-  height: 26px;
+  padding: 8px 0;
+  height: 40px;
   border-bottom: 1px solid lightgrey;
 }
 
@@ -60,6 +58,18 @@
   margin-left: 1px;
 }
 
+.Roles{
+  font-size: 70%;
+  padding: 0 2px;
+  font-weight: normal;
+  margin-right: 3px;
+}
+
+.NoResults{
+  height: 26px;
+  padding: 11px 0;
+}
+
 .SubmitBtns button{
   display: inline-block;
   margin-right: 5px;
@@ -84,4 +94,17 @@
   font-size: 90%;
   margin: 0 2px;
   background: white;
+}
+
+.SecondaryBtn{
+  border: 1px solid lightgrey;
+  font-size: 75%;
+  background: white;
+  margin: 0 3px;
+  padding: 1px 5px;
+  cursor: pointer;
+}
+
+.SecondaryBtn:hover{
+  background: lightblue;
 }

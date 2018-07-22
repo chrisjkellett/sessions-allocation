@@ -23,7 +23,7 @@ export const generateInputProps = (element, state, changeHandler, examiners, ses
 export const examinerCheck = (element, examiners, config, session, sessions) => {
   if(element.id === 'examiners' && examiners !== null){
     return examiners
-      .filter(e => !e.roles.includes('Support staff'))
+      .filter(e => !e.roles.includes('Support staff') || e.roles.includes('Speaking Examiner'))
       .filter(e => checkType(e, session.type.value))
       .filter(e => checkLevels(e, session.levels.value))
       .filter(e => checkDay(e, session.session_date.value, session.time.value))

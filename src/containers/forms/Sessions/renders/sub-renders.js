@@ -25,24 +25,38 @@ export const renderBtns = ({cancel}, edit) => {
   )
 }
 
-export const renderAvailableExaminers = (examiners, {session: {levels}}) => {
-  return (
-    examiners
-      .filter(e => e.available)
-      .map(e => {
-        return (
-          <tr className={generateStyles(e)} key={e.name}>
-            <td>{e.name}</td>
-            <td className={viewCSS.Levels}>{renderLevels(e, levels.value)}</td>
-            <td className={availCSS.ErrorLog}>
-              <span>
-                <i className="fas fa-check"></i>
-              </span>
-              </td>
-          </tr>
-          )
-        })
-  )
+export const renderAvailableExaminers = (examiners, {session: {levels}}, showAll) => {
+  if(examiners.length !== 0){
+    return (
+      examiners
+        .filter(e => e.available)
+        .map(e => {
+          return (
+            <tr className={generateStyles(e)} key={e.name}>
+              <td>{e.name}<div>{e.roles.map(r => <span className={viewCSS.Roles}>{r}</span>)}</div></td>
+              <td className={viewCSS.Levels}>{renderLevels(e, levels.value)}</td>
+              <td className={availCSS.ErrorLog}>
+                <span>
+                  <i className="fas fa-check"></i>
+                </span>
+                </td>
+            </tr>
+            )
+          })
+    )
+  }
+
+  else if(!showAll){
+    return(
+      <tr className={viewCSS.NoResults}>
+        <td>
+          no results
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+    )
+  }
 }
 
 export const renderUnAvailableExaminers = (examiners, {session: {levels}}) => {
@@ -82,10 +96,11 @@ export const renderSameDaySessions = (sameDaySessions) => {
   )
 }
 
-export const renderFilter = (filter, id) => {
+export const renderFilter = (filter, {showHideAll}, showAll, type) => {
   return(
     <div className={availCSS.RightAlign}>
-      <input id={id} onChange={filter}/>
+      <span className={viewCSS.SecondaryBtn} onClick={() => showHideAll(type)}>{showAll ? 'hide unavailable' : 'show all'}</span>
+      <input onChange={filter}/>
     </div>
   )
 }
