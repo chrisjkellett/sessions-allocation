@@ -20,23 +20,25 @@ export const renderUI = (state, props, handlers) => {
     <section>
       <form onSubmit={handlers.submit}>
         <div className={classes.Container}>
-          <div className={classes.Box}>
+          <div className={[classes.Box, classes.FormMode].join(" ")}>
             {renderFormElements(state, handlers, examiners, sessions)}
             {renderBtns(handlers, props.sessionForEditing)}
           </div>
-          <div className={[classes.Box, classes.LongerBox].join(" ")}>
-            <Table labels={[renderHeader(filterAvailable, 'examiners'), null, renderFilter(handlers.ex_filter, 'examiners')]}>
-              {renderAvailableExaminers(filterAvailable, state)}
-              {renderUnAvailableExaminers(availableExaminers, state)}
-            </Table>
-
+          <div className={[classes.Box, classes.ViewMode].join(" ")}>
+            <div className={classes.BoxWithMaxHeight}>
+              <Table labels={[renderHeader(filterAvailable, 'examiners'), null, renderFilter(handlers.ex_filter, 'examiners')]}>
+                {renderAvailableExaminers(filterAvailable, state)}
+                {renderUnAvailableExaminers(availableExaminers, state)}
+              </Table>
+            </div>
+            <div className={classes.BoxWithMaxHeight}>
             <Table labels={[renderHeader(filterSupport, 'support'), null, renderFilter(handlers.supp_filter, 'support')]}>
               {renderAvailableExaminers(filterSupport, state)}
               {renderUnAvailableExaminers(availableSupport, state)}
             </Table>
-
+            </div>
             {sameDaySessions.length !== 0 &&
-            <div>
+            <div className={classes.BoxWithMaxHeight}>
               <p>Other sessions on <span className={availCSS.Bolder}>{calculateDate(state)}</span>
                 <span className={availCSS.Count}>{sameDaySessions.length}</span>
               </p>

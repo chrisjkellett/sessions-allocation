@@ -4,13 +4,25 @@
 }
 
 .Container .Box{
-  flex-basis: 650px;
   margin: 0 10px;
 }
 
-.Box table{
-  margin-bottom: 40px;
+.ViewMode{
+  flex-basis: 500px;
+  flex-grow: 2;
 }
+
+.ViewMode .BoxWithMaxHeight{
+  max-height: 28%;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  border-bottom: 1px solid darkgray;
+}
+
+.FormMode{
+  flex-basis: 450px;
+}
+
 
 .FlexItem{
   flex-basis: 300px;
@@ -47,11 +59,6 @@
   font-size: 70%;
   margin-left: 1px;
 }
-
-.LongerBox{
-  flex-grow: 2;
-}
-
 
 .SubmitBtns button{
   display: inline-block;
