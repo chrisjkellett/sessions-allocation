@@ -48,6 +48,10 @@
   margin-left: 1px;
 }
 
+.LongerBox{
+  flex-grow: 2;
+}
+
 
 .SubmitBtns button{
   display: inline-block;

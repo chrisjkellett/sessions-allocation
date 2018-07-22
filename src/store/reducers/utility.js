@@ -49,7 +49,7 @@ export const checkIfAdmin = (user) => {
     return user.roles.includes('Team Leader');
 }
 
-const Availability = (available) => {
+export const Availability = (available) => {
   return{
     failsAvailability: false,
     failsLevel: false,
@@ -81,3 +81,4 @@ export const sortBy = (obj, factor) => {
 export const checkExaminerOnLoad = ({user, examiners}) => {
   return user ? objectToArray(examiners).find(e => e.name === user) : null;
 }
+

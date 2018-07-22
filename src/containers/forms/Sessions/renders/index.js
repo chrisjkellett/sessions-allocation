@@ -24,7 +24,7 @@ export const renderUI = (state, props, handlers) => {
             {renderFormElements(state, handlers, examiners, sessions)}
             {renderBtns(handlers, props.sessionForEditing)}
           </div>
-          <div className={classes.Box}>
+          <div className={[classes.Box, classes.LongerBox].join(" ")}>
             <Table labels={[renderHeader(filterAvailable, 'examiners'), null, renderFilter(handlers.ex_filter)]}>
               {renderAvailableExaminers(filterAvailable, state)}
               {renderUnAvailableExaminers(availableExaminers, state)}

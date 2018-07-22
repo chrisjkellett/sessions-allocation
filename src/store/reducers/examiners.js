@@ -6,7 +6,8 @@ import {
   addId,
   objectToArray,
   sortBy,
-  checkExaminerOnLoad
+  checkExaminerOnLoad,
+  Availability
 } from './utility';
 
 const initialState = {
@@ -23,8 +24,9 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {examiners: objectToArray(action.examiners, 'name', isExaminers), error: false})
 
     case actionTypes.ADD_EXAMINER_SUCCESS:
-      const examinerUpdatedWithId = addId({...action.examiner}, action.id);
-      return updateState(state, {examiners: sortBy(state.examiners.concat(examinerUpdatedWithId), 'name'), error: false})
+      const a = addId({...action.examiner}, action.id);
+      const b = {...a, avail: Availability(), available: true}
+      return updateState(state, {examiners: sortBy(state.examiners.concat(b), 'name'), error: false})
 
     case actionTypes.DELETE_EXAMINER_SUCCESS:
       return updateState(state, {examiners: removeElementById(state.examiners, action.id), error: false})
