@@ -11,7 +11,6 @@ export const sessionTableHeaders = [
 
 export const examinerTableHeaders = [
   'examiner name',
-  'roles',
   'availability',
   'levels',
   null

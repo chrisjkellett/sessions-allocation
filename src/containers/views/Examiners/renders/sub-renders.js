@@ -2,22 +2,11 @@ import React from 'react';
 import classes from '../Examiners.css';
 import {formatAvailability, isPm} from '../../utility';
 
-export const renderName = (examiner, linkHandler) => {
+export const renderNameAndRoles = (examiner, linkHandler) => {
   return (
     <td>
       <span className={classes.NameBtn} onClick={()=> linkHandler(examiner)}>{examiner.name}</span>
-    </td>
-  )
-}
-
-
-export const renderRoles = (examiner) => {
-  return (
-    <td>
-    {examiner.roles
-      .map(role => {
-        return <div key={role} className={classes.Roles}>{role}</div>
-      })}
+      <div>{examiner.roles.map(r => <span className={classes.Roles}>{r}</span>)}</div>
     </td>
   )
 }
