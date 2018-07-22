@@ -9,7 +9,9 @@ import {renderUI} from './renders';
 import {
   calculateAvailableExaminers, 
   calculateSameDaySessions,
-  filterExaminers} from '../../../store/actions/examiner-options/examiner-options';
+  filterExaminers,
+  filterSupport
+} from '../../../store/actions/examiner-options/examiner-options';
 import * as actions from '../../../store/actions/sessions';
 
 class AddSessions extends Component{
@@ -76,9 +78,8 @@ class AddSessions extends Component{
     },
 
     supp_filter: ({target: {value}}) => {
-      console.log(value);
-      // const {filterExaminers, examiners} = this.props;
-      // filterExaminers(examiners, value)
+      const {filterSupport, examiners} = this.props;
+      filterSupport(examiners, value)
     },
 
     cancel: () => {
@@ -144,7 +145,8 @@ const mapDispatchToProps = dispatch => {
     updateSession: (sessions, session, id, token) => dispatch(actions.updateSession(sessions, session, id, token)),
     calculateAvailableExaminers: (examiners, session) => dispatch(calculateAvailableExaminers(examiners, session)),
     calculateSameDaySessions: (sessions, sessionDate) => dispatch(calculateSameDaySessions(sessions, sessionDate)),
-    filterExaminers: (examiners, filterValue) => dispatch(filterExaminers(examiners, filterValue))
+    filterExaminers: (examiners, filterValue) => dispatch(filterExaminers(examiners, filterValue)),
+    filterSupport: (support, filterValue) => dispatch(filterSupport(support, filterValue))
   }
 }
 

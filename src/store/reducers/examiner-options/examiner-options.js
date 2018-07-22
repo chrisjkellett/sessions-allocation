@@ -1,5 +1,5 @@
 import * as actionTypes from '../../actions/examiner-options/actionTypes';
-import {examinerCheck, sameDayCheck, filterExaminers, supportCheck} from './utility';
+import {examinerCheck, sameDayCheck, filterExaminers, supportCheck, filterSupport} from './utility';
 
 const initial = {
   ex_options: [],
@@ -17,6 +17,9 @@ const reducer = (state = initial, action) => {
 
     case actionTypes.FILTER_EXAMINERS:  
       return {...state, ex_options: filterExaminers(action)};
+
+    case actionTypes.FILTER_SUPPORT:  
+      return {...state, supp_options: filterSupport(action)};
 
     default:
       return state;  

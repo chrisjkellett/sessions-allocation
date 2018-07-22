@@ -23,3 +23,11 @@ export const filterExaminers = (examiners, filterValue) => {
     filterValue: filterValue
   }
 }
+
+export const filterSupport = (support, filterValue) => {
+  return {
+    type: actionTypes.FILTER_SUPPORT,
+    support: support,
+    filterValue: filterValue
+  }
+}

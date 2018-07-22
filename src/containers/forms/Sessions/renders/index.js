@@ -25,12 +25,12 @@ export const renderUI = (state, props, handlers) => {
             {renderBtns(handlers, props.sessionForEditing)}
           </div>
           <div className={[classes.Box, classes.LongerBox].join(" ")}>
-            <Table labels={[renderHeader(filterAvailable, 'examiners'), null, renderFilter(handlers.ex_filter)]}>
+            <Table labels={[renderHeader(filterAvailable, 'examiners'), null, renderFilter(handlers.ex_filter, 'examiners')]}>
               {renderAvailableExaminers(filterAvailable, state)}
               {renderUnAvailableExaminers(availableExaminers, state)}
             </Table>
 
-            <Table labels={[renderHeader(filterSupport, 'support'), null, renderFilter(handlers.supp_filter)]}>
+            <Table labels={[renderHeader(filterSupport, 'support'), null, renderFilter(handlers.supp_filter, 'support')]}>
               {renderAvailableExaminers(filterSupport, state)}
               {renderUnAvailableExaminers(availableSupport, state)}
             </Table>

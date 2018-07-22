@@ -82,10 +82,10 @@ export const renderSameDaySessions = (sameDaySessions) => {
   )
 }
 
-export const renderFilter = (filter) => {
+export const renderFilter = (filter, id) => {
   return(
     <div className={availCSS.RightAlign}>
-      <input onChange={filter}/>
+      <input id={id} onChange={filter}/>
     </div>
   )
 }
