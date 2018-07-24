@@ -15,7 +15,7 @@ export const renderAvailableExaminersTable = (state, handlers, props, filterAvai
       <Table labels={[renderHeader(filterAvailable, 'examiners'), null, renderFilter(handlers.ex_filter, handlers, showAllExaminers, 'showAllExaminers')]}></Table>
       <div className={classes.BoxWithMaxHeight}>
         <Table>
-          {renderAvailableExaminers(filterAvailable, state, showAllExaminers)}
+          {renderAvailableExaminers([...filterAvailable], state, showAllExaminers)}
           {showAllExaminers && renderUnAvailableExaminers(availableExaminers, state)}
         </Table>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from '../Examiners.css';
 import {formatAvailability, isPm} from '../../utility';
+import viewCSS from '../../../css/views.css';
 
 export const renderNameAndRoles = (examiner, linkHandler) => {
   return (
@@ -43,5 +44,11 @@ export const renderBtns = (examiner, deleteHandler, editHandler, isAuthenticated
       {isAuthenticated && <span className={classes.Bar}> | </span>}
       {isAuthenticated && <span className={classes.Btn} onClick={() => deleteHandler(examiner)}>delete</span>}
     </td>
+  )
+}
+
+export const renderFilterBtn = (showFilters, {toggleFilters}) => {
+  return(
+    <span onClick={toggleFilters} className={viewCSS.TertiaryBtn}>{showFilters ? 'turn filters off' : 'turn filters on'}</span>
   )
 }

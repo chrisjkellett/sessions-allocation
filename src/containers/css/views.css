@@ -114,6 +114,15 @@
   cursor: pointer;
 }
 
+.TertiaryBtn{
+  font-size: 80%;
+  cursor: pointer;
+}
+
 .SecondaryBtn:hover{
   background: lightblue;
+}
+
+.PushUp{
+  margin-bottom: 3px;
 }

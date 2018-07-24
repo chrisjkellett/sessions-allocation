@@ -3,13 +3,17 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import * as actions from '../../../store/actions/examiners/examiners';
 import classes from './Examiners.css';
-import {examinerTableHeaders} from '../../../store/app-data/table-headers';
 import {formatURL} from '../../../gen-utility';
 import {renderTableContent} from './renders/';
+import {renderFilterBtn} from './renders/sub-renders';
 import Table from '../../../components/FormElements/Table/Table';
 
 
 class Examiners extends Component{
+  state = {
+    showFilters: false
+  }
+
   componentDidMount(){
     this.props.deActivateSelectedExaminer();
   }
@@ -29,10 +33,20 @@ class Examiners extends Component{
     this.props.history.push('/examiners/' + formatURL(examiner.name));
   }
 
+  handlers = {
+    toggleFilters: () => {
+      this.setState(prev => ({
+        showFilters: prev.showFilters ? false : true
+      }));
+    }
+  }
+
   render(){
+    const {showFilters} = this.state;
+    const headers = ['examiner name', 'availability', 'levels', renderFilterBtn(showFilters, this.handlers)];
     return (
       <section className={classes.Examiners}>
-        <Table labels={examinerTableHeaders}>
+        <Table labels={showFilters ? ['filter', null, null, renderFilterBtn(showFilters, this.handlers)] : headers}>
           {renderTableContent(this.props, this.handleDelete, this.handleEdit, this.handleLink)}
         </Table>
       </section>
