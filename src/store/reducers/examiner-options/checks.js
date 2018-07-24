@@ -59,9 +59,10 @@ export const type = (examiner, sessionType) => {
 
 export const isBusy = (e, sameDaySessions, time) => {
   if (sameDaySessions.length !== 0){
+    let type = e.roles.includes('Speaking Examiner') ? 'examiners' : 'support';
     sameDaySessions.forEach(s => {
       if(isSameTime(s.time, time))
-        if(s.examiners.includes(e.name)) 
+        if(s[type].includes(e.name)) 
           e.avail.failsIsBusy = true;
         else  
           e.avail.failsIsBusy = false;

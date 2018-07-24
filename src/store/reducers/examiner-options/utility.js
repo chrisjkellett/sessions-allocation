@@ -12,11 +12,11 @@ export const examinerCheck = ({examiners, session, sessions}) => {
     .map(e => check.isAvailable(e))
 }
 
-export const supportCheck = ({examiners, session}) => {
+export const supportCheck = ({examiners, session, sessions}) => {
   return examiners
     .filter(e => e.roles.includes('Support staff'))
     .map(e => check.day(e, session.session_date.value, session.time.value))
-    // .filter(e => checkOtherSessions(e, sessions))
+    .map(e => check.isBusy(e, sameDayCheck({sessions: sessions, sessionDate: session.session_date.value}), session.time.value))
     .map(e => check.isAvailable(e))
 }
 
@@ -41,8 +41,5 @@ export const filterSupport = ({support, filterValue}) => {
 export const isSameTime = (a, b) => {
   const objA = timeKeys.find(t => t.time === a)
   const objB = timeKeys.find(t => t.time === b);
-  console.log(objA);
-  console.log(objB);
-  console.log(objA.am === objB.am)
   return objA.am === objB.am;
 }
