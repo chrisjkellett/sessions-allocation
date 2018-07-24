@@ -34,8 +34,8 @@ export const constructSessionsState = () => {
         multiple: false,
         disabled: false
       },
-      options: timeKeys,
-      value: timeKeys[0],
+      options: timeKeys.map(t => t.time),
+      value: timeKeys[0].time,
       group: 'session-data',
       validation: constructValidation({})
     },

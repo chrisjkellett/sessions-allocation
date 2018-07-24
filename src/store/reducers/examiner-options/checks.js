@@ -1,4 +1,5 @@
 import moment from 'moment';
+import {isSameTime} from './utility';
 
 export const levels = (examiner, sessionLevels) => {
   const {levels, avail} = examiner;
@@ -56,13 +57,14 @@ export const type = (examiner, sessionType) => {
   return examiner;
 }
 
-export const isBusy = (e, sameDaySessions) => {
+export const isBusy = (e, sameDaySessions, time) => {
   if (sameDaySessions.length !== 0){
     sameDaySessions.forEach(s => {
-      if(s.examiners.includes(e.name)){
-        console.log(e.name)
-        e.avail.failsIsBusy = true;
-      }
+      if(isSameTime(s.time, time))
+        if(s.examiners.includes(e.name)) e.avail.failsIsBusy = true;
+
+      else
+        e.avail.failsIsBusy = false;
     })
     return e;
   }
