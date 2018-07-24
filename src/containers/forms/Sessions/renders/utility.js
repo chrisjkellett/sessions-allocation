@@ -1,40 +1,30 @@
 import React from 'react';
-import {checkType, checkLevels, checkOtherSessions} from './availability';
-import {checkDay} from './availability';
 import classes from '../../../css/views.css';
 import availCSS from './availability.css';
 import moment from 'moment';
 
-export const generateInputProps = (element, state, changeHandler, examiners, sessions) => {
-  const {config} = element
+export const generateInputProps = ({config, id}, state, changeHandler, filterAvailable, filterSupport) => {
     return {
-      key: element.id,
-      label: element.id,
-      options: examinerCheck(element, examiners, config, state.session, sessions),
+      key: id,
+      label: id,
+      options: examinerCheck(id, filterAvailable, filterSupport, config),
       elementtype: config.elementType,
       elementConfig: config.elementConfig,
       value: config.value,
       valid: config.validation.valid,
       shouldValidate: state.shouldValidate,
-      change: (event, index) => changeHandler(event, config.elementType, element.id, index)
+      change: (event, index) => changeHandler(event, config.elementType, id, index)
     }
 }
 
-export const examinerCheck = (element, examiners, config, session, sessions) => {
-  if(element.id === 'examiners' && examiners !== null){
-    return examiners
-      .filter(e => !e.roles.includes('Support staff') || e.roles.includes('Speaking Examiner'))
-      .filter(e => checkType(e, session.type.value))
-      .filter(e => checkLevels(e, session.levels.value))
-      .filter(e => checkDay(e, session.session_date.value, session.time.value))
-      .filter(e => checkOtherSessions(e, sessions))
+export const examinerCheck = (id, filterAvailable, filterSupport, config) => {
+  if(id === 'examiners' && filterAvailable !== null){
+    return filterAvailable
       .map(e => e.name);
   }
 
-  else if(element.id === 'support' && examiners !== null){
-    return examiners
-      .filter(e => e.roles.includes('Support staff'))
-      .filter(e => checkDay(e, session.session_date.value, session.time.value))
+  else if(id === 'support' && filterSupport !== null){
+    return filterSupport
       .map(e => e.name);
   }
   

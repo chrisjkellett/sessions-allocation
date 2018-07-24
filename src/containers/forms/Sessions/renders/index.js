@@ -13,7 +13,7 @@ import Table from '../../../../components/FormElements/Table/Table';
 import availCSS from './availability.css';
 
 export const renderUI = (state, props, handlers) => {
-  const {examiners, sessions, availableExaminers, availableSupport, sameDaySessions} = props;
+  const {availableExaminers, availableSupport, sameDaySessions} = props;
   const {showAllExaminers, showAllSupport} = state;
   const filterAvailable = availableExaminers.filter(e => e.available);
   const filterSupport = availableSupport.filter(e => e.available);
@@ -22,7 +22,7 @@ export const renderUI = (state, props, handlers) => {
       <form onSubmit={handlers.submit}>
         <div className={classes.Container}>
           <div className={[classes.Box, classes.FormMode].join(" ")}>
-            {renderFormElements(state, handlers, examiners, sessions)}
+            {renderFormElements(state, handlers, filterAvailable, filterSupport)}
             {renderBtns(handlers, props.sessionForEditing)}
           </div>
           <div className={[classes.Box, classes.ViewMode].join(" ")}>
@@ -43,7 +43,7 @@ export const renderUI = (state, props, handlers) => {
               <p>Other sessions on <span className={availCSS.Bolder}>{calculateDate(state)}</span>
                 <span className={availCSS.Count}>{sameDaySessions.length}</span>
               </p>
-              <Table labels={['venue', 'time', 'level', 'examiners']}>
+              <Table labels={['venue', 'time', 'level', 'examiners', 'support']}>
                 {renderSameDaySessions(sameDaySessions)}
               </Table>
             </div>}

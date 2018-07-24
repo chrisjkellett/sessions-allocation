@@ -2,7 +2,8 @@ import moment from 'moment';
 
 export const levels = (examiner, sessionLevels) => {
   const {levels, avail} = examiner;
-  if(examiner.levels){
+  console.log(sessionLevels);
+  if(examiner.levels && sessionLevels.length !== 0){
     if(!sessionLevels.every(level => levels.includes(level))){
       avail.failsLevel = true;
     }

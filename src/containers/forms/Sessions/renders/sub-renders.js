@@ -6,11 +6,11 @@ import classes from '../../../css/forms.css';
 import viewCSS from '../../../css/views.css';
 import availCSS from './availability.css';
 
-export const renderFormElements = (state, {change}, examiners, sessions) => {
+export const renderFormElements = (state, {change}, filterAvailable, filterSupport) => {
   return (
     generateFormElementArray(state.session)
       .map(element =>{
-        return <Input {...generateInputProps(element, state, change, examiners, sessions)} />
+        return <Input {...generateInputProps(element, state, change, filterAvailable, filterSupport)} />
       }
     )
   )
@@ -33,7 +33,7 @@ export const renderAvailableExaminers = (examiners, {session: {levels}}, showAll
         .map(e => {
           return (
             <tr className={generateStyles(e)} key={e.name}>
-              <td>{e.name}<div>{e.roles.map(r => <span className={viewCSS.Roles}>{r}</span>)}</div></td>
+              <td>{e.name}<div>{e.roles.map(r => <span key={r} className={viewCSS.Roles}>{r}</span>)}</div></td>
               <td className={viewCSS.Levels}>{renderLevels(e, levels.value)}</td>
               <td className={availCSS.ErrorLog}>
                 <span>
@@ -90,6 +90,7 @@ export const renderSameDaySessions = (sameDaySessions) => {
               })}
             </td>
             <td>{lastNameOnly(s.examiners)}</td>
+            <td>{lastNameOnly(s.support)}</td>
           </tr>
           )
         })
@@ -111,11 +112,18 @@ export const renderHeader = ({length}, str) => {
 
 export const renderLevels = (e, selectedLevels) => {
   if(e.levels){
-    return e.levels
-      .filter(l => selectedLevels.includes(l))
-      .map(l => {
-        return <span key={l} className={viewCSS.Icons}>{l}</span>
-        })
+    if(e.levels.length < 6){
+      return ['YLE', 'KET', 'PET', 'FCE', 'CAE', 'CPE']
+        .map(l => {
+          return e.levels.includes(l) ?
+            <span key={l} className={viewCSS.Icons}>{l}</span> : 
+            <span key={l} className={[viewCSS.Icons, viewCSS.DisabledIcons].join(" ")}>{l}</span>
+          })
+    }
+
+    else{
+      return <span className={[viewCSS.Icons, viewCSS.FullSuite].join(" ")}>full suite</span>
+    }
   }
 
   else{
