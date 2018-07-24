@@ -65,11 +65,11 @@ export const isBusy = (e, sameDaySessions, time) => {
         if(s[type].includes(e.name)) 
           e.avail.failsIsBusy = true;
         else  
-          e.avail.failsIsBusy = false;
+          e.avail.failsIsBusy = e.avail.failsIsBusy ? true : false;
 
       else
         e.avail.failsIsBusy = false;
-    })
+    }) 
     return e;
   }
 

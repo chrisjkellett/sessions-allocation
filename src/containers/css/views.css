@@ -13,7 +13,7 @@
 }
 
 .ViewMode .BoxWithMaxHeight{
-  height: 180px;
+  height: 170px;
   overflow-y: scroll;
   margin-bottom: 30px;
 }
