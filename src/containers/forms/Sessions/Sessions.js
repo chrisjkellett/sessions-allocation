@@ -18,8 +18,8 @@ class AddSessions extends Component{
   state = {
     session: constructSessionsState(),
     shouldValidate: false,
-    showAllExaminers: false,
-    showAllSupport: false
+    showAllExaminers: true,
+    showAllSupport: true
   }
 
   componentDidMount(){ 
