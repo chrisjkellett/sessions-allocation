@@ -6,7 +6,7 @@ export const renderNameAndRoles = (examiner, linkHandler) => {
   return (
     <td>
       <span className={classes.NameBtn} onClick={()=> linkHandler(examiner)}>{examiner.name}</span>
-      <div>{examiner.roles.map(r => <span className={classes.Roles}>{r}</span>)}</div>
+      <div>{examiner.roles.map(r => <span key={r} className={classes.Roles}>{r}</span>)}</div>
     </td>
   )
 }
