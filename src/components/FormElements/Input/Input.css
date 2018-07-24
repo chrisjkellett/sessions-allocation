@@ -85,3 +85,13 @@
 .Active {
   background: lightblue !important;
 }
+
+.InlineSelect{
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.TextArea{
+  width: 400px;
+  height: 50px;
+}

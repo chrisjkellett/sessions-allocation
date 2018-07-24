@@ -82,6 +82,7 @@ export const constructSessionsState = () => {
         disabled: false
       },
       options: [],
+      inline: true,
       value: [],
       group: 'session-data',
       validation: constructValidation({...rules.required})
@@ -94,10 +95,21 @@ export const constructSessionsState = () => {
         disabled: false
       },
       options: [],
+      inline: true,
       value: [],
       group: 'session-data',
       validation: constructValidation({...rules.required})
-    }
+    },
+
+    notes: {
+      elementType: 'textarea',
+      elementConfig: {
+        disabled: false
+      },
+      value: '',
+      group: 'session-data',
+      validation: constructValidation({...rules.required})
+    },
 
   } 
 }

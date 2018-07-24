@@ -54,6 +54,11 @@ export const renderFormElement = (type, props) =>{
         </div>
       )
 
+      case 'textarea':
+        return(
+          <textarea {...props.elementConfig} onChange={props.change} value={props.value} className={classes.TextArea}/>
+        )
+
      default :
         return null; 
 

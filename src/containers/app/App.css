@@ -13,11 +13,15 @@ body {
   overflow-y: scroll;
 }
 
-input, select, button{
+input, select, button, textarea{
   font-family: inherit;
   font-size: inherit;
   outline: 0;
   display: block;
+}
+
+textarea{
+  resize: none;
 }
 
 input[type='checkbox']{

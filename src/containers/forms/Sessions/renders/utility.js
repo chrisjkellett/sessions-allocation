@@ -8,6 +8,7 @@ export const generateInputProps = ({config, id}, state, changeHandler, filterAva
       key: id,
       label: id,
       options: examinerCheck(id, filterAvailable, filterSupport, config),
+      inline: config.inline,
       elementtype: config.elementType,
       elementConfig: config.elementConfig,
       value: config.value,

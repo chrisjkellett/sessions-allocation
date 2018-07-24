@@ -32,13 +32,6 @@ class AddSessions extends Component{
     calculateSameDaySessions(sessions, this.state.session.session_date.value)
   }
 
-  changeHandler = (event, type, id, index) => {
-    if(type === 'input') this.inputHandler(event, id);
-    if(type === 'select') this.selectHandler(event, id);
-    if(type === 'checkbox') this.checkBoxHandler(event, id);
-    if(type === 'date') this.dateHandler(event, id, index);
-  }
-
   dateHandler = (event, id, index) => {
     const type = Object.keys({...this.state})[0];
     const copyArray = [...this.state[type][id].value];
@@ -73,6 +66,13 @@ class AddSessions extends Component{
     this.setState(update);
   }
 
+  inputHandler = ({target: {value}}, id) => {
+    const type = Object.keys({...this.state})[0];
+    const update = updateState(this.state, id, {value: value}, type);
+    update[type][id].validation = checkValidity({...update[type][id]});
+    this.setState(update);
+  }
+
   handlers = {
     ex_filter: ({target: {value}}) => {
       const {filterExaminers, examiners} = this.props;
@@ -95,7 +95,7 @@ class AddSessions extends Component{
     },
 
     change: (event, type, id, index) => {
-      if(type === 'input') this.inputHandler(event, id);
+      if(type === 'input' || type === 'textarea') this.inputHandler(event, id);
       if(type === 'select') this.selectHandler(event, id);
       if(type === 'checkbox') this.checkBoxHandler(event, id);
       if(type === 'date') this.dateHandler(event, id, index);

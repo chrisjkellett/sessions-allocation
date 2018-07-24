@@ -15,6 +15,10 @@ export const generateClasses = (props, classes) => {
     styles.push(classes.NotVisible);
   }
 
+  if(props.inline){
+    styles.push(classes.InlineSelect)
+  }
+
   return styles.join(" ");
 }
 
