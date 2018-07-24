@@ -28,7 +28,7 @@ class AddSessions extends Component{
       this.setState(updateSimpleState({session: update}));
     } 
     const {calculateAvailableExaminers, calculateSameDaySessions, examiners, sessions} = this.props;
-    calculateAvailableExaminers(examiners, this.state.session);
+    calculateAvailableExaminers(examiners, this.state.session, sessions);
     calculateSameDaySessions(sessions, this.state.session.session_date.value)
   }
 
@@ -46,7 +46,7 @@ class AddSessions extends Component{
     const update = updateState(this.state, id, {value: value}, type)
     update[type][id].validation = checkValidity({...update[type][id]});
     const {calculateAvailableExaminers, calculateSameDaySessions, examiners, sessions} = this.props;
-    calculateAvailableExaminers(examiners, update.session);
+    calculateAvailableExaminers(examiners, update.session, sessions);
     calculateSameDaySessions(sessions, value)
     this.setState(update);
   }
@@ -57,8 +57,8 @@ class AddSessions extends Component{
     const value = updateOptionArray(copyOptions, event);
     const update = updateState(this.state, id, {value: value}, type);
     update[type][id].validation = checkValidity({...update[type][id]});
-    const {calculateAvailableExaminers, examiners} = this.props;
-    calculateAvailableExaminers(examiners, update.session);
+    const {calculateAvailableExaminers, examiners, sessions} = this.props;
+    calculateAvailableExaminers(examiners, update.session, sessions);
     this.setState(update);
   }
 
@@ -68,8 +68,8 @@ class AddSessions extends Component{
     this.setState({session: value});
     const update = updateState(this.state, id, {value: value}, type);
     update[type][id].validation = checkValidity({...update[type][id]});
-    const {calculateAvailableExaminers, examiners} = this.props;
-    calculateAvailableExaminers(examiners, update.session);
+    const {calculateAvailableExaminers, examiners, sessions} = this.props;
+    calculateAvailableExaminers(examiners, update.session, sessions);
     this.setState(update);
   }
 
@@ -151,7 +151,7 @@ const mapDispatchToProps = dispatch => {
   return {
     addSession: (sessions, session, token) => dispatch(actions.addSession(sessions, session, token)),
     updateSession: (sessions, session, id, token) => dispatch(actions.updateSession(sessions, session, id, token)),
-    calculateAvailableExaminers: (examiners, session) => dispatch(calculateAvailableExaminers(examiners, session)),
+    calculateAvailableExaminers: (examiners, session, sessions) => dispatch(calculateAvailableExaminers(examiners, session, sessions)),
     calculateSameDaySessions: (sessions, sessionDate) => dispatch(calculateSameDaySessions(sessions, sessionDate)),
     filterExaminers: (examiners, filterValue) => dispatch(filterExaminers(examiners, filterValue)),
     filterSupport: (support, filterValue) => dispatch(filterSupport(support, filterValue))

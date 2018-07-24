@@ -49,11 +49,12 @@ export const checkIfAdmin = (user) => {
     return user.roles.includes('Team Leader');
 }
 
-export const Availability = (available) => {
+export const Availability = () => {
   return{
     failsAvailability: false,
     failsLevel: false,
-    failsRoles: false
+    failsRoles: false,
+    failsIsBusy: false
   }
 }
 

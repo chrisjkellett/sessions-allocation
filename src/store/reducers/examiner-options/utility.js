@@ -1,13 +1,13 @@
 import * as check from './checks';
 import moment from 'moment';
 
-export const examinerCheck = ({examiners, session}) => {
+export const examinerCheck = ({examiners, session, sessions}) => {
   return examiners
     .filter(e => !e.roles.includes('Support staff') || e.roles.includes('Speaking Examiner'))
     .map(e => check.type(e, session.type.value))
     .map(e => check.levels(e, session.levels.value))
     .map(e => check.day(e, session.session_date.value, session.time.value))
-    // .filter(e => checkOtherSessions(e, sessions))
+    .map(e => check.isBusy(e, sameDayCheck({sessions: sessions, sessionDate: session.session_date.value})))
     .map(e => check.isAvailable(e))
 }
 

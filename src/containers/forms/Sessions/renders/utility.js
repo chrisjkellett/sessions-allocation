@@ -46,6 +46,7 @@ export const generateErrorMessage = (examiner) => {
   if(examiner.avail.failsAvailability) errors.push('date'); 
   if(examiner.avail.failsLevel) errors.push('levels');
   if(examiner.avail.failsRoles) errors.push('roles');
+  if(examiner.avail.failsIsBusy) errors.push('busy');
   return errors.map((e, i) => (
     <span key={i}>
       <i className="fas fa-times"></i>

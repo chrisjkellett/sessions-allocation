@@ -1,10 +1,11 @@
 import * as actionTypes from './actionTypes';
 
-export const calculateAvailableExaminers = (examiners, session) => {
+export const calculateAvailableExaminers = (examiners, session, sessions) => {
   return {
     type: actionTypes.CALCULATE_AVAILABLE_EXAMINERS,
     examiners: examiners,
-    session: session
+    session: session,
+    sessions: sessions
   }
 }
 

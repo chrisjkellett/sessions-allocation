@@ -2,7 +2,6 @@ import moment from 'moment';
 
 export const levels = (examiner, sessionLevels) => {
   const {levels, avail} = examiner;
-  console.log(sessionLevels);
   if(examiner.levels && sessionLevels.length !== 0){
     if(!sessionLevels.every(level => levels.includes(level))){
       avail.failsLevel = true;
@@ -55,6 +54,23 @@ export const type = (examiner, sessionType) => {
   }
 
   return examiner;
+}
+
+export const isBusy = (e, sameDaySessions) => {
+  if (sameDaySessions.length !== 0){
+    sameDaySessions.forEach(s => {
+      if(s.examiners.includes(e.name)){
+        console.log(e.name)
+        e.avail.failsIsBusy = true;
+      }
+    })
+    return e;
+  }
+
+  else{
+    e.avail.failsIsBusy = false;
+    return e;
+  }
 }
 
 //always final check
