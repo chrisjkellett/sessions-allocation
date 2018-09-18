@@ -13,7 +13,7 @@ export const invalidDate = (arr) => {
 }
 
 export const NotBeforeToday = (arr) => {
-  return moment(arr.join("-"), 'YYYY-MM-DD').isBefore(moment());
+  return moment(arr.join("-"), 'YYYY-MM-DD').isBefore(moment().subtract(1, 'days'));
 }
 
 export const notYLE = (levels) => {
