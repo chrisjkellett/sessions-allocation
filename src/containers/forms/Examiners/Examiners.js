@@ -14,7 +14,8 @@ class Examiners extends Component {
   state = {
     examiner: constructExaminerState(),
     editing: false,
-    shouldValidate: false
+    shouldValidate: false,
+    showContracts: false
   }
 
   componentDidMount(){ 
@@ -89,8 +90,14 @@ class Examiners extends Component {
     this.setState(update);
   }
 
+  toggleContracts = (event) => {
+    event.preventDefault();
+    this.setState((prev) => ({showContracts: prev.showContracts ? false : true }))
+  }
+
   render(){
-    return renderUI(this.props, this.state, this.changeHandler, this.cancelHandler, this.submitHandler);
+    return renderUI(
+      this.props, this.state, this.changeHandler, this.cancelHandler, this.submitHandler, this.toggleContracts);
   }
 }
 

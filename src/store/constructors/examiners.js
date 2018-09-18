@@ -3,6 +3,11 @@ import {
 } from '../data';
 
 import {
+  CURRENTYEAR, CURRENTMONTH, CURRENTDAY
+} from '../data';
+
+
+import {
   constructValidation,
   rules
 } from './validation';
@@ -103,6 +108,36 @@ export const constructExaminerState = () => {
       hide: true,
       value: [],
       group: 'availability + monitoring',
+      validation: constructValidation({})
+    },
+
+    contract_start: {
+      elementType: 'date',
+      options: {
+        days: dayOptions,
+        months: monthOptions,
+        years: yearOptionsMonitoring
+      },
+      elementConfig: {
+        disabled: false
+      },
+      value: [CURRENTYEAR, monthOptions[CURRENTMONTH - 1].id, dayOptions[CURRENTDAY - 1].id],
+      group: 'contracts',
+      validation: constructValidation({})
+    },
+
+    contract_end: {
+      elementType: 'date',
+      options: {
+        days: dayOptions,
+        months: monthOptions,
+        years: yearOptionsMonitoring
+      },
+      elementConfig: {
+        disabled: false
+      },
+      value: [CURRENTYEAR, monthOptions[CURRENTMONTH - 1].id, dayOptions[CURRENTDAY].id],
+      group: 'contracts',
       validation: constructValidation({})
     },
   } 
