@@ -1,0 +1,78 @@
+{
+    "-LHUEp8zg8IpE_X1nTcB" : {
+      "examiners" : [ "Christopher Kellett" ],
+      "id" : "-LHUEp8zg8IpE_X1nTcB",
+      "levels" : [ "KET" ],
+      "session_date" : [ 2018, "07", "17" ],
+      "support" : [ "Lola Espinosa" ],
+      "time" : "16:00",
+      "type" : "Speaking",
+      "venue" : "Hotel Puerta"
+    },
+    "-LHXnYx_VNkKbTftKEww" : {
+      "examiners" : [ "Robert Giret" ],
+      "id" : "-LHXnYx_VNkKbTftKEww",
+      "levels" : [ "KET" ],
+      "session_date" : [ 2018, "07", "18" ],
+      "support" : [ "Lola Espinosa" ],
+      "time" : "08:00",
+      "type" : "Speaking",
+      "venue" : "Lenguas Vivas"
+    },
+    "-LHblCcICZ--e56u1E6n" : {
+      "examiners" : [ "Robert Giret" ],
+      "levels" : [ "PET" ],
+      "session_date" : [ 2018, "08", "17" ],
+      "support" : [ "Lola Espinosa" ],
+      "time" : "11:00",
+      "type" : "Speaking",
+      "venue" : "Lenguas Vivas"
+    },
+    "-LIBsBsh6ed6M2d-QwP7" : {
+      "examiners" : [ "Christopher Kellett", "Sarah Baldock" ],
+      "levels" : [ "PET" ],
+      "session_date" : [ 2018, "07", "25" ],
+      "support" : [ "Maite Felix" ],
+      "time" : "15:00",
+      "type" : "Speaking",
+      "venue" : "Lenguas Vivas"
+    },
+    "-LICH5uB0fPJRiOaL0m5" : {
+      "examiners" : [ "Robert Giret" ],
+      "levels" : [ "KET" ],
+      "session_date" : [ 2018, "07", "25" ],
+      "support" : [ "Lola Espinosa" ],
+      "time" : "15:00",
+      "type" : "Speaking",
+      "venue" : "Lenguas Vivas"
+    },
+    "-LICVWkrPlnJgOAAu93L" : {
+      "examiners" : [ "Christopher Kellett", "Rafael Marco" ],
+      "levels" : [ "PET" ],
+      "session_date" : [ 2018, "07", "25" ],
+      "support" : [ "Lola Espinosa" ],
+      "time" : "08:30",
+      "type" : "Speaking",
+      "venue" : "Lenguas Vivas"
+    },
+    "-LID89lz7eDGHSJWxrQV" : {
+      "examiners" : [ "Jack Reilly", "Robert Giret" ],
+      "levels" : [ "KET" ],
+      "notes" : "Monitoring for Jack Reilly.",
+      "session_date" : [ 2018, "07", "26" ],
+      "support" : [ "Sarah Baldock" ],
+      "time" : "08:00",
+      "type" : "Speaking",
+      "venue" : "Lenguas Vivas"
+    },
+    "-LMg2ByXUbwYqq-VW_RM" : {
+      "examiners" : [ "Christopher Kellett", "Jack Reilly" ],
+      "levels" : [ "KET" ],
+      "notes" : "Half an hour before start time.",
+      "session_date" : [ 2018, "09", "20" ],
+      "support" : [ "Maite Felix" ],
+      "time" : "15:00",
+      "type" : "Speaking",
+      "venue" : "Hotel Puerta"
+    }
+  }

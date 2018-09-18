@@ -7,7 +7,7 @@ import {
   monthsFromArray} from './utility';
 import {updateState, objectToArray} from '../utility';
 
-const initialState = {
+export const initialState = {
   periods: null,
   current: null,
   sessionsByPeriod: []
@@ -23,6 +23,7 @@ const reducer = (state = initialState, action) => {
       current = setCurrentPeriod(periods);
       sessions = filterSessionsByMonth(objectToArray(action.sessions), current);
       return updateState(state, {periods: periods, current: current, sessionsByPeriod: sessions});
+
 
     case actionTypes.UPDATE_PERIODS: 
       months = monthsFromArray(action.sessions);

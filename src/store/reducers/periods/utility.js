@@ -8,6 +8,13 @@ export const monthsFromObject = ({...obj}) => {
     .map(item => moment(item, 'M').format('MMMM'));
 }
 
+export const weeksFromObject = ({...obj}) => {
+  return Object.keys(obj)
+    .map(item => moment(obj[item]['session_date'].join("-")).format('W'))
+    .sort((a, b) => Number(a) > Number(b))
+    .map(item => moment().day('Monday').week(item).format("Do MMMM"));
+}
+
 export const monthsFromArray = (arr) => {
   return [
     ...arr.map(s => moment([...s.session_date].join("-")).format('M'))
