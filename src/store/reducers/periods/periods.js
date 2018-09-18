@@ -4,8 +4,9 @@ import {
   setCurrentPeriod, 
   filterSessionsByWeek,
   setFromSessionPeriods,
-  weeksFromArray} from './utility';
-import {updateState, objectToArray} from '../utility';
+  weeksFromArray,
+} from './utility';
+import {updateState, objectToArray, sortBy} from '../utility';
 
 export const initialState = {
   periods: null,
@@ -22,7 +23,7 @@ const reducer = (state = initialState, action) => {
       periods = setFromSessionPeriods(months);
       current = setCurrentPeriod(periods);
       sessions = filterSessionsByWeek(objectToArray(action.sessions), current);
-      return updateState(state, {periods: periods, current: current, sessionsByPeriod: sessions});
+      return updateState(state, {periods: periods, current: current, sessionsByPeriod: sortBy(sessions, 'session_date')});
 
 
     case actionTypes.UPDATE_PERIODS: 
@@ -30,7 +31,7 @@ const reducer = (state = initialState, action) => {
       periods = setFromSessionPeriods(months);
       current = setCurrentPeriod(periods);
       sessions = filterSessionsByWeek(action.sessions, current);
-      return updateState(state, {periods: periods, current: current, sessionsByPeriod: sessions});
+      return updateState(state, {periods: periods, current: current, sessionsByPeriod: sortBy(sessions, 'session_date')});
 
     case actionTypes.HANDLE_PERIOD_SELECT: 
       sessions = filterSessionsByWeek(action.sessions, action.period);

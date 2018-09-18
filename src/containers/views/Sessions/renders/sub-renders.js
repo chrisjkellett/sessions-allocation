@@ -50,7 +50,7 @@ export const renderLevels = (session) => {
 export const renderExaminers = (session) => {
   return (
     <td>
-      {session.examiners.join(" + ")}
+      {session.examiners && session.examiners.join(" + ")}
     </td>
   )
 }
@@ -58,7 +58,7 @@ export const renderExaminers = (session) => {
 export const renderSupport = (session) => {
   return (
     <td>
-      {session.support.join(" + ")}
+      {session.support && session.support.join(" + ")}
     </td>
   )
 }
