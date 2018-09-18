@@ -23,6 +23,15 @@ export const monthsFromArray = (arr) => {
  ]
 }
 
+export const weeksFromArray = (arr) => {
+  return [
+    ...arr.map(s => moment([...s.session_date].join("-")).format('W'))
+    .sort((a, b) => Number(a) > Number(b))
+    .map(s => moment(s, 'W').format('Do MMMM'))
+ ]
+}
+
+
 export const setFromSessionPeriods = (array) => {
   const set = Array.from(new Set(array));
   return set.length > 0 ? set : null;
@@ -32,8 +41,21 @@ export const setCurrentPeriod = ([...periods]) => {
  if(periods.length === 0) return null;
  if(periods.length === 1) return periods[0];
  if(periods.length > 1){
-   return calculateCurrentPeriod(periods);
+   return calculateClosest(periods);
  }
+}
+
+export const calculateClosest = (periods) => {
+  const weeks = periods.map(period => moment(period, 'Do MMMM').format('W'));
+  const currentWeek = moment().week();
+  const currentWeekAsString = moment().day('Monday').week(currentWeek).format("Do MMMM");
+  return weeks.includes(currentWeek.toString()) ? currentWeekAsString : periods[0];
+}
+
+export const filterSessionsByWeek = (sessions, period) => {
+  return sessions.filter(session => {
+    return period === moment(session.session_date.join("-")).day('Monday').format('Do MMMM');
+  })
 }
 
 export const filterSessionsByMonth = (sessions, period) => {

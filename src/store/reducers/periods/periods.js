@@ -1,10 +1,10 @@
 import * as actionTypes from '../../actions/actionTypes';
 import {
-  monthsFromObject, 
+  weeksFromObject, 
   setCurrentPeriod, 
-  filterSessionsByMonth,
+  filterSessionsByWeek,
   setFromSessionPeriods,
-  monthsFromArray} from './utility';
+  weeksFromArray} from './utility';
 import {updateState, objectToArray} from '../utility';
 
 export const initialState = {
@@ -18,22 +18,22 @@ const reducer = (state = initialState, action) => {
 
   switch(action.type){
     case actionTypes.LOAD_PERIODS: 
-      months = monthsFromObject(action.sessions);
+      months = weeksFromObject(action.sessions);
       periods = setFromSessionPeriods(months);
       current = setCurrentPeriod(periods);
-      sessions = filterSessionsByMonth(objectToArray(action.sessions), current);
+      sessions = filterSessionsByWeek(objectToArray(action.sessions), current);
       return updateState(state, {periods: periods, current: current, sessionsByPeriod: sessions});
 
 
     case actionTypes.UPDATE_PERIODS: 
-      months = monthsFromArray(action.sessions);
+      months = weeksFromArray(action.sessions);
       periods = setFromSessionPeriods(months);
       current = setCurrentPeriod(periods);
-      sessions = filterSessionsByMonth(action.sessions, current);
+      sessions = filterSessionsByWeek(action.sessions, current);
       return updateState(state, {periods: periods, current: current, sessionsByPeriod: sessions});
 
     case actionTypes.HANDLE_PERIOD_SELECT: 
-      sessions = filterSessionsByMonth(action.sessions, action.period);
+      sessions = filterSessionsByWeek(action.sessions, action.period);
       return updateState(state, {current: action.period, sessionsByPeriod: sessions});
 
     default:
