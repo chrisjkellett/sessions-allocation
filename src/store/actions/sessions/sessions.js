@@ -1,14 +1,16 @@
-import * as actionTypes from './actionTypes';
-import axios from '../../axios';
-import {logResponse, logError} from './general';
-import {loadPeriods, updatePeriods} from './periods';
+import * as actionTypes from '../actionTypes';
+import axios from '../../../axios';
+import {logResponse, logError} from '../general';
+import {loadPeriods, updatePeriods} from '../periods';
+import { filterOutOldSessions } from './utilities';
 
 export const loadSessions = () => {
   return dispatch => {
     axios.get('/sessions.json')
       .then(response => {
-        dispatch(loadSessionsSuccess(response.data));
-        response.data && dispatch(loadPeriods(response.data));
+        const currentSessions = filterOutOldSessions(response.data);
+        dispatch(loadSessionsSuccess(currentSessions));
+        response.data && dispatch(loadPeriods(currentSessions));
       })
       .catch(error => {
         dispatch(failedLoad(error))

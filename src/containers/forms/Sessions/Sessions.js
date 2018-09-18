@@ -12,7 +12,7 @@ import {
   filterExaminers,
   filterSupport
 } from '../../../store/actions/examiner-options/examiner-options';
-import * as actions from '../../../store/actions/sessions';
+import * as actions from '../../../store/actions/sessions/sessions';
 
 class AddSessions extends Component{
   state = {

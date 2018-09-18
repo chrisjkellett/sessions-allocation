@@ -13,7 +13,7 @@ import AddSessions from '../forms/Sessions/Sessions';
 import Venues from '../forms/Venues/Venues';
 import Wrapper from '../../components/Misc/Wrapper/Wrapper';
 import {loadExaminers} from '../../store/actions/examiners/examiners';
-import {loadSessions} from '../../store/actions/sessions';
+import {loadSessions} from '../../store/actions/sessions/sessions';
 import {checkAuthState} from '../../store/actions/auth/auth';
 import * as routes from '../../store/app-data/routes';
 import AsyncLoad from './components/AsyncLoad/AsyncLoad';

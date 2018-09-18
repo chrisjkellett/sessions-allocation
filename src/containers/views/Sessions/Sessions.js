@@ -7,7 +7,7 @@ import Table from '../../../components/FormElements/Table/Table';
 import {sessionTableHeaders} from '../../../store/app-data/table-headers';
 import {constructPeriodState} from '../../../store/constructors/periods';
 import {formatURL, formatDateURLPretty} from '../../../gen-utility';
-import * as actions from '../../../store/actions/sessions';
+import * as actions from '../../../store/actions/sessions/sessions';
 import {handlePeriodSelect} from '../../../store/actions/periods';
 import {getSelectedOptions} from '../../forms/form-utility';
 import {filterByUser} from './renders/utility';
