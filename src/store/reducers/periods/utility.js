@@ -37,15 +37,15 @@ export const setFromSessionPeriods = (array) => {
   return set.length > 0 ? set : null;
 }
 
-export const setCurrentPeriod = ([...periods]) => {
+export const setCurrentPeriodByWeek = ([...periods]) => {
  if(periods.length === 0) return null;
  if(periods.length === 1) return periods[0];
  if(periods.length > 1){
-   return calculateClosest(periods);
+   return calculateClosestWeek(periods);
  }
 }
 
-export const calculateClosest = (periods) => {
+export const calculateClosestWeek = (periods) => {
   const weeks = periods.map(period => moment(period, 'Do MMMM').format('W'));
   const currentWeek = moment().week();
   const currentWeekAsString = moment().day('Monday').week(currentWeek).format("Do MMMM");
