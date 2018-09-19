@@ -15,12 +15,12 @@ export const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-  let months, periods, current, sessions;
+  let weeks, months, periods, current, sessions;
 
   switch(action.type){
     case actionTypes.LOAD_PERIODS: 
-      months = weeksFromObject(action.sessions);
-      periods = setFromSessionPeriods(months);
+      weeks = weeksFromObject(action.sessions);
+      periods = setFromSessionPeriods(weeks);
       current = setCurrentPeriodByWeek(periods);
       sessions = filterSessionsByWeek(objectToArray(action.sessions), current);
       return updateState(state, {periods: periods, current: current, sessionsByPeriod: sortBy(sessions, 'session_date')});
