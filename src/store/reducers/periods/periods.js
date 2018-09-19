@@ -1,45 +1,55 @@
 import * as actionTypes from '../../actions/actionTypes';
 import {
-  weeksFromObject, 
   monthsFromObject,
-  setCurrentPeriodByWeek, 
-  setCurrentPeriodByMonth,
-  filterSessionsByWeek,
-  filterSessionsByMonth,
-  setFromSessionPeriods,
   weeksFromArray,
+  setCurrentPeriodByMonth,
+  filterSessionsByMonth,
+  createSet,
   monthsFromArray
 } from './utility';
-import {updateState, objectToArray, sortBy} from '../utility';
+import {objectToArray, sortBy} from '../utility';
 
 export const initialState = {
   periods: null,
   current: null,
-  sessionsByPeriod: []
+  sessionsByPeriod: [],
+  weeks: null
 }
 
 const reducer = (state = initialState, action) => {
-  let weeks, months, periods, current, sessions;
+  let periods, current, sessions;
 
   switch(action.type){
     case actionTypes.LOAD_PERIODS: 
-      months = monthsFromObject(action.sessions);
-      periods = setFromSessionPeriods(months);
+      periods = createSet(monthsFromObject(action.sessions));
       current = setCurrentPeriodByMonth(periods);
       sessions = filterSessionsByMonth(objectToArray(action.sessions), current);
-      return updateState(state, {periods: periods, current: current, sessionsByPeriod: sortBy(sessions, 'session_date')});
-
+      return { 
+        periods: periods, 
+        current: current, 
+        sessionsByPeriod: sortBy(sessions, 'session_date'),
+        weeks: createSet(weeksFromArray(sessions)),
+      };
 
     case actionTypes.UPDATE_PERIODS: 
-      months = monthsFromArray(action.sessions);
-      periods = setFromSessionPeriods(months);
+      periods = createSet(monthsFromArray(action.sessions));
       current = setCurrentPeriodByMonth(periods);
       sessions = filterSessionsByMonth(action.sessions, current);
-      return updateState(state, {periods: periods, current: current, sessionsByPeriod: sortBy(sessions, 'session_date')});
+      return { 
+        periods: periods, 
+        current: current, 
+        sessionsByPeriod: sortBy(sessions, 'session_date'),
+        weeks: createSet(weeksFromArray(sessions)),
+      };
 
     case actionTypes.HANDLE_PERIOD_SELECT: 
       sessions = filterSessionsByMonth(action.sessions, action.period);
-      return updateState(state, {current: action.period, sessionsByPeriod: sessions});
+      return { 
+        ...state, 
+        current: action.period, 
+        sessionsByPeriod: sessions,
+        weeks:  createSet(weeksFromArray(sessions)),
+      };
 
     default:
       return state;  

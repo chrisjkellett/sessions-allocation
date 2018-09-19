@@ -2,7 +2,7 @@ import sessions from './sessions.json';
 import { 
   weeksFromObject, 
   monthsFromObject,
-  setFromSessionPeriods, 
+  createSet, 
   setCurrentPeriodByWeek,
   calculateClosestWeek,
   filterSessionsByWeek,
@@ -15,7 +15,7 @@ let weeksBeginning, monthsBeginning, setOfWeeksBeginning;
 beforeAll(() => {
   weeksBeginning = weeksFromObject(sessions);
   monthsBeginning = monthsFromObject(sessions);
-  setOfWeeksBeginning = setFromSessionPeriods(weeksBeginning);
+  setOfWeeksBeginning = createSet(weeksBeginning);
 });
 
 describe('to calculate periods by month', () => {

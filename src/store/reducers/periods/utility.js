@@ -74,7 +74,7 @@ export const filterSessionsByMonth = (sessions, period) => {
   })
 };
 
-export const setFromSessionPeriods = (array) => {
+export const createSet = (array) => {
   const set = Array.from(new Set(array));
   return set.length > 0 ? set : null;
 };
