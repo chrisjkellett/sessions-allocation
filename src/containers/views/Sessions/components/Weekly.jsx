@@ -6,15 +6,25 @@ import classes from '../Sessions.css';
 
 class Sessions extends Component{
   state = {
-    period: null
+    showOptions: false
+  }
+
+  toggleOptions = () => {
+    this.setState((prev) => ({showOptions: prev.showOptions ? false : true}));
   }
 
   render(){
-    return (
+    const { toggleOptions } = this;
+    const { showOptions } = this.state;
+    const { weeks } = this.props;
+    return weeks !== null ? (
       <section className={classes.SplitWeekly}>
-        <span className={classes.SmallLink}>split weekly</span>
+        {!showOptions && weeks.length > 1
+          ? <span className={classes.SmallLink} onClick={toggleOptions}>split weekly</span>
+          : null 
+        }
       </section>
-    )
+    ) : null
   }
 }
 
