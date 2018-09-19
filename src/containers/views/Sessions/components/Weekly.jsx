@@ -9,30 +9,43 @@ class Sessions extends Component{
     showOptions: false
   }
 
-  toggleOptions = () => {
-    this.setState((prev) => ({showOptions: prev.showOptions ? false : true}));
+  openOptions = () => {
+    this.setState({ showOptions: true });
   }
 
+  closeOptions = () => {
+    this.setState({ showOptions: false });
+  }
+
+  componentDidUpdate(){
+    console.log(this.props.weeks)
+  }
+
+
   render(){
-    const { toggleOptions } = this;
+    const { openOptions, closeOptions } = this;
     const { showOptions } = this.state;
     const { weeks } = this.props;
+    
     return weeks !== null ? (
       <section className={classes.SplitWeekly}>
-        {!showOptions && weeks.length > 1
-          ? <span className={classes.SmallLink} onClick={toggleOptions}>split weekly</span>
-          : null 
+        { weeks.length === 1 || (weeks.length > 1 && showOptions)
+          ? null
+          : <span className={classes.SmallLink} onClick={openOptions}>split weekly</span>
         }
+
+        { weeks.length > 1 && showOptions 
+          ? (<span>
+              {weeks.map(week => <span key="week" className={classes.SmallLink}>{week}</span>)}
+              <span className={classes.CloseFilter} onClick={closeOptions}>✖</span>
+            </span>) 
+          : null
+          }
       </section>
     ) : null
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    weeks: state.per.weeks
-  }
-}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -40,4 +53,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sessions));
+export default withRouter(connect(null, mapDispatchToProps)(Sessions));

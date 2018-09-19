@@ -128,8 +128,15 @@
   padding: 2px 5px;
   background: white;
   cursor: pointer;
+  margin-right: 2px;
 }
 
 .SmallLink:hover{
   border-color: grey;
+}
+
+.CloseFilter{
+  font-size: 80%;
+  color: #4b4b4b;
+  cursor: pointer;
 }

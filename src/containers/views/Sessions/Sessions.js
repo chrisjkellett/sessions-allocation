@@ -53,12 +53,12 @@ class Sessions extends Component{
 
 
   render(){
-    const {sessionsByPeriod, isAuthenticated, user} = this.props;
-    const sessions = filterByUser(sessionsByPeriod, isAuthenticated, user)
+    const {sessionsByPeriod, isAuthenticated, user, weeks} = this.props;
+    const sessions = filterByUser(sessionsByPeriod, isAuthenticated, user);
     return (
       <section className={classes.Sessions}>
         {renderFormPeriod(this.state, this.periodHandler, this.props, sessions)}
-        <Weekly />
+        <Weekly weeks={weeks} />
         <Table labels={sessionTableHeaders}>
           {renderTableContent(sessions, this.handleDelete, this.handleEdit, this.handleLink, isAuthenticated, user)}
         </Table>
@@ -77,7 +77,8 @@ const mapStateToProps = state => {
     token: state.auth.token,
     isAuthenticated: state.auth.token !== null && state.auth.token !== '9999',
     isUser: state.auth.token !== null,
-    user: state.auth.session_user
+    user: state.auth.session_user,
+    weeks: state.per.weeks
   }
 }
 
