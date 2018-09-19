@@ -11,6 +11,7 @@ import * as actions from '../../../store/actions/sessions/sessions';
 import {handlePeriodSelect} from '../../../store/actions/periods';
 import {getSelectedOptions} from '../../forms/form-utility';
 import {filterByUser} from './renders/utility';
+import Weekly from './components/Weekly';
 
 class Sessions extends Component{
   state = {
@@ -57,6 +58,7 @@ class Sessions extends Component{
     return (
       <section className={classes.Sessions}>
         {renderFormPeriod(this.state, this.periodHandler, this.props, sessions)}
+        <Weekly />
         <Table labels={sessionTableHeaders}>
           {renderTableContent(sessions, this.handleDelete, this.handleEdit, this.handleLink, isAuthenticated, user)}
         </Table>

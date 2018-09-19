@@ -95,15 +95,15 @@
 
 }
 
-.PeriodSubNav{
+/* .PeriodSubNav{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-}
+} */
 
-.PeriodSubNav div{
+/* .PeriodSubNav div{
   flex-basis: 450px;
-}
+} */
 
 .OuterSuccessDiv{
   display: flex;
@@ -115,4 +115,15 @@
 
 .Radios span{
   padding-right: 8px;
+}
+
+.SplitWeekly, .PeriodSubNav{
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.SmallLink{
+  font-size: 90%;
+  color:#0000EE;;
+  cursor: pointer;
 }
