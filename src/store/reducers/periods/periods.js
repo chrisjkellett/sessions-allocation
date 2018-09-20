@@ -4,6 +4,7 @@ import {
   weeksFromArray,
   setCurrentPeriodByMonth,
   filterSessionsByMonth,
+  filterSessionsByWeek,
   createSet,
   monthsFromArray
 } from './utility';
@@ -13,7 +14,9 @@ export const initialState = {
   periods: null,
   current: null,
   sessionsByPeriod: [],
-  weeks: null
+  weeks: null,
+  sessionsByWeek: [],
+  weekFilteredBy: null,
 }
 
 const reducer = (state = initialState, action) => {
@@ -25,6 +28,7 @@ const reducer = (state = initialState, action) => {
       current = setCurrentPeriodByMonth(periods);
       sessions = filterSessionsByMonth(objectToArray(action.sessions), current);
       return { 
+        ...state, 
         periods: periods, 
         current: current, 
         sessionsByPeriod: sortBy(sessions, 'session_date'),
@@ -36,6 +40,7 @@ const reducer = (state = initialState, action) => {
       current = setCurrentPeriodByMonth(periods);
       sessions = filterSessionsByMonth(action.sessions, current);
       return { 
+        ...state, 
         periods: periods, 
         current: current, 
         sessionsByPeriod: sortBy(sessions, 'session_date'),
@@ -49,6 +54,23 @@ const reducer = (state = initialState, action) => {
         current: action.period, 
         sessionsByPeriod: sessions,
         weeks:  createSet(weeksFromArray(sessions)),
+        sessionsByWeek: [],
+        weekFilteredBy: null
+      };
+
+    case actionTypes.HANDLE_PERIOD_SELECT_WEEK: 
+      sessions = filterSessionsByWeek(action.sessions, action.week);
+      return { 
+        ...state, 
+        sessionsByWeek: sessions,
+        weekFilteredBy: action.week
+      };
+
+    case actionTypes.REMOVE_WEEKLY_FILTERS: 
+      return { 
+        ...state, 
+        sessionsByWeek: [],
+        weekFilteredBy: null
       };
 
     default:

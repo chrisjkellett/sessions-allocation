@@ -20,3 +20,7 @@ export const filterByUser = (sessions, isAuthenticated, user) => {
   else  
     return sessions.filter(sess => sess.examiners.includes(user) || sess.support.includes(user));
 }
+
+export const WeeklyOrMonthly = (sessionsByPeriod, sessionsByWeek) => {
+  return sessionsByWeek.length === 0 ? sessionsByPeriod : sessionsByWeek
+}

@@ -5,14 +5,14 @@ export const loadPeriods = (sessions) => {
     type: actionTypes.LOAD_PERIODS,
     sessions: sessions
   }
-}
+};
 
 export const updatePeriods = (sessions) => {
   return {
     type: actionTypes.UPDATE_PERIODS,
     sessions: sessions
   }
-}
+};
 
 export const handlePeriodSelect = (sessions, period) => {
   return {
@@ -28,4 +28,10 @@ export const handlePeriodSelectByWeek = (sessions, week) => {
     sessions: sessions,
     week: week
   }
-}
+};
+
+export const removeWeeklyFilters = () => {
+  return {
+    type: actionTypes.REMOVE_WEEKLY_FILTERS,
+  }
+};

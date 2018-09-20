@@ -15,6 +15,7 @@ export class UnconnectedWeekly extends Component{
 
   closeOptions = () => {
     this.setState({ showOptions: false });
+    this.props.removeFilters();
   }
 
 
@@ -31,7 +32,11 @@ export class UnconnectedWeekly extends Component{
         }
 
         { weeks.length > 1 && showOptions 
-          ? <FilterPanel weeks={weeks} closeOptions={closeOptions} filterByWeek={filterByWeek} sessions={sessions}/> 
+          ? <FilterPanel 
+              weeks={weeks} 
+              closeOptions={closeOptions} 
+              filterByWeek={filterByWeek}
+              sessions={sessions} /> 
           : null
           }
       </section>
@@ -42,7 +47,8 @@ export class UnconnectedWeekly extends Component{
 
 const mapDispatchToProps = dispatch => {
   return {
-    filterByWeek: (sessions, week) => dispatch(actions.handlePeriodSelectByWeek(sessions, week))
+    filterByWeek: (sessions, week) => dispatch(actions.handlePeriodSelectByWeek(sessions, week)),
+    removeFilters: () => dispatch(actions.removeWeeklyFilters()),
   }
 }
 

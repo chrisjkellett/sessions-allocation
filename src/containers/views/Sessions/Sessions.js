@@ -10,7 +10,7 @@ import {formatURL, formatDateURLPretty} from '../../../gen-utility';
 import * as actions from '../../../store/actions/sessions/sessions';
 import {handlePeriodSelect} from '../../../store/actions/periods/periods';
 import {getSelectedOptions} from '../../forms/form-utility';
-import {filterByUser} from './renders/utility';
+import { filterByUser, WeeklyOrMonthly } from './renders/utility';
 import Weekly from './components/Weekly/Weekly';
 
 class Sessions extends Component{
@@ -53,8 +53,9 @@ class Sessions extends Component{
 
 
   render(){
-    const {sessionsByPeriod, isAuthenticated, user, weeks} = this.props;
-    const sessions = filterByUser(sessionsByPeriod, isAuthenticated, user);
+    const {sessionsByPeriod, sessionsByWeek, isAuthenticated, user, weeks} = this.props;
+    const sessionsAfterFilters = WeeklyOrMonthly(sessionsByPeriod, sessionsByWeek);
+    const sessions = filterByUser(sessionsAfterFilters, isAuthenticated, user);
     return (
       <section className={classes.Sessions}>
         {renderFormPeriod(this.state, this.periodHandler, this.props, sessions)}
@@ -78,7 +79,9 @@ const mapStateToProps = state => {
     isAuthenticated: state.auth.token !== null && state.auth.token !== '9999',
     isUser: state.auth.token !== null,
     user: state.auth.session_user,
-    weeks: state.per.weeks
+    weeks: state.per.weeks,
+    sessionsByWeek: state.per.sessionsByWeek,
+    weekFilteredBy: state.per.weekFilteredBy
   }
 }
 
