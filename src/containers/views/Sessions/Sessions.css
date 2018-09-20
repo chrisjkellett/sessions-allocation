@@ -131,12 +131,16 @@
   margin-right: 2px;
 }
 
+.SmallLabel{
+  font-size: 75%;
+}
+
 .SmallLink:hover{
   border-color: grey;
 }
 
 .CloseFilter{
-  font-size: 80%;
+  font-size: 70%;
   color: #4b4b4b;
   cursor: pointer;
 }

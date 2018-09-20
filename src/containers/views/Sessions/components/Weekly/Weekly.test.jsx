@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { UnconnectedWeekly } from './Weekly';
+import FilterPanel from './components/FilterPanel';
 
 let wrapper;
 const props = {
@@ -44,7 +45,7 @@ describe('when multiple weeks', () => {
   test('show week filters if showOptions set to true', () => {
     wrapper.setProps({ weeks: ['one_item', 'second_item'] });
     wrapper.setState({ showOptions: true });
-    expect(wrapper.find('#weeks-filter-panel')).toHaveLength(1);
+    expect(wrapper.find(FilterPanel)).toHaveLength(1);
   });
 });
 

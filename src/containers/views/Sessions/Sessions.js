@@ -11,7 +11,7 @@ import * as actions from '../../../store/actions/sessions/sessions';
 import {handlePeriodSelect} from '../../../store/actions/periods';
 import {getSelectedOptions} from '../../forms/form-utility';
 import {filterByUser} from './renders/utility';
-import Weekly from './components/Weekly';
+import Weekly from './components/Weekly/Weekly';
 
 class Sessions extends Component{
   state = {
