@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
 import classes from '../Sessions.css';
 // import {handlePeriodSelect} from '../../../store/actions/periods';
 
-class Sessions extends Component{
+export class UnconnectedWeekly extends Component{
   state = {
     showOptions: false
   }
@@ -17,10 +16,6 @@ class Sessions extends Component{
     this.setState({ showOptions: false });
   }
 
-  componentDidUpdate(){
-    console.log(this.props.weeks)
-  }
-
 
   render(){
     const { openOptions, closeOptions } = this;
@@ -29,15 +24,15 @@ class Sessions extends Component{
     
     return weeks !== null ? (
       <section className={classes.SplitWeekly}>
-        { weeks.length === 1 || (weeks.length > 1 && showOptions)
+        { weeks.length <= 1 || (weeks.length > 1 && showOptions)
           ? null
-          : <span className={classes.SmallLink} onClick={openOptions}>split weekly</span>
+          : <span id="split-btn" className={classes.SmallLink} onClick={openOptions}>split weekly</span>
         }
 
         { weeks.length > 1 && showOptions 
-          ? (<span>
+          ? (<span id="weeks-filter-panel">
               {weeks.map(week => <span key="week" className={classes.SmallLink}>{week}</span>)}
-              <span className={classes.CloseFilter} onClick={closeOptions}>✖</span>
+              <span id="close-options-btn" className={classes.CloseFilter} onClick={closeOptions}>✖</span>
             </span>) 
           : null
           }
@@ -53,4 +48,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Sessions));
+export default connect(null, mapDispatchToProps)(UnconnectedWeekly);
