@@ -20,4 +20,12 @@ export const handlePeriodSelect = (sessions, period) => {
     sessions: sessions,
     period: period
   }
+};
+
+export const handlePeriodSelectByWeek = (sessions, week) => {
+  return {
+    type: actionTypes.HANDLE_PERIOD_SELECT_WEEK,
+    sessions: sessions,
+    week: week
+  }
 }

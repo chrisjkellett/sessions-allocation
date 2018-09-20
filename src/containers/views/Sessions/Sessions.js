@@ -8,7 +8,7 @@ import {sessionTableHeaders} from '../../../store/app-data/table-headers';
 import {constructPeriodState} from '../../../store/constructors/periods';
 import {formatURL, formatDateURLPretty} from '../../../gen-utility';
 import * as actions from '../../../store/actions/sessions/sessions';
-import {handlePeriodSelect} from '../../../store/actions/periods';
+import {handlePeriodSelect} from '../../../store/actions/periods/periods';
 import {getSelectedOptions} from '../../forms/form-utility';
 import {filterByUser} from './renders/utility';
 import Weekly from './components/Weekly/Weekly';
@@ -58,7 +58,7 @@ class Sessions extends Component{
     return (
       <section className={classes.Sessions}>
         {renderFormPeriod(this.state, this.periodHandler, this.props, sessions)}
-        <Weekly weeks={weeks} />
+        <Weekly weeks={weeks} sessions={sessionsByPeriod}/>
         <Table labels={sessionTableHeaders}>
           {renderTableContent(sessions, this.handleDelete, this.handleEdit, this.handleLink, isAuthenticated, user)}
         </Table>

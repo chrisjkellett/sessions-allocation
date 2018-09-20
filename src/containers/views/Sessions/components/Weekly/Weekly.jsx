@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classes from '../../Sessions.css';
 import FilterPanel from './components/FilterPanel';
-// import {handlePeriodSelect} from '../../../store/actions/periods';
+import * as actions from '../../../../../store/actions/periods/periods'
 
 export class UnconnectedWeekly extends Component{
   state = {
@@ -21,7 +21,7 @@ export class UnconnectedWeekly extends Component{
   render(){
     const { openOptions, closeOptions } = this;
     const { showOptions } = this.state;
-    const { weeks } = this.props;
+    const { weeks, filterByWeek, sessions } = this.props;
     
     return weeks !== null ? (
       <section className={classes.SplitWeekly}>
@@ -31,7 +31,7 @@ export class UnconnectedWeekly extends Component{
         }
 
         { weeks.length > 1 && showOptions 
-          ? <FilterPanel weeks={weeks} closeOptions={closeOptions} /> 
+          ? <FilterPanel weeks={weeks} closeOptions={closeOptions} filterByWeek={filterByWeek} sessions={sessions}/> 
           : null
           }
       </section>
@@ -42,7 +42,7 @@ export class UnconnectedWeekly extends Component{
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    filterByWeek: (sessions, week) => dispatch(actions.handlePeriodSelectByWeek(sessions, week))
   }
 }
 
