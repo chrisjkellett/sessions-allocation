@@ -22,7 +22,7 @@ export class UnconnectedWeekly extends Component{
   render(){
     const { openOptions, closeOptions } = this;
     const { showOptions } = this.state;
-    const { weeks, filterByWeek, sessions } = this.props;
+    const { weeks, filterByWeek, sessions, weekFilteredBy } = this.props;
     
     return weeks !== null ? (
       <section className={classes.SplitWeekly}>
@@ -35,6 +35,7 @@ export class UnconnectedWeekly extends Component{
           ? <FilterPanel 
               weeks={weeks} 
               closeOptions={closeOptions} 
+              weekFilteredBy={weekFilteredBy}
               filterByWeek={filterByWeek}
               sessions={sessions} /> 
           : null

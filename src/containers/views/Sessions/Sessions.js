@@ -53,13 +53,14 @@ class Sessions extends Component{
 
 
   render(){
-    const {sessionsByPeriod, sessionsByWeek, isAuthenticated, user, weeks} = this.props;
+    const {sessionsByPeriod, sessionsByWeek, isAuthenticated, user, weeks, weekFilteredBy} = this.props;
     const sessionsAfterFilters = WeeklyOrMonthly(sessionsByPeriod, sessionsByWeek);
     const sessions = filterByUser(sessionsAfterFilters, isAuthenticated, user);
+    
     return (
       <section className={classes.Sessions}>
         {renderFormPeriod(this.state, this.periodHandler, this.props, sessions)}
-        <Weekly weeks={weeks} sessions={sessionsByPeriod}/>
+        <Weekly weeks={weeks} sessions={sessionsByPeriod} weekFilteredBy={weekFilteredBy}/>
         <Table labels={sessionTableHeaders}>
           {renderTableContent(sessions, this.handleDelete, this.handleEdit, this.handleLink, isAuthenticated, user)}
         </Table>

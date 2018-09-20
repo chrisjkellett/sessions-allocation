@@ -144,3 +144,8 @@
   color: #4b4b4b;
   cursor: pointer;
 }
+
+.WeekSelected{
+  border-color: grey;
+  background: #FFFF88;
+}

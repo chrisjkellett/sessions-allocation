@@ -1,7 +1,8 @@
 import React from 'react';
 import classes from '../../../Sessions.css';
+import * as $ from './utility';
 
-const FilterPanel = ({ weeks, closeOptions, filterByWeek, sessions }) => {
+const FilterPanel = ({ weeks, closeOptions, filterByWeek, sessions, weekFilteredBy }) => {
   return (
     <span id="weeks-filter-panel">
       <div>
@@ -10,7 +11,7 @@ const FilterPanel = ({ weeks, closeOptions, filterByWeek, sessions }) => {
         </div>
         <div>
           {weeks.map(week => (
-            <span key="week" className={classes.SmallLink} onClick={() => filterByWeek(sessions, week)}>{week}</span>
+            <span key="week" className={$.setClasses(week, weekFilteredBy)} onClick={() => filterByWeek(sessions, week)}>{week}</span>
             )
           )}
           <span id="close-options-btn" className={classes.CloseFilter} onClick={closeOptions}>✖</span>
