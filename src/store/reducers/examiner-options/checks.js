@@ -1,17 +1,41 @@
 import moment from 'moment';
 import {isSameTime} from './utility';
 
+// export const type = (examiner, sessionType) => {
+//   console.log(examiner.roles.includes('Supervisor'));
+//   if(sessionType === 'Written'){
+//     if(!examiner.roles.includes('Supervisor'))
+//       examiner.avail.failsRoles = true;
+//   }
+
+//   if(sessionType === 'Speaking'){
+//     if(!examiner.roles.includes('Speaking Examiner'))
+//       examiner.avail.failsRoles = true;
+//   }
+
+//   return examiner;
+// }
+
+export const type = (examiner, sessionType) => {
+  if(sessionType === 'Writing'){
+    if(!examiner.roles.includes('Supervisor'))
+      examiner.avail.failsRoles = true;
+  }else{
+    if(!examiner.roles.includes('Speaking Examiner'))
+      examiner.avail.failsRoles = true;
+  }
+  return examiner;
+}
+
 export const levels = (examiner, sessionLevels) => {
   const {levels, avail} = examiner;
   if(examiner.levels && sessionLevels.length !== 0){
-    if(!sessionLevels.every(level => levels.includes(level))){
+    if(!sessionLevels.every(level => levels.includes(level)))
       avail.failsLevel = true;
-    }
   }
 
-  else{
+  else
     avail.failsLevel = false;
-  }
 
   return examiner;
 }
@@ -22,13 +46,11 @@ export const day = (examiner, sessionDayArray, sessionTime) => {
   const formattedDay = time(day, sessionTime);
   const {availability, avail} = examiner;
 
-   if (!availability.includes(formattedDay)){
+   if (!availability.includes(formattedDay))
     avail.failsAvailability = true;
-  }
-
-  else{
+  else
     avail.failsAvailability = false;
-  }
+
   return examiner;
 }
 
@@ -37,24 +59,6 @@ const time = (day, sessionTime) => {
     return day + ' pm'
   else
     return day
-}
-
-export const type = (examiner, sessionType) => {
-  if(sessionType === 'Writing'){
-    if(!(examiner.roles.includes('Invigilator') || examiner.roles.includes('Supervisor'))){
-      examiner.avail.failsRoles = true;
-    }
-  }
-  if(sessionType === 'Speaking'){
-    if(!examiner.roles.includes('Speaking Examiner')){
-      examiner.avail.failsRoles = true;
-    }
-  }
-  else{
-    examiner.avail.failsRoles = false;
-  }
-
-  return examiner;
 }
 
 export const isBusy = (e, sameDaySessions, time) => {
