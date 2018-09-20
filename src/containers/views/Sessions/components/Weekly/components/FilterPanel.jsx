@@ -11,7 +11,7 @@ const FilterPanel = ({ weeks, closeOptions, filterByWeek, sessions, weekFiltered
         </div>
         <div>
           {weeks.map(week => (
-            <span key="week" className={$.setClasses(week, weekFilteredBy)} onClick={() => filterByWeek(sessions, week)}>{week}</span>
+            <span key={week} className={$.setClasses(week, weekFilteredBy)} onClick={() => filterByWeek(sessions, week)}>{week}</span>
             )
           )}
           <span id="close-options-btn" className={classes.CloseFilter} onClick={closeOptions}>✖</span>

@@ -1,5 +1,8 @@
+import React from 'react';
 import moment from 'moment';
+import classes from './Sessions/Sessions.css';
 import {monthOptions} from '../../store/data';
+import { sessionTableHeaders } from '../../store/app-data/table-headers';
 
 export const isPm = (day) => {
   if(day.substring(day.length - 2, day.length) === 'pm'){
@@ -70,4 +73,21 @@ export const formatAvailability = (arr) => {
   }
 
   return newArr;
+}
+
+export const generateTableHeaders = (weekFilteredBy) => {
+  if(weekFilteredBy !== null){
+    sessionTableHeaders[0] = (
+      <span className={classes.SmallLabel}>
+      {'from ' +
+      moment(weekFilteredBy, 'Do MMMM').format('Do') +
+      ' to ' +
+      moment(weekFilteredBy, 'Do MMMM').add(6, 'days').format('Do MMMM')}
+      </span>
+    )
+    return sessionTableHeaders
+  }else{
+    sessionTableHeaders[0] = 'date';
+    return sessionTableHeaders;
+  }
 }

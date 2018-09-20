@@ -4,13 +4,13 @@ import {withRouter} from 'react-router-dom';
 import {renderTableContent, renderFormPeriod} from './renders/';
 import classes from './Sessions.css';
 import Table from '../../../components/FormElements/Table/Table';
-import {sessionTableHeaders} from '../../../store/app-data/table-headers';
 import {constructPeriodState} from '../../../store/constructors/periods';
 import {formatURL, formatDateURLPretty} from '../../../gen-utility';
 import * as actions from '../../../store/actions/sessions/sessions';
 import {handlePeriodSelect} from '../../../store/actions/periods/periods';
 import {getSelectedOptions} from '../../forms/form-utility';
 import { filterByUser, WeeklyOrMonthly } from './renders/utility';
+import { generateTableHeaders } from '../utility';
 import Weekly from './components/Weekly/Weekly';
 
 class Sessions extends Component{
@@ -61,7 +61,7 @@ class Sessions extends Component{
       <section className={classes.Sessions}>
         {renderFormPeriod(this.state, this.periodHandler, this.props, sessions)}
         <Weekly weeks={weeks} sessions={sessionsByPeriod} weekFilteredBy={weekFilteredBy}/>
-        <Table labels={sessionTableHeaders}>
+        <Table labels={generateTableHeaders(weekFilteredBy)}>
           {renderTableContent(sessions, this.handleDelete, this.handleEdit, this.handleLink, isAuthenticated, user)}
         </Table>
       </section>
