@@ -87,8 +87,13 @@
 }
 
 .InlineSelect{
+  height: 200px;
   display: inline-block;
   margin-right: 5px;
+}
+
+.InlineSelect select{
+  height: 150px;
 }
 
 .TextArea{

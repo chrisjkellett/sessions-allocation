@@ -3,7 +3,7 @@ import classes from '../../../css/views.css';
 import availCSS from './availability.css';
 import moment from 'moment';
 
-export const generateInputProps = ({config, id}, state, changeHandler, filterAvailable, filterSupport) => {
+export const generateInputProps = ({config, id}, state, handlers, filterAvailable, filterSupport) => {
     return {
       key: id,
       label: id,
@@ -11,10 +11,11 @@ export const generateInputProps = ({config, id}, state, changeHandler, filterAva
       inline: config.inline,
       elementtype: config.elementType,
       elementConfig: config.elementConfig,
+      hasControls: {controls: config.hasControls, handler: handlers.resetExaminers},
       value: config.value,
       valid: config.validation.valid,
       shouldValidate: state.shouldValidate,
-      change: (event, index) => changeHandler(event, config.elementType, id, index)
+      change: (event, index) => handlers.change(event, config.elementType, id, index)
     }
 }
 

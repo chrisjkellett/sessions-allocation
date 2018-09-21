@@ -90,6 +90,16 @@ class AddSessions extends Component{
       }));
     },
 
+    resetExaminers: () => {
+      this.setState(prev => ({
+        session: { 
+          ...prev.session, 
+          examiners: {...prev.session.examiners, value: [] },
+          support: {...prev.session.support, value: [] }
+        }
+      }));
+    },
+
     cancel: () => {
       this.props.history.goBack();
     },

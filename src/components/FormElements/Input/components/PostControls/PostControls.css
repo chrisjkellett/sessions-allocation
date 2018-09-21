@@ -1,0 +1,14 @@
+.PostControls {
+  min-height: 20px;
+}
+
+.PostControls span {
+  min-height: 20px;
+  color: #1a0dab;
+  cursor: pointer;
+  font-size: 90%;
+}
+
+.PostControls span:hover {
+  color: grey;
+}

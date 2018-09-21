@@ -82,6 +82,9 @@ export const constructSessionsState = () => {
         disabled: false
       },
       options: [],
+      hasControls: [
+        { label: 'reset', }
+      ],
       inline: true,
       value: [],
       group: 'session-data',
@@ -95,6 +98,9 @@ export const constructSessionsState = () => {
         disabled: false
       },
       options: [],
+      hasControls: [
+        { label: 'reset', }
+      ],
       inline: true,
       value: [],
       group: 'session-data',
