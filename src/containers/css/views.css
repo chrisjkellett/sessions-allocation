@@ -126,3 +126,7 @@
 .PushUp{
   margin-bottom: 3px;
 }
+
+.NotAvailableError {
+  font-size: 90%;
+}

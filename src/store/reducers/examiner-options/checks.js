@@ -91,9 +91,10 @@ export const isBusy = (e, sameDaySessions, time) => {
 }
 
 export const isSupportAlso = (e, sessionSupport) => {
-  if(sessionSupport.includes(e.name)){
+  if(sessionSupport.includes(e.name))
     e.avail.failsIsSupport = true;
-  }
+  else
+    e.avail.failsIsSupport = false;
   return e;
 }
 
