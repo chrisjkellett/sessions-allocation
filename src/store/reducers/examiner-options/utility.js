@@ -9,6 +9,7 @@ export const examinerCheck = ({examiners, session, sessions}) => {
     .map(e => check.levels(e, session.levels.value))
     .map(e => check.day(e, session.session_date.value, session.time.value))
     .map(e => check.isBusy(e, sameDayCheck({sessions: sessions, sessionDate: session.session_date.value}), session.time.value))
+    .map(e => check.isSupportAlso(e, session.support.value))
     .map(e => check.isAvailable(e))
 }
 

@@ -20,9 +20,16 @@ export const type = (examiner, sessionType) => {
   if(sessionType === 'Writing'){
     if(!examiner.roles.includes('Supervisor'))
       examiner.avail.failsRoles = true;
-  }else{
-    if(!examiner.roles.includes('Speaking Examiner'))
+    else{
+      examiner.avail.failsRoles = false;
+    }
+  }
+  if(sessionType === 'Speaking'){
+    if(!examiner.roles.includes('Speaking Examiner')){
       examiner.avail.failsRoles = true;
+    }else{
+      examiner.avail.failsRoles = false;
+    }
   }
   return examiner;
 }
@@ -81,6 +88,13 @@ export const isBusy = (e, sameDaySessions, time) => {
     e.avail.failsIsBusy = false;
     return e;
   }
+}
+
+export const isSupportAlso = (e, sessionSupport) => {
+  if(sessionSupport.includes(e.name)){
+    e.avail.failsIsSupport = true;
+  }
+  return e;
 }
 
 //always final check

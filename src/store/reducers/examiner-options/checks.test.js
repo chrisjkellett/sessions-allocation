@@ -1,23 +1,15 @@
 import * as checks from './checks';
 import { Availability } from '../utility';
 
-// const examinerOnLoad = {
-//   "availability" : [ "Monday pm", "Tuesday", "Tuesday pm", "Wednesday", "Wednesday pm", "Thursday pm" ],
-//   "levels" : [ "KET", "YLE", "PET" ],
-//   "monitoring_level" : [ "KET" ],
-//   "name" : "Christopher Kellett",
-//   "roles" : [ "Speaking Examiner", "Team Leader" ]
-// }
-
 const Examiner = {avail: Availability(), available: true }
 
 describe('tests on SE roles[type]', () => {
   const SE = {
-    ...Examiner, roles : [ "Speaking Examiner", "Team Leader" ]
+    ...Examiner, roles : [ "Speaking Examiner", "Team Leader" ], name: 'Christopher Kellett'
   }
 
   const sup = {
-    ...Examiner, roles : [ "Supervisor", "Team Leader" ]
+    ...Examiner, roles : [ "Supervisor", "Team Leader" ], name: 'Christopher Kellett'
   }
 
   test('supervisor will pass if type is Writing', () => {
@@ -84,5 +76,22 @@ describe('tests on availability filter', () => {
     expect(filtered.avail.failsAvailability).toBe(false);
   });
 });
+
+describe('tests on isSupportAlso', () => {
+  const examiner = {
+    ...Examiner, 
+    "availability" : [ "Monday pm", "Tuesday", "Tuesday pm", "Wednesday", "Wednesday pm", "Thursday pm" ],
+    name: 'Christopher Kellett',
+  };
+
+  test('will fail when already selected as support', () => {
+    const filtered = checks.isSupportAlso(examiner, ['Christopher Kellett']);
+    expect(filtered.avail.failsIsSupport).toBe(true);
+  });
+
+});
+
+
+
 
 

@@ -54,7 +54,8 @@ export const Availability = () => {
     failsAvailability: false,
     failsLevel: false,
     failsRoles: false,
-    failsIsBusy: false
+    failsIsBusy: false,
+    failsIsSupport: false,
   }
 }
 
