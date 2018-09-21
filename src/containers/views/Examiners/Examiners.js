@@ -7,7 +7,7 @@ import {formatURL} from '../../../gen-utility';
 import {renderTableContent} from './renders/';
 import {renderFilterBtn} from './renders/sub-renders';
 import Table from '../../../components/FormElements/Table/Table';
-
+import FilterBy from './components/FilterBy/FilterBy';
 
 class Examiners extends Component{
   state = {
@@ -16,7 +16,9 @@ class Examiners extends Component{
 
   componentDidMount(){
     this.props.deActivateSelectedExaminer();
+    this.props.filterByName('');
   }
+
 
   handleEdit = (examiner) =>{
     this.props.fetchExaminer(examiner);
@@ -38,15 +40,21 @@ class Examiners extends Component{
       this.setState(prev => ({
         showFilters: prev.showFilters ? false : true
       }));
+    },
+
+    filter: (event) => {
+      this.props.filterByName(event.target.value);
     }
   }
 
   render(){
     const {showFilters} = this.state;
-    const headers = ['examiner name', 'availability', 'levels', renderFilterBtn(showFilters, this.handlers)];
+    const { filter } = this.handlers; 
     return (
       <section className={classes.Examiners}>
-        <Table labels={showFilters ? ['filter', null, null, renderFilterBtn(showFilters, this.handlers)] : headers}>
+        <Table labels={showFilters 
+          ? [<FilterBy label={'examiner name'} filter={filter} />, 'availability', 'levels', renderFilterBtn(showFilters, this.handlers)] 
+          : ['examiner name', 'availability', 'levels', renderFilterBtn(showFilters, this.handlers)]} >
           {renderTableContent(this.props, this.handleDelete, this.handleEdit, this.handleLink)}
         </Table>
       </section>
@@ -57,6 +65,7 @@ class Examiners extends Component{
 const mapStateToProps = state => {
   return {
     examiners: state.ex.examiners,
+    filteredExaminers: state.ex.filteredExaminers,
     token: state.auth.token,
     isAuthenticated: state.auth.token !== null && state.auth.token !== '9999',
     user: state.auth.session_user
@@ -67,7 +76,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchExaminer: (id) => dispatch(actions.fetchExaminer(id)),
     deleteExaminer: (examiner, token) => dispatch(actions.deleteExaminer(examiner, token)),
-    deActivateSelectedExaminer: () => dispatch(actions.deActivateSelectedExaminer())
+    deActivateSelectedExaminer: () => dispatch(actions.deActivateSelectedExaminer()),
+    filterByName: (string) => dispatch(actions.filterExaminerByName(string))
   }
 }
 

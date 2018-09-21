@@ -1,0 +1,11 @@
+.HeaderFilter {
+  margin-bottom: 2px;
+}
+
+.HeaderFilter input {
+  border: 1px solid lightgrey;
+}
+
+.HeaderFilter label{
+  font-size: 90%;
+}
