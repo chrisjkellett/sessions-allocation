@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions/examiners/actionTypes';
+import * as actionTypes from '../../actions/examiners/actionTypes';
 import {
   updateState, 
   removeElementById,
@@ -8,13 +8,16 @@ import {
   sortBy,
   checkExaminerOnLoad,
   Availability
-} from './utility';
+} from '../utility';
+
+import { filterExaminerByName } from './utility';
 
 const initialState = {
   examiners: null,
   error: false,
   editing: false, 
-  selectedExaminer: null
+  selectedExaminer: null,
+  filteredExaminers: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -45,6 +48,10 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.DEACTIVATE_SELECTED_EXAMINER:
       return updateState(state, {selectedExaminer: null})
+
+    case actionTypes.FILTER_EXAMINER_BY_NAME:
+    console.log(state.examiners);
+      return {...state, filteredExaminers: filterExaminerByName(state.examiners, action.string)};
 
     default:
       return state;  

@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import {BrowserRouter} from 'react-router-dom';
 import thunk from 'redux-thunk';
-import examinersReducer from './store/reducers/examiners';
+import examinersReducer from './store/reducers/examiners/examiners';
 import authReducer from './store/reducers/auth';
 import sessionReducer from './store/reducers/sessions';
 import generalReducer from './store/reducers/general';

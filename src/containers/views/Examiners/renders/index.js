@@ -5,7 +5,7 @@ import * as notifications from '../../../../store/app-data/notifications';
 import {renderNameAndRoles, renderLevels, renderAvailability, renderBtns} from './sub-renders';
 import {filterForUser} from './utility';
 
-export const renderTableContent = ({examiners, isAuthenticated, user}, handleDelete, handleEdit, handleLink) => {
+export const renderTableContent = ({examiners, filteredExaminers, isAuthenticated, user}, handleDelete, handleEdit, handleLink) => {
   if(examiners === null){
     return <Notification message={notifications.LOADING} />
   }
@@ -15,8 +15,10 @@ export const renderTableContent = ({examiners, isAuthenticated, user}, handleDel
   }
 
   else{
+    const examinersToRender = filteredExaminers === null ? examiners : filteredExaminers;
+
     return (
-      filterForUser(examiners, user, isAuthenticated).map(examiner => (
+      filterForUser(examinersToRender, user, isAuthenticated).map(examiner => (
         <tr className={classes.Row} key={examiner.name}>
           {renderNameAndRoles(examiner, handleLink)}
           {renderAvailability(examiner)}
