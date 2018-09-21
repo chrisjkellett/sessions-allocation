@@ -56,6 +56,7 @@ export const Availability = () => {
     failsRoles: false,
     failsIsBusy: false,
     failsIsSupport: false,
+    failsIsExaminer: false,
   }
 }
 

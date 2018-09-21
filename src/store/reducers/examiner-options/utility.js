@@ -2,9 +2,7 @@ import * as check from './checks';
 import moment from 'moment';
 import {timeKeys} from '../../data';
 
-function clone(src) {
-  return Object.assign({}, src);
-}
+const clone = src => Object.assign({}, src);
 
 export const examinerCheck = ({examiners, session, sessions}) => {
   return examiners
@@ -22,6 +20,7 @@ export const supportCheck = ({examiners, session, sessions}) => {
     .filter(e => e.roles.includes('Support staff'))
     .map(e => check.day(e, session.session_date.value, session.time.value))
     .map(e => check.isBusy(e, sameDayCheck({sessions: sessions, sessionDate: session.session_date.value}), session.time.value))
+    .map(e => check.isExaminerAlso(clone(e), session.examiners.value))
     .map(e => check.isAvailable(e))
 }
 

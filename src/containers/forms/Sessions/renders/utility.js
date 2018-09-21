@@ -49,6 +49,7 @@ export const generateErrorMessage = (examiner) => {
   if(examiner.avail.failsRoles) errors.push('roles');
   if(examiner.avail.failsIsBusy) errors.push('busy');
   if(examiner.avail.failsIsSupport) errors.push('is supporting');
+  if(examiner.avail.failsIsExaminer) errors.push('is examining');
   return errors.map((e, i) => (
     <span key={i} className={classes.NotAvailableError}>
       ⨯ {e}

@@ -89,8 +89,29 @@ describe('tests on isSupportAlso', () => {
     expect(filtered.avail.failsIsSupport).toBe(true);
   });
 
+  test('will pass when not selected as support', () => {
+    const filtered = checks.isSupportAlso(examiner, ['Another examiner']);
+    expect(filtered.avail.failsIsSupport).toBe(false);
+  });
 });
 
+describe('tests on isExaminerAlso', () => {
+  const examiner = {
+    ...Examiner, 
+    "availability" : [ "Monday pm", "Tuesday", "Tuesday pm", "Wednesday", "Wednesday pm", "Thursday pm" ],
+    name: 'Christopher Kellett',
+  };
+
+  test('will fail when already selected as support', () => {
+    const filtered = checks.isExaminerAlso(examiner, ['Christopher Kellett']);
+    expect(filtered.avail.failsIsExaminer).toBe(true);
+  });
+
+  test('will pass when not selected as support', () => {
+    const filtered = checks.isExaminerAlso(examiner, ['Another examiner']);
+    expect(filtered.avail.failsIsExaminer).toBe(false);
+  });
+});
 
 
 

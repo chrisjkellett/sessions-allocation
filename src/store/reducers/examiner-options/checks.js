@@ -90,10 +90,7 @@ export const isBusy = (e, sameDaySessions, time) => {
   }
 }
 
-function clone(src) {
-  return Object.assign({}, src);
-}
-
+const clone = src => Object.assign({}, src);
 
 export const isSupportAlso = (e, sessionSupport) => {
   const availCopy = clone(e.avail);
@@ -103,6 +100,16 @@ export const isSupportAlso = (e, sessionSupport) => {
     availCopy.failsIsSupport = false;
   return {...e, avail: {...availCopy}};
 }
+
+export const isExaminerAlso = (e, sessionExaminers) => {
+  const availCopy = clone(e.avail);
+  if(sessionExaminers.includes(e.name)){
+    availCopy.failsIsExaminer = true;
+  }else
+    availCopy.failsIsExaminer = false;
+  return {...e, avail: {...availCopy}};
+}
+
 
 //always final check
 export const isAvailable = (e) => {
