@@ -90,12 +90,18 @@ export const isBusy = (e, sameDaySessions, time) => {
   }
 }
 
+function clone(src) {
+  return Object.assign({}, src);
+}
+
+
 export const isSupportAlso = (e, sessionSupport) => {
-  if(sessionSupport.includes(e.name))
-    e.avail.failsIsSupport = true;
-  else
-    e.avail.failsIsSupport = false;
-  return e;
+  const availCopy = clone(e.avail);
+  if(sessionSupport.includes(e.name)){
+    availCopy.failsIsSupport = true;
+  }else
+    availCopy.failsIsSupport = false;
+  return {...e, avail: {...availCopy}};
 }
 
 //always final check
