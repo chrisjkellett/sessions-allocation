@@ -13,6 +13,7 @@ import sessionReducer from './store/reducers/sessions';
 import generalReducer from './store/reducers/general';
 import periodsReducer from './store/reducers/periods/periods';
 import examinerOptionsReducer from './store/reducers/examiner-options/examiner-options';
+import venuesReducer from './store/reducers/venues/venues';
 
 const reducer = combineReducers({
   ex: examinersReducer,
@@ -20,7 +21,8 @@ const reducer = combineReducers({
   sess: sessionReducer,
   gen: generalReducer,
   per: periodsReducer,
-  op: examinerOptionsReducer
+  op: examinerOptionsReducer,
+  venue: venuesReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

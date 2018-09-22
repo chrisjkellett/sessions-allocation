@@ -4,19 +4,30 @@ import classes from './Venues.css';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {constructVenuesState} from '../../../store/constructors/venues';
-import { updateState } from '../form-utility';
+import { updateState, checkFormValidity, forSubmit } from '../form-utility';
 import { getInputValue } from '../form-utility';
 import {checkValidity} from '../validation/validation';
+import * as actions from '../../../store/actions/venues/venues';
 
 class Venues extends Component{
   state = {
     venue: constructVenuesState(),
     shouldValidate: false
   }
+  
+  initialiseValidation = () => this.setState((prev) => ({ ...prev.state, shouldValidate: true }))
 
   handlers = {
     submit: (event, props) => {
+      const { venue } = this.state;
       event.preventDefault();
+      this.initialiseValidation();
+      const venueForDB = forSubmit(venue);
+      
+      if(checkFormValidity(venue)){
+        const {addVenue, token} = this.props;
+        addVenue(venueForDB, token);
+      }
     },
   
     cancel: () => {
@@ -48,13 +59,13 @@ class Venues extends Component{
 
 const mapStateToProps = state => {
   return {
-    
+    token: state.auth.token
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    addVenue: (venue, token) => dispatch(actions.addVenue(venue, token))
   }
 }
 

@@ -33,7 +33,7 @@ export const constructVenuesState = () => {
           options: ['Speaking', 'Writing'],
           value: 'Speaking',
           group: 'right',
-          validation: constructValidation({...rules.required})
+          validation: constructValidation({})
         },
 
       city: {
@@ -44,7 +44,7 @@ export const constructVenuesState = () => {
         options: ['Valencia', 'Murcia'],
         value: 'Valencia',
         group: 'right',
-        validation: constructValidation({...rules.required})
+        validation: constructValidation({})
         },
 
       phone: {

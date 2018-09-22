@@ -7,13 +7,16 @@ export const getLogData = (type, update) => {
         primary: moment(update.session_date.join("-")).format('dddd Do MMMM'),
         secondary: '(' + update.venue + ')'
       } 
-    case 'examiners':
+    case 'venues':
+      return{
+        primary: update.name,
+        secondary: 'to venues list'
+      } 
+    default:
       return {
         primary: update.name,
         secondary: null
       }
-    default:
-      return null;
   }
 }
 
