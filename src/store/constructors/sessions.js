@@ -1,5 +1,5 @@
 import {
-  dayOptions, monthOptions, yearOptions, sessionTypeKeys, venueKeys, timeKeys, levelKeys
+  dayOptions, monthOptions, yearOptions, sessionTypeKeys, timeKeys, levelKeys
 } from '../data';
 
 import {
@@ -59,7 +59,7 @@ export const constructSessionsState = () => {
          disabled: false
       },
       options: null,
-      value: 'Hotel Puerta',
+      value: null,
       group: 'session-data',
       validation: constructValidation({})
     },

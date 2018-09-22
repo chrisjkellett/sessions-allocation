@@ -12,11 +12,15 @@ export const generateInputProps = ({config, id}, state, handlers, filterAvailabl
       elementtype: config.elementType,
       elementConfig: config.elementConfig,
       hasControls: {controls: config.hasControls, handler: handlers.resetExaminers},
-      value: config.value,
+      value: hasAsyncValue(id, config, venues),
       valid: config.validation.valid,
       shouldValidate: state.shouldValidate,
       change: (event, index) => handlers.change(event, config.elementType, id, index)
     }
+}
+
+export const hasAsyncValue = (id, config, venues) => {
+  return id === 'venue' ? venues[0].name : config.value; 
 }
 
 export const dynamicOptionCheck = (id, filterAvailable, filterSupport, config, venues) => {
