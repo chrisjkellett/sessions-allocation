@@ -50,7 +50,6 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {selectedExaminer: null})
 
     case actionTypes.FILTER_EXAMINER_BY_NAME:
-    console.log(state.examiners);
       return {...state, filteredExaminers: filterExaminerByName(state.examiners, action.string)};
 
     default:

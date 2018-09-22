@@ -19,18 +19,6 @@ export const updateSimpleState = (obj, updatedState) => {
   }
 }
 
-export const getSelectedOptions = (event) => {
-  if(event.target.multiple){
-    const optionsAsArray = [...event.target.options]
-        .filter(({selected}) => selected)
-        .map(({value}) => value);
-    return optionsAsArray;
-  }
-
-  else
-    return event.target.value;
-}
-
 export const conditionalItemCheck = (arr, check) => {
   return !arr.includes(check);
 }
@@ -111,13 +99,24 @@ export const distributeValuesForEditing = (state, selected) => {
     state[item].validation.valid = [];
   }
 
-  // if(state.roles){
-  //   if(state['roles'].value.includes('Speaking Examiner')){
-  //     for(let item in state){
-  //       state[item].elementConfig.disabled = false;
-  //     }
-  //   }
-  // }
-
   return state; 
+}
+
+export const getInputValue = (event, type) => {
+  if(type === 'input') 
+    return event.target.value;
+  if(type === 'select')
+    return getSelectedOptions(event)
+}
+
+export const getSelectedOptions = (event) => {
+  if(event.target.multiple){
+    const optionsAsArray = [...event.target.options]
+      .filter(({selected}) => selected)
+      .map(({value}) => value);
+    return optionsAsArray;
+  }
+
+  else
+    return event.target.value;
 }
