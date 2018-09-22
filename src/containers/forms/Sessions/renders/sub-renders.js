@@ -6,11 +6,11 @@ import classes from '../../../css/forms.css';
 import viewCSS from '../../../css/views.css';
 import availCSS from './availability.css';
 
-export const renderFormElements = (state, handlers, filterAvailable, filterSupport) => {
+export const renderFormElements = (state, handlers, filterAvailable, filterSupport, venues) => {
   return (
     generateFormElementArray(state.session)
       .map(element =>{
-        return <Input {...generateInputProps(element, state, handlers, filterAvailable, filterSupport)} />
+        return <Input {...generateInputProps(element, state, handlers, filterAvailable, filterSupport, venues)} />
       }
     )
   )

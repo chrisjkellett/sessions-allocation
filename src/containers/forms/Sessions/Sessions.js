@@ -153,7 +153,8 @@ const mapStateToProps = state => {
     token: state.auth.token,
     availableExaminers: state.op.ex_options,
     availableSupport: state.op.supp_options,
-    sameDaySessions: state.op.sameDaySessions
+    sameDaySessions: state.op.sameDaySessions,
+    venues: state.venue.venues
   }
 }
 

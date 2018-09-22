@@ -58,8 +58,8 @@ export const constructSessionsState = () => {
         multiple: false,
          disabled: false
       },
-      options: venueKeys,
-      value: venueKeys[0],
+      options: null,
+      value: 'Hotel Puerta',
       group: 'session-data',
       validation: constructValidation({})
     },

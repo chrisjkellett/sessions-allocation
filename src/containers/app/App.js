@@ -15,6 +15,7 @@ import Wrapper from '../../components/Misc/Wrapper/Wrapper';
 import {loadExaminers} from '../../store/actions/examiners/examiners';
 import {loadSessions} from '../../store/actions/sessions/sessions';
 import {checkAuthState} from '../../store/actions/auth/auth';
+import * as venueActions from '../../store/actions/venues/venues';
 import * as routes from '../../store/app-data/routes';
 import AsyncLoad from './components/AsyncLoad/AsyncLoad';
 
@@ -22,6 +23,7 @@ class App extends Component {
   componentDidMount(){
     this.props.loadExaminers();
     this.props.loadSessions();
+    this.props.loadVenues();
     this.props.checkAuthState();
   }
 
@@ -68,10 +70,11 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return{
+  return {
     loadExaminers: () => dispatch(loadExaminers()),
     loadSessions: () => dispatch(loadSessions()),
-    checkAuthState: () => dispatch(checkAuthState())
+    checkAuthState: () => dispatch(checkAuthState()),
+    loadVenues: () => dispatch(venueActions.loadVenues())
   }
 }
 

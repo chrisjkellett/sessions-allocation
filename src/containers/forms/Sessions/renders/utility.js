@@ -3,11 +3,11 @@ import classes from '../../../css/views.css';
 import availCSS from './availability.css';
 import moment from 'moment';
 
-export const generateInputProps = ({config, id}, state, handlers, filterAvailable, filterSupport) => {
+export const generateInputProps = ({config, id}, state, handlers, filterAvailable, filterSupport, venues) => {
     return {
       key: id,
       label: id,
-      options: examinerCheck(id, filterAvailable, filterSupport, config),
+      options: dynamicOptionCheck(id, filterAvailable, filterSupport, config, venues),
       inline: config.inline,
       elementtype: config.elementType,
       elementConfig: config.elementConfig,
@@ -19,7 +19,7 @@ export const generateInputProps = ({config, id}, state, handlers, filterAvailabl
     }
 }
 
-export const examinerCheck = (id, filterAvailable, filterSupport, config) => {
+export const dynamicOptionCheck = (id, filterAvailable, filterSupport, config, venues) => {
   if(id === 'examiners' && filterAvailable !== null){
     return filterAvailable
       .map(e => e.name);
@@ -27,6 +27,11 @@ export const examinerCheck = (id, filterAvailable, filterSupport, config) => {
 
   else if(id === 'support' && filterSupport !== null){
     return filterSupport
+      .map(e => e.name);
+  }
+
+  else if(id === 'venue' && filterAvailable !== null){
+    return venues
       .map(e => e.name);
   }
   
