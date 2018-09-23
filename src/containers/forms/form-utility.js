@@ -103,10 +103,10 @@ export const distributeValuesForEditing = (state, selected) => {
 }
 
 export const getInputValue = (event, type) => {
-  if(type === 'input') 
-    return event.target.value;
   if(type === 'select')
-    return getSelectedOptions(event)
+    return getSelectedOptions(event);
+  else
+    return event.target.value;
 }
 
 export const getSelectedOptions = (event) => {

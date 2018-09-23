@@ -5,7 +5,7 @@ import {
 
 export const constructVenuesState = () => {
   return {
-    name: {
+      name: {
       elementType: 'input',
       elementConfig: {
         type: 'text'
@@ -15,8 +15,18 @@ export const constructVenuesState = () => {
       validation: constructValidation({...rules.required})
       },
 
-      address: {
+      contact: {
         elementType: 'input',
+        elementConfig: {
+          type: 'text'
+        },
+        value: '',
+        group: 'left',
+        validation: constructValidation({...rules.required})
+        },
+
+      address: {
+        elementType: 'textarea',
         elementConfig: {
           type: 'text'
         },
@@ -28,9 +38,9 @@ export const constructVenuesState = () => {
       type: {
           elementType: 'select',
           elementConfig: {
-            multiple: false
+            multiple: true
           },
-          options: ['Speaking', 'Writing'],
+          options: ['Speaking', 'Writing', 'CB exams'],
           value: 'Speaking',
           group: 'right',
           validation: constructValidation({})
@@ -48,14 +58,14 @@ export const constructVenuesState = () => {
         },
 
       phone: {
-          elementType: 'input',
-          elementConfig: {
-            type: 'text'
-          },
-          value: '',
-          group: 'left',
-          validation: constructValidation({...rules.required})
-          },
+        elementType: 'input',
+        elementConfig: {
+          type: 'text'
+        },
+        value: '',
+        group: 'left',
+        validation: constructValidation({})
+        },
 
   } 
 }
