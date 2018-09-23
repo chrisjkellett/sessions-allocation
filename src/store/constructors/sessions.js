@@ -59,7 +59,7 @@ export const constructSessionsState = () => {
          disabled: false
       },
       options: null,
-      value: null,
+      value: 'Lenguas Vivas',
       group: 'session-data',
       validation: constructValidation({})
     },

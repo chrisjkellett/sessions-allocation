@@ -1,5 +1,6 @@
 import  React, {Component} from 'react';
 import Form from './components/Form/Form';
+import AddNewBtn from './components/AddNewBtn/AddNewBtn';
 import classes from './Venues.css';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
@@ -12,9 +13,10 @@ import * as actions from '../../../store/actions/venues/venues';
 class Venues extends Component{
   state = {
     venue: constructVenuesState(),
-    shouldValidate: false
+    shouldValidate: false,
+    showForm: false,
   }
-  
+
   initialiseValidation = () => this.setState((prev) => ({ ...prev.state, shouldValidate: true }))
 
   handlers = {
@@ -31,7 +33,7 @@ class Venues extends Component{
     },
   
     cancel: () => {
-      this.props.history.goBack();
+      this.handlers.closeForm();
     },
 
     change: (event, type, id) => {
@@ -40,17 +42,26 @@ class Venues extends Component{
       const update = updateState(this.state, id, {value: value, id}, formType);
       update[formType][id].validation = checkValidity({...update[formType][id]});
       this.setState(update);
+    },
+
+    openForm: () => {
+      this.setState({ showForm: true });
+    },
+
+    closeForm: () => {
+      this.setState({ showForm: false });
     }
   }
 
 
   render(){
-    const { venue, shouldValidate } = this.state;
+    const { venue, shouldValidate, showForm } = this.state;
     const { handlers } = this;
     return (
        <section className={classes.Venues}>
         <div className={classes.Box}>
-          <Form handlers={handlers} values={venue} shouldValidate={shouldValidate} />
+          <AddNewBtn showForm={showForm} openForm={handlers.openForm} />
+          <Form handlers={handlers} values={venue} shouldValidate={shouldValidate} showForm={showForm} />
         </div>
       </section>
     )

@@ -4,8 +4,8 @@ import classes from './Form.css';
 import SubmitBtns from '../SubmitBtns/SubmitBtns';
 import { generateFormElementArray, generateInputProps } from './utility';
 
-const Form = ({ handlers, values, shouldValidate }) => {
-  return (
+const Form = ({ handlers, values, shouldValidate, showForm }) => {
+  return !showForm ? null :(
     <form onSubmit={handlers.submit}>
       <div className={classes.FlexContainer}>
         <div className={classes.FlexItem}>
