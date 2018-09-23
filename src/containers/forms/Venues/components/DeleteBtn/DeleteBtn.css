@@ -11,6 +11,7 @@
   border: 1px solid lightgrey;
   background: aliceblue;
   text-align: center;
+  z-index: 1;
 }
 
 .SmallBtn{

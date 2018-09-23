@@ -3,7 +3,7 @@ import classes from '../../Venues.css';
 import Table from '../../../../../components/FormElements/Table/Table';
 import DeleteBtn from '../DeleteBtn/DeleteBtn';
 
-const VenuesTable = ({ data, handlers }) => {
+const VenuesTable = ({ data, handlers, isConfirming }) => {
   return (
     <div className={classes.Box}>
       <Table labels={['name', 'contact', 'type', 'phone', null]}>
@@ -17,7 +17,7 @@ const VenuesTable = ({ data, handlers }) => {
             <td>{v.type.join(" | ")}</td>
             <td>{v.phone !== '' ? '+34( ' + v.phone + ')' : '-' }</td>
             <td>
-              <DeleteBtn deleteHandler={handlers.delete} name={v.name}/>
+              <DeleteBtn handlers={handlers} name={v.name} isConfirming={isConfirming} />
             </td>
           </tr>
         ))}

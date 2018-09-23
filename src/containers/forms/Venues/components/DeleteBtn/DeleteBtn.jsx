@@ -7,17 +7,20 @@ class DeleteBtn extends Component {
   }
 
   confirm = () => {
-    this.setState({ confirmPrompt : true })
-  }
+    const { isConfirming } = this.props;
+    if(!isConfirming){
+      this.setState({ confirmPrompt : true })
+      this.props.handlers.toggleConfirm();
+    };
+  };
 
   cancelConfirm = () => {
-    this.setState({ confirmPrompt : false })
-  }
-
-
+    this.setState({ confirmPrompt : false });
+    this.props.handlers.toggleConfirm();
+  };
 
   render(){
-    const { deleteHandler, name } = this.props;
+    const { handlers, name } = this.props;
     const { confirmPrompt } = this.state;
     const { confirm, cancelConfirm } = this;
 
@@ -29,7 +32,7 @@ class DeleteBtn extends Component {
             <div>confirm delete of<span className={classes.Bold}>{name}</span></div>
             <div>
               <span>
-                <span className={classes.SmallBtn} onClick={deleteHandler}>confirm</span>
+                <span className={classes.SmallBtn} onClick={handlers.delete}>confirm</span>
                 <span> | </span>
                 <span className={classes.SmallBtn} onClick={cancelConfirm}>cancel</span>
               </span>

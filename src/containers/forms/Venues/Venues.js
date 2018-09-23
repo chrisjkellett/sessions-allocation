@@ -59,17 +59,21 @@ class Venues extends Component{
 
     delete: () => {
       console.log('deleting')
+    },
+
+    toggleConfirm: () => {
+      this.setState((prev) => ({ isConfirming: prev.isConfirming ? false : true }))
     }
   }
 
 
   render(){
-    const { venue, shouldValidate, showForm } = this.state;
+    const { venue, shouldValidate, showForm, isConfirming } = this.state;
     const { venues } = this.props;
     const { handlers } = this;
     return (
        <section className={classes.Venues}>
-          <VenuesTable data={venues} handlers={handlers} />
+          <VenuesTable data={venues} handlers={handlers} isConfirming={isConfirming} />
           <AddNewBtn showForm={showForm} openForm={handlers.openForm} />
           <Form handlers={handlers} values={venue} shouldValidate={shouldValidate} showForm={showForm} />
       </section>
