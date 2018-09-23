@@ -1,11 +1,12 @@
 import React from 'react';
 import classes from '../../Venues.css';
 import Table from '../../../../../components/FormElements/Table/Table';
+import DeleteBtn from '../DeleteBtn/DeleteBtn';
 
-const VenuesTable = ({ data }) => {
+const VenuesTable = ({ data, handlers, confirmPrompt }) => {
   return (
     <div className={classes.Box}>
-      <Table labels={['name', 'contact', 'type', 'phone']}>
+      <Table labels={['name', 'contact', 'type', 'phone', null]}>
         {data.map(v => (
           <tr className={classes.Row} key={v.name}>
             <td>
@@ -15,6 +16,9 @@ const VenuesTable = ({ data }) => {
             <td>{v.contact}</td>
             <td>{v.type.join(" | ")}</td>
             <td>{v.phone !== '' ? '+34( ' + v.phone + ')' : '-' }</td>
+            <td>
+              <DeleteBtn deleteHandler={handlers.delete} confirmPrompt={confirmPrompt} name={v.name}/>
+            </td>
           </tr>
         ))}
       </Table>

@@ -1,0 +1,28 @@
+.ConfirmDeletePanel {
+  position: relative;
+}
+
+.ConfirmDeletePanel .ConfirmAction {
+  position: absolute;
+  top: 0;
+  left: -350px;
+  padding: 10px 20px;
+  border: 1px solid lightgrey;
+  background: aliceblue;
+  text-align: center;
+}
+
+.SmallBtn{
+  cursor: pointer;
+  color: blue;
+  font-size: 100% !important;
+}
+
+.SmallBtn:hover{
+  color: grey;
+}
+
+.Bold {
+  font-size: 100% !important;
+  font-weight: 500 !important;
+}
