@@ -1,6 +1,7 @@
 import  React, {Component} from 'react';
 import Form from './components/Form/Form';
 import AddNewBtn from './components/AddNewBtn/AddNewBtn';
+import VenuesTable from './components/VenuesTable/VenuesTable';
 import classes from './Venues.css';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
@@ -56,13 +57,13 @@ class Venues extends Component{
 
   render(){
     const { venue, shouldValidate, showForm } = this.state;
+    const { venues } = this.props;
     const { handlers } = this;
     return (
        <section className={classes.Venues}>
-        <div className={classes.Box}>
+          <VenuesTable data={venues} />
           <AddNewBtn showForm={showForm} openForm={handlers.openForm} />
           <Form handlers={handlers} values={venue} shouldValidate={shouldValidate} showForm={showForm} />
-        </div>
       </section>
     )
   }
@@ -70,7 +71,8 @@ class Venues extends Component{
 
 const mapStateToProps = state => {
   return {
-    token: state.auth.token
+    token: state.auth.token,
+    venues: state.venue.venues
   }
 }
 

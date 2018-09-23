@@ -20,10 +20,3 @@ export const examinerAvailableHeaders = [
   'examiner name',
   null
 ];
-
-export const venueTableHeaders = [
-  'name',
-  'type',
-  'phone',
-  null
-]

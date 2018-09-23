@@ -1,11 +1,6 @@
-.Venues{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.Venues .Box{
+.Box{
   flex-basis: 650px;
-  margin: 0 10px;
+  margin: 0 40px 0 10px;
 }
 
 .FlexContainer{

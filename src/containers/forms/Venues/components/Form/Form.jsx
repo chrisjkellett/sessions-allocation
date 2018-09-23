@@ -6,18 +6,20 @@ import { generateFormElementArray, generateInputProps } from './utility';
 
 const Form = ({ handlers, values, shouldValidate, showForm }) => {
   return !showForm ? null :(
-    <form onSubmit={handlers.submit}>
-      <div className={classes.FlexContainer}>
-        <div className={classes.FlexItem}>
-          {generateFormElementArray(values)
-            .map(element =>{
-              return <Input {...generateInputProps(element, shouldValidate, handlers)} />
-            }
-          )}
+    <div className={classes.VenueForm}>
+      <form onSubmit={handlers.submit}>
+        <div className={classes.FlexContainer}>
+          <div className={classes.FlexItem}>
+            {generateFormElementArray(values)
+              .map(element =>{
+                return <Input {...generateInputProps(element, shouldValidate, handlers)} />
+              }
+            )}
+          </div>
+          <SubmitBtns label='Add venue' edit={null} cancel={handlers.cancel} />
         </div>
-        <SubmitBtns label='Add venue' edit={null} cancel={handlers.cancel} />
-      </div>
-    </form>
+      </form>
+    </div>
   )
 }
 
