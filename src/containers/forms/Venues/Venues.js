@@ -16,7 +16,7 @@ class Venues extends Component{
     venue: constructVenuesState(),
     shouldValidate: false,
     showForm: false,
-    confirmPrompt: false
+    isConfirming: false
   }
 
   initialiseValidation = () => this.setState((prev) => ({ ...prev.state, shouldValidate: true }))
@@ -58,18 +58,18 @@ class Venues extends Component{
     },
 
     delete: () => {
-      this.setState({ confirmPrompt: true });
+      console.log('deleting')
     }
   }
 
 
   render(){
-    const { venue, shouldValidate, showForm, confirmPrompt } = this.state;
+    const { venue, shouldValidate, showForm } = this.state;
     const { venues } = this.props;
     const { handlers } = this;
     return (
        <section className={classes.Venues}>
-          <VenuesTable data={venues} handlers={handlers} confirmPrompt={confirmPrompt}/>
+          <VenuesTable data={venues} handlers={handlers} />
           <AddNewBtn showForm={showForm} openForm={handlers.openForm} />
           <Form handlers={handlers} values={venue} shouldValidate={shouldValidate} showForm={showForm} />
       </section>
