@@ -66,7 +66,7 @@ export const updateVenue = (venue, id, token) => {
   return dispatch => {
     axios.put('/venues/' + id + '.json?auth=' + token, venue)
       .then(() => {
-        dispatch(updateVenueSuccess(venue));
+        dispatch(updateVenueSuccess(venue, id));
         dispatch(logResponse(venue, {type: 'venue', action: 'updated'}));
       })
       .catch(error => {
@@ -75,10 +75,11 @@ export const updateVenue = (venue, id, token) => {
   }
 };
 
-export const updateVenueSuccess = (venue) => {
+export const updateVenueSuccess = (venue, id) => {
   return {
     type: actionTypes.UPDATE_VENUE_SUCCESS,
-    venue: venue
+    venue: venue,
+    id: id
   }
 };
 

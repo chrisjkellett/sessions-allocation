@@ -37,7 +37,6 @@ class Venues extends Component{
     },
    
     cancel: () => {
-      console.log('cancelling')
       this.handlers.closeForm();
       this.setState({ venue: constructVenuesState() })
     },
