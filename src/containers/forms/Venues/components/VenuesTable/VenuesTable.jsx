@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from '../../Venues.css';
 import Table from '../../../../../components/FormElements/Table/Table';
-import DeleteBtn from '../DeleteBtn/DeleteBtn';
+import DeleteBtn from './DeleteBtn/DeleteBtn';
 
 const VenuesTable = ({ data, handlers, isConfirming }) => {
   return (
@@ -17,6 +17,8 @@ const VenuesTable = ({ data, handlers, isConfirming }) => {
             <td>{v.type.join(" | ")}</td>
             <td>{v.phone !== '' ? '+34( ' + v.phone + ')' : '-' }</td>
             <td>
+              edit
+              <span> | </span>
               <DeleteBtn handlers={handlers} venue={v} isConfirming={isConfirming} />
             </td>
           </tr>
