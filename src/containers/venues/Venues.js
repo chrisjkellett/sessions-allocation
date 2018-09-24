@@ -5,11 +5,11 @@ import VenuesTable from './components/VenuesTable/VenuesTable';
 import classes from './Venues.css';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {constructVenuesState} from '../../../store/constructors/venues';
-import { updateState, checkFormValidity, forSubmit } from '../form-utility';
-import { getInputValue } from '../form-utility';
-import {checkValidity} from '../validation/validation';
-import * as actions from '../../../store/actions/venues/venues';
+import {constructVenuesState} from '../../store/constructors/venues';
+import { updateState, checkFormValidity, forSubmit } from '../forms/form-utility';
+import { getInputValue } from '../forms/form-utility';
+import { checkValidity } from '../forms/validation/validation';
+import * as actions from '../../store/actions/venues/venues';
 
 
 class Venues extends Component{

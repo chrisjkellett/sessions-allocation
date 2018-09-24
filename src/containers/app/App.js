@@ -10,7 +10,7 @@ import SingleExaminer from '../views/SingleExaminer/SingleExaminer';
 import SingleSession from '../views/SingleSession/SingleSession';
 import AddExaminers from '../forms/Examiners/Examiners';
 import AddSessions from '../forms/Sessions/Sessions';
-import Venues from '../forms/Venues/Venues';
+import Venues from '../venues/Venues';
 import Wrapper from '../../components/Misc/Wrapper/Wrapper';
 import {loadExaminers} from '../../store/actions/examiners/examiners';
 import {loadSessions} from '../../store/actions/sessions/sessions';

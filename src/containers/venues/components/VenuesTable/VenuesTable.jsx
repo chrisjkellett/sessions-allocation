@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from '../../Venues.css';
-import Table from '../../../../../components/FormElements/Table/Table';
+import Table from '../../../../components/FormElements/Table/Table';
 import DeleteBtn from './DeleteBtn/DeleteBtn';
 import EditBtn from './EditBtn/EditBtn';
 
