@@ -15,7 +15,7 @@ const reducer = (state = initial, action) => {
       return {...state, venues: sortBy(objectToArray(action.venues), 'name')};
 
     case actionTypes.DELETE_VENUE_SUCCESS:
-      return state;
+      return {...state, venues: state.venues.filter(v => v.id !== action.venue.id)}
 
     default:
       return state;  

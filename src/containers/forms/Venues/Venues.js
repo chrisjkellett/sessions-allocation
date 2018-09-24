@@ -11,6 +11,7 @@ import { getInputValue } from '../form-utility';
 import {checkValidity} from '../validation/validation';
 import * as actions from '../../../store/actions/venues/venues';
 
+
 class Venues extends Component{
   state = {
     venue: constructVenuesState(),
@@ -32,7 +33,7 @@ class Venues extends Component{
         const {addVenue, token} = this.props;
         addVenue(venueForDB, token);
         this.handlers.closeForm();
-        this.setState({ venue: constructVenuesState() })
+        this.setState({ venue: constructVenuesState(), shouldValidate: false })
       }
     },
   
@@ -59,7 +60,7 @@ class Venues extends Component{
 
     delete: (venue) => {
       const { token } = this.props;
-      this.props.deleteVenue(venue, token)
+      this.props.deleteVenue(venue, token);
     },
 
     toggleConfirm: () => {

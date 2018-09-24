@@ -10,7 +10,7 @@ export const getLogData = (type, update) => {
     case 'venues':
       return{
         primary: update.name,
-        secondary: 'to venues list'
+        secondary: null
       } 
     default:
       return {
