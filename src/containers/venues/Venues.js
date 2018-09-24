@@ -81,6 +81,7 @@ class Venues extends Component{
   render(){
     const { venue, shouldValidate, showForm, isConfirming } = this.state;
     const { venues, selectedVenue } = this.props;
+    const { clearSelectedVenue } = this.props;
     const { handlers } = this;
     return (
        <section className={classes.Venues}>
@@ -91,7 +92,8 @@ class Venues extends Component{
               handlers={handlers} 
               values={venue} 
               shouldValidate={shouldValidate} 
-              selectedVenue={selectedVenue} />
+              selectedVenue={selectedVenue} 
+              clearSelectedVenue={clearSelectedVenue} />
           }
       </section>
     )
@@ -111,6 +113,7 @@ const mapDispatchToProps = dispatch => {
     addVenue: (venue, token) => dispatch(actions.addVenue(venue, token)),
     deleteVenue: (venue, token) => dispatch(actions.deleteVenue(venue, token)),
     fetchVenue: (id) => dispatch(actions.fetchVenue(id)),
+    clearSelectedVenue: () => dispatch(actions.clearSelectedVenue()),
   }
 }
 

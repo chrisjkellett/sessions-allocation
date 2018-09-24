@@ -68,3 +68,9 @@ export const fetchVenue = (id) => {
     id: id
   }
 };
+
+export const clearSelectedVenue = () => {
+  return {
+    type: actionTypes.CLEAR_SELECTED_VENUE,
+  }
+};

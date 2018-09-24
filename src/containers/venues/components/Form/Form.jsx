@@ -9,6 +9,10 @@ class Form extends Component {
     const { selectedVenue } = this.props;
     selectedVenue && this.props.handlers.fetchRecord(selectedVenue);
   }
+
+  componentWillUnmount(){
+    this.props.clearSelectedVenue();
+  }
   
   render() {
     const { handlers, values, shouldValidate } = this.props;

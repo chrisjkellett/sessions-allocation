@@ -10,16 +10,19 @@ const initial = {
 const reducer = (state = initial, action) => {
   switch(action.type){
     case actionTypes.ADD_VENUE_SUCCESS: 
-      return {...state, venues: state.venues.concat(action.venue)};
+      return { ...state, venues: state.venues.concat(action.venue) };
     
     case actionTypes.LOAD_VENUE_SUCCESS: 
-      return {...state, venues: sortBy(objectToArray(action.venues), 'name')};
+      return { ...state, venues: sortBy(objectToArray(action.venues), 'name') };
 
     case actionTypes.DELETE_VENUE_SUCCESS:
-      return {...state, venues: state.venues.filter(v => v.id !== action.venue.id)};
+      return { ...state, venues: state.venues.filter(v => v.id !== action.venue.id) };
 
     case actionTypes.FETCH_VENUE:
-      return {...state, selectedVenue: state.venues.find(v => v.id === action.id)}
+      return { ...state, selectedVenue: state.venues.find(v => v.id === action.id) };
+
+    case actionTypes.CLEAR_SELECTED_VENUE:
+      return { ...state, selectedVenue: null }
 
     default:
       return state;  
