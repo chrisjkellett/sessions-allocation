@@ -6,8 +6,10 @@ import { generateFormElementArray, generateInputProps } from './utility';
 
 class Form extends Component {
   componentDidMount(){
-    console.log('mounting');
+    const { selectedVenue } = this.props;
+    selectedVenue && this.props.handlers.fetchRecord(selectedVenue);
   }
+  
   render() {
     const { handlers, values, shouldValidate } = this.props;
     return (

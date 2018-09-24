@@ -19,7 +19,7 @@ const reducer = (state = initial, action) => {
       return {...state, venues: state.venues.filter(v => v.id !== action.venue.id)};
 
     case actionTypes.FETCH_VENUE:
-      return {...state, selectedVenue: state.venues.filter(v => v.id === action.id)}
+      return {...state, selectedVenue: state.venues.find(v => v.id === action.id)}
 
     default:
       return state;  

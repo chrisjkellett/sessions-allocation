@@ -6,8 +6,7 @@ import classes from './Venues.css';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {constructVenuesState} from '../../store/constructors/venues';
-import { updateState, checkFormValidity, forSubmit } from '../forms/form-utility';
-import { getInputValue } from '../forms/form-utility';
+import { updateState, checkFormValidity, forSubmit, getInputValue, distributeValuesForEditing } from '../forms/form-utility';
 import { checkValidity } from '../forms/validation/validation';
 import * as actions from '../../store/actions/venues/venues';
 
@@ -38,6 +37,7 @@ class Venues extends Component{
     },
   
     cancel: () => {
+      console.log('cancelling')
       this.handlers.closeForm();
       this.setState({ venue: constructVenuesState() })
     },
@@ -64,23 +64,35 @@ class Venues extends Component{
     },
 
     toggleConfirm: () => {
-      this.setState((prev) => ({ isConfirming: prev.isConfirming ? false : true }))
+      this.setState((prev) => ({ isConfirming: prev.isConfirming ? false : true }));
     },
 
     editVenueHandler: (id) => {
       this.props.fetchVenue(id);
+      this.handlers.openForm();
+    },
+
+    fetchRecord: (selected) => {
+      const { venue } = this.state;
+      this.setState({ venue: distributeValuesForEditing(venue, selected) })
     }
   }
 
   render(){
     const { venue, shouldValidate, showForm, isConfirming } = this.state;
-    const { venues } = this.props;
+    const { venues, selectedVenue } = this.props;
     const { handlers } = this;
     return (
        <section className={classes.Venues}>
           <VenuesTable data={venues} handlers={handlers} isConfirming={isConfirming} />
           <AddNewBtn showForm={showForm} openForm={handlers.openForm} />
-          {showForm && <Form handlers={handlers} values={venue} shouldValidate={shouldValidate} />}
+          {showForm && 
+            <Form 
+              handlers={handlers} 
+              values={venue} 
+              shouldValidate={shouldValidate} 
+              selectedVenue={selectedVenue} />
+          }
       </section>
     )
   }
@@ -89,7 +101,8 @@ class Venues extends Component{
 const mapStateToProps = state => {
   return {
     token: state.auth.token,
-    venues: state.venue.venues
+    venues: state.venue.venues,
+    selectedVenue: state.venue.selectedVenue
   }
 }
 
