@@ -10,7 +10,8 @@ const initial = {
 const reducer = (state = initial, action) => {
   switch(action.type){
     case actionTypes.ADD_VENUE_SUCCESS: 
-      return { ...state, venues: sortBy(state.venues.concat(action.venue), 'name') };
+      const venue = {...action.venue, id: action.id}
+      return { ...state, venues: sortBy(state.venues.concat(venue), 'name') };
 
     case actionTypes.UPDATE_VENUE_SUCCESS:
       return { ...state, venues: sortBy(state.venues.filter(v => v.id !== action.id).concat(action.venue), 'name') }
