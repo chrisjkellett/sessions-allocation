@@ -80,7 +80,7 @@ class Venues extends Component{
        <section className={classes.Venues}>
           <VenuesTable data={venues} handlers={handlers} isConfirming={isConfirming} />
           <AddNewBtn showForm={showForm} openForm={handlers.openForm} />
-          <Form handlers={handlers} values={venue} shouldValidate={shouldValidate} showForm={showForm} />
+          {showForm && <Form handlers={handlers} values={venue} shouldValidate={shouldValidate} showForm={showForm} />}
       </section>
     )
   }
