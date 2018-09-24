@@ -65,6 +65,10 @@ class Venues extends Component{
 
     toggleConfirm: () => {
       this.setState((prev) => ({ isConfirming: prev.isConfirming ? false : true }))
+    },
+
+    editVenueHandler: (id) => {
+      console.log(id);
     }
   }
 
