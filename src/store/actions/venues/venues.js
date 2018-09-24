@@ -62,6 +62,26 @@ export const deleteVenueSuccess = (venue) => {
   }
 };
 
+export const updateVenue = (venue, id, token) => {
+  return dispatch => {
+    axios.put('/venues/' + id + '.json?auth=' + token, venue)
+      .then(() => {
+        dispatch(updateVenueSuccess(venue));
+        dispatch(logResponse(venue, {type: 'venue', action: 'updated'}));
+      })
+      .catch(error => {
+        dispatch(logError(error, {type: 'venue', action: 'update'}));
+      })
+  }
+};
+
+export const updateVenueSuccess = (venue) => {
+  return {
+    type: actionTypes.UPDATE_VENUE_SUCCESS,
+    venue: venue
+  }
+};
+
 export const fetchVenue = (id) => {
   return {
     type: actionTypes.FETCH_VENUE,

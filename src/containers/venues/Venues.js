@@ -24,19 +24,16 @@ class Venues extends Component{
   handlers = {
     submit: (event, props) => {
       const { venue } = this.state;
-      const { selectedVenue, addVenue, token } = this.props;
+      const { selectedVenue, token } = this.props;
       event.preventDefault();
       this.initialiseValidation();
       const venueForDB = forSubmit(venue);
       
-      if(checkFormValidity(venue) && selectedVenue === null){
-        addVenue(venueForDB, token);
-        this.handlers.closeForm();
-        this.setState({ venue: constructVenuesState(), shouldValidate: false })
-      }
-      else{
-        console.log('in editing mode');
-      }
+      checkFormValidity(venue) && selectedVenue === null
+        ? this.props.addVenue(venueForDB, token)
+        : this.props.updateVenue(venueForDB, selectedVenue.id, token);
+      this.handlers.closeForm();
+      this.setState({ venue: constructVenuesState(), shouldValidate: false })
     },
    
     cancel: () => {
@@ -114,6 +111,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addVenue: (venue, token) => dispatch(actions.addVenue(venue, token)),
+    updateVenue: (venue, id, token) => dispatch(actions.updateVenue(venue, id, token)),
     deleteVenue: (venue, token) => dispatch(actions.deleteVenue(venue, token)),
     fetchVenue: (id) => dispatch(actions.fetchVenue(id)),
     clearSelectedVenue: () => dispatch(actions.clearSelectedVenue()),
