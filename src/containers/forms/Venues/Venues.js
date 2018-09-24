@@ -57,15 +57,15 @@ class Venues extends Component{
       this.setState({ showForm: false });
     },
 
-    delete: () => {
-      console.log('deleting')
+    delete: (venue) => {
+      const { token } = this.props;
+      this.props.deleteVenue(venue, token)
     },
 
     toggleConfirm: () => {
       this.setState((prev) => ({ isConfirming: prev.isConfirming ? false : true }))
     }
   }
-
 
   render(){
     const { venue, shouldValidate, showForm, isConfirming } = this.state;
@@ -90,7 +90,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addVenue: (venue, token) => dispatch(actions.addVenue(venue, token))
+    addVenue: (venue, token) => dispatch(actions.addVenue(venue, token)),
+    deleteVenue: (venue, token) => dispatch(actions.deleteVenue(venue, token))
   }
 }
 

@@ -17,14 +17,17 @@
 .SmallBtn{
   cursor: pointer;
   color: blue;
-  font-size: 100% !important;
 }
 
 .SmallBtn:hover{
   color: grey;
 }
 
+.ConfirmBtn {
+  font-size: 50%;
+}
+
 .Bold {
-  font-size: 100% !important;
-  font-weight: 500 !important;
+  font-size: 100%;
+  font-weight: 500;
 }

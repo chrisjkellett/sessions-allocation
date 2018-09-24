@@ -11,13 +11,13 @@ const VenuesTable = ({ data, handlers, isConfirming }) => {
           <tr className={classes.Row} key={v.name}>
             <td>
               {v.name}
-              <span>{v.address}</span>
+              <span className={classes.Address}>{v.address}</span>
             </td>
             <td>{v.contact}</td>
             <td>{v.type.join(" | ")}</td>
             <td>{v.phone !== '' ? '+34( ' + v.phone + ')' : '-' }</td>
             <td>
-              <DeleteBtn handlers={handlers} name={v.name} isConfirming={isConfirming} />
+              <DeleteBtn handlers={handlers} venue={v} isConfirming={isConfirming} />
             </td>
           </tr>
         ))}

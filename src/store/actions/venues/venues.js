@@ -33,11 +33,31 @@ export const loadVenues = () => {
         dispatch(logError(error, {type: 'venues', action: 'load'}))
       })
   }
-}
+};
 
 export const loadVenuesSuccess = (data) => {
   return {
     type: actionTypes.LOAD_VENUE_SUCCESS,
     venues: data
   }
-}
+};
+
+export const deleteVenue = (venue, token) => {
+  return dispatch => {
+    axios.delete('/venues/' + venue.id + '.json?auth=' + token)
+      .then(() => {
+        dispatch(deleteVenueSuccess(venue));
+        dispatch(logResponse(venue, {type: 'venue', action: 'deleted'}));
+      })
+      .catch(error => {
+        dispatch(logError(error, {type: 'session', action: 'delete'}));
+      })
+  }
+};
+
+export const deleteVenueSuccess = (venue) => {
+  return {
+    type: actionTypes.DELETE_VENUE_SUCCESS,
+    venue: venue
+  }
+};

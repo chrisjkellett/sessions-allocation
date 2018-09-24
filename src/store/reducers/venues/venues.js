@@ -14,6 +14,9 @@ const reducer = (state = initial, action) => {
     case actionTypes.LOAD_VENUE_SUCCESS: 
       return {...state, venues: sortBy(objectToArray(action.venues), 'name')};
 
+    case actionTypes.DELETE_VENUE_SUCCESS:
+      return state;
+
     default:
       return state;  
   }
