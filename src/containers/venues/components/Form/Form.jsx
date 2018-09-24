@@ -9,8 +9,8 @@ class Form extends Component {
     console.log('mounting');
   }
   render() {
-    const { showForm, handlers, values, shouldValidate } = this.props;
-    return !showForm ? null :(
+    const { handlers, values, shouldValidate } = this.props;
+    return (
       <div className={classes.VenueForm}>
         <form onSubmit={handlers.submit}>
           <div className={classes.FlexContainer}>
