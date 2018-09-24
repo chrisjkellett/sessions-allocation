@@ -3,7 +3,8 @@ import { objectToArray, sortBy} from '../utility';
 
 const initial = {
   venues: [],
-  error: false
+  error: false,
+  selectedVenue: null
 }
 
 const reducer = (state = initial, action) => {
@@ -15,7 +16,10 @@ const reducer = (state = initial, action) => {
       return {...state, venues: sortBy(objectToArray(action.venues), 'name')};
 
     case actionTypes.DELETE_VENUE_SUCCESS:
-      return {...state, venues: state.venues.filter(v => v.id !== action.venue.id)}
+      return {...state, venues: state.venues.filter(v => v.id !== action.venue.id)};
+
+    case actionTypes.FETCH_VENUE:
+      return {...state, selectedVenue: state.venues.filter(v => v.id === action.id)}
 
     default:
       return state;  

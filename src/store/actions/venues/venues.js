@@ -61,3 +61,10 @@ export const deleteVenueSuccess = (venue) => {
     venue: venue
   }
 };
+
+export const fetchVenue = (id) => {
+  return {
+    type: actionTypes.FETCH_VENUE,
+    id: id
+  }
+};

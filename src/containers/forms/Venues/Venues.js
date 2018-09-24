@@ -68,7 +68,7 @@ class Venues extends Component{
     },
 
     editVenueHandler: (id) => {
-      console.log(id);
+      this.props.fetchVenue(id);
     }
   }
 
@@ -96,7 +96,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addVenue: (venue, token) => dispatch(actions.addVenue(venue, token)),
-    deleteVenue: (venue, token) => dispatch(actions.deleteVenue(venue, token))
+    deleteVenue: (venue, token) => dispatch(actions.deleteVenue(venue, token)),
+    fetchVenue: (id) => dispatch(actions.fetchVenue(id)),
   }
 }
 
