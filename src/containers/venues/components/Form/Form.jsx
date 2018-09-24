@@ -15,7 +15,8 @@ class Form extends Component {
   }
   
   render() {
-    const { handlers, values, shouldValidate } = this.props;
+    const { handlers, values, shouldValidate, selectedVenue } = this.props;
+    const label = selectedVenue !== null ? 'Save changes' : 'Add venue';
     return (
       <div className={classes.VenueForm}>
         <form onSubmit={handlers.submit}>
@@ -27,7 +28,7 @@ class Form extends Component {
                 }
               )}
             </div>
-            <SubmitBtns label='Add venue' edit={null} cancel={handlers.cancel} />
+            <SubmitBtns label={label} edit={null} cancel={handlers.cancel} />
           </div>
         </form>
       </div>

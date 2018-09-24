@@ -12,11 +12,11 @@
 }
 
 .Input input{
-  min-width: 200px;
+  min-width: 225px;
 }
 
 .Input select{
-  min-width: 200px;
+  min-width: 225px;
   padding: 3px 0;
   overflow-y: auto;
 }

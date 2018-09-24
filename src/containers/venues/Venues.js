@@ -24,18 +24,21 @@ class Venues extends Component{
   handlers = {
     submit: (event, props) => {
       const { venue } = this.state;
+      const { selectedVenue, addVenue, token } = this.props;
       event.preventDefault();
       this.initialiseValidation();
       const venueForDB = forSubmit(venue);
       
-      if(checkFormValidity(venue)){
-        const {addVenue, token} = this.props;
+      if(checkFormValidity(venue) && selectedVenue === null){
         addVenue(venueForDB, token);
         this.handlers.closeForm();
         this.setState({ venue: constructVenuesState(), shouldValidate: false })
       }
+      else{
+        console.log('in editing mode');
+      }
     },
-  
+   
     cancel: () => {
       console.log('cancelling')
       this.handlers.closeForm();
