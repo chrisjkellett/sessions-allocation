@@ -27,6 +27,11 @@ class AddSessions extends Component{
       const update = distributeValuesForEditing({...this.state.session}, {...this.props.sessionForEditing});
       this.setState(updateSimpleState({session: update}));
     } 
+
+    if(this.props.venues){
+      const { session } = this.state;
+      this.setState({session: { ...session, venue: {...session.venue, value: this.props.venues[0].name }}})
+    }
     const {calculateAvailableExaminers, calculateSameDaySessions, examiners, sessions} = this.props;
     calculateAvailableExaminers(examiners, this.state.session, sessions);
     calculateSameDaySessions(sessions, this.state.session.session_date.value)
@@ -119,8 +124,7 @@ class AddSessions extends Component{
       
       if(isValid && !this.props.sessionForEditing){
         const {history, addSession, token, sessions} = this.props;
-        const updated = [...sessions];
-        addSession(updated, session, token);
+        addSession(sessions, session, token);
         history.goBack();
       }
   

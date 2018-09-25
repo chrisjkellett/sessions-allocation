@@ -1,6 +1,7 @@
 .Row td{
-  padding: 10px 0;
   border-bottom: 1px solid lightgrey;
+  padding: 15px 0;
+  height: 20px;
 }
 
 .Row{
@@ -52,16 +53,6 @@
   color: grey;
 }
 
-.LinkToSingleView{
-  color: initial;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.LinkToSingleView:hover{
-  color: grey;
-}
-
 @media only screen and (max-width: 600px) {
   .Sessions thead{
     display: none;
@@ -94,16 +85,6 @@
   }
 
 }
-
-/* .PeriodSubNav{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-} */
-
-/* .PeriodSubNav div{
-  flex-basis: 450px;
-} */
 
 .OuterSuccessDiv{
   display: flex;

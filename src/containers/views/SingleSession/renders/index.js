@@ -5,7 +5,6 @@ import {renderAsDate, renderSimple, renderExaminer, renderArrayAsIcons, renderAr
 import * as routes from '../../../../store/app-data/routes';
 
 export const renderUL = ({session, examiners}) => {
-  console.log(examiners);
   if(session === null){
     return <Redirect to={routes.SESSIONS} />
   }

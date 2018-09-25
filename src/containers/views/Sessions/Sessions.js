@@ -1,69 +1,67 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {renderTableContent, renderFormPeriod} from './renders/';
-import classes from './Sessions.css';
-import Table from '../../../components/FormElements/Table/Table';
 import {constructPeriodState} from '../../../store/constructors/periods';
 import {formatURL, formatDateURLPretty} from '../../../gen-utility';
 import * as actions from '../../../store/actions/sessions/sessions';
 import {handlePeriodSelect} from '../../../store/actions/periods/periods';
 import {getSelectedOptions} from '../../forms/form-utility';
-import { filterByUser, WeeklyOrMonthly } from './renders/utility';
-import { generateTableHeaders } from '../utility';
+import { filterByUser, WeeklyOrMonthly } from './__renders/utility';
 import Weekly from './components/Weekly/Weekly';
+import Monthly from './components/Monthly/Monthly';
+import SessionsTable from './components/SessionsTable/SessionsTable';
 
 class Sessions extends Component{
   state = {
-    period: constructPeriodState()
+    period: constructPeriodState(),
+    isConfirming: false
   }
 
   componentDidMount(){
     this.props.deActivateSelectedSession();
   }
 
-  handleEdit = (session) => {
-    const url = '/sessions/edit/' + formatURL(session.venue) + '-' + formatDateURLPretty([...session.session_date])
-    this.props.fetchSession(session);
-    this.props.history.push(url);
-  }
+  handlers = {
+    toggleConfirm: () => {
+      this.setState((prev) => ({ isConfirming: prev.isConfirming ? false : true }));
+    },
 
-  handleDelete = (session) => {
-    const {sessions, deleteSession, token} = this.props;
-    const updated = [...sessions.filter(s => s.id !== session.id)];
-    deleteSession(updated, session, token);
-  }
+    handleEdit: (session) => {
+      const url = '/sessions/edit/' + formatURL(session.venue) + '-' + formatDateURLPretty([...session.session_date])
+      this.props.fetchSession(session);
+      this.props.history.push(url);
+    },
 
-  periodHandler = (event) => {
-    const {sessions} = this.props;
-    const value = getSelectedOptions(event);
-    this.props.handlePeriodSelect(sessions, value);
-  }
+    handleDelete: (session) => {
+      const {sessions, deleteSession, token} = this.props;
+      const updated = [...sessions.filter(s => s.id !== session.id)];
+      deleteSession(updated, session, token);
+    },
 
-  handleLink = (session) => {
-    this.props.fetchSession(session);
-    this.props.history.push('/sessions/' + formatURL(session.venue) + '-' + formatDateURLPretty([...session.session_date]));
-  }
+    periodHandler: (event) => {
+      const {sessions} = this.props;
+      const value = getSelectedOptions(event);
+      this.props.handlePeriodSelect(sessions, value);
+    },
 
-  handlersObj = () => {
-    return {
-      linkHandler: this.handleLink
+    handleLink: (session) => {
+      this.props.fetchSession(session);
+      this.props.history.push('/sessions/' + formatURL(session.venue) + '-' + formatDateURLPretty([...session.session_date]));
     }
   }
 
-
   render(){
-    const {sessionsByPeriod, sessionsByWeek, isAuthenticated, user, weeks, weekFilteredBy} = this.props;
+    const {sessionsByPeriod, sessionsByWeek, isAuthenticated, user, weeks, weekFilteredBy, venues} = this.props;
     const sessionsAfterFilters = WeeklyOrMonthly(sessionsByPeriod, sessionsByWeek);
     const sessions = filterByUser(sessionsAfterFilters, isAuthenticated, user);
+    const { handlers } = this;
+    const { isConfirming } = this.state;
     
     return (
-      <section className={classes.Sessions}>
-        {renderFormPeriod(this.state, this.periodHandler, this.props, sessions)}
+      <section>
+        <Monthly props={this.props} period={this.state} periodHandler={handlers.periodHandler} sessions={sessions} /> 
         <Weekly weeks={weeks} sessions={sessionsByPeriod} weekFilteredBy={weekFilteredBy}/>
-        <Table labels={generateTableHeaders(weekFilteredBy)}>
-          {renderTableContent(sessions, this.handleDelete, this.handleEdit, this.handleLink, isAuthenticated, user)}
-        </Table>
+        <SessionsTable sessions={sessions} handlers={handlers} venues={venues} isConfirming={isConfirming} />
       </section>
     )
   }
@@ -72,6 +70,7 @@ class Sessions extends Component{
 const mapStateToProps = state => {
   return {
     sessions: state.sess.sessions,
+    venues: state.venue.venues,
     errors: state.sess.error,
     periods: state.per.periods,
     currentPeriod: state.per.current,

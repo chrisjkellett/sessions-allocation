@@ -25,7 +25,7 @@ export const supportCheck = ({examiners, session, sessions}) => {
 }
 
 export const sameDayCheck = ({sessions, sessionDate}) => {
-  return sessions.filter(s => moment(s.session_date).isSame(sessionDate));
+  return sessions === null ? [] : sessions.filter(s => moment(s.session_date).isSame(sessionDate));
 }
 
 export const filterExaminers = ({examiners, filterValue}) => {
