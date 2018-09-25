@@ -1,19 +1,24 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {constructPeriodState} from '../../../store/constructors/periods';
-import {formatURL, formatDateURLPretty} from '../../../gen-utility';
-import * as actions from '../../../store/actions/sessions/sessions';
-import {handlePeriodSelect} from '../../../store/actions/periods/periods';
-import {getSelectedOptions} from '../../forms/form-utility';
+import { constructPeriodState } from '../../store/constructors/periods';
+import constructSessionState from '../../store/constructors/sessions';
+import {formatURL, formatDateURLPretty} from '../../gen-utility';
+import * as actions from '../../store/actions/sessions/sessions';
+import {handlePeriodSelect} from '../../store/actions/periods/periods';
+import {getSelectedOptions} from '../forms/form-utility';
 import { filterByUser, WeeklyOrMonthly } from './__renders/utility';
+import AddNewBtn from '../../components/Btns/AddNewBtn/AddNewBtn';
 import Weekly from './components/Weekly/Weekly';
 import Monthly from './components/Monthly/Monthly';
 import SessionsTable from './components/SessionsTable/SessionsTable';
+import SessionsForm from './components/SessionsForm/SessionsForm';
 
 class Sessions extends Component{
   state = {
+    session: constructSessionState(),
     period: constructPeriodState(),
+    showForm: false,
     isConfirming: false
   }
 
@@ -24,6 +29,19 @@ class Sessions extends Component{
   handlers = {
     toggleConfirm: () => {
       this.setState((prev) => ({ isConfirming: prev.isConfirming ? false : true }));
+    },
+
+    openForm: () => {
+      this.setState({ showForm: true });
+    },
+
+    closeForm: () => {
+      this.setState({ showForm: false });
+    },
+
+    cancel: () => {
+      this.handlers.closeForm();
+      this.setState({ session: constructSessionState() })
     },
 
     handleEdit: (session) => {
@@ -55,13 +73,15 @@ class Sessions extends Component{
     const sessionsAfterFilters = WeeklyOrMonthly(sessionsByPeriod, sessionsByWeek);
     const sessions = filterByUser(sessionsAfterFilters, isAuthenticated, user);
     const { handlers } = this;
-    const { isConfirming } = this.state;
+    const { isConfirming, showForm } = this.state;
     
     return (
       <section>
         <Monthly props={this.props} period={this.state} periodHandler={handlers.periodHandler} sessions={sessions} /> 
         <Weekly weeks={weeks} sessions={sessionsByPeriod} weekFilteredBy={weekFilteredBy}/>
         <SessionsTable sessions={sessions} handlers={handlers} venues={venues} isConfirming={isConfirming} />
+        {showForm && <SessionsForm handlers={handlers} />}
+        <AddNewBtn showForm={showForm} openForm={handlers.openForm} label={'Add new session'}/>
       </section>
     )
   }

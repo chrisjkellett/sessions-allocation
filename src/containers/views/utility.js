@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import classes from './Sessions/Sessions.css';
+import classes from '../sessions/Sessions.css';
 import {monthOptions} from '../../store/data';
 import { sessionTableHeaders } from '../../store/app-data/table-headers';
 

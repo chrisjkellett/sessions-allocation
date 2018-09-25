@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classes from '../../Sessions.css';
 import FilterPanel from './components/FilterPanel';
-import * as actions from '../../../../../store/actions/periods/periods'
+import * as actions from '../../../../store/actions/periods/periods'
 
 export class UnconnectedWeekly extends Component{
   state = {

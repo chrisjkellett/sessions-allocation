@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import Header from '../header/Header';
 import Auth from '../forms/Auth/Auth';
 import Examiners from '../views/Examiners/Examiners';
-import Sessions from '../views/Sessions/Sessions';
+import Sessions from '../sessions/Sessions';
 import SingleExaminer from '../views/SingleExaminer/SingleExaminer';
 import SingleSession from '../views/SingleSession/SingleSession';
 import AddExaminers from '../forms/Examiners/Examiners';

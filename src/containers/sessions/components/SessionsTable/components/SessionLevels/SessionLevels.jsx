@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from '../../../../../../css/icons.css';
+import classes from '../../../../../css/icons.css';
 
 const SessionLevels = ({ session }) => {
   return (

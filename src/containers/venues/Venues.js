@@ -1,8 +1,7 @@
 import  React, {Component} from 'react';
 import Form from './components/Form/Form';
-import AddNewBtn from './components/AddNewBtn/AddNewBtn';
+import AddNewBtn from '../../components/Btns/AddNewBtn/AddNewBtn';
 import VenuesTable from './components/VenuesTable/VenuesTable';
-import classes from './Venues.css';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {constructVenuesState} from '../../store/constructors/venues';
@@ -83,9 +82,9 @@ class Venues extends Component{
     const { clearSelectedVenue } = this.props;
     const { handlers } = this;
     return (
-       <section className={classes.Venues}>
+       <section>
           <VenuesTable data={venues} handlers={handlers} isConfirming={isConfirming} />
-          <AddNewBtn showForm={showForm} openForm={handlers.openForm} />
+          <AddNewBtn showForm={showForm} openForm={handlers.openForm} label={'Add new venue'} />
           {showForm && 
             <Form 
               handlers={handlers} 

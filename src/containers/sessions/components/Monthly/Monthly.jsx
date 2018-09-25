@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from '../../Sessions.css';
 import { generateInputProps } from './utility';
-import { generateFormElementArray } from '../../../../forms/form-utility';
-import Input from '../../../../../components/FormElements/Input/Input';
+import { generateFormElementArray } from '../../../forms/form-utility';
+import Input from '../../../../components/FormElements/Input/Input';
 
 const Monthly = ({ props, period, periodHandler, sessions }) => {
    return props.periods !== null && props.periods.length > 1

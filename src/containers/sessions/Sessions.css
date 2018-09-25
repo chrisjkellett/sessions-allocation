@@ -130,3 +130,7 @@
   border-color: grey;
   background: #FFFF88;
 }
+
+.SessionsTable {
+  margin: 0 40px 0 10px;
+}

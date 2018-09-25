@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from '../../Venues.css';
+import classes from './SubmitBtns.css';
 
 const SubmitBtns = ({ label, edit, cancel }) => {
   return (
