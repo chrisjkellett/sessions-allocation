@@ -1,5 +1,5 @@
 import  React, {Component} from 'react';
-import Form from './components/Form/Form';
+import VenuesForm from './components/VenuesForm/VenuesForm';
 import AddNewBtn from '../../components/Btns/AddNewBtn/AddNewBtn';
 import VenuesTable from './components/VenuesTable/VenuesTable';
 import {connect} from 'react-redux';
@@ -28,11 +28,15 @@ class Venues extends Component{
       this.initialiseValidation();
       const venueForDB = forSubmit(venue);
       
-      checkFormValidity(venue) && selectedVenue === null
-        ? this.props.addVenue(venueForDB, token)
-        : this.props.updateVenue(venueForDB, selectedVenue.id, token);
-      this.handlers.closeForm();
-      this.setState({ venue: constructVenuesState(), shouldValidate: false })
+      if(checkFormValidity(venue)){
+        if(selectedVenue === null)
+          this.props.addVenue(venueForDB, token)
+        else
+          this.props.updateVenue(venueForDB, selectedVenue.id, token);
+        this.handlers.closeForm();
+        this.setState({ venue: constructVenuesState(), shouldValidate: false })
+      } 
+      
     },
    
     cancel: () => {
@@ -86,7 +90,7 @@ class Venues extends Component{
           <VenuesTable data={venues} handlers={handlers} isConfirming={isConfirming} />
           <AddNewBtn showForm={showForm} openForm={handlers.openForm} label={'Add new venue'} />
           {showForm && 
-            <Form 
+            <VenuesForm 
               handlers={handlers} 
               values={venue} 
               shouldValidate={shouldValidate} 

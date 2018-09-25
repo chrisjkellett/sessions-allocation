@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Form from '../../../../components/FormElements/Form/Form';
-import Input from '../../../../components/FormElements/Input/Input';
+// import Input from '../../../../components/FormElements/Input/Input';
 
 class SessionsForm extends Component {
   componentDidMount(){
