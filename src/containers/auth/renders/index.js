@@ -1,9 +1,9 @@
 import React from 'react';
-import Input from '../../../../components/FormElements/Input/Input';
-import {generateFormElementArray} from '../../../../gen-utility';
+import Input from '../../../components/FormElements/Input/Input';
+import {generateFormElementArray} from '../../../gen-utility';
 import {generateInputProps} from '../utility';
 import {renderError} from './sub-renders';
-import Logo from '../../../../components/Logo/Logo';
+import Logo from '../../../components/Logo/Logo';
 import classes from '../Auth.css';
 
 

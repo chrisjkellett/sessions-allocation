@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from '../Auth.css';
-import {LOGIN_FAIL} from '../../../../store/app-data/errors';
+import {LOGIN_FAIL} from '../../../store/app-data/errors';
 
 export const renderError = (error) => {
   if(error)

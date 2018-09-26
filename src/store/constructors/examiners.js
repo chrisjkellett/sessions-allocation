@@ -12,7 +12,7 @@ import {
   rules
 } from './validation';
 
-export const constructExaminerState = () => {
+const ExaminerState = () => {
   return {
     name: {
       elementType: 'input',
@@ -141,4 +141,6 @@ export const constructExaminerState = () => {
       validation: constructValidation({})
     },
   } 
-}
+};
+
+export default ExaminerState;

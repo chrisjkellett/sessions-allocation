@@ -9,8 +9,8 @@ import * as examinerOptionActions from '../../../../store/actions/examiner-optio
 class SessionsForm extends Component {
   componentDidMount(){
     const { examiners, state, sessions, selectedSession } = this.props;
-    this.props.calculateAvailableExaminers(examiners, state.session, sessions);
     selectedSession && this.props.handlers.distributeValues(selectedSession);
+    this.props.calculateAvailableExaminers(examiners, state.session, sessions);
   }
 
   componentWillUnmount(){

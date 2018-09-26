@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter, Redirect} from 'react-router-dom';
-import {constructAuthState} from '../../../store/constructors/auth';
+import { constructAuthState } from '../../store/constructors/auth';
 import {renderUI} from './renders/';
-import {updateState, forSubmit} from '../form-utility';
-import {checkValidity} from '../validation/validation';
-import {formatInput} from '../validation/utility';
-import * as actions from '../../../store/actions/auth/auth';
-import * as routes from '../../../store/app-data/routes';
+import { updateState, forSubmit } from '../utility';
+import {checkValidity} from '../../validation/validation';
+import {formatInput} from '../../validation/utility';
+import * as actions from '../../store/actions/auth/auth';
+import * as routes from '../../store/app-data/routes';
 
 class Auth extends Component{
   state = {

@@ -61,7 +61,7 @@ class Sessions extends Component{
 
     cancel: () => {
       this.handlers.closeForm();
-      this.setState({ session: constructSessionState() })
+      
     },
 
     change: (event, type, id, index) => {
