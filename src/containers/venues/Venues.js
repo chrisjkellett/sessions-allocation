@@ -35,8 +35,7 @@ class Venues extends Component{
           this.props.updateVenue(venueForDB, selectedVenue.id, token);
         this.handlers.closeForm();
         this.setState({ venue: constructVenuesState(), shouldValidate: false })
-      } 
-      
+      }  
     },
    
     cancel: () => {

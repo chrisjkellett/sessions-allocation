@@ -4,13 +4,13 @@ import {withRouter} from 'react-router-dom';
 import { constructPeriodState } from '../../store/constructors/periods';
 import constructSessionState from '../../store/constructors/sessions';
 import {formatURL, formatDateURLPretty} from '../../gen-utility';
-import * as actions from '../../store/actions/sessions/sessions';
+import * as sessionActions from '../../store/actions/sessions/sessions';
 import {handlePeriodSelect} from '../../store/actions/periods/periods';
 import * as examinerOptionActions from '../../store/actions/examiner-options/examiner-options';
 import {getSelectedOptions} from '../forms/form-utility';
 import { filterByUser, WeeklyOrMonthly } from './__renders/utility';
 import { checkValidity } from '../forms/validation/validation';
-import { updateState, getInputValue } from '../utility';
+import { updateState, getInputValue, forSubmit, checkFormValidity } from '../utility';
 import AddNewBtn from '../../components/Btns/AddNewBtn/AddNewBtn';
 import Weekly from './components/Weekly/Weekly';
 import Monthly from './components/Monthly/Monthly';
@@ -23,10 +23,30 @@ class Sessions extends Component{
     session: constructSessionState(),
     period: constructPeriodState(),
     showForm: false,
-    isConfirming: false
+    isConfirming: false,
+    shouldValidate: false
   }
 
+  initialiseValidation = () => this.setState((prev) => ({ ...prev.state, shouldValidate: true }))
+
   handlers = {
+    submit: (event, props) => {
+      const { session } = this.state;
+      const { selectedSession, token, sessions } = this.props;
+      event.preventDefault();
+      this.initialiseValidation();
+      const sessionForDB = forSubmit(session);
+      
+      if(checkFormValidity(session)){
+        if(selectedSession === null)
+        this.props.addSession(sessions, sessionForDB, token)
+        // else
+          // this.props.updateSession(sessionForDB, selectedSession.id, token);
+        this.handlers.closeForm();
+        this.setState({ venue: constructSessionState(), shouldValidate: false })
+      }  
+    },
+    
     toggleConfirm: () => {
       this.setState((prev) => ({ isConfirming: prev.isConfirming ? false : true }));
     },
@@ -87,6 +107,16 @@ class Sessions extends Component{
       const {filterSupport, examiners} = this.props;
       filterSupport(examiners, value)
     },
+
+    resetExaminers: () => {
+      this.setState(prev => ({
+        session: { 
+          ...prev.session, 
+          examiners: {...prev.session.examiners, value: [] },
+          support: {...prev.session.support, value: [] }
+        }
+      }));
+    },
   }
 
   render(){
@@ -101,7 +131,7 @@ class Sessions extends Component{
     return (
       <AsyncLoad waitFor={examiners}>
         <section>
-          <Monthly props={this.props} period={this.state} periodHandler={handlers.periodHandler} sessions={sessions} /> 
+          <Monthly props={this.props} period={this.state.period} periodHandler={handlers.periodHandler} sessions={sessions} /> 
           <Weekly weeks={weeks} sessions={sessionsByPeriod} weekFilteredBy={weekFilteredBy}/>
           <SessionsTable sessions={sessions} handlers={handlers} venues={venues} isConfirming={isConfirming} />
           {showForm && (
@@ -139,14 +169,16 @@ const mapStateToProps = state => {
     weekFilteredBy: state.per.weekFilteredBy,
     availableExaminers: state.op.ex_options,
     availableSupport: state.op.supp_options,
+    selectedSession: state.sess.selectedSession
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteSession: (sessions, session, token) => dispatch(actions.deleteSession(sessions, session, token)),
-    fetchSession: (id) => dispatch(actions.fetchSession(id)),
-    deActivateSelectedSession: () => dispatch(actions.deActivateSelectedSession()),
+    addSession: (sessions, session, token) => dispatch(sessionActions.addSession(sessions, session, token)),
+    deleteSession: (sessions, session, token) => dispatch(sessionActions.deleteSession(sessions, session, token)),
+    fetchSession: (id) => dispatch(sessionActions.fetchSession(id)),
+    deActivateSelectedSession: () => dispatch(sessionActions.deActivateSelectedSession()),
     handlePeriodSelect: (sessions, period) => dispatch(handlePeriodSelect(sessions, period)),
     filterExaminers: (examiners, filterValue) => dispatch(examinerOptionActions.filterExaminers(examiners, filterValue)),
     filterSupport: (support, filterValue) => dispatch(examinerOptionActions.filterSupport(support, filterValue)),

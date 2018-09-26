@@ -6,8 +6,8 @@ export const generateInputProps = (element, periodHandler, props, sessions) => {
     label: element.id,
     sessionCount: sessions.length,
     options: periods,
-    elementtype: config.period.elementType,
-    elementConfig: config.period.elementConfig,
+    elementtype: config.elementType,
+    elementConfig: config.elementConfig,
     value: currentPeriod,
     valid: [],
     change: (event) => periodHandler(event, element.id)
