@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import AsyncLoad from '../../components/AsyncLoad/AsyncLoad';
 import ExaminerState from '../../store/constructors/examiners';
-
+import ExaminersTable from './components/ExaminersTable/ExaminersTable';
 
 class Examiners extends Component{
   state = {
@@ -14,10 +15,24 @@ class Examiners extends Component{
 
   initialiseValidation = () => this.setState((prev) => ({ ...prev.state, shouldValidate: true }))
 
+  handlers = {
+    edit: () => {
+
+    },
+
+    delete: () => {
+
+    }
+  }
+
   render(){  
+    const { isConfirming } = this.state;
+    const { examiners } = this.props;
     return (
       <section>
-        Examiners
+        <AsyncLoad waitFor={examiners}>
+          <ExaminersTable data={examiners} handlers={this.handlers} isConfirming={isConfirming}/>
+        </AsyncLoad>
       </section>
     )
   }
@@ -25,6 +40,7 @@ class Examiners extends Component{
 
 const mapStateToProps = state => {
   return {
+    examiners: state.ex.examiners
   }
 }
 

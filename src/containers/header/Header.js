@@ -23,7 +23,7 @@ class Header extends Component{
   }
 
   render(){
-    const {updatedLog, mapOfLog, error, user, isAuthenticated, selectedExaminer} = this.props;
+    const {updatedLog, mapOfLog, error, user, isAuthenticated} = this.props;
     return(
       <div className={classes.Header}>
         <ul>
@@ -44,7 +44,6 @@ class Header extends Component{
 
 const mapStateToProps = state => {
   return{
-    selectedExaminer: state.ex.selectedExaminer,
     selectedSession: state.sess.selectedSession,
     user: state.auth.session_user,
     updatedLog: state.gen.updated,

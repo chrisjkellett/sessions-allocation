@@ -13,7 +13,7 @@ import {loadSessions} from '../../store/actions/sessions/sessions';
 import {checkAuthState} from '../../store/actions/auth/auth';
 import * as venueActions from '../../store/actions/venues/venues';
 import * as routes from '../../store/app-data/routes';
-import AsyncLoad from './components/AsyncLoad/AsyncLoad';
+import AsyncLoad from '../../components/AsyncLoad/AsyncLoad';
 
 class App extends Component {
   componentDidMount(){
