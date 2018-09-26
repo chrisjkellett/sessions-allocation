@@ -8,8 +8,9 @@ import * as examinerOptionActions from '../../../../store/actions/examiner-optio
 
 class SessionsForm extends Component {
   componentDidMount(){
-    const { examiners, state, sessions } = this.props;
+    const { examiners, state, sessions, selectedSession } = this.props;
     this.props.calculateAvailableExaminers(examiners, state.session, sessions);
+    selectedSession && this.props.handlers.distributeValues(selectedSession);
   }
 
   componentWillUnmount(){
@@ -17,11 +18,12 @@ class SessionsForm extends Component {
   }
   
   render() {
-    const { handlers, state, venues, availableExaminers, availableSupport } = this.props;
+    const { handlers, state, venues, availableExaminers, availableSupport, selectedSession } = this.props;
     const filterAvailable = availableExaminers.filter(e => e.available);
     const filterSupport = availableSupport.filter(e => e.available);
+    const label = selectedSession !== null ? 'Save changes' : 'Add session';
     return (
-      <Form handlers={handlers} label={'Add new session'}>
+      <Form handlers={handlers} label={label}>
         {generateFormElementArray(state.session)
           .map(element =>{
             return <Input {...generateInputProps(element, state, handlers, filterAvailable, filterSupport, venues)} />

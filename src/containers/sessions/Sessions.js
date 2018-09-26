@@ -10,7 +10,7 @@ import * as examinerOptionActions from '../../store/actions/examiner-options/exa
 import {getSelectedOptions} from '../forms/form-utility';
 import { filterByUser, WeeklyOrMonthly } from './__renders/utility';
 import { checkValidity } from '../forms/validation/validation';
-import { updateState, getInputValue, forSubmit, checkFormValidity } from '../utility';
+import { updateState, getInputValue, forSubmit, checkFormValidity, distributeValuesForEditing } from '../utility';
 import AddNewBtn from '../../components/Btns/AddNewBtn/AddNewBtn';
 import Weekly from './components/Weekly/Weekly';
 import Monthly from './components/Monthly/Monthly';
@@ -77,9 +77,7 @@ class Sessions extends Component{
 
     edit: (id) => {
       this.props.fetchSession(id);
-      // const url = '/sessions/edit/' + formatURL(session.venue) + '-' + formatDateURLPretty([...session.session_date])
-      // this.props.fetchSession(session);
-      // this.props.history.push(url);
+      this.handlers.openForm();
     },
 
     delete: (session) => {
@@ -118,11 +116,16 @@ class Sessions extends Component{
         }
       }));
     },
+
+    distributeValues: (selected) => {
+      const { session } = this.state;
+      this.setState({ session: distributeValuesForEditing(session, selected) })
+    },
   }
 
   render(){
     const {sessionsByPeriod, sessionsByWeek, isAuthenticated, user, weeks, weekFilteredBy, venues} = this.props;
-    const { availableExaminers, availableSupport, examiners } = this.props;
+    const { availableExaminers, availableSupport, examiners, selectedSession } = this.props;
     const sessionsAfterFilters = WeeklyOrMonthly(sessionsByPeriod, sessionsByWeek);
     const sessions = filterByUser(sessionsAfterFilters, isAuthenticated, user);
     const { handlers } = this;
@@ -141,6 +144,7 @@ class Sessions extends Component{
               state={this.state}
               sessions={sessions}
               examiners={examiners}
+              selectedSession={selectedSession}
               availableExaminers={availableExaminers}
               availableSupport={availableSupport}
               venues={venues} />
