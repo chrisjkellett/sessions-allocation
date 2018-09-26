@@ -1,6 +1,6 @@
 
 const AsyncLoad = (props, waitFor) => {
-  return waitFor && props.children;
+  return waitFor === null ? 'Loading' : props.children;
 }
 
 export default AsyncLoad

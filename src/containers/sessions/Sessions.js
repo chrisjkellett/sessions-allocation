@@ -6,13 +6,17 @@ import constructSessionState from '../../store/constructors/sessions';
 import {formatURL, formatDateURLPretty} from '../../gen-utility';
 import * as actions from '../../store/actions/sessions/sessions';
 import {handlePeriodSelect} from '../../store/actions/periods/periods';
+import * as examinerOptionActions from '../../store/actions/examiner-options/examiner-options';
 import {getSelectedOptions} from '../forms/form-utility';
 import { filterByUser, WeeklyOrMonthly } from './__renders/utility';
+import { checkValidity } from '../forms/validation/validation';
+import { updateState, getInputValue } from '../utility';
 import AddNewBtn from '../../components/Btns/AddNewBtn/AddNewBtn';
 import Weekly from './components/Weekly/Weekly';
 import Monthly from './components/Monthly/Monthly';
 import SessionsTable from './components/SessionsTable/SessionsTable';
 import SessionsForm from './components/SessionsForm/SessionsForm';
+import AsyncLoad from '../app/components/AsyncLoad/AsyncLoad';
 
 class Sessions extends Component{
   state = {
@@ -20,10 +24,6 @@ class Sessions extends Component{
     period: constructPeriodState(),
     showForm: false,
     isConfirming: false
-  }
-
-  componentDidMount(){
-    this.props.deActivateSelectedSession();
   }
 
   handlers = {
@@ -42,6 +42,17 @@ class Sessions extends Component{
     cancel: () => {
       this.handlers.closeForm();
       this.setState({ session: constructSessionState() })
+    },
+
+    change: (event, type, id, index) => {
+      const {calculateAvailableExaminers, examiners, sessions} = this.props;
+      const copyArray = [...this.state.session[id].value];
+      const value = getInputValue(event, type, index, copyArray);
+      const formType = Object.keys({...this.state})[0];
+      const update = updateState(this.state, id, {value: value, id}, formType);
+      update[formType][id].validation = checkValidity({...update[formType][id]});
+      calculateAvailableExaminers(examiners, update.session, sessions);
+      this.setState(update);
     },
 
     handleEdit: (session) => {
@@ -65,24 +76,47 @@ class Sessions extends Component{
     handleLink: (session) => {
       this.props.fetchSession(session);
       this.props.history.push('/sessions/' + formatURL(session.venue) + '-' + formatDateURLPretty([...session.session_date]));
-    }
+    },
+
+    ex_filter: ({target: {value}}) => {
+      const {filterExaminers, examiners} = this.props;
+      filterExaminers(examiners, value)
+    },
+
+    supp_filter: ({target: {value}}) => {
+      const {filterSupport, examiners} = this.props;
+      filterSupport(examiners, value)
+    },
   }
 
   render(){
     const {sessionsByPeriod, sessionsByWeek, isAuthenticated, user, weeks, weekFilteredBy, venues} = this.props;
+    const { availableExaminers, availableSupport, examiners } = this.props;
     const sessionsAfterFilters = WeeklyOrMonthly(sessionsByPeriod, sessionsByWeek);
     const sessions = filterByUser(sessionsAfterFilters, isAuthenticated, user);
     const { handlers } = this;
     const { isConfirming, showForm } = this.state;
     
+  
     return (
-      <section>
-        <Monthly props={this.props} period={this.state} periodHandler={handlers.periodHandler} sessions={sessions} /> 
-        <Weekly weeks={weeks} sessions={sessionsByPeriod} weekFilteredBy={weekFilteredBy}/>
-        <SessionsTable sessions={sessions} handlers={handlers} venues={venues} isConfirming={isConfirming} />
-        {showForm && <SessionsForm handlers={handlers} />}
-        <AddNewBtn showForm={showForm} openForm={handlers.openForm} label={'Add new session'}/>
-      </section>
+      <AsyncLoad waitFor={examiners}>
+        <section>
+          <Monthly props={this.props} period={this.state} periodHandler={handlers.periodHandler} sessions={sessions} /> 
+          <Weekly weeks={weeks} sessions={sessionsByPeriod} weekFilteredBy={weekFilteredBy}/>
+          <SessionsTable sessions={sessions} handlers={handlers} venues={venues} isConfirming={isConfirming} />
+          {showForm && (
+            <SessionsForm 
+              handlers={handlers} 
+              state={this.state}
+              sessions={sessions}
+              examiners={examiners}
+              availableExaminers={availableExaminers}
+              availableSupport={availableSupport}
+              venues={venues} />
+          )}
+          <AddNewBtn showForm={showForm} openForm={handlers.openForm} label={'Add new session'}/>
+        </section>
+      </AsyncLoad>
     )
   }
 }
@@ -90,6 +124,7 @@ class Sessions extends Component{
 const mapStateToProps = state => {
   return {
     sessions: state.sess.sessions,
+    examiners: state.ex.examiners,
     venues: state.venue.venues,
     errors: state.sess.error,
     periods: state.per.periods,
@@ -101,7 +136,9 @@ const mapStateToProps = state => {
     user: state.auth.session_user,
     weeks: state.per.weeks,
     sessionsByWeek: state.per.sessionsByWeek,
-    weekFilteredBy: state.per.weekFilteredBy
+    weekFilteredBy: state.per.weekFilteredBy,
+    availableExaminers: state.op.ex_options,
+    availableSupport: state.op.supp_options,
   }
 }
 
@@ -110,7 +147,11 @@ const mapDispatchToProps = dispatch => {
     deleteSession: (sessions, session, token) => dispatch(actions.deleteSession(sessions, session, token)),
     fetchSession: (id) => dispatch(actions.fetchSession(id)),
     deActivateSelectedSession: () => dispatch(actions.deActivateSelectedSession()),
-    handlePeriodSelect: (sessions, period) => dispatch(handlePeriodSelect(sessions, period))
+    handlePeriodSelect: (sessions, period) => dispatch(handlePeriodSelect(sessions, period)),
+    filterExaminers: (examiners, filterValue) => dispatch(examinerOptionActions.filterExaminers(examiners, filterValue)),
+    filterSupport: (support, filterValue) => dispatch(examinerOptionActions.filterSupport(support, filterValue)),
+    calculateAvailableExaminers: (examiners, session, sessions) => dispatch(examinerOptionActions.calculateAvailableExaminers(examiners, session, sessions)),
+    calculateSameDaySessions: (sessions, sessionDate) => dispatch(examinerOptionActions.calculateSameDaySessions(sessions, sessionDate)),
   }
 }
 

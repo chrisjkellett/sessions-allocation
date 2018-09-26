@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Form from '../../../../components/FormElements/Form/Form';
 import Input from '../../../../components/FormElements/Input/Input';
-import classes from './VenuesForm.css';
-import SubmitBtns from '../../../../components/Btns/SubmitBtns/SubmitBtns';
 import { generateFormElementArray, generateInputProps } from './utility';
 
 class VenuesForm extends Component {
