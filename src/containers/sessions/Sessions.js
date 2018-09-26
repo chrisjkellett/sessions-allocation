@@ -39,9 +39,9 @@ class Sessions extends Component{
       
       if(checkFormValidity(session)){
         if(selectedSession === null)
-        this.props.addSession(sessions, sessionForDB, token)
-        // else
-          // this.props.updateSession(sessionForDB, selectedSession.id, token);
+          this.props.addSession(sessions, sessionForDB, token)
+        else
+          this.props.updateSession(sessions, sessionForDB, selectedSession.id, token);
         this.handlers.closeForm();
         this.setState({ venue: constructSessionState(), shouldValidate: false })
       }  
@@ -125,7 +125,7 @@ class Sessions extends Component{
 
   render(){
     const {sessionsByPeriod, sessionsByWeek, isAuthenticated, user, weeks, weekFilteredBy, venues} = this.props;
-    const { availableExaminers, availableSupport, examiners, selectedSession } = this.props;
+    const { availableExaminers, availableSupport, examiners, selectedSession, clearSelectedSession } = this.props;
     const sessionsAfterFilters = WeeklyOrMonthly(sessionsByPeriod, sessionsByWeek);
     const sessions = filterByUser(sessionsAfterFilters, isAuthenticated, user);
     const { handlers } = this;
@@ -147,7 +147,8 @@ class Sessions extends Component{
               selectedSession={selectedSession}
               availableExaminers={availableExaminers}
               availableSupport={availableSupport}
-              venues={venues} />
+              venues={venues}
+              clearSelectedSession={clearSelectedSession} />
           )}
           <AddNewBtn showForm={showForm} openForm={handlers.openForm} label={'Add new session'}/>
         </section>
@@ -182,6 +183,7 @@ const mapDispatchToProps = dispatch => {
   return {
     addSession: (sessions, session, token) => dispatch(sessionActions.addSession(sessions, session, token)),
     deleteSession: (sessions, session, token) => dispatch(sessionActions.deleteSession(sessions, session, token)),
+    updateSession: (sessions, session, id, token) => dispatch(sessionActions.updateSession(sessions, session, id, token)),
     fetchSession: (id) => dispatch(sessionActions.fetchSession(id)),
     clearSelectedSession: () => dispatch(sessionActions.deActivateSelectedSession()),
     handlePeriodSelect: (sessions, period) => dispatch(handlePeriodSelect(sessions, period)),

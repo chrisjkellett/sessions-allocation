@@ -1,4 +1,4 @@
-import * as actionTypes from '../actionTypes';
+import * as actionTypes from './actionTypes';
 import axios from '../../../axios';
 import {logResponse, logError} from '../general';
 import {loadPeriods, updatePeriods} from '../periods/periods';
@@ -13,7 +13,7 @@ export const loadSessions = () => {
         response.data && dispatch(loadPeriods(response.data));
       })
       .catch(error => {
-        dispatch(failedLoad(error))
+        console.log(error);
       })
   }
 }
@@ -23,14 +23,7 @@ export const loadSessionsSuccess = (data) => {
     type: actionTypes.LOAD_SESSIONS_SUCCESS,
     sessions: data
   }
-}
-
-export const failedLoad = (error) => {
-  return {
-    type: actionTypes.FAILED_LOAD,
-    error: error
-  }
-} 
+};
 
 export const addSession = (sessions, session, token) => {
   return dispatch => {
@@ -79,7 +72,7 @@ export const updateSession = (sessions, session, id, token) => {
   return dispatch => {
     axios.put('/sessions/' + id + '.json?auth=' + token, session)
       .then(() => {
-        dispatch(updateSessionSuccess(sessions));
+        dispatch(updateSessionSuccess(session, id));
         dispatch(logResponse(session, {type: 'session', action: 'updated'}));
         dispatch(updatePeriods(sessions));
       })
@@ -89,10 +82,11 @@ export const updateSession = (sessions, session, id, token) => {
   }
 }
 
-export const updateSessionSuccess = (sessions) => {
+export const updateSessionSuccess = (session, id) => {
   return {
     type: actionTypes.UPDATE_SESSION_SUCCESS,
-    sessions: sessions
+    session: session,
+    id: id
   }
 }
 

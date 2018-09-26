@@ -14,7 +14,7 @@ class SessionsForm extends Component {
   }
 
   componentWillUnmount(){
-
+    this.props.clearSelectedSession();
   }
   
   render() {

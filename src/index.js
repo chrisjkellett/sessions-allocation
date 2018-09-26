@@ -9,7 +9,7 @@ import {BrowserRouter} from 'react-router-dom';
 import thunk from 'redux-thunk';
 import examinersReducer from './store/reducers/examiners/examiners';
 import authReducer from './store/reducers/auth';
-import sessionReducer from './store/reducers/sessions';
+import sessionReducer from './store/reducers/sessions/sessions';
 import generalReducer from './store/reducers/general';
 import periodsReducer from './store/reducers/periods/periods';
 import examinerOptionsReducer from './store/reducers/examiner-options/examiner-options';
