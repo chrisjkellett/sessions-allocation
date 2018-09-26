@@ -75,10 +75,11 @@ class Sessions extends Component{
       this.setState(update);
     },
 
-    handleEdit: (session) => {
-      const url = '/sessions/edit/' + formatURL(session.venue) + '-' + formatDateURLPretty([...session.session_date])
-      this.props.fetchSession(session);
-      this.props.history.push(url);
+    edit: (session) => {
+      console.log('edits');
+      // const url = '/sessions/edit/' + formatURL(session.venue) + '-' + formatDateURLPretty([...session.session_date])
+      // this.props.fetchSession(session);
+      // this.props.history.push(url);
     },
 
     delete: (session) => {

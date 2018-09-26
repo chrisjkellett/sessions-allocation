@@ -22,7 +22,7 @@ const SessionsTable = ({ sessions, handlers, venues, isConfirming }) => {
               <td>{session.examiners && session.examiners.join(" + ")}</td>
               <td>{session.support && session.support.join(" + ")}</td>
               <td>
-                <EditBtn handler={null} id={session.id} />
+                <EditBtn handler={handlers.edit} id={session.id} />
                 <span> | </span>
                 <DeleteBtn handlers={handlers} data={session} isConfirming={isConfirming} />
               </td>

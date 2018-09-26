@@ -2,15 +2,15 @@ import * as actionTypes from '../actionTypes';
 import axios from '../../../axios';
 import {logResponse, logError} from '../general';
 import {loadPeriods, updatePeriods} from '../periods/periods';
-import { filterOutOldSessions } from './utilities';
+// import { filterOutOldSessions } from './utilities';
 
 export const loadSessions = () => {
   return dispatch => {
     axios.get('/sessions.json')
       .then(response => {
-        const currentSessions = filterOutOldSessions(response.data);
-        dispatch(loadSessionsSuccess(currentSessions));
-        response.data && dispatch(loadPeriods(currentSessions));
+        // const currentSessions = filterOutOldSessions(response.data);
+        dispatch(loadSessionsSuccess(response.data));
+        response.data && dispatch(loadPeriods(response.data));
       })
       .catch(error => {
         dispatch(failedLoad(error))
