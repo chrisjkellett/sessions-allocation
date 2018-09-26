@@ -47,7 +47,7 @@ class App extends Component {
                 <Route path={routes.SINGLE_EXAMINER_VIEW} exact component={SingleExaminer} />
                 <Route path={routes.SESSIONS} exact component={Sessions} />
                 {isAuthenticated && <Route path={routes.ADD_SESSION} exact component={AddSessions} />}
-                {isAuthenticated && <Route path={routes.EDIT_SESSION} exact component={AddSessions}/>}
+                {/* {isAuthenticated && <Route path={routes.EDIT_SESSION} exact component={AddSessions}/>} */}
                 <Route path={routes.SINGLE_SESSION_VIEW} exact component={SingleSession} />
               </Switch>
             </section>

@@ -96,10 +96,10 @@ export const updateSessionSuccess = (sessions) => {
   }
 }
 
-export const fetchSession = (session) => {
+export const fetchSession = (id) => {
   return {
     type: actionTypes.FETCH_SESSION,
-    session: session
+    id: id
   }
 }
 
