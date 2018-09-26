@@ -81,7 +81,7 @@ class Sessions extends Component{
       this.props.history.push(url);
     },
 
-    handleDelete: (session) => {
+    delete: (session) => {
       const {sessions, deleteSession, token} = this.props;
       const updated = [...sessions.filter(s => s.id !== session.id)];
       deleteSession(updated, session, token);
@@ -178,7 +178,7 @@ const mapDispatchToProps = dispatch => {
     addSession: (sessions, session, token) => dispatch(sessionActions.addSession(sessions, session, token)),
     deleteSession: (sessions, session, token) => dispatch(sessionActions.deleteSession(sessions, session, token)),
     fetchSession: (id) => dispatch(sessionActions.fetchSession(id)),
-    deActivateSelectedSession: () => dispatch(sessionActions.deActivateSelectedSession()),
+    clearSelectedSession: () => dispatch(sessionActions.deActivateSelectedSession()),
     handlePeriodSelect: (sessions, period) => dispatch(handlePeriodSelect(sessions, period)),
     filterExaminers: (examiners, filterValue) => dispatch(examinerOptionActions.filterExaminers(examiners, filterValue)),
     filterSupport: (support, filterValue) => dispatch(examinerOptionActions.filterSupport(support, filterValue)),

@@ -10,7 +10,6 @@ const Monthly = ({ props, period, periodHandler, sessions }) => {
       <div className={classes.PeriodSubNav}>
         {generateFormElementArray(period)
           .map(element =>{
-            console.log(element);
             return <Input {...generateInputProps(element, periodHandler, props, sessions)} />
           }
         )}
