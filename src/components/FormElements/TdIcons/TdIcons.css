@@ -1,0 +1,15 @@
+.Icons {
+  border: 1px solid grey;
+  padding: 3px;
+  font-weight: 500;
+  width: 35px;
+  display: inline-block;  
+  text-align: center;
+  font-size: 90%;
+  margin: 0 2px;
+  background: white;
+}
+
+.IconsLong{
+  width: 50px;
+}

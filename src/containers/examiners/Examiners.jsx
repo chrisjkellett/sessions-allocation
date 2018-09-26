@@ -22,7 +22,12 @@ class Examiners extends Component{
 
     delete: () => {
 
-    }
+    },
+
+    toggleConfirm: () => {
+      this.setState((prev) => ({ isConfirming: prev.isConfirming ? false : true }));
+    },
+
   }
 
   render(){  
