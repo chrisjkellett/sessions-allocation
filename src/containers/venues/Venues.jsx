@@ -86,8 +86,8 @@ class Venues extends Component{
     const { handlers } = this;
     return (
        <section>
-          <VenuesTable data={venues} handlers={handlers} isConfirming={isConfirming} />
-          <AddNewBtn showForm={showForm} openForm={handlers.openForm} label={'Add new venue'} />
+          <VenuesTable data={venues} handlers={handlers} isConfirming={isConfirming} showForm={showForm} />
+          <AddNewBtn showForm={showForm} openForm={handlers.openForm} label={'venue'} />
           {showForm && 
             <VenuesForm 
               handlers={handlers} 

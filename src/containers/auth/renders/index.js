@@ -6,8 +6,6 @@ import {renderError} from './sub-renders';
 import Logo from '../../../components/Logo/Logo';
 import classes from '../Auth.css';
 
-
-
 export const renderUI = (state, inputHandler, submitHandler, error, showErrors) => {
     return(
       <section className={classes.Auth}>

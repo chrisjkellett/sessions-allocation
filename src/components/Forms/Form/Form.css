@@ -9,12 +9,6 @@
   right: 30px;
 }
 
-.FlexContainer{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-
-.FlexItem{
-  flex-basis: 300px;
+.ExtraLarge {
+  width: 80%;
 }

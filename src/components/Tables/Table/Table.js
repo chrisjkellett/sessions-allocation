@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Table.css';
 
-const table = (props) => (
+const Table = (props) => (
     <table>
       <thead>
         <tr className={classes.RowHeader}>
@@ -16,4 +16,4 @@ const table = (props) => (
     </table>
 )
 
-export default table;
+export default Table;

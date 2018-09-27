@@ -3,16 +3,13 @@ import classes from './Form.css';
 import SubmitBtns from '../../Btns/SubmitBtns/SubmitBtns';
 
 const Form = (props) => {
-  const {handlers, label} = props;
+  const {handlers, label, extraLarge} = props;
+  const styles = extraLarge ? [classes.Form, classes.ExtraLarge].join(" ") : [classes.Form]
   return (
-    <div className={classes.Form}>
+    <div className={styles}>
       <form onSubmit={handlers.submit}>
-        <div className={classes.FlexContainer}>
-          <div className={classes.FlexItem}>
-           {props.children}
-          </div>
-          <SubmitBtns label={label} edit={null} cancel={handlers.cancel} />
-        </div>
+        {props.children}
+        <SubmitBtns label={label} edit={null} cancel={handlers.cancel} />
       </form>
     </div>
   )

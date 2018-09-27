@@ -6,7 +6,7 @@ import Header from '../header/Header';
 import Auth from '../auth/Auth';
 import Sessions from '../sessions/Sessions';
 import Examiners from '../examiners/Examiners';
-import Venues from '../venues/Venues';
+import Venues from '../venues/Venues.jsx';
 import Wrapper from '../../components/Misc/Wrapper/Wrapper';
 import {loadExaminers} from '../../store/actions/examiners/examiners';
 import {loadSessions} from '../../store/actions/sessions/sessions';
