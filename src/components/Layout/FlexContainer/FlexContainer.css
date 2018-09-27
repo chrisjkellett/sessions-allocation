@@ -1,0 +1,5 @@
+.FlexContainer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}

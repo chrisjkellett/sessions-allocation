@@ -51,9 +51,7 @@ const ExaminerState = () => {
       elementConfig: {
         type: 'text',
         maxLength: 6,
-        disabled: true
       },
-      hide: true,
       value: '',
       group: 'personal + roles',
       validation: constructValidation({...rules.required, ...rules.checkId})
@@ -62,10 +60,6 @@ const ExaminerState = () => {
     levels: {
       elementType: 'checkbox',
       options: levelKeys,
-      elementConfig: {
-        disabled: true
-      },
-      hide: true,
       value: [],
       group: 'personal + roles',
       validation: constructValidation({...rules.required})
@@ -90,10 +84,6 @@ const ExaminerState = () => {
         months: monthOptions,
         years: yearOptionsMonitoring
       },
-      elementConfig: {
-        disabled: true
-      },
-      hide: true,
       value: ['2018', 'June', '13'],
       group: 'availability + monitoring',
       validation: constructValidation({})
@@ -102,10 +92,6 @@ const ExaminerState = () => {
     monitoring_level: {
       elementType: 'checkbox',
       options: levelKeys,
-      elementConfig: {
-        disabled: true
-      },
-      hide: true,
       value: [],
       group: 'availability + monitoring',
       validation: constructValidation({})
