@@ -68,7 +68,7 @@ class Venues extends Component{
       this.setState((prev) => ({ isConfirming: prev.isConfirming ? false : true }));
     },
 
-    editVenueHandler: (id) => {
+    edit: (id) => {
       this.props.fetchVenue(id);
       this.handlers.openForm();
     },

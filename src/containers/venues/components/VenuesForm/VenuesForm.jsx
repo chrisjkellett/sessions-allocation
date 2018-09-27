@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Form from '../../../../components/FormElements/Form/Form';
-import Input from '../../../../components/FormElements/Input/Input';
-import { generateFormElementArray, generateInputProps } from './utility';
+import { Form, Input } from '../../../../components/Forms';
+import { generateInputProps } from './inputProps';
+import { generateFormElementArray } from '../../../utility';
 
 class VenuesForm extends Component {
   componentDidMount(){

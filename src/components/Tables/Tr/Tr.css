@@ -1,17 +1,3 @@
-.Box{
-  flex-basis: 650px;
-  margin: 0 40px 0 10px;
-}
-
-.FlexContainer{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.FlexItem{
-  flex-basis: 300px;
-}
-
 .Row td{
   padding: 15px 0;
   height: 20px;

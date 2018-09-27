@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from '../../../components/FormElements/Input/Input';
+import { Input } from '../../../components/Forms';
 import {generateFormElementArray} from '../../../gen-utility';
 import {generateInputProps} from '../utility';
 import {renderError} from './sub-renders';
