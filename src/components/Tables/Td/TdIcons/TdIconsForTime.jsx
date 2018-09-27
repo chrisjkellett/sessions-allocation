@@ -2,10 +2,10 @@ import React from 'react';
 import classes from './TdIcons.css';
 import { formatAvailability, isPm } from './utility';
 
-const TdIconsForTime = ({ data }) => {
+const TdIconsForTime = ({ array }) => {
   return(
     <td>
-      {formatAvailability(data)
+      {array && formatAvailability(array)
           .map(day => {
             return <span key={day} className={[classes.Icons, classes.IconsLong].join(" ")}>
               {day.substring(0, 3)}
