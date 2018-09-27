@@ -1,9 +1,14 @@
 import React from 'react';
 import classes from './SubTd.css';
 
-const SubTd = ({ array }) => {
+const SubTd = ({ data, inline = false }) => {
+  const styles = inline ? classes.Inline : null;
   return (
-    <div>{array.map(item => <span key={item} className={classes.Roles}>{item}</span>)}</div>
+    <div className={styles}>
+      {typeof data === "object"
+        ? data.map(item => <span key={item} className={classes.Roles}>{item}</span>)
+        : <span className={classes.Roles}>{data}</span>}
+    </div>
   )
 }
 

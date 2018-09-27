@@ -4,3 +4,7 @@
   font-weight: normal;
   margin-right: 3px;
 }
+
+.Inline {
+  display: inline-block;
+}

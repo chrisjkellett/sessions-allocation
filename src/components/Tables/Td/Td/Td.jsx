@@ -1,9 +1,12 @@
 import React from 'react';
 
-const Td = ({ string, subContent }) => {
+const Td = ({ data, subContent }) => {
   return (
     <td>
-      {string && string}
+      {typeof data === 'object' 
+        ? data.join(" | ")
+        : data ? data : '-'
+      }
       {subContent && subContent}
     </td>
   )

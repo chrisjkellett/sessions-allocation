@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from '../../Venues.css';
-import Table from '../../../../components/Tables/Table/Table';
 import DeleteBtn from '../../../../components/Btns/DeleteBtn/DeleteBtn';
 import EditBtn from '../../../../components/Btns/EditBtn/EditBtn';
+import { Table, Td, SubTd } from '../../../../components/Tables';
 
 const VenuesTable = ({ data, handlers, isConfirming }) => {
   return (
@@ -10,13 +10,10 @@ const VenuesTable = ({ data, handlers, isConfirming }) => {
       <Table labels={['name', 'contact', 'type', 'phone', null]}>
         {data.map(v => (
           <tr className={classes.Row} key={v.name}>
-            <td>
-              {v.name}
-              <span className={classes.Address}>{v.address}</span>
-            </td>
-            <td>{v.contact}</td>
-            <td>{v.type.join(" | ")}</td>
-            <td>{v.phone !== '' ? '+34( ' + v.phone + ')' : '-' }</td>
+            <Td data={v.name} subContent={<SubTd data={v.address} inline />} />
+            <Td data={v.contact} />
+            <Td data={v.type} />
+            <Td data={v.phone} />
             <td>
               <EditBtn handler={handlers.editVenueHandler} id={v.id} />
               <span> | </span>

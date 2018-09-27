@@ -1,12 +1,8 @@
 import React from 'react';
 import classes from '../../../css/tables.css';
-import Table from '../../../../components/Tables/Table/Table';
 import DeleteBtn from '../../../../components/Btns/DeleteBtn/DeleteBtn';
 import EditBtn from '../../../../components/Btns/EditBtn/EditBtn';
-import Td from '../../../../components/Tables/Td/Td/Td';
-import TdIcons from '../../../../components/Tables/Td/TdIcons/TdIcons';
-import TdIconsForTime from '../../../../components/Tables/Td/TdIcons/TdIconsForTime';
-import SubTd from '../../../../components/Tables/Td/SubTd/SubTd';
+import { Table, Td, TdIcons, TdIconsForTime, SubTd } from '../../../../components/Tables';
 
 const ExaminersTable = ({ data, handlers, isConfirming }) => {
   return (
@@ -14,7 +10,7 @@ const ExaminersTable = ({ data, handlers, isConfirming }) => {
       <Table labels={['name', 'levels', 'availability', null, null]}>
         {data.map(e => (
           <tr className={classes.Row} key={e.name}>
-            <Td string={e.name} subContent={<SubTd array={e.roles} />} />
+            <Td data={e.name} subContent={<SubTd data={e.roles} />} />
             <TdIcons array={e.levels} />
             <TdIconsForTime array={e.availability} />
             <td></td>
