@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './FilterBy.css';
+import classes from './Filter.css';
 
 const FilterBy = ({ label, filter }) => ((
   <div className={classes.HeaderFilter}>

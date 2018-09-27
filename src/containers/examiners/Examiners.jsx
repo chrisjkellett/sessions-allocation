@@ -5,7 +5,8 @@ import AsyncLoad from '../../components/AsyncLoad/AsyncLoad';
 import ExaminerState from '../../store/constructors/examiners';
 import ExaminersTable from './components/ExaminersTable/ExaminersTable';
 import ExaminersForm from './components/ExaminersForm/ExaminersForm';
-import { AddNewBtn } from '../../components/Btns/'
+import { AddNewBtn } from '../../components/Btns/';
+import * as actions from '../../store/actions/examiners/examiners';
 
 class Examiners extends Component{
   state = {
@@ -39,6 +40,10 @@ class Examiners extends Component{
       this.setState({ examiner: ExaminerState() })
     },
 
+    filter: (event) => {
+      this.props.filterByName(event.target.value);
+    },
+
     toggleConfirm: () => {
       this.setState((prev) => ({ isConfirming: prev.isConfirming ? false : true }));
     },
@@ -47,12 +52,12 @@ class Examiners extends Component{
 
   render(){  
     const { isConfirming, showForm, examiner, shouldValidate } = this.state;
-    const { examiners } = this.props;
+    const { examiners, filtered } = this.props;
     return (
       <section>
         <AsyncLoad waitFor={examiners}>
           <AddNewBtn showForm={showForm} openForm={this.handlers.openForm} label={'examiner'} />
-          <ExaminersTable data={examiners} handlers={this.handlers} isConfirming={isConfirming}/>
+          <ExaminersTable data={examiners} filtered={filtered} handlers={this.handlers} isConfirming={isConfirming}/>
           {showForm && 
             <ExaminersForm 
               handlers={this.handlers} 
@@ -69,12 +74,14 @@ class Examiners extends Component{
 
 const mapStateToProps = state => {
   return {
-    examiners: state.ex.examiners
+    examiners: state.ex.examiners,
+    filtered: state.ex.filteredExaminers
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    filterByName: (string) => dispatch(actions.filterExaminerByName(string))
   }
 }
 

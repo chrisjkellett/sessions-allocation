@@ -1,11 +1,13 @@
 import React from 'react';
 import { EditDeletePanel } from '../../../../components/Btns';
 import { Table, Tr, Td, TdIcons, TdIconsForTime, SubTd } from '../../../../components/Tables';
+import Filter from '../../../../components/Filter/Filter';
 
-const ExaminersTable = ({ data, handlers, isConfirming }) => {
+const ExaminersTable = ({ data, filtered, handlers, isConfirming }) => {
+  const examiners = filtered === null ? data : filtered;
   return (
-    <Table labels={['name', 'levels', 'availability', null]}>
-      {data.map(e => (
+    <Table labels={[<Filter label='name' filter={handlers.filter} />, 'levels', 'availability', null]}>
+      {examiners.map(e => (
         <Tr key={e.name}>
           <Td data={e.name} subContent={<SubTd data={e.roles} inline />} />
           <TdIcons array={e.levels} />
