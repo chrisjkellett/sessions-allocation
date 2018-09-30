@@ -6,6 +6,8 @@ import ExaminerState from '../../store/constructors/examiners';
 import ExaminersTable from './components/ExaminersTable/ExaminersTable';
 import ExaminersForm from './components/ExaminersForm/ExaminersForm';
 import { AddNewBtn } from '../../components/Btns/';
+import { getInputValue, updateState } from '../utility';
+import { checkValidity } from '../../validation/validation';
 import * as actions from '../../store/actions/examiners/examiners';
 
 class Examiners extends Component{
@@ -25,6 +27,14 @@ class Examiners extends Component{
 
     delete: () => {
 
+    },
+
+    change: (event, type, id, index) => {
+      const value = getInputValue(event, type, index, [...this.state.examiner[id].value]);
+      const formType = Object.keys({...this.state})[0];
+      const update = updateState(this.state, id, {value: value, id}, formType);
+      update[formType][id].validation = checkValidity({...update[formType][id]});
+      this.setState(update);
     },
 
     openForm: () => {

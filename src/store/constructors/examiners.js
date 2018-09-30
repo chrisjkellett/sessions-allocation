@@ -20,7 +20,7 @@ const ExaminerState = () => {
         type: 'text'
       },
       value: '',
-      group: 'personal + roles',
+      group: 1,
       validation: constructValidation({...rules.required, ...rules.minLength})
       },
 
@@ -30,7 +30,7 @@ const ExaminerState = () => {
         type: 'text'
       },
       value: '',
-      group: 'personal + roles',
+      group: 1,
       validation: constructValidation({...rules.required, ...rules.checkEmail})
       },
 
@@ -42,7 +42,7 @@ const ExaminerState = () => {
       },
       options: roleKeys,
       value: [],
-      group: 'personal + roles',
+      group: 1,
       validation: constructValidation({...rules.required})
     },
 
@@ -53,7 +53,7 @@ const ExaminerState = () => {
         maxLength: 6,
       },
       value: '',
-      group: 'personal + roles',
+      group: 1,
       validation: constructValidation({...rules.required, ...rules.checkId})
     },
 
@@ -61,7 +61,7 @@ const ExaminerState = () => {
       elementType: 'checkbox',
       options: levelKeys,
       value: [],
-      group: 'personal + roles',
+      group: 1,
       validation: constructValidation({...rules.required})
     },
     
@@ -73,7 +73,7 @@ const ExaminerState = () => {
       },
       options: availabilityKeys,
       value: [],
-      group: 'availability + monitoring',
+      group: 2,
       validation: constructValidation({...rules.required})
     },
 
@@ -85,7 +85,7 @@ const ExaminerState = () => {
         years: yearOptionsMonitoring
       },
       value: ['2018', 'June', '13'],
-      group: 'availability + monitoring',
+      group: 2,
       validation: constructValidation({})
     },
 
@@ -93,7 +93,7 @@ const ExaminerState = () => {
       elementType: 'checkbox',
       options: levelKeys,
       value: [],
-      group: 'availability + monitoring',
+      group: 2,
       validation: constructValidation({})
     },
 
@@ -108,7 +108,7 @@ const ExaminerState = () => {
         disabled: false
       },
       value: [CURRENTYEAR, monthOptions[CURRENTMONTH - 1].id, dayOptions[CURRENTDAY - 1].id],
-      group: 'contracts',
+      group: 3,
       validation: constructValidation({})
     },
 
@@ -123,7 +123,7 @@ const ExaminerState = () => {
         disabled: false
       },
       value: [CURRENTYEAR, monthOptions[CURRENTMONTH - 1].id, dayOptions[CURRENTDAY].id],
-      group: 'contracts',
+      group: 3,
       validation: constructValidation({})
     },
   } 

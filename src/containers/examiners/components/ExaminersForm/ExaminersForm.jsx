@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Form, Input } from '../../../../components/Forms';
+import { Form } from '../../../../components/Forms';
 import { FlexItem, FlexContainer } from '../../../../components/Layout';
-import { generateInputProps } from './inputProps';
-import { generateFormElementArray } from '../../../utility';
+import ExaminersFormContent from './ExaminersFormContent';
 
 class VenuesForm extends Component {
   componentDidMount(){
@@ -21,16 +20,18 @@ class VenuesForm extends Component {
         <Form handlers={handlers} label={label}>
           <FlexContainer>
             <FlexItem>
-              {generateFormElementArray(values)
-                .filter(element => element.config.group === 'personal + roles')
-                .map(element => <Input {...generateInputProps(element, shouldValidate, handlers)} />)
-              }
+              <ExaminersFormContent 
+                values={values} 
+                handlers={handlers} 
+                shouldValidate={shouldValidate} 
+                group={1} />    
             </FlexItem>
             <FlexItem>
-              {generateFormElementArray(values)
-                .filter(element => element.config.group === 'availability + monitoring')
-                .map(element => <Input {...generateInputProps(element, shouldValidate, handlers)} />)
-              }
+              <ExaminersFormContent 
+                values={values} 
+                handlers={handlers} 
+                shouldValidate={shouldValidate} 
+                group={2} />    
             </FlexItem>
           </FlexContainer>
         </Form>

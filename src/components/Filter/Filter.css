@@ -3,7 +3,8 @@
 }
 
 .HeaderFilter input {
-  border: 1px solid lightgrey;
+  border: 0;
+  background: 0;
 }
 
 .HeaderFilter label{

@@ -1,5 +1,11 @@
-
-.RowHeader td{
-  padding: 10px 0 0 0;
+.RowHeader th{
+  padding: 0;
   border-bottom: 1px solid grey;
+  font-weight: initial;
+  position: sticky;
+  top: 41px;
+  text-align: left;
+  height: 45px;
+  background: rgba(240,240,240, 0.98);
+  vertical-align: bottom;
 }
