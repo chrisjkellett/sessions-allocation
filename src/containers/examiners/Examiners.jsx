@@ -50,8 +50,8 @@ class Examiners extends Component{
       this.setState({ examiner: ExaminerState() })
     },
 
-    filter: (event) => {
-      this.props.filterByName(event.target.value);
+    filter: ({ target: { value, id }}) => {
+      this.props.filterExaminer(value, id);
     },
 
     toggleConfirm: () => {
@@ -91,7 +91,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    filterByName: (string, filterBy) => dispatch(actions.filterExaminer(string, filterBy))
+    filterExaminer: (value, filterBy) => dispatch(actions.filterExaminer(value, filterBy))
   }
 }
 

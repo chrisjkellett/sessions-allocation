@@ -115,10 +115,10 @@ export const deActivateSelectedExaminer = () => {
   }
 }
 
-export const filterExaminer = (string, filterBy) => {
+export const filterExaminer = (value, filterBy) => {
   return {
     type: actionTypes.FILTER_EXAMINER,
-    string: string,
+    value: value,
     filterBy: filterBy
   }
 }

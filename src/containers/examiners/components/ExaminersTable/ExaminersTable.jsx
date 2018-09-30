@@ -6,7 +6,11 @@ import Filter from '../../../../components/Filter/Filter';
 const ExaminersTable = ({ data, filtered, handlers, isConfirming }) => {
   const examiners = filtered === null ? data : filtered;
   return (
-    <Table labels={[<Filter label='name' filter={handlers.filter} />, 'levels', 'availability', null]}>
+    <Table labels={[
+      <Filter label='name' filter={handlers.filter} />, 
+      <Filter label='levels' filter={handlers.filter} />, 
+      'availability', 
+      null]} >
       {examiners.length === 0 
         ? 'No records found'
         : examiners.map(e => (

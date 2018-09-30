@@ -10,7 +10,7 @@ import {
   Availability
 } from '../utility';
 
-import { filterExaminerByName } from './utility';
+import { filterExaminer } from './utility';
 
 const initialState = {
   examiners: null,
@@ -50,7 +50,7 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {selectedExaminer: null})
 
     case actionTypes.FILTER_EXAMINER:
-      return {...state, filteredExaminers: filterExaminerByName(state.examiners, action.string)};
+      return {...state, filteredExaminers: filterExaminer(state.examiners, action)};
 
     default:
       return state;  

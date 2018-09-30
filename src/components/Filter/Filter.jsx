@@ -3,7 +3,7 @@ import classes from './Filter.css';
 
 const FilterBy = ({ label, filter }) => ((
   <div className={classes.HeaderFilter}>
-    <input onChange={filter} placeholder={label} />
+    <input id={label} onChange={filter} placeholder={label} />
   </div>
 ));
 
