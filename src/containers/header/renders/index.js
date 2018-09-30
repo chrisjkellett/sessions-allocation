@@ -86,7 +86,7 @@ export const renderSessionFormLink = ({selectedSession, history, location, match
 export const renderLogout = (logout, user, isAuthenticated) => {
   return(
     <div className={classes.RightMenu}> 
-      {isAuthenticated && "[" + user + "]"}
+      {/* {isAuthenticated && "[" + user + "]"} */}
       <li onClick={logout} className={classes.ActiveLink}>logout</li>
     </div>
   )
@@ -99,7 +99,7 @@ export const renderUpdateLog = (update, {type, action}) => {
       <i className="far fa-check-circle"></i>
       <span className={classes.Action}>{action}</span>
       <b>{data.primary}</b>
-      <span className={classes.Secondary}>{data.secondary}.</span>
+      <span className={classes.Secondary}>{data.secondary}</span>
     </div>
   );
 }

@@ -3,10 +3,6 @@
   justify-content: space-between;
 }
 
-.SubmitBtns div {
-  flex-basis: 400px;
-}
-
 .SubmitBtns button{
   display: inline-block;
   margin-right: 5px;
