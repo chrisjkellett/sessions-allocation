@@ -7,10 +7,11 @@ import {
   objectToArray,
   sortBy,
   checkExaminerOnLoad,
-  Availability
+  Availability,
+  filterData
 } from '../utility';
 
-import { filterExaminer } from './utility';
+// import { filterExaminer } from './utility';
 
 const initialState = {
   examiners: null,
@@ -50,7 +51,7 @@ const reducer = (state = initialState, action) => {
       return updateState(state, {selectedExaminer: null})
 
     case actionTypes.FILTER_EXAMINER:
-      return {...state, filteredExaminers: filterExaminer(state.examiners, action)};
+      return {...state, filteredExaminers: filterData(state.examiners, action)};
 
     default:
       return state;  

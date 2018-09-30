@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../../axios';
-import {logResponse, logError} from '../general';
+import { logResponse, logError } from '../general/general';
 
 export const addVenue = (venue, token) => {
   return dispatch => {
@@ -95,3 +95,11 @@ export const clearSelectedVenue = () => {
     type: actionTypes.CLEAR_SELECTED_VENUE,
   }
 };
+
+export const filterVenue = (value, filterBy) => {
+  return {
+    type: actionTypes.FILTER_VENUE,
+    value: value,
+    filterBy: filterBy
+  }
+}

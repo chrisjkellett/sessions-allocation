@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../../axios';
-import {logResponse, logError} from '../general';
+import { logResponse, logError } from '../general/general';
 import {loadPeriods, updatePeriods} from '../periods/periods';
 // import { filterOutOldSessions } from './utilities';
 

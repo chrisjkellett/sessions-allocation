@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../../axios';
-import {logResponse} from '../general';
+import { logResponse } from '../general/general';
 
 export const loadExaminers = () => {
   return dispatch => {
@@ -113,7 +113,7 @@ export const deActivateSelectedExaminer = () => {
   return {
     type: actionTypes.DEACTIVATE_SELECTED_EXAMINER
   }
-}
+};
 
 export const filterExaminer = (value, filterBy) => {
   return {
@@ -121,4 +121,4 @@ export const filterExaminer = (value, filterBy) => {
     value: value,
     filterBy: filterBy
   }
-}
+};

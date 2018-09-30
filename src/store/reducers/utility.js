@@ -83,5 +83,26 @@ export const sortBy = (obj, factor) => {
 
 export const checkExaminerOnLoad = ({user, examiners}) => {
   return user ? objectToArray(examiners).find(e => e.name === user) : null;
+};
+
+export const filterData = (data, { value, filterBy }) => {
+  return value.length === 0 
+  ? null 
+  : filterBy === 'name' 
+    ? filterAsString(data, value, filterBy)
+    : filterAsArray(data, value, filterBy);
 }
+
+const filterAsString = (data, value, filterBy) => {
+  return data.filter(record => 
+    record[filterBy].substring(0, value.length).toLowerCase() === value.toLowerCase())
+};
+
+const filterAsArray = (data, value, filterBy) => {
+  return data.filter(record => 
+    record[filterBy] !== undefined && record[filterBy].some(item => 
+        item.substring(0, value.length).toLowerCase() === value.toLowerCase()
+      )
+    );
+};
 

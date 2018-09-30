@@ -1,9 +1,10 @@
 import * as actionTypes from '../../actions/venues/actionTypes';
-import { objectToArray } from '../utility';
+import { objectToArray , filterData} from '../utility';
 import { sortByName } from './utility';
 
 const initial = {
   venues: [],
+  filteredVenues: null,
   error: false,
   selectedVenue: null
 }
@@ -28,6 +29,9 @@ const reducer = (state = initial, action) => {
 
     case actionTypes.CLEAR_SELECTED_VENUE:
       return { ...state, selectedVenue: null }
+    
+    case actionTypes.FILTER_VENUE:
+      return {...state, filteredVenues: filterData(state.venues, action)};
 
     default:
       return state;  
