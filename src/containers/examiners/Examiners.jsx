@@ -91,7 +91,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    filterByName: (string) => dispatch(actions.filterExaminerByName(string))
+    filterByName: (string, filterBy) => dispatch(actions.filterExaminer(string, filterBy))
   }
 }
 

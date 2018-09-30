@@ -49,7 +49,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.DEACTIVATE_SELECTED_EXAMINER:
       return updateState(state, {selectedExaminer: null})
 
-    case actionTypes.FILTER_EXAMINER_BY_NAME:
+    case actionTypes.FILTER_EXAMINER:
       return {...state, filteredExaminers: filterExaminerByName(state.examiners, action.string)};
 
     default:
