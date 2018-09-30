@@ -73,6 +73,10 @@ class Venues extends Component{
       this.handlers.openForm();
     },
 
+    filter: ({ target: {value, id}}) => {
+      this.props.filterVenue(value, id);
+    },
+
     fetchRecord: (selected) => {
       const { venue } = this.state;
       this.setState({ venue: distributeValuesForEditing(venue, selected) })
@@ -81,12 +85,12 @@ class Venues extends Component{
 
   render(){
     const { venue, shouldValidate, showForm, isConfirming } = this.state;
-    const { venues, selectedVenue } = this.props;
+    const { venues, selectedVenue, filtered } = this.props;
     const { clearSelectedVenue } = this.props;
     const { handlers } = this;
     return (
        <section>
-          <VenuesTable data={venues} handlers={handlers} isConfirming={isConfirming} showForm={showForm} />
+          <VenuesTable data={venues} filtered={filtered} handlers={handlers} isConfirming={isConfirming} showForm={showForm} />
           <AddNewBtn showForm={showForm} openForm={handlers.openForm} label={'venue'} />
           {showForm && 
             <VenuesForm 
@@ -105,6 +109,7 @@ const mapStateToProps = state => {
   return {
     token: state.auth.token,
     venues: state.venue.venues,
+    filtered: state.venue.filteredVenues,
     selectedVenue: state.venue.selectedVenue
   }
 }
@@ -116,6 +121,7 @@ const mapDispatchToProps = dispatch => {
     deleteVenue: (venue, token) => dispatch(actions.deleteVenue(venue, token)),
     fetchVenue: (id) => dispatch(actions.fetchVenue(id)),
     clearSelectedVenue: () => dispatch(actions.clearSelectedVenue()),
+    filterVenue: (value, filterBy) => dispatch(actions.filterVenue(value, filterBy)),
   }
 }
 
