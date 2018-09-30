@@ -1,0 +1,13 @@
+.ExpandBtn {
+  text-align: right;
+}
+
+.ExpandBtn span{
+  text-align: right;
+  cursor: pointer;
+  color: #0000EE;
+}
+
+.ExpandBtn span:hover {
+  color: grey;
+}

@@ -1,11 +1,17 @@
 import React from 'react';
 import classes from './SubmitBtns.css';
+import { ExpandBtn } from '..';
 
-const SubmitBtns = ({ label, edit, cancel }) => {
+const SubmitBtns = ({ label, handlers, edit, expand }) => {
   return (
     <div className={classes.SubmitBtns}>
-      <button>{edit ? 'Save Changes' : label}</button>
-      <span onClick={cancel}>cancel</span>
+      <div>
+        <button>{edit ? 'Save Changes' : label}</button>
+        <span onClick={handlers.cancel}>cancel</span>
+      </div>
+      <div className={classes.Expand}>
+        {expand && <ExpandBtn expand={handlers.expand} />}
+      </div>
     </div>
   )
 };

@@ -10,11 +10,17 @@
 
 .Row td:first-child{
   font-weight: 500;
+  width: 40%;
+}
+
+.Row td:nth-child(2), .Row td:nth-child(3){
+  width: 25%;
 }
 
 .Row td:last-child{
   text-align: right;
   padding-right: 10px;
+  width: 10%;
 }
 
 .Row .Address{

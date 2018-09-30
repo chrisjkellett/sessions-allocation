@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Table.css';
 
 const Table = (props) => (
-    <table>
+    <table className={classes.Table}>
       <thead>
         <tr className={classes.RowHeader}>
           {props.labels ? props.labels.map((label, i)=>(

@@ -1,9 +1,10 @@
 import  React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import VenuesForm from './components/VenuesForm/VenuesForm';
 import AddNewBtn from '../../components/Btns/AddNewBtn/AddNewBtn';
 import VenuesTable from './components/VenuesTable/VenuesTable';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import { Section } from '../../components/Wrappers';
 import {constructVenuesState} from '../../store/constructors/venues';
 import { updateState, checkFormValidity, forSubmit, getInputValue, distributeValuesForEditing } from '../utility';
 import { checkValidity } from '../../validation/validation';
@@ -89,7 +90,7 @@ class Venues extends Component{
     const { clearSelectedVenue } = this.props;
     const { handlers } = this;
     return (
-       <section>
+       <Section showForm={showForm}>
           <VenuesTable data={venues} filtered={filtered} handlers={handlers} isConfirming={isConfirming} showForm={showForm} />
           <AddNewBtn showForm={showForm} openForm={handlers.openForm} label={'venue'} />
           {showForm && 
@@ -100,7 +101,7 @@ class Venues extends Component{
               selectedVenue={selectedVenue} 
               clearSelectedVenue={clearSelectedVenue} />
           }
-      </section>
+      </Section>
     )
   }
 }

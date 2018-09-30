@@ -14,10 +14,10 @@ class VenuesForm extends Component {
   }
   
   render() {
-    const { handlers, values, shouldValidate, selectedExaminer } = this.props;
+    const { handlers, values, shouldValidate, selectedExaminer, extraLarge } = this.props;
     const label = selectedExaminer !== null ? 'Save changes' : 'Add examiner';
     return (
-        <Form handlers={handlers} label={label}>
+        <Form handlers={handlers} label={label} edit={selectedExaminer} expand={true} extraLarge={extraLarge}>
           <FlexContainer>
             <FlexItem>
               <ExaminersFormContent 

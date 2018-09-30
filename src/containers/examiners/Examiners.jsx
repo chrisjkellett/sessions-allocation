@@ -6,6 +6,7 @@ import ExaminerState from '../../store/constructors/examiners';
 import ExaminersTable from './components/ExaminersTable/ExaminersTable';
 import ExaminersForm from './components/ExaminersForm/ExaminersForm';
 import { AddNewBtn } from '../../components/Btns/';
+import { Section } from '../../components/Wrappers';
 import { getInputValue, updateState } from '../utility';
 import { checkValidity } from '../../validation/validation';
 import * as actions from '../../store/actions/examiners/examiners';
@@ -15,7 +16,8 @@ class Examiners extends Component{
     examiner: ExaminerState(),
     showForm: false,
     isConfirming: false,
-    shouldValidate: false
+    shouldValidate: false,
+    extraLarge: false
   }
 
   initialiseValidation = () => this.setState((prev) => ({ ...prev.state, shouldValidate: true }))
@@ -29,7 +31,12 @@ class Examiners extends Component{
 
     },
 
-    submit: () => {
+    expand: () => {
+      this.setState((prev) => ({ extraLarge: prev.extraLarge ? false : true }))
+    },
+
+    submit: (event) => {
+      event.preventDefault();
       console.log('submit');
     },
 
@@ -65,10 +72,10 @@ class Examiners extends Component{
   }
 
   render(){  
-    const { isConfirming, showForm, examiner, shouldValidate } = this.state;
+    const { isConfirming, showForm, examiner, shouldValidate, extraLarge } = this.state;
     const { examiners, filtered } = this.props;
     return (
-      <section>
+      <Section showForm={showForm}>
         <AsyncLoad waitFor={examiners}>
           <AddNewBtn showForm={showForm} openForm={this.handlers.openForm} label={'examiner'} />
           <ExaminersTable data={examiners} filtered={filtered} handlers={this.handlers} isConfirming={isConfirming}/>
@@ -78,10 +85,11 @@ class Examiners extends Component{
               values={examiner} 
               shouldValidate={shouldValidate} 
               selectedExaminer={null} 
+              extraLarge={extraLarge}
               clearSelectedExaminer={null} />
           }
         </AsyncLoad>
-      </section>
+      </Section>
     )
   }
 }

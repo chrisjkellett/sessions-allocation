@@ -10,7 +10,6 @@ const VenuesTable = ({ data, filtered, handlers, isConfirming }) => {
     <Filter label='name' filter={handlers.filter} />, 
     'contact', 
     <Filter label='type' filter={handlers.filter} />, 
-    'phone', 
     null
   ]);
 
@@ -22,7 +21,6 @@ const VenuesTable = ({ data, filtered, handlers, isConfirming }) => {
             <Td data={v.name} subContent={<SubTd data={v.address} inline />} />
             <Td data={v.contact} />
             <Td data={v.type} />
-            <Td data={v.phone} />
             <EditDeletePanel handlers={handlers} data={v} isConfirming={isConfirming} />
           </Tr>
         ))}

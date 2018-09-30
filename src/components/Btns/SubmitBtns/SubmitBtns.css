@@ -1,11 +1,24 @@
+.SubmitBtns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.SubmitBtns div {
+  flex-basis: 400px;
+}
+
 .SubmitBtns button{
   display: inline-block;
   margin-right: 5px;
 }
 
+.Expand {
+  padding-top: 10px;
+}
+
 .SubmitBtns span{
   cursor: pointer;
-  color: blue;
+  color: #0000EE;
 }
 
 .SubmitBtns span:hover{

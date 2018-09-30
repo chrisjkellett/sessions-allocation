@@ -17,7 +17,7 @@ class VenuesForm extends Component {
     const { handlers, values, shouldValidate, selectedVenue } = this.props;
     const label = selectedVenue !== null ? 'Save changes' : 'Add venue';
     return (
-      <Form handlers={handlers} label={label}>
+      <Form handlers={handlers} label={label} edit={selectedVenue}>
         {generateFormElementArray(values)
           .map(element =>{
             return <Input {...generateInputProps(element, shouldValidate, handlers)} />

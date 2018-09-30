@@ -1,3 +1,7 @@
+.Table {
+  padding: 0 5px;
+}
+
 .RowHeader th{
   padding: 0;
   border-bottom: 1px solid grey;

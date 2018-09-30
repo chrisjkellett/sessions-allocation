@@ -1,11 +1,22 @@
-.Form{
+.FormContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.Form {
+  display: inline-block;
   border: 1px solid #bdbdbd;
   padding: 0 30px 30px 30px;
-  margin-top: 6px;
+  margin: 6px 0 0 5px;
   background: #dbdbdb; 
   box-shadow: 0.5px 0.5px grey;
   position: absolute;
   top: 50px;
-  right: 30px;
   z-index: 2;
+  box-sizing: border-box;
+}
+
+.ExtraLarge {
+  width: 99%;
+  border-right: 0;
 }
