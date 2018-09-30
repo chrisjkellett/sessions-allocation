@@ -2,8 +2,8 @@
   border: 1px solid lightgrey;
   padding: 0 30px 30px 30px;
   margin-top: 6px;
-  background: aliceblue;
-  box-shadow: 0.5px 0.5px cornflowerblue;
+  background: #dbdbdb; 
+  box-shadow: 0.5px 0.5px grey;
   position: absolute;
   top: 50px;
   right: 30px;
