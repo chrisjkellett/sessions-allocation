@@ -29,6 +29,10 @@ class Examiners extends Component{
 
     },
 
+    submit: () => {
+      console.log('submit');
+    },
+
     change: (event, type, id, index) => {
       const value = getInputValue(event, type, index, [...this.state.examiner[id].value]);
       const formType = Object.keys({...this.state})[0];

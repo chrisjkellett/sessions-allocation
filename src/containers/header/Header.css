@@ -12,6 +12,7 @@
   border-bottom: 1px solid lightgrey;
   top: 0;
   display: flex;
+  z-index: 3;
 }
 
 .Header li{

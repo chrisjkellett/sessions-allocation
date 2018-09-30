@@ -8,4 +8,5 @@
   height: 45px;
   background: rgba(240,240,240, 0.98);
   vertical-align: bottom;
+  z-index: 1;
 }

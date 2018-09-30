@@ -1,5 +1,5 @@
 .Form{
-  border: 1px solid lightgrey;
+  border: 1px solid #bdbdbd;
   padding: 0 30px 30px 30px;
   margin-top: 6px;
   background: #dbdbdb; 
@@ -7,4 +7,5 @@
   position: absolute;
   top: 50px;
   right: 30px;
+  z-index: 2;
 }
