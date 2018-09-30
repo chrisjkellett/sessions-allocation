@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions/auth/actionTypes';
+import * as actionTypes from '../../actions/auth/actionTypes';
 
 const initial = {
   session_user: null,

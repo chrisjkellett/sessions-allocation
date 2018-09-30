@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions/general/actionTypes';
+import * as actionTypes from '../../actions/general/actionTypes';
 
 const initial = {
   updated: null,

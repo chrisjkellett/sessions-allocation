@@ -4,7 +4,7 @@ import {
   sortBy,
   updateState,
   addId
-} from '../utility';
+} from '../reducer-utility';
 
 const initialState = {
   sessions: null,

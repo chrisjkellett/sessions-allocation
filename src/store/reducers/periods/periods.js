@@ -8,7 +8,8 @@ import {
   createSet,
   monthsFromArray
 } from './utility';
-import {objectToArray, sortBy} from '../utility';
+
+import { objectToArray, sortBy } from '../reducer-utility';
 
 export const initialState = {
   periods: null,

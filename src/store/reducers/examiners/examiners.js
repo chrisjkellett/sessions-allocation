@@ -9,9 +9,8 @@ import {
   checkExaminerOnLoad,
   Availability,
   filterData
-} from '../utility';
+} from '../reducer-utility';
 
-// import { filterExaminer } from './utility';
 
 const initialState = {
   examiners: null,
