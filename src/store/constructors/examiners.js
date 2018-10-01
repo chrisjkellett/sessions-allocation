@@ -17,7 +17,8 @@ const ExaminerState = () => {
     name: {
       elementType: 'input',
       elementConfig: {
-        type: 'text'
+        type: 'text',
+        disabled: false
       },
       value: '',
       group: 1,
@@ -27,7 +28,8 @@ const ExaminerState = () => {
     email: {
       elementType: 'input',
       elementConfig: {
-        type: 'text'
+        type: 'text',
+        disabled: false,
       },
       value: '',
       group: 1,
@@ -38,7 +40,8 @@ const ExaminerState = () => {
       elementType: 'select',
       elementConfig: {
         multiple: true,
-        size: roleKeys.length
+        size: roleKeys.length,
+        disabled: false,
       },
       options: roleKeys,
       value: [],
@@ -51,25 +54,30 @@ const ExaminerState = () => {
       elementConfig: {
         type: 'text',
         maxLength: 6,
+        disabled: false,
       },
       value: '',
       group: 1,
-      validation: constructValidation({...rules.required, ...rules.checkId})
+      validation: constructValidation({...rules.checkId})
     },
 
     levels: {
       elementType: 'checkbox',
       options: levelKeys,
+      elementConfig: {
+        disabled: false
+      },
       value: [],
       group: 1,
-      validation: constructValidation({...rules.required})
+      validation: constructValidation({})
     },
     
     availability: {
       elementType: 'select',
       elementConfig: {
         multiple: true,
-        size: availabilityKeys.length
+        size: availabilityKeys.length,
+        disabled: false,
       },
       options: availabilityKeys,
       value: [],
@@ -84,6 +92,9 @@ const ExaminerState = () => {
         months: monthOptions,
         years: yearOptionsMonitoring
       },
+      elementConfig: {
+        disabled: false
+      },
       value: ['2018', 'June', '13'],
       group: 2,
       validation: constructValidation({})
@@ -92,6 +103,9 @@ const ExaminerState = () => {
     monitoring_level: {
       elementType: 'checkbox',
       options: levelKeys,
+      elementConfig: {
+        disabled: false
+      },
       value: [],
       group: 2,
       validation: constructValidation({})

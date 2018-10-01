@@ -20,8 +20,6 @@ class Examiners extends Component{
     extraLarge: false
   }
 
-  initialiseValidation = () => this.setState((prev) => ({ ...prev.state, shouldValidate: true }))
-
   handlers = {
     edit: () => {
 
@@ -37,6 +35,7 @@ class Examiners extends Component{
 
     submit: (event) => {
       event.preventDefault();
+      this.handlers.validate();
       console.log('submit');
     },
 
@@ -68,6 +67,10 @@ class Examiners extends Component{
     toggleConfirm: () => {
       this.setState((prev) => ({ isConfirming: prev.isConfirming ? false : true }));
     },
+
+    validate: () => {
+      this.setState((prev) => ({ ...prev.state, shouldValidate: true }))
+    }
 
   }
 

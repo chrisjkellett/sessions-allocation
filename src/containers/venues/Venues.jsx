@@ -19,14 +19,12 @@ class Venues extends Component{
     isConfirming: false
   }
 
-  initialiseValidation = () => this.setState((prev) => ({ ...prev.state, shouldValidate: true }))
-
   handlers = {
     submit: (event, props) => {
       const { venue } = this.state;
       const { selectedVenue, token } = this.props;
       event.preventDefault();
-      this.initialiseValidation();
+      this.handlers.validate();
       const venueForDB = forSubmit(venue);
       
       if(checkFormValidity(venue)){
@@ -81,6 +79,10 @@ class Venues extends Component{
     fetchRecord: (selected) => {
       const { venue } = this.state;
       this.setState({ venue: distributeValuesForEditing(venue, selected) })
+    },
+
+    validate: () => {
+      this.setState((prev) => ({ ...prev.state, shouldValidate: true }))
     }
   }
 
