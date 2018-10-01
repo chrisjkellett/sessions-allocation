@@ -1,4 +1,4 @@
-import { filterData } from '../reducer-utility';
+import { filterData } from '../utility';
 
 const examiners = [
   {name: 'Christopher Kellett', levels: ['KET']},

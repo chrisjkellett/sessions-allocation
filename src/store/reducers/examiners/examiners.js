@@ -1,15 +1,10 @@
 import * as actionTypes from '../../actions/examiners/actionTypes';
 import {
-  updateState, 
-  removeElementById,
-  replaceElementById,
-  addId,
   objectToArray,
   sortBy,
-  checkExaminerOnLoad,
+  filterData,
   Availability,
-  filterData
-} from '../reducer-utility';
+} from '../utility';
 
 
 const initialState = {
@@ -20,34 +15,35 @@ const initialState = {
   filteredExaminers: null
 }
 
+let isExaminers = true;
+
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.LOAD_EXAMINERS_SUCCESS:
-      const isExaminers = true;
-      return updateState(state, {examiners: objectToArray(action.examiners, 'name', isExaminers), error: false})
+      const examiners = objectToArray(action.examiners, isExaminers);
+      return { ...state, examiners: sortBy(examiners) }
 
     case actionTypes.ADD_EXAMINER_SUCCESS:
-      const a = addId({...action.examiner}, action.id);
-      const b = {...a, avail: Availability(), available: true}
-      return updateState(state, {examiners: sortBy(state.examiners.concat(b), 'name'), error: false})
+      const examiner = { ...action.examiner, id: action.id, avail: Availability(), available: true}
+      return { ...state, examiners: sortBy(state.examiners.concat(examiner))}
 
     case actionTypes.DELETE_EXAMINER_SUCCESS:
-      return updateState(state, {examiners: removeElementById(state.examiners, action.id), error: false})
+      return { ...state, examiners: state.examiners.filter(e => e.id !== action.id) }
 
-    case actionTypes.UPDATE_EXAMINER_SUCCESS:
-      return updateState(state, {examiners: sortBy(replaceElementById(state.examiners, action.examiner, action.id), 'name'), error: false})
+    // case actionTypes.UPDATE_EXAMINER_SUCCESS:
+    //   return updateState(state, {examiners: sortBy(replaceElementById(state.examiners, action.examiner, action.id), 'name'), error: false})
 
-    case actionTypes.FAILED_LOAD:
-      return updateState(state, {error: true})
+    // case actionTypes.FAILED_LOAD:
+    //   return updateState(state, {error: true})
 
-    case actionTypes.FETCH_EXAMINER:
-      return updateState(state, {selectedExaminer: action.examiner})
+    // case actionTypes.FETCH_EXAMINER:
+    //   return updateState(state, {selectedExaminer: action.examiner})
 
-    case actionTypes.FETCH_EXAMINER_ON_LOAD:
-      return {...state, selectedExaminer: checkExaminerOnLoad(action)};
+    // case actionTypes.FETCH_EXAMINER_ON_LOAD:
+    //   return {...state, selectedExaminer: checkExaminerOnLoad(action)};
 
-    case actionTypes.DEACTIVATE_SELECTED_EXAMINER:
-      return updateState(state, {selectedExaminer: null})
+    // case actionTypes.DEACTIVATE_SELECTED_EXAMINER:
+    //   return updateState(state, {selectedExaminer: null})
 
     case actionTypes.FILTER_EXAMINER:
       return {...state, filteredExaminers: filterData(state.examiners, action)};

@@ -1,4 +1,4 @@
-import { sortBy } from '../reducer-utility';
+import { sortBy } from '../utility';
 
 const data = [
   {name: "Sarah Baldock"},

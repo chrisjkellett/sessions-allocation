@@ -25,8 +25,9 @@ class Examiners extends Component{
 
     },
 
-    delete: () => {
-
+    delete: (examiner) => {
+      const { token } = this.props;
+      this.props.deleteExaminer(examiner, token);
     },
 
     expand: () => {
@@ -116,7 +117,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     filterExaminer: (value, filterBy) => dispatch(actions.filterExaminer(value, filterBy)),
-    addExaminer: (examiner, token) => dispatch(actions.addExaminer(examiner, token))
+    addExaminer: (examiner, token) => dispatch(actions.addExaminer(examiner, token)),
+    deleteExaminer: (examiner, token) => dispatch(actions.deleteExaminer(examiner, token)),
   }
 }
 

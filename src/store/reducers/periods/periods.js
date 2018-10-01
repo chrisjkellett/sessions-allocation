@@ -9,7 +9,7 @@ import {
   monthsFromArray
 } from './utility';
 
-import { objectToArray, sortBy } from '../reducer-utility';
+import { objectToArray, sortBy } from '../utility';
 
 export const initialState = {
   periods: null,
