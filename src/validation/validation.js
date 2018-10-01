@@ -1,11 +1,6 @@
 import {formatLengthError} from './utility';
 import * as tests from './tests';
 
-export const checkAdvancedValidity = (wholeObj, value) => {
-  console.log(wholeObj);
-  return wholeObj
-}
-
 export const checkValidity = (obj) => {
   const {validation, value} = obj;
   const {rules} = validation;
