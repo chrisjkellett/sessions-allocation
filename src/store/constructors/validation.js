@@ -19,7 +19,7 @@ export const rules = {
 export const distributeInitialErrors = (rules) => {
   let arr = [];
   for (let item in rules){
-    arr.push(rules[item]);
+    item !== 'checkId' && arr.push(rules[item]);
   };
   return arr;
 }
