@@ -1,7 +1,7 @@
 import moment from 'moment';
 
-export const invalidID = (id) => {
-  return !/[a-m][a-m][0-9][0-9][a-m][a-m]/i.test(id.trim())
+export const invalidID = (value) => {
+  return value !== '' && !/[a-m][a-m][0-9][0-9][a-m][a-m]/i.test(value.trim())
 }
 
 export const invalidEmail = (value) => {
