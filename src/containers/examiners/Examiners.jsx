@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import AsyncLoad from '../../components/AsyncLoad/AsyncLoad';
-import ExaminerState from '../../store/constructors/examiners';
+import { constructExaminerState } from '../../store/constructors/examiners';
 import ExaminersTable from './components/ExaminersTable/ExaminersTable';
 import ExaminersForm from './components/ExaminersForm/ExaminersForm';
 import { AddNewBtn } from '../../components/Btns/';
 import { Section } from '../../components/Wrappers';
-import { getInputValue, updateState, forSubmit } from '../utility';
+import { getInputValue, updateState, forSubmit, checkFormValidity } from '../utility';
 import { checkValidity } from '../../validation/validation';
 import * as actions from '../../store/actions/examiners/examiners';
 
 class Examiners extends Component{
   state = {
-    examiner: ExaminerState(),
+    examiner: constructExaminerState(),
     showForm: false,
     isConfirming: false,
     shouldValidate: false,
@@ -35,19 +35,23 @@ class Examiners extends Component{
 
     submit: (event) => {
       const { examiner } = this.state;
+      const { token } = this.props;
       event.preventDefault();
       this.handlers.validate();
       const examinerForDB = forSubmit(examiner);
-      console.log(examinerForDB);
+      
+      if(checkFormValidity(examiner)){
+        this.props.addExaminer(examinerForDB, token)
+        this.handlers.closeForm();
+        this.setState({ examiner: constructExaminerState(), shouldValidate: false })
+      }
     },
 
     change: (event, type, id, index) => {
-      const { examiner, shouldValidate } = this.state;
+      const { examiner } = this.state;
       const value = getInputValue(event, type, index, [ ...examiner[id].value ]);
       const update = updateState(this.state, id, { value: value, id }, 'examiner');
-      if(shouldValidate){
-        update.examiner[id].validation = checkValidity({ ...update.examiner[id] });
-      }
+      update.examiner[id].validation = checkValidity({ ...update.examiner[id] });
       this.setState(update);
     },
 
@@ -61,7 +65,7 @@ class Examiners extends Component{
 
     cancel: () => {
       this.handlers.closeForm();
-      this.setState({ examiner: ExaminerState() })
+      this.setState({ examiner: constructExaminerState(), shouldValidate: false })
     },
 
     filter: ({ target: { value, id }}) => {
@@ -103,6 +107,7 @@ class Examiners extends Component{
 
 const mapStateToProps = state => {
   return {
+    token: state.auth.token,
     examiners: state.ex.examiners,
     filtered: state.ex.filteredExaminers
   }
@@ -110,7 +115,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    filterExaminer: (value, filterBy) => dispatch(actions.filterExaminer(value, filterBy))
+    filterExaminer: (value, filterBy) => dispatch(actions.filterExaminer(value, filterBy)),
+    addExaminer: (examiner, token) => dispatch(actions.addExaminer(examiner, token))
   }
 }
 

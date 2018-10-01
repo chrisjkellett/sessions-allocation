@@ -1,18 +1,13 @@
 import {
-  roleKeys, levelKeys, availabilityKeys, dayOptions, monthOptions, yearOptionsMonitoring
+  roleKeys, levelKeys, availabilityKeys
 } from '../data';
-
-import {
-  CURRENTYEAR, CURRENTMONTH, CURRENTDAY
-} from '../data';
-
 
 import {
   constructValidation,
   rules
 } from './validation';
 
-const ExaminerState = () => {
+export const constructExaminerState = () => {
   return {
     name: {
       elementType: 'input',
@@ -84,63 +79,5 @@ const ExaminerState = () => {
       group: 2,
       validation: constructValidation({...rules.required})
     },
-
-    last_monitoring: {
-      elementType: 'date',
-      options: {
-        days: dayOptions,
-        months: monthOptions,
-        years: yearOptionsMonitoring
-      },
-      elementConfig: {
-        disabled: false
-      },
-      value: ['2018', 'June', '13'],
-      group: 2,
-      validation: constructValidation({})
-    },
-
-    monitoring_level: {
-      elementType: 'checkbox',
-      options: levelKeys,
-      elementConfig: {
-        disabled: false
-      },
-      value: [],
-      group: 2,
-      validation: constructValidation({})
-    },
-
-    contract_start: {
-      elementType: 'date',
-      options: {
-        days: dayOptions,
-        months: monthOptions,
-        years: yearOptionsMonitoring
-      },
-      elementConfig: {
-        disabled: false
-      },
-      value: [CURRENTYEAR, monthOptions[CURRENTMONTH - 1].id, dayOptions[CURRENTDAY - 1].id],
-      group: 3,
-      validation: constructValidation({})
-    },
-
-    contract_end: {
-      elementType: 'date',
-      options: {
-        days: dayOptions,
-        months: monthOptions,
-        years: yearOptionsMonitoring
-      },
-      elementConfig: {
-        disabled: false
-      },
-      value: [CURRENTYEAR, monthOptions[CURRENTMONTH - 1].id, dayOptions[CURRENTDAY].id],
-      group: 3,
-      validation: constructValidation({})
-    },
   } 
 };
-
-export default ExaminerState;
