@@ -8,7 +8,7 @@ import ExaminersForm from './components/ExaminersForm/ExaminersForm';
 import { AddNewBtn } from '../../components/Btns/';
 import { Section } from '../../components/Wrappers';
 import { getInputValue, updateState } from '../utility';
-import { checkValidity } from '../../validation/validation';
+import { checkValidity, checkAdvancedValidity } from '../../validation/validation';
 import * as actions from '../../store/actions/examiners/examiners';
 
 class Examiners extends Component{
@@ -40,10 +40,13 @@ class Examiners extends Component{
     },
 
     change: (event, type, id, index) => {
-      const value = getInputValue(event, type, index, [...this.state.examiner[id].value]);
-      const formType = Object.keys({...this.state})[0];
-      const update = updateState(this.state, id, {value: value, id}, formType);
-      update[formType][id].validation = checkValidity({...update[formType][id]});
+      const { examiner, shouldValidate } = this.state;
+      const value = getInputValue(event, type, index, [ ...examiner[id].value ]);
+      const update = updateState(this.state, id, { value: value, id }, 'examiner');
+      if(shouldValidate){
+        update.examiner[id].validation = checkValidity({ ...update.examiner[id] });
+        update.examiner = checkAdvancedValidity({ ...update.examiner }, id);
+      }
       this.setState(update);
     },
 
