@@ -7,7 +7,7 @@ import ExaminersTable from './components/ExaminersTable/ExaminersTable';
 import ExaminersForm from './components/ExaminersForm/ExaminersForm';
 import { AddNewBtn } from '../../components/Btns/';
 import { Section } from '../../components/Wrappers';
-import { getInputValue, updateState } from '../utility';
+import { getInputValue, updateState, forSubmit } from '../utility';
 import { checkValidity } from '../../validation/validation';
 import * as actions from '../../store/actions/examiners/examiners';
 
@@ -34,9 +34,11 @@ class Examiners extends Component{
     },
 
     submit: (event) => {
+      const { examiner } = this.state;
       event.preventDefault();
       this.handlers.validate();
-      console.log('submit');
+      const examinerForDB = forSubmit(examiner);
+      console.log(examinerForDB);
     },
 
     change: (event, type, id, index) => {
