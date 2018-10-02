@@ -1,15 +1,25 @@
-.Row td{
+.Row td, .SessionRow td{
   height: 55px;
   border-bottom: 1px solid lightgrey;
 }
 
-.Row td i{
-  padding: 0 2px;
-  font-size: 90%;
+.Row, .SessionRow{
+  background: #F2F2F2;
 }
 
-.Row td:first-child{
+.Row:nth-child(odd), .SessionRow:nth-child(odd){
+  background: white;
+}
+
+.Row:last-child td, .SessionRow:last-child td{
+  border-bottom: 1px solid grey;
+}
+
+.Row td:first-child, .SessionRow td:first-child{
   font-weight: 500;
+}
+
+.Row td:first-child {
   width: 40%;
 }
 
@@ -29,17 +39,6 @@
   padding-left:5px;
 }
 
-.Row{
-  background: #F2F2F2;
-}
-
-.Row:nth-child(odd){
-  background: white;
-}
-
-.Row:last-child td{
-  border-bottom: 1px solid grey;
-}
 
 .Row td span span {
   font-size: 70%;
