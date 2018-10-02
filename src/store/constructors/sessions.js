@@ -81,7 +81,7 @@ export const constructSessionsState = () => {
         multiple: true,
         disabled: false
       },
-      options: [],
+      options: null,
       hasControls: [
         { label: 'reset', }
       ],
@@ -97,7 +97,7 @@ export const constructSessionsState = () => {
         multiple: true,
         disabled: false
       },
-      options: [],
+      options: null,
       hasControls: [
         { label: 'reset', }
       ],
