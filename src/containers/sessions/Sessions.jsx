@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getInputValue, updateState } from '../utility';
+import { getInputValue, updateState, updateArray } from '../utility';
 import { checkValidity } from '../../validation/validation';
 import { Section } from '../../components/Wrappers';
 import { AddNewBtn } from '../../components/Btns/';
@@ -54,6 +54,15 @@ class Sessions extends Component{
       const update = updateState(this.state, id, { value: value, id }, 'session');
       update.session[id].validation = checkValidity({ ...update.session[id] });
       this.setState(update);
+    },
+
+    selectExaminer: (name) => {
+      this.setState((prev) => ({
+        session: { 
+          ...prev.session, 
+          examiners: {...prev.session.examiners, 
+          value: updateArray(prev.session.examiners.value, name)}}
+      }))
     },
 
     openForm: () => {

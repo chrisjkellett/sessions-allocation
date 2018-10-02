@@ -2,18 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import SessionsFormContent from './SessionsFormContent';
+import ExaminersAvailable from './Tables/ExaminersAvailable';
 import * as exOpActions from '../../../../store/actions/examiner-options/examiner-options';
-
-import { 
-  Form, 
-  Table, 
-  FlexContainer, 
-  FlexItem, 
-  IsNotEmpty,
-  Tr,
-  Td,
-  TdIcons,
-  TdIconsForTime } from '../../../../components';
+import { Form, FlexContainer, FlexItem, } from '../../../../components';
 
 class SessionsForm extends Component {
   componentDidMount(){
@@ -43,27 +34,8 @@ class SessionsForm extends Component {
                 shouldValidate={shouldValidate} 
                 group={1} />    
             </FlexItem>
-            <FlexItem>
-              <SessionsFormContent 
-                values={values} 
-                handlers={handlers} 
-                shouldValidate={shouldValidate} 
-                group={2} />    
-            </FlexItem>
             <FlexItem double>
-                <Table labels={['name', 'roles', 'levels', 'availability', null]}>
-                  <IsNotEmpty data={availableExaminers}>
-                    {availableExaminers.filter(e => e.available).map(e => (
-                      <Tr key={e.id}>
-                        <Td data={e.name} />
-                        <Td data={e.roles} smallFont />
-                        <TdIcons array={e.levels} />
-                        <TdIconsForTime array={e.availability} />
-                        <td></td>
-                      </Tr>
-                    ))}
-                  </IsNotEmpty>
-                </Table>
+              <ExaminersAvailable data={availableExaminers} handlers={handlers} session={values} />
             </FlexItem>
           </FlexContainer>
         </Form>

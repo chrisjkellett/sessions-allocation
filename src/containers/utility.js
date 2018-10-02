@@ -93,3 +93,9 @@ export const updateState = (obj, id, updatedState, type) => {
     }
   }
 }
+
+export const updateArray = (array, newValue) => {
+  return array.includes(newValue) 
+    ? array.filter(item => item !== newValue)
+    : array.concat(newValue)
+}
