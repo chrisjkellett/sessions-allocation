@@ -19,18 +19,9 @@
   font-weight: 500;
 }
 
-.Row td:first-child {
-  width: 40%;
-}
-
-.Row td:nth-child(2), .Row td:nth-child(3){
-  width: 25%;
-}
-
-.Row td:last-child{
+.Row td:last-child, .SessionRow td:last-child{
   text-align: right;
   padding-right: 10px;
-  width: 10%;
 }
 
 .Row .Address{
@@ -39,8 +30,33 @@
   padding-left:5px;
 }
 
+/*widths for normal tables*/
+.Row td:first-child {
+  width: 40%;
+}
 
-.Row td span span {
-  font-size: 70%;
-  margin-left: 1px;
+.Row td:nth-child(2), .Row td:nth-child(3){
+  width: 25%;
+}
+
+/*widths for session table*/
+
+.SessionRow td:first-child {
+  width: 20%;
+}
+
+.SessionRow td:nth-child(2), .SessionRow td:nth-child(3), .SessionRow td:nth-child(4){
+  width: 10%;
+}
+
+.SessionRow td:nth-child(5){
+  width: 25%;
+}
+
+.SessionRow td:nth-child(6){
+  width: 15%;
+}
+
+.Row td:last-child, .SessionRow td:last-child{
+  width: 10%;
 }

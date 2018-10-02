@@ -7,10 +7,12 @@ import Filter from '../../../../components/Filter/Filter';
 const SessionsTable = ({ data, filtered, handlers, isConfirming }) => {
   const sessions = filtered === null ? data : filtered;
   const labels = ([
-    'date', 
-    'venue',
+    null, 
+    'time',
+    <Filter label='venue' filter={handlers.filter} />,
     <Filter label='levels' filter={handlers.filter} />, 
-    <Filter label='availability' filter={handlers.filter} />, 
+    <Filter label='examiners' filter={handlers.filter} />, 
+    <Filter label='support' filter={handlers.filter} />,
     null
   ]);
 
@@ -20,9 +22,11 @@ const SessionsTable = ({ data, filtered, handlers, isConfirming }) => {
         {sessions.map(s => (
           <Tr key={s.id} sessions>
             <TdDate data={s['session_date']} />
+            <Td data={s.time} />
             <Td data={s.venue} />
             <TdIcons array={s.levels} />
             <Td data={s.examiners} />
+            <Td data={s.support} />
             <EditDeletePanel handlers={handlers} data={s} isConfirming={isConfirming} />
           </Tr>
         ))}

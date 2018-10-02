@@ -8,6 +8,7 @@ import { AddNewBtn } from '../../components/Btns/';
 import AsyncLoad from '../../components/AsyncLoad/AsyncLoad';
 import SessionsTable from './components/SessionsTable/SessionsTable';
 import constructSessionState from '../../store/constructors/sessions';
+import * as actions from '../../store/actions/sessions/sessions';
 
 
 class Sessions extends Component{
@@ -61,7 +62,7 @@ class Sessions extends Component{
     },
 
     filter: ({ target: { value, id }}) => {
-      
+      this.props.filterSessions(value, id);
     },
 
     toggleConfirm: () => {
@@ -75,13 +76,13 @@ class Sessions extends Component{
 
   render(){  
     const { showForm, isConfirming } = this.state;
-    const { sessions } = this.props;
+    const { sessions, filteredSessions } = this.props;
 
     return (
       <Section showForm={showForm}>
         <AsyncLoad waitFor={sessions}>
           <AddNewBtn showForm={showForm} openForm={this.handlers.openForm} label={'session'} />
-          <SessionsTable data={sessions} filtered={null} handlers={this.handlers} isConfirming={isConfirming}/>
+          <SessionsTable data={sessions} filtered={filteredSessions} handlers={this.handlers} isConfirming={isConfirming}/>
         </AsyncLoad>
       </Section>
     )
@@ -90,12 +91,14 @@ class Sessions extends Component{
 
 const mapStateToProps = state => {
   return {
-    sessions: state.sess.sessions
+    sessions: state.sess.sessions,
+    filteredSessions: state.sess.filteredSessions,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    filterSessions: (value, filterBy) => dispatch(actions.filterSessionsByHeader(value, filterBy))
   }
 }
 

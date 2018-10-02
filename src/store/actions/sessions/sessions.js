@@ -1,8 +1,7 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../../axios';
 import { logResponse, logError } from '../general/general';
-import {loadPeriods, updatePeriods} from '../periods/periods';
-// import { filterOutOldSessions } from './utilities';
+import { loadPeriods, updatePeriods } from '../periods/periods';
 
 export const loadSessions = () => {
   return dispatch => {
@@ -107,6 +106,14 @@ export const filterSessions = (period, sessions) => {
   return {
     type: actionTypes.FILTER_SESSIONS,
     period: period
+  }
+}
+
+export const filterSessionsByHeader = (value, filterBy) => {
+  return {
+    type: actionTypes.FILTER_SESSIONS_BY_HEADER,
+    value: value,
+    filterBy: filterBy,
   }
 }
 
