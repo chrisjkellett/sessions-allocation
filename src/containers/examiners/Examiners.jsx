@@ -7,7 +7,7 @@ import ExaminersTable from './components/ExaminersTable/ExaminersTable';
 import ExaminersForm from './components/ExaminersForm/ExaminersForm';
 import { AddNewBtn } from '../../components/Btns/';
 import { Section } from '../../components/Wrappers';
-import { getInputValue, updateState, forSubmit, checkFormValidity } from '../utility';
+import { getInputValue, updateState, forSubmit, checkFormValidity, distributeValuesForEditing } from '../utility';
 import { checkValidity } from '../../validation/validation';
 import * as actions from '../../store/actions/examiners/examiners';
 
@@ -21,8 +21,14 @@ class Examiners extends Component{
   }
 
   handlers = {
-    edit: () => {
+    edit: (id) => {
+      this.props.fetchExaminer(id);
+      this.handlers.openForm();
+    },
 
+    prepareForEdit: (selected) => {
+      const { examiner } = this.state;
+      this.setState({ examiner: distributeValuesForEditing(examiner, selected) })
     },
 
     delete: (examiner) => {
@@ -36,13 +42,16 @@ class Examiners extends Component{
 
     submit: (event) => {
       const { examiner } = this.state;
-      const { token } = this.props;
+      const { token, selectedExaminer } = this.props;
       event.preventDefault();
       this.handlers.validate();
       const examinerForDB = forSubmit(examiner);
       
       if(checkFormValidity(examiner)){
-        this.props.addExaminer(examinerForDB, token)
+        if(selectedExaminer === null)
+          this.props.addExaminer(examinerForDB, token)
+        else
+          this.props.updateExaminer(examinerForDB, selectedExaminer.id, token)
         this.handlers.closeForm();
         this.setState({ examiner: constructExaminerState(), shouldValidate: false })
       }
@@ -85,7 +94,8 @@ class Examiners extends Component{
 
   render(){  
     const { isConfirming, showForm, examiner, shouldValidate, extraLarge } = this.state;
-    const { examiners, filtered } = this.props;
+    const { examiners, filtered, selectedExaminer } = this.props;
+    const { clearSelectedExaminer } = this.props;
     return (
       <Section showForm={showForm}>
         <AsyncLoad waitFor={examiners}>
@@ -96,9 +106,9 @@ class Examiners extends Component{
               handlers={this.handlers} 
               values={examiner} 
               shouldValidate={shouldValidate} 
-              selectedExaminer={null} 
+              selectedExaminer={selectedExaminer} 
               extraLarge={extraLarge}
-              clearSelectedExaminer={null} />
+              clearSelectedExaminer={clearSelectedExaminer} />
           }
         </AsyncLoad>
       </Section>
@@ -110,7 +120,8 @@ const mapStateToProps = state => {
   return {
     token: state.auth.token,
     examiners: state.ex.examiners,
-    filtered: state.ex.filteredExaminers
+    filtered: state.ex.filteredExaminers,
+    selectedExaminer: state.ex.selectedExaminer
   }
 }
 
@@ -119,6 +130,9 @@ const mapDispatchToProps = dispatch => {
     filterExaminer: (value, filterBy) => dispatch(actions.filterExaminer(value, filterBy)),
     addExaminer: (examiner, token) => dispatch(actions.addExaminer(examiner, token)),
     deleteExaminer: (examiner, token) => dispatch(actions.deleteExaminer(examiner, token)),
+    fetchExaminer: (id) => dispatch(actions.fetchExaminer(id)),
+    clearSelectedExaminer: () => dispatch(actions.clearSelectedExaminer()),
+    updateExaminer: (examiner, id, token) => dispatch(actions.updateExaminer(examiner, id, token))
   }
 }
 

@@ -5,12 +5,12 @@ import ExaminersFormContent from './ExaminersFormContent';
 
 class VenuesForm extends Component {
   componentDidMount(){
-    // const { selectedVenue } = this.props;
-    // selectedVenue && this.props.handlers.fetchRecord(selectedVenue);
+    const { selectedExaminer } = this.props;
+    selectedExaminer && this.props.handlers.prepareForEdit(selectedExaminer);
   }
 
   componentWillUnmount(){
-    // this.props.clearSelectedVenue();
+    this.props.clearSelectedExaminer();
   }
   
   render() {

@@ -6,12 +6,10 @@ export const loadExaminers = () => {
   return dispatch => {
     axios.get('/examiners.json')
       .then(response => {
-        const user = localStorage.getItem('name');
         dispatch(loadExaminersSuccess(response.data))
-        dispatch(fetchExaminerOnLoad(response.data, user))
       })
       .catch(error => {
-        dispatch(failedLoad(error))
+        console.log(error);
       })
   }
 }
@@ -32,7 +30,7 @@ export const addExaminer = (examiner, token) => {
         dispatch(logResponse(examiner, {type: 'examiners', action: 'added'}));
       })
       .catch(error => {
-        dispatch(failedLoad(error))
+        console.log(error);
       })
   }
 }
@@ -48,12 +46,12 @@ export const addExaminerSuccess = (examiner, id) => {
 export const updateExaminer = (examiner, id, token) => {
   return dispatch => {
     axios.put('/examiners/' + id + '.json?auth=' + token, examiner)
-      .then(response => {
+      .then(() => {
         dispatch(updateExaminerSuccess(examiner, id));
         dispatch(logResponse(examiner, {type: 'examiners', action: 'updated'}));
       })
       .catch(error => {
-        dispatch(failedLoad(error))
+        console.log(error)
       })
   }
 }
@@ -75,7 +73,7 @@ export const deleteExaminer = (examiner, token) => {
         dispatch(logResponse(examiner, {type: 'examiners', action: 'deleted'}));
       })
       .catch(error => {
-        dispatch(failedLoad(error))
+        console.log(error);
       })
   }
 }
@@ -87,17 +85,10 @@ export const deleteExaminerSuccess = (id) => {
   }
 }
 
-export const failedLoad = (error) => {
-  return {
-    type: actionTypes.FAILED_LOAD,
-    error: error
-  }
-} 
-
-export const fetchExaminer = (examiner) => {
+export const fetchExaminer = (id) => {
   return {
     type: actionTypes.FETCH_EXAMINER,
-    examiner: examiner
+    id: id,
   }
 }
 
@@ -109,9 +100,9 @@ export const fetchExaminerOnLoad = (examiners, user) => {
   }
 }
 
-export const deActivateSelectedExaminer = () => {
+export const clearSelectedExaminer = () => {
   return {
-    type: actionTypes.DEACTIVATE_SELECTED_EXAMINER
+    type: actionTypes.CLEAR_SELECTED_EXAMINER
   }
 };
 
