@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import SessionsFormContent from './SessionsFormContent.jsx';
 import ExaminersAvailable from './Tables/ExaminersAvailable';
 import * as exOpActions from '../../../../store/actions/examiner-options/examiner-options';
-import { Form, FlexContainer, FlexItem, ShowBtn} from '../../../../components';
+import { Form, FlexContainer, FlexItem, ShowHideBtn} from '../../../../components';
 
 class SessionsForm extends Component {
   state = {
@@ -46,7 +46,7 @@ class SessionsForm extends Component {
                 group={1} />    
             </FlexItem>
             <FlexItem double>
-              {!showExaminers && <ShowBtn handler={this.handlers.open} type="showExaminers" label="select examiners"/>}
+              {!showExaminers && <ShowHideBtn handler={this.handlers.open} type="showExaminers" label="select examiners"/>}
               {showExaminers && <ExaminersAvailable data={availableExaminers} handlers={handlers} session={values} />}
             </FlexItem>
           </FlexContainer>

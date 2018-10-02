@@ -16,7 +16,7 @@ import AddNewBtn from './Btns/AddNewBtn/AddNewBtn';
 import SubmitBtns from './Btns/SubmitBtns/SubmitBtns';
 import EditDeletePanel from './Btns/EditDeletePanel/EditDeletePanel';
 import ExpandBtn from './Btns/ExpandBtn/ExpandBtn';
-import ShowBtn from './Btns/ShowBtn/ShowBtn';
+import ShowHideBtn from './Btns/ShowHideBtn/ShowHideBtn';
 import AsyncLoad from './AsyncLoad/AsyncLoad';
 
 export {
@@ -25,6 +25,6 @@ export {
   FlexContainer, FlexItem,
   Form, Input,
   Filter,
-  AddNewBtn, SubmitBtns, EditDeletePanel, ExpandBtn, ShowBtn,
+  AddNewBtn, SubmitBtns, EditDeletePanel, ExpandBtn, ShowHideBtn,
   AsyncLoad
 }

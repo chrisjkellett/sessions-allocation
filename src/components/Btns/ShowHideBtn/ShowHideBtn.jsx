@@ -1,10 +1,10 @@
 import React from 'react';
-import classes from './ShowBtn.css';
+import classes from './ShowHideBtn.css';
 
-const ShowBtn = ({ handler, type, label } ) => {
+const ShowHideBtn = ({ handler, type, label } ) => {
   return (
     <div className={classes.ShowBtn} onClick={() => handler(type)}>{"+" + label}</div>
   )
 }
 
-export default ShowBtn;
+export default ShowHideBtn;
