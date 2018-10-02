@@ -7,6 +7,7 @@ import { Section } from '../../components/Wrappers';
 import { AddNewBtn } from '../../components/Btns/';
 import AsyncLoad from '../../components/AsyncLoad/AsyncLoad';
 import SessionsTable from './components/SessionsTable/SessionsTable';
+import SessionsForm from './components/SessionsForm/SessionsForm';
 import constructSessionState from '../../store/constructors/sessions';
 import * as actions from '../../store/actions/sessions/sessions';
 
@@ -75,7 +76,7 @@ class Sessions extends Component{
   }
 
   render(){  
-    const { showForm, isConfirming } = this.state;
+    const { showForm, isConfirming, session, shouldValidate } = this.state;
     const { sessions, filteredSessions, venues } = this.props;
 
     return (
@@ -88,6 +89,14 @@ class Sessions extends Component{
             handlers={this.handlers} 
             isConfirming={isConfirming} 
             venues={venues} />
+          {showForm && 
+            <SessionsForm 
+              handlers={this.handlers} 
+              values={session} 
+              shouldValidate={shouldValidate} 
+              selectedExaminer={null} 
+              clearSelectedExaminer={null} />
+          }
         </AsyncLoad>
       </Section>
     )
