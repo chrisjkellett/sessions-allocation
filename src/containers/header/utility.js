@@ -12,16 +12,3 @@ export const formatDateURL = (arr) => {
 export const formatDateURLPretty = (arr) => {
   return moment(arr.join("-")).format('MMMMD').toLowerCase();
 }
-
-export const generateFormElementArray = (formObj) => {
-  let formElementArray = [];
-
-  for(let key in formObj){
-    formElementArray.push({
-      id: key,
-      config: formObj[key]
-    })
-  }
-
-  return formElementArray;
-}

@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import classes from '../Header.css';
-import {formatURL, formatDateURLPretty} from '../../../gen-utility';
+import {formatURL, formatDateURLPretty} from '../utility';
 import * as routes from '../../../store/app-data/routes';
 import {getLogData, formatError} from './utility';
 
