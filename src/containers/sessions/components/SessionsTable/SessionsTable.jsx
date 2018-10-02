@@ -4,7 +4,8 @@ import { Table, Tr, Td, TdIcons, TdDate, SubTd } from '../../../../components/Ta
 import IsNotEmpty from '../../../../components/Wrappers/IsNotEmpty/IsNotEmpty';
 import Filter from '../../../../components/Filter/Filter';
 
-const SessionsTable = ({ data, filtered, handlers, isConfirming }) => {
+const SessionsTable = ({ data, filtered, handlers, isConfirming, venues }) => {
+  console.log(venues);
   const sessions = filtered === null ? data : filtered;
   const labels = ([
     <Filter label='venue' filter={handlers.filter} />, 

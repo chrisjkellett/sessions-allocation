@@ -6,8 +6,8 @@ const SubTd = ({ data, inline = false }) => {
   return (
     <div className={styles}>
       {typeof data === "object"
-        ? data.map(item => <span key={item} className={classes.Roles}>{item}</span>)
-        : <span className={classes.Roles}>{data}</span>}
+        ? data.map(item => <span key={item} className={classes.Items}>{item}</span>)
+        : <span className={classes.Items}>{data}</span>}
     </div>
   )
 }

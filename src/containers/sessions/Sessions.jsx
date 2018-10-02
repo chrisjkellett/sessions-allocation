@@ -76,13 +76,18 @@ class Sessions extends Component{
 
   render(){  
     const { showForm, isConfirming } = this.state;
-    const { sessions, filteredSessions } = this.props;
+    const { sessions, filteredSessions, venues } = this.props;
 
     return (
       <Section showForm={showForm}>
         <AsyncLoad waitFor={sessions}>
           <AddNewBtn showForm={showForm} openForm={this.handlers.openForm} label={'session'} />
-          <SessionsTable data={sessions} filtered={filteredSessions} handlers={this.handlers} isConfirming={isConfirming}/>
+          <SessionsTable 
+            data={sessions} 
+            filtered={filteredSessions} 
+            handlers={this.handlers} 
+            isConfirming={isConfirming} 
+            venues={venues} />
         </AsyncLoad>
       </Section>
     )
@@ -92,6 +97,7 @@ class Sessions extends Component{
 const mapStateToProps = state => {
   return {
     sessions: state.sess.sessions,
+    venues: state.venue.venues,
     filteredSessions: state.sess.filteredSessions,
   }
 }
