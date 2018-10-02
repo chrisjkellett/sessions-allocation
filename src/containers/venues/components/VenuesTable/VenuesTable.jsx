@@ -8,6 +8,7 @@ const VenuesTable = ({ data, filtered, handlers, isConfirming }) => {
   const venues = filtered === null ? data : filtered;
   const labels = ([
     <Filter label='name' filter={handlers.filter} />, 
+    null,
     'contact', 
     <Filter label='type' filter={handlers.filter} />, 
     null
@@ -19,6 +20,7 @@ const VenuesTable = ({ data, filtered, handlers, isConfirming }) => {
         {venues.map(v => (
           <Tr key={v.name}>
             <Td data={v.name} subContent={<SubTd data={v.address} inline />} />
+            <td></td>
             <Td data={v.contact} />
             <Td data={v.type} />
             <EditDeletePanel handlers={handlers} data={v} isConfirming={isConfirming} />

@@ -13,3 +13,7 @@
 .IconsLong{
   width: 50px;
 }
+
+.IconsLong span {
+  font-size: 60%;
+}

@@ -14,3 +14,15 @@
   vertical-align: bottom;
   z-index: 1;
 }
+
+.RowHeader th:first-child {
+  width: 30%;
+}
+
+.RowHeader th:nth-child(2), .RowHeader th:nth-child(3), .RowHeader th:nth-child(4){
+  width: 20%;
+}
+
+.RowHeader th:nth-child(5){
+  width: 10%;
+}

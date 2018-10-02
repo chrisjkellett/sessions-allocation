@@ -1,10 +1,9 @@
 import React from 'react';
 import classes from './Tr.css';
 
-const Tr = ({ key, sessions, children }) => {
-  const styles = sessions ? classes.SessionRow : classes.Row;
+const Tr = ({ key, children }) => {
   return (
-    <tr className={styles} key={key}>
+    <tr className={classes.Row} key={key}>
       {children}
     </tr>
   )
