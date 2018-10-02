@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import SessionsFormContent from './SessionsFormContent.jsx';
-import ExaminersAvailable from './components/ExaminersAvailable';
+import SessionsFormContent from './components/SessionsFormContent/SessionsFormContent';
+import ExaminersAvailable from './components/ExaminersAvailable/ExaminersAvailable';
 import * as exOpActions from '../../../../store/actions/examiner-options/examiner-options';
 import { Form, FlexContainer, FlexItem, ShowHideBtn} from '../../../../components';
 

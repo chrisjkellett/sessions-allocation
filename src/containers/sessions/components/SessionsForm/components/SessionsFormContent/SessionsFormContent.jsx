@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { object, bool, number } from 'prop-types';
-import { Input } from '../../../../components/Forms';
+import { Input } from '../../../../../../components';
 import { generateInputProps } from './props';
-import { generateFormElementArray } from '../../../utility';
+import { generateFormElementArray } from '../../../../../utility';
 
 class SessionsFormContent extends Component {
   render(){

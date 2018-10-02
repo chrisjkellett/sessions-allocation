@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, IsNotEmpty, Tr, Td, TdIcons, TdIconsForTime, ShowHideBtn } from '../../../../../components';
+import { Table, IsNotEmpty, Tr, Td, TdIcons, TdIconsForTime, ShowHideBtn } from '../../../../../../components';
 
 const ExaminersAvailable = ({ data, handlers, session, closeHandler }) => {
   return(
