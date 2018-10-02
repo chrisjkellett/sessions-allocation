@@ -6,7 +6,7 @@ export const generateInputProps = (element, shouldValidate, { change }, venues, 
       case 'venue':
         return venues.map(v => v.name);
       case 'examiners':
-        return availableExaminers.map(e => e.name);
+        return availableExaminers.filter(e => e.available).map(e => e.name);
       case 'support':
         return availableSupport.map(s => s.name);
       default:

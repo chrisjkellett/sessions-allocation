@@ -8,7 +8,6 @@ import { generateFormElementArray } from '../../../utility';
 
 class SessionsFormContent extends Component {
   render(){
-    console.log(this.props.availableExaminers);
     const { venues, availableExaminers, availableSupport } = this.props;
     const { values, handlers, shouldValidate, group } = this.props;
     return (

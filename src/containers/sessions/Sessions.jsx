@@ -10,6 +10,7 @@ import SessionsTable from './components/SessionsTable/SessionsTable';
 import SessionsForm from './components/SessionsForm/SessionsForm';
 import constructSessionState from '../../store/constructors/sessions';
 import * as actions from '../../store/actions/sessions/sessions';
+import * as exOpActions from '../../store/actions/examiner-options/examiner-options';
 
 
 class Sessions extends Component{
@@ -117,7 +118,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    filterSessions: (value, filterBy) => dispatch(actions.filterSessionsByHeader(value, filterBy))
+    filterSessions: (value, filterBy) => dispatch(actions.filterSessionsByHeader(value, filterBy)),
+    calculateAvailableExaminers: (examiners, session, sessions) => dispatch(exOpActions.calculateAvailableExaminers(examiners, session, sessions))
   }
 }
 
