@@ -71,7 +71,7 @@ export const constructSessionsState = () => {
          disabled: false
       },
       value: [],
-      group: 'session-data',
+      group: 1,
       validation: constructValidation({...rules.required})
     },
 
@@ -87,7 +87,7 @@ export const constructSessionsState = () => {
       ],
       inline: true,
       value: [],
-      group: 'session-data',
+      group: 2,
       validation: constructValidation({})
     },
 
@@ -103,7 +103,7 @@ export const constructSessionsState = () => {
       ],
       inline: true,
       value: [],
-      group: 'session-data',
+      group: 2,
       validation: constructValidation({})
     },
 
@@ -113,7 +113,7 @@ export const constructSessionsState = () => {
         disabled: false
       },
       value: '',
-      group: 'session-data',
+      group: 1,
       validation: constructValidation({})
     },
 

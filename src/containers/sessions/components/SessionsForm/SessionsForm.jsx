@@ -18,7 +18,7 @@ class SessionsForm extends Component {
     const { handlers, values, shouldValidate, selectedSession } = this.props;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
     return (
-        <Form handlers={handlers} label={label} edit={selectedSession}>
+        <Form handlers={handlers} label={label} edit={selectedSession} extraLarge >
           <FlexContainer>
             <FlexItem>
               <SessionsFormContent 
@@ -28,11 +28,11 @@ class SessionsForm extends Component {
                 group={1} />    
             </FlexItem>
             <FlexItem>
-              {/* <SessionsFormContent 
+              <SessionsFormContent 
                 values={values} 
                 handlers={handlers} 
                 shouldValidate={shouldValidate} 
-                group={2} />     */}
+                group={2} />    
             </FlexItem>
           </FlexContainer>
         </Form>
