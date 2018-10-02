@@ -7,6 +7,16 @@
   display: inline-block;
 }
 
+.HideBtn {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 90%;
+}
+
+.HideBtn:hover {
+  color: grey;
+}
+
 .ShowBtn:hover{
   border-color: #4b4b4b;
   background: lightgoldenrodyellow;

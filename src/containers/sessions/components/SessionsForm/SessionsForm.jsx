@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import SessionsFormContent from './SessionsFormContent.jsx';
-import ExaminersAvailable from './Tables/ExaminersAvailable';
+import ExaminersAvailable from './components/ExaminersAvailable';
 import * as exOpActions from '../../../../store/actions/examiner-options/examiner-options';
 import { Form, FlexContainer, FlexItem, ShowHideBtn} from '../../../../components';
 
@@ -14,6 +14,10 @@ class SessionsForm extends Component {
   handlers = {
     open: (type) => {
       this.setState((prev) => ({ [type] : true }))
+    },
+
+    close: (type) => {
+      this.setState((prev) => ({ [type] : false }))
     }
   }
 
@@ -46,8 +50,10 @@ class SessionsForm extends Component {
                 group={1} />    
             </FlexItem>
             <FlexItem double>
-              {!showExaminers && <ShowHideBtn handler={this.handlers.open} type="showExaminers" label="select examiners"/>}
-              {showExaminers && <ExaminersAvailable data={availableExaminers} handlers={handlers} session={values} />}
+              {showExaminers
+                ? <ExaminersAvailable data={availableExaminers} handlers={handlers} session={values} closeHandler={this.handlers.close} />
+                : <ShowHideBtn handler={this.handlers.open} type="showExaminers" label="select examiners"/>
+              }
             </FlexItem>
           </FlexContainer>
         </Form>

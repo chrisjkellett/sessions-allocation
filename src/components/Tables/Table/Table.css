@@ -29,4 +29,5 @@
 
 .RowHeader th:nth-child(5){
   width: 10%;
+  text-align: right;
 }
