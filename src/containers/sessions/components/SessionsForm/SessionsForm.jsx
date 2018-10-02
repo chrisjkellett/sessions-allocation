@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import SessionsFormContent from './SessionsFormContent';
+import SessionsFormContent from './SessionsFormContent.jsx';
 import ExaminersAvailable from './Tables/ExaminersAvailable';
 import * as exOpActions from '../../../../store/actions/examiner-options/examiner-options';
-import { Form, FlexContainer, FlexItem, } from '../../../../components';
+import { Form, FlexContainer, FlexItem, ShowBtn} from '../../../../components';
 
 class SessionsForm extends Component {
+  state = {
+    showExaminers: false,
+  }
+
+  handlers = {
+    open: (type) => {
+      this.setState((prev) => ({ [type] : true }))
+    }
+  }
+
   componentDidMount(){
     const { venues } = this.props;
     // selectedSession && this.props.handlers.prepareForEdit(selectedSession);
@@ -23,6 +33,7 @@ class SessionsForm extends Component {
   render() {
     const { handlers, values, shouldValidate, selectedSession } = this.props;
     const { availableExaminers } = this.props;
+    const { showExaminers } = this.state;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
     return (
         <Form handlers={handlers} label={label} edit={selectedSession} extraLarge >
@@ -35,7 +46,8 @@ class SessionsForm extends Component {
                 group={1} />    
             </FlexItem>
             <FlexItem double>
-              <ExaminersAvailable data={availableExaminers} handlers={handlers} session={values} />
+              {!showExaminers && <ShowBtn handler={this.handlers.open} type="showExaminers" label="select examiners"/>}
+              {showExaminers && <ExaminersAvailable data={availableExaminers} handlers={handlers} session={values} />}
             </FlexItem>
           </FlexContainer>
         </Form>

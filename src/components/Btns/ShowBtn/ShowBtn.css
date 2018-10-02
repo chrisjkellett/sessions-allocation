@@ -1,0 +1,13 @@
+.ShowBtn {
+  cursor: pointer;
+  border: 1px solid grey;
+  padding: 2px 4px;
+  background: white;
+  margin: 20px;
+  display: inline-block;
+}
+
+.ShowBtn:hover{
+  border-color: #4b4b4b;
+  background: lightgoldenrodyellow;
+}
