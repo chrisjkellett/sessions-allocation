@@ -8,12 +8,13 @@ import { generateFormElementArray } from '../../../utility';
 
 class SessionsFormContent extends Component {
   render(){
-    const { venues } = this.props;
+    console.log(this.props.availableExaminers);
+    const { venues, availableExaminers, availableSupport } = this.props;
     const { values, handlers, shouldValidate, group } = this.props;
     return (
       generateFormElementArray(values)
         .filter(element => element.config.group === group)
-        .map(element => <Input { ...generateInputProps(element, shouldValidate, handlers, venues) } />)
+        .map(element => <Input { ...generateInputProps(element, shouldValidate, handlers, venues, availableExaminers, availableSupport) } />)
     );
   }
 }
@@ -28,6 +29,8 @@ SessionsFormContent.propTypes = {
 const mapStateToProps = state => {
   return {
     venues: state.venue.venues,
+    availableExaminers: state.op.ex_options,
+    availableSupport: state.op.supp_options,
   }
 }
 

@@ -2,7 +2,7 @@ import * as actionTypes from '../../actions/examiner-options/actionTypes';
 import {examinerCheck, sameDayCheck, filterExaminers, supportCheck, filterSupport} from './utility';
 
 const initial = {
-  ex_options: [],
+  ex_options: [{name: 'diana'}],
   supp_options: [],
   sameDaySessions: []
 }

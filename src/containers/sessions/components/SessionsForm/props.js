@@ -1,4 +1,4 @@
-export const generateInputProps = (element, shouldValidate, { change }, venues) => {
+export const generateInputProps = (element, shouldValidate, { change }, venues, availableExaminers, availableSupport) => {
   const {config} = element
 
   const payloadType = (id) => {
@@ -6,9 +6,9 @@ export const generateInputProps = (element, shouldValidate, { change }, venues) 
       case 'venue':
         return venues.map(v => v.name);
       case 'examiners':
-        return ['Mobbd', 'hdgh']
+        return availableExaminers.map(e => e.name);
       case 'support':
-        return ['Lola']
+        return availableSupport.map(s => s.name);
       default:
         return [];
     }
