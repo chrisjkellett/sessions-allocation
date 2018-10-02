@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Form } from '../../../../components/Forms';
-import { FlexItem, FlexContainer } from '../../../../components/Layout';
 import SessionsFormContent from './SessionsFormContent';
 import * as exOpActions from '../../../../store/actions/examiner-options/examiner-options';
+
+import { 
+  Form, 
+  Table, 
+  FlexContainer, 
+  FlexItem, 
+  IsNotEmpty,
+  Tr,
+  Td,
+  TdIcons,
+  TdIconsForTime } from '../../../../components';
 
 class SessionsForm extends Component {
   componentDidMount(){
@@ -22,6 +31,7 @@ class SessionsForm extends Component {
   
   render() {
     const { handlers, values, shouldValidate, selectedSession } = this.props;
+    const { availableExaminers } = this.props;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
     return (
         <Form handlers={handlers} label={label} edit={selectedSession} extraLarge >
@@ -40,6 +50,21 @@ class SessionsForm extends Component {
                 shouldValidate={shouldValidate} 
                 group={2} />    
             </FlexItem>
+            <FlexItem double>
+                <Table labels={['name', 'roles', 'levels', 'availability', null]}>
+                  <IsNotEmpty data={availableExaminers}>
+                    {availableExaminers.filter(e => e.available).map(e => (
+                      <Tr key={e.id}>
+                        <Td data={e.name} />
+                        <Td data={e.roles} smallFont />
+                        <TdIcons array={e.levels} />
+                        <TdIconsForTime array={e.availability} />
+                        <td></td>
+                      </Tr>
+                    ))}
+                  </IsNotEmpty>
+                </Table>
+            </FlexItem>
           </FlexContainer>
         </Form>
     )
@@ -51,6 +76,7 @@ const mapStateToProps = state => {
     venues: state.venue.venues,
     sessions: state.sess.sessions,
     examiners: state.ex.examiners,
+    availableExaminers: state.op.ex_options
   }
 }
 

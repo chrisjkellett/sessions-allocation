@@ -2,3 +2,10 @@
   padding-right: 50px;
   box-sizing: border-box;
 }
+
+.DoubleFlexItem {
+  flex-grow: 2;
+  padding-right: 50px;
+  box-sizing: border-box;
+}
+
