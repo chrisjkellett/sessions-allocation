@@ -1,11 +1,11 @@
 .FlexItem {
-  padding-right: 50px;
+  padding-right: 25px;
   box-sizing: border-box;
 }
 
 .DoubleFlexItem {
   flex-grow: 2;
-  padding-right: 50px;
+  padding-right: 25px;
   box-sizing: border-box;
 }
 

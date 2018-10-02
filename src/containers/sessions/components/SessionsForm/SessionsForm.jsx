@@ -9,6 +9,7 @@ import { Form, FlexContainer, FlexItem, ShowHideBtn} from '../../../../component
 class SessionsForm extends Component {
   state = {
     showExaminers: false,
+    showSupport: false,
   }
 
   handlers = {
@@ -36,8 +37,8 @@ class SessionsForm extends Component {
   
   render() {
     const { handlers, values, shouldValidate, selectedSession } = this.props;
-    const { availableExaminers } = this.props;
-    const { showExaminers } = this.state;
+    const { availableExaminers, availableSupport } = this.props;
+    const { showExaminers, showSupport } = this.state;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
     return (
         <Form handlers={handlers} label={label} edit={selectedSession} extraLarge >
@@ -50,10 +51,14 @@ class SessionsForm extends Component {
                 group={1} />    
             </FlexItem>
             <FlexItem double>
-              {showExaminers
-                ? <ExaminersAvailable data={availableExaminers} handlers={handlers} session={values} closeHandler={this.handlers.close} />
-                : <ShowHideBtn handler={this.handlers.open} type="showExaminers" label="select examiners"/>
-              }
+              {!showExaminers 
+                && <ShowHideBtn handler={this.handlers.open} type="showExaminers" label="select examiners"/>}
+              {!showSupport 
+                && <ShowHideBtn handler={this.handlers.open} type="showSupport" label="select support"/>}
+              {showExaminers 
+                && <ExaminersAvailable data={availableExaminers} handlers={handlers} session={values} closeHandler={this.handlers.close} closeType='showExaminers' />}
+              {showSupport 
+                && <ExaminersAvailable data={availableSupport} handlers={handlers} session={values} closeHandler={this.handlers.close} closeType='showSupport' />}
             </FlexItem>
           </FlexContainer>
         </Form>
@@ -66,7 +71,8 @@ const mapStateToProps = state => {
     venues: state.venue.venues,
     sessions: state.sess.sessions,
     examiners: state.ex.examiners,
-    availableExaminers: state.op.ex_options
+    availableExaminers: state.op.ex_options,
+    availableSupport: state.op.supp_options,
   }
 }
 

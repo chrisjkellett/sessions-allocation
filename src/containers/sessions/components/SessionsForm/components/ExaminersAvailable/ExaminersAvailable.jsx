@@ -1,9 +1,9 @@
 import React from 'react';
 import { Table, IsNotEmpty, Tr, Td, TdIcons, TdIconsForTime, ShowHideBtn } from '../../../../../../components';
 
-const ExaminersAvailable = ({ data, handlers, session, closeHandler }) => {
+const ExaminersAvailable = ({ data, handlers, session, closeHandler, closeType }) => {
   return(
-    <Table labels={['name', 'roles', 'levels', 'availability', <ShowHideBtn handler={closeHandler} type='showExaminers' hide />]}>
+    <Table labels={['name', 'roles', 'levels', 'availability', <ShowHideBtn handler={closeHandler} type={closeType} hide />]}>
       <IsNotEmpty data={data}>
         {data.filter(e => e.available).map(e => (
           <Tr 
