@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Form } from '../../../../components/Forms';
 import { FlexItem, FlexContainer } from '../../../../components/Layout';
 import SessionsFormContent from './SessionsFormContent';
@@ -40,6 +42,18 @@ class SessionsForm extends Component {
   }
 };
 
+const mapStateToProps = state => {
+  return {
+    venues: state.venue.venues,
+  }
+}
 
-export default SessionsForm;
+const mapDispatchToProps = dispatch => {
+  return {
+
+  }
+}
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SessionsForm));
 

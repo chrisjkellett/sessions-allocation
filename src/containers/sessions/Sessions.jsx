@@ -99,10 +99,7 @@ class Sessions extends Component{
             <SessionsForm 
               handlers={this.handlers} 
               values={session} 
-              shouldValidate={shouldValidate} 
-              selectedExaminer={null} 
-              clearSelectedExaminer={null}
-              venues={venues} />
+              shouldValidate={shouldValidate}  />
           }
         </AsyncLoad>
       </Section>
