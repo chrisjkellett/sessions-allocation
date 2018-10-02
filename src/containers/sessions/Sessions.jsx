@@ -21,6 +21,12 @@ class Sessions extends Component{
   }
 
   handlers = {
+    addAsyncForm: (value, type) => {
+      this.setState((prev) => ({
+        session: { ...prev.session, [type]: { ...prev.session[type], value: value }}
+      }))
+    },
+
     edit: (id) => {
 
     },
@@ -95,7 +101,8 @@ class Sessions extends Component{
               values={session} 
               shouldValidate={shouldValidate} 
               selectedExaminer={null} 
-              clearSelectedExaminer={null} />
+              clearSelectedExaminer={null}
+              venues={venues} />
           }
         </AsyncLoad>
       </Section>

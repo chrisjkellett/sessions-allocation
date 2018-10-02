@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Form } from '../../../../components/Forms';
 import { FlexItem, FlexContainer } from '../../../../components/Layout';
-// import SessionsFormContent from './SessionsFormContent';
+import SessionsFormContent from './SessionsFormContent';
 
 class SessionsForm extends Component {
   componentDidMount(){
-    // const { selectedSession } = this.props;
+    const { venues } = this.props;
     // selectedSession && this.props.handlers.prepareForEdit(selectedSession);
+    if(venues !== null) this.props.handlers.addAsyncForm(venues[0].name, 'venue'); 
   }
 
   componentWillUnmount(){
@@ -14,17 +15,17 @@ class SessionsForm extends Component {
   }
   
   render() {
-    const { handlers, values, shouldValidate, selectedSession, extraLarge } = this.props;
+    const { handlers, values, shouldValidate, selectedSession } = this.props;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
     return (
         <Form handlers={handlers} label={label} edit={selectedSession}>
           <FlexContainer>
             <FlexItem>
-              {/* <SessionsFormContent 
+              <SessionsFormContent 
                 values={values} 
                 handlers={handlers} 
                 shouldValidate={shouldValidate} 
-                group={1} />     */}
+                group={1} />    
             </FlexItem>
             <FlexItem>
               {/* <SessionsFormContent 
