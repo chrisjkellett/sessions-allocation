@@ -50,9 +50,11 @@ class Sessions extends Component{
 
     change: (event, type, id, index) => {
       const { session } = this.state;
+      const { examiners, sessions } = this.props;
       const value = getInputValue(event, type, index, [ ...session[id].value ]);
       const update = updateState(this.state, id, { value: value, id }, 'session');
       update.session[id].validation = checkValidity({ ...update.session[id] });
+      this.props.calculateAvailableExaminers(examiners, update.session, sessions);
       this.setState(update);
     },
 
@@ -129,6 +131,7 @@ class Sessions extends Component{
 const mapStateToProps = state => {
   return {
     sessions: state.sess.sessions,
+    examiners: state.ex.examiners,
     venues: state.venue.venues,
     filteredSessions: state.sess.filteredSessions,
   }

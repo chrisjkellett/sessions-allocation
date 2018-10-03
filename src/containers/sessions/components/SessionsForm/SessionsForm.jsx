@@ -13,16 +13,6 @@ class SessionsForm extends Component {
     showSupport: false,
   }
 
-  handlers = {
-    open: (type) => {
-      this.setState((prev) => ({ [type] : true }))
-    },
-
-    close: (type) => {
-      this.setState((prev) => ({ [type] : false }))
-    }
-  }
-
   componentDidMount(){
     const { venues } = this.props;
     // selectedSession && this.props.handlers.prepareForEdit(selectedSession);
@@ -34,6 +24,16 @@ class SessionsForm extends Component {
 
   componentWillUnmount(){
     // this.props.clearSelectedSession();
+  }
+
+  handlers = {
+    open: (type) => {
+      this.setState((prev) => ({ [type] : true }))
+    },
+
+    close: (type) => {
+      this.setState((prev) => ({ [type] : false }))
+    }
   }
   
   render() {
