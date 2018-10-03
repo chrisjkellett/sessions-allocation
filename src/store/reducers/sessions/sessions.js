@@ -22,12 +22,8 @@ const reducer = (state = initialState, action) => {
       const session = { ...action.session, id: action.id} 
       return { ...state, sessions: sortBy(state.sessions.concat(session), 'session_date')}
 
-    // case actionTypes.ADD_SESSION_SUCCESS:
-    //   sessions = state.sessions.concat(addId(action.session, action.id));
-    //   return updateState(state, {sessions: sortBy(sessions, 'session_date'), error: false});
-    
-    // case actionTypes.DELETE_SESSION_SUCCESS:
-    //   return updateState(state, {sessions: action.sessions, error: false})
+    case actionTypes.DELETE_SESSION_SUCCESS:
+      return { ...state, sessions: action.sessions}
 
     case actionTypes.UPDATE_SESSION_SUCCESS:
       return { ...state, sessions: sortBy(state.sessions.filter(v => v.id !== action.id).concat(action.session), 'session_date') }

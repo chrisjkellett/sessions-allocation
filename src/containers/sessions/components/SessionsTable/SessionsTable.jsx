@@ -19,7 +19,7 @@ const SessionsTable = ({ data, filtered, handlers, isConfirming, venues }) => {
       <IsNotEmpty data={sessions}>
         {sessions.map(s => (
           <Tr key={s.id}>
-            <TdDate data={s['session_date']} subContent={<SubTd data={[s.time, s.venue]} inline /> } />
+            <TdDate data={s['session_date']} subContent={<SubTd data={[s.venue]} /> } />
             <TdIcons array={s.levels} />
             <Td data={s.examiners} />
             <Td data={s.support} />

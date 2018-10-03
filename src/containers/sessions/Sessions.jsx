@@ -37,8 +37,9 @@ class Sessions extends Component{
 
     },
 
-    delete: (examiner) => {
-
+    delete: (session) => {
+      const { token, sessions } = this.props;
+      this.props.deleteSession(sessions, session, token);
     },
 
     expand: () => {
@@ -157,6 +158,7 @@ const mapDispatchToProps = dispatch => {
     filterSessions: (value, filterBy) => dispatch(actions.filterSessionsByHeader(value, filterBy)),
     calculateAvailableExaminers: (examiners, session, sessions) => dispatch(exOpActions.calculateAvailableExaminers(examiners, session, sessions)),
     addSession: (sessions, session, token) => dispatch(actions.addSession(sessions, session, token)),
+    deleteSession: (sessions, session, token) => dispatch(actions.deleteSession(sessions, session, token))
   }
 }
 

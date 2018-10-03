@@ -50,9 +50,10 @@ export const deleteSession = (sessions, session, token) => {
   return dispatch => {
     axios.delete('/sessions/' + session.id + '.json?auth=' + token)
       .then(() => {
-        dispatch(deleteSessionSuccess(sessions));
+        const filtered = sessions.filter(s => s.id !== session.id);
+        dispatch(deleteSessionSuccess(filtered));
         dispatch(logResponse(session, {type: 'session', action: 'deleted'}));
-        dispatch(updatePeriods(sessions));
+        dispatch(updatePeriods(filtered));
       })
       .catch(error => {
         dispatch(logError(error, {type: 'session', action: 'delete'}));
