@@ -1,11 +1,10 @@
 import React from 'react';
-import { Table, IsNotEmpty, Tr, Td, TdIcons, TdIconsForTime, ShowHideBtn } from '../../../../../../components';
+import { Table, IsNotEmpty, Tr, Td, SubTd, TdIcons, TdIconsForTime, ShowHideBtn } from '../../../../../../components';
 
 const ExaminersAvailable = ({ data, handlers, session, closeHandler }) => {
   const filteredData = data.filter(e => e.available);
   const labels = [
-    'name', 
-    'roles', 
+    'examiners', 
     'levels', 
     'availability', 
     <ShowHideBtn handler={closeHandler} type={'showExaminers'} hide />
@@ -20,8 +19,7 @@ const ExaminersAvailable = ({ data, handlers, session, closeHandler }) => {
             name={e.name} 
             handler={handlers.selectExaminer} 
             selected={session.examiners.value.includes(e.name)} >
-            <Td data={e.name} />
-            <Td data={e.roles} smallFont />
+            <Td data={e.name} subContent={<SubTd data={e.roles} />} />
             <TdIcons array={e.levels} />
             <TdIconsForTime array={e.availability} noBorders />
             <td></td>

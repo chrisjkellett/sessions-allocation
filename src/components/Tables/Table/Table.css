@@ -3,8 +3,9 @@
 }
 
 .LimitedTable {
-  margin-top: 20px;
-  max-height: 273px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  max-height: 306px;
   overflow-y: scroll;
 }
 
@@ -18,11 +19,6 @@
   background: rgba(240,240,240, 0.98);
   top: 40px;
   z-index: 1;
-}
-
-.RowLimited th {
-  padding-top: 0 !important;
-  top: 0 !important;
 }
 
 .RowHeader th:first-child {
@@ -41,3 +37,26 @@
   width: 10%;
   text-align: right;
 }
+
+.RowHeaderLimited th{
+  padding: 0;
+  border-bottom: 1px solid grey;
+  font-weight: initial;
+  position: sticky;
+  text-align: left;
+  vertical-align: bottom;
+  background: rgba(240,240,240, 0.98);
+  top: 0;
+  z-index: 1;
+  width: 25%
+}
+
+.RowHeaderLimited th:first-child{
+  width: 40%;
+}
+
+.RowHeaderLimited th:nth-child(4){
+  width: 10%;
+  text-align: right;
+}
+
