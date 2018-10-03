@@ -18,6 +18,10 @@ const reducer = (state = initialState, action) => {
     case actionTypes.LOAD_SESSIONS_SUCCESS:
       return { ...state, sessions: sortBy(objectToArray(action.sessions), 'session_date') };
 
+    case actionTypes.ADD_SESSION_SUCCESS:
+      const session = { ...action.session, id: action.id} 
+      return { ...state, sessions: sortBy(state.sessions.concat(session), 'session_date')}
+
     // case actionTypes.ADD_SESSION_SUCCESS:
     //   sessions = state.sessions.concat(addId(action.session, action.id));
     //   return updateState(state, {sessions: sortBy(sessions, 'session_date'), error: false});

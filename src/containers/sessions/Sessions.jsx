@@ -11,6 +11,7 @@ import SessionsForm from './components/SessionsForm/SessionsForm';
 import constructSessionState from '../../store/constructors/sessions';
 import * as actions from '../../store/actions/sessions/sessions';
 import * as exOpActions from '../../store/actions/examiner-options/examiner-options';
+import { forSubmit, checkFormValidity } from '../utility';
 
 
 class Sessions extends Component{
@@ -45,7 +46,20 @@ class Sessions extends Component{
     },
 
     submit: (event) => {
-
+      const { session } = this.state;
+      const { token, sessions } = this.props;
+      event.preventDefault();
+      this.handlers.validate();
+      const sessionForDB = forSubmit(session);
+      
+      if(checkFormValidity(session)){
+      //   if(selectedExaminer === null)
+        this.props.addSession(sessions, sessionForDB, token)
+      //   else
+      //     this.props.updateExaminer(examinerForDB, selectedExaminer.id, token)
+      this.handlers.closeForm();
+      this.setState({ examiner: constructSessionState(), shouldValidate: false })
+      }
     },
 
     change: (event, type, id, index) => {
@@ -130,6 +144,7 @@ class Sessions extends Component{
 
 const mapStateToProps = state => {
   return {
+    token: state.auth.token,
     sessions: state.sess.sessions,
     examiners: state.ex.examiners,
     venues: state.venue.venues,
@@ -140,7 +155,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     filterSessions: (value, filterBy) => dispatch(actions.filterSessionsByHeader(value, filterBy)),
-    calculateAvailableExaminers: (examiners, session, sessions) => dispatch(exOpActions.calculateAvailableExaminers(examiners, session, sessions))
+    calculateAvailableExaminers: (examiners, session, sessions) => dispatch(exOpActions.calculateAvailableExaminers(examiners, session, sessions)),
+    addSession: (sessions, session, token) => dispatch(actions.addSession(sessions, session, token)),
   }
 }
 
