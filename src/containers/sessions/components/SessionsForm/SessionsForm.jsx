@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import SessionsFormContent from './components/SessionsFormContent/SessionsFormContent';
 import ExaminersAvailable from './components/ExaminersAvailable/ExaminersAvailable';
 import SupportAvailable from './components/SupportAvailable/SupportAvailable';
+import SameDaySessions from './components/SameDaySessions/SameDaySessions';
 import * as exOpActions from '../../../../store/actions/examiner-options/examiner-options';
 import { Form, FlexContainer, FlexItem, ShowHideBtn} from '../../../../components';
 
@@ -11,6 +12,7 @@ class SessionsForm extends Component {
   state = {
     showExaminers: false,
     showSupport: false,
+    showSameDay: false,
   }
 
   componentDidMount(){
@@ -38,8 +40,8 @@ class SessionsForm extends Component {
   
   render() {
     const { handlers, values, shouldValidate, selectedSession } = this.props;
-    const { availableExaminers, availableSupport } = this.props;
-    const { showExaminers, showSupport } = this.state;
+    const { availableExaminers, availableSupport, sessions } = this.props;
+    const { showExaminers, showSupport, showSameDay } = this.state;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
     return (
         <Form handlers={handlers} label={label} edit={selectedSession} extraLarge >
@@ -56,10 +58,14 @@ class SessionsForm extends Component {
                 && <ShowHideBtn handler={this.handlers.open} type="showExaminers" label="select examiners"/>}
               {!showSupport 
                 && <ShowHideBtn handler={this.handlers.open} type="showSupport" label="select support"/>}
+              {!showSameDay
+                && <ShowHideBtn handler={this.handlers.open} type="showSameDay" label="show same day sessions"/>}
               {showExaminers 
                 && <ExaminersAvailable data={availableExaminers} handlers={handlers} session={values} closeHandler={this.handlers.close} />}
               {showSupport 
                 && <SupportAvailable data={availableSupport} handlers={handlers} session={values} closeHandler={this.handlers.close} />}
+              {showSameDay 
+                && <SameDaySessions data={sessions} session={values} closeHandler={this.handlers.close} />}
             </FlexItem>
           </FlexContainer>
         </Form>
