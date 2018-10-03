@@ -31,7 +31,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_SESSION:
       return { ...state, selectedSession: state.sessions.find(s => s.id === action.id ) }
 
-    case actionTypes.DEACTIVATE_SELECTED_SESSION:
+    case actionTypes.CLEAR_SELECTED_SESSION:
       return {...state, selectedSession: null}
 
     case actionTypes.FILTER_SESSIONS_BY_HEADER:

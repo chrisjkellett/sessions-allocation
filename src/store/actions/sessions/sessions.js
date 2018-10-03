@@ -97,9 +97,9 @@ export const fetchSession = (id) => {
   }
 }
 
-export const deActivateSelectedSession = () => {
+export const clearSelectedSession = () => {
   return {
-    type: actionTypes.DEACTIVATE_SELECTED_SESSION
+    type: actionTypes.CLEAR_SELECTED_SESSION
   }
 }
 

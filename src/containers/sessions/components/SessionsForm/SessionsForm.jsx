@@ -16,16 +16,16 @@ class SessionsForm extends Component {
   }
 
   componentDidMount(){
-    const { venues } = this.props;
-    // selectedSession && this.props.handlers.prepareForEdit(selectedSession);
-    if(venues !== null) this.props.handlers.addAsyncForm(venues[0].name, 'venue'); 
+    const { venues, selectedSession } = this.props;
+    selectedSession && this.props.handlers.prepareForEdit(selectedSession);
+    if(venues !== null && !selectedSession) this.props.handlers.addAsyncForm(venues[0].name, 'venue'); 
 
     const { examiners, values, sessions } = this.props;
     this.props.calculateAvailableExaminers(examiners, values, sessions);
   }
 
   componentWillUnmount(){
-    // this.props.clearSelectedSession();
+    this.props.clearSelectedSession();
   }
 
   handlers = {

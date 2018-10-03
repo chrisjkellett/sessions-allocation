@@ -11,7 +11,7 @@ import SessionsForm from './components/SessionsForm/SessionsForm';
 import constructSessionState from '../../store/constructors/sessions';
 import * as actions from '../../store/actions/sessions/sessions';
 import * as exOpActions from '../../store/actions/examiner-options/examiner-options';
-import { forSubmit, checkFormValidity } from '../utility';
+import { forSubmit, checkFormValidity, distributeValuesForEditing } from '../utility';
 
 
 class Sessions extends Component{
@@ -30,11 +30,13 @@ class Sessions extends Component{
     },
 
     edit: (id) => {
-
+      this.props.fetchSession(id);
+      this.handlers.openForm();
     },
 
     prepareForEdit: (selected) => {
-
+      const { session } = this.state;
+      this.setState({ session: distributeValuesForEditing(session, selected) })
     },
 
     delete: (session) => {
@@ -119,7 +121,8 @@ class Sessions extends Component{
 
   render(){  
     const { showForm, isConfirming, session, shouldValidate } = this.state;
-    const { sessions, filteredSessions, venues } = this.props;
+    const { sessions, filteredSessions, venues, selectedSession } = this.props;
+    const { clearSelectedSession } = this.props;
 
     return (
       <Section showForm={showForm}>
@@ -135,7 +138,9 @@ class Sessions extends Component{
             <SessionsForm 
               handlers={this.handlers} 
               values={session} 
-              shouldValidate={shouldValidate}  />
+              shouldValidate={shouldValidate}
+              selectedSession={selectedSession} 
+              clearSelectedSession={clearSelectedSession}  />
           }
         </AsyncLoad>
       </Section>
@@ -147,6 +152,7 @@ const mapStateToProps = state => {
   return {
     token: state.auth.token,
     sessions: state.sess.sessions,
+    selectedSession: state.sess.selectedSession,
     examiners: state.ex.examiners,
     venues: state.venue.venues,
     filteredSessions: state.sess.filteredSessions,
@@ -158,7 +164,9 @@ const mapDispatchToProps = dispatch => {
     filterSessions: (value, filterBy) => dispatch(actions.filterSessionsByHeader(value, filterBy)),
     calculateAvailableExaminers: (examiners, session, sessions) => dispatch(exOpActions.calculateAvailableExaminers(examiners, session, sessions)),
     addSession: (sessions, session, token) => dispatch(actions.addSession(sessions, session, token)),
-    deleteSession: (sessions, session, token) => dispatch(actions.deleteSession(sessions, session, token))
+    deleteSession: (sessions, session, token) => dispatch(actions.deleteSession(sessions, session, token)),
+    fetchSession: (id) => dispatch(actions.fetchSession(id)),
+    clearSelectedSession: () => dispatch(actions.clearSelectedSession()),
   }
 }
 
