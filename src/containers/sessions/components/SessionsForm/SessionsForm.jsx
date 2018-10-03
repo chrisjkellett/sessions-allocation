@@ -37,6 +37,11 @@ class SessionsForm extends Component {
       this.setState((prev) => ({ [type] : false }))
     }
   }
+
+  hasTableOpen = () => {
+    const stateAsArray = Object.keys(this.state);
+    return stateAsArray.some(item => this.state[item])
+  }
   
   render() {
     const { handlers, values, shouldValidate, selectedSession } = this.props;
@@ -44,7 +49,7 @@ class SessionsForm extends Component {
     const { showExaminers, showSupport, showSameDay } = this.state;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
     return (
-        <Form handlers={handlers} label={label} edit={selectedSession} extraLarge >
+        <Form handlers={handlers} label={label} edit={selectedSession} extraLarge={this.hasTableOpen()}>
           <FlexContainer>
             <FlexItem>
               <SessionsFormContent 
