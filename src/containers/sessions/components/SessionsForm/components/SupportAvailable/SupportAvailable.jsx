@@ -14,7 +14,7 @@ const SupportAvailable = ({ data, handlers, session, closeHandler }) => {
             <Td data={e.name} />
             <Td data={e.roles} smallFont />
             <td></td>
-            <TdIconsForTime array={e.availability} />
+            <TdIconsForTime array={e.availability} noBorders/>
             <td></td>
           </Tr>
         ))}

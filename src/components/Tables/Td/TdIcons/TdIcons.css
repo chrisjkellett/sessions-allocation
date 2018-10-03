@@ -17,3 +17,11 @@
 .IconsLong span {
   font-size: 60%;
 }
+
+.NoBorders {
+  border: 0 !important;
+  padding: 4px;
+  margin: 0;
+  width: initial;
+  background: lightgreen;
+}

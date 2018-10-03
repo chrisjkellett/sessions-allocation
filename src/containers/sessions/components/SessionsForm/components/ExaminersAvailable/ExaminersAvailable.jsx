@@ -14,7 +14,7 @@ const ExaminersAvailable = ({ data, handlers, session, closeHandler }) => {
             <Td data={e.name} />
             <Td data={e.roles} smallFont />
             <TdIcons array={e.levels} />
-            <TdIconsForTime array={e.availability} />
+            <TdIconsForTime array={e.availability} noBorders />
             <td></td>
           </Tr>
         ))}
