@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import SessionsFormContent from './components/SessionsFormContent/SessionsFormContent';
 import ExaminersAvailable from './components/ExaminersAvailable/ExaminersAvailable';
+import SupportAvailable from './components/SupportAvailable/SupportAvailable';
 import * as exOpActions from '../../../../store/actions/examiner-options/examiner-options';
 import { Form, FlexContainer, FlexItem, ShowHideBtn} from '../../../../components';
 
@@ -56,9 +57,9 @@ class SessionsForm extends Component {
               {!showSupport 
                 && <ShowHideBtn handler={this.handlers.open} type="showSupport" label="select support"/>}
               {showExaminers 
-                && <ExaminersAvailable data={availableExaminers} handlers={handlers} session={values} closeHandler={this.handlers.close} closeType='showExaminers' />}
+                && <ExaminersAvailable data={availableExaminers} handlers={handlers} session={values} closeHandler={this.handlers.close} />}
               {showSupport 
-                && <ExaminersAvailable data={availableSupport} handlers={handlers} session={values} closeHandler={this.handlers.close} closeType='showSupport' />}
+                && <SupportAvailable data={availableSupport} handlers={handlers} session={values} closeHandler={this.handlers.close} />}
             </FlexItem>
           </FlexContainer>
         </Form>

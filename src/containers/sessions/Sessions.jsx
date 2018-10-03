@@ -65,6 +65,15 @@ class Sessions extends Component{
       }))
     },
 
+    selectSupport: (name) => {
+      this.setState((prev) => ({
+        session: { 
+          ...prev.session, 
+          support: {...prev.session.support, 
+          value: updateArray(prev.session.support.value, name)}}
+      }))
+    },
+
     openForm: () => {
       this.setState({ showForm: true });
     },
