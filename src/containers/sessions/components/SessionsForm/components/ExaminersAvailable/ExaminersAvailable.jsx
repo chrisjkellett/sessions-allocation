@@ -4,7 +4,7 @@ import { Table, IsNotEmpty, Tr, Td, SubTd, TdIcons, TdIconsForTime, ShowHideBtn 
 const ExaminersAvailable = ({ data, handlers, session, closeHandler }) => {
   const filteredData = data.filter(e => e.available);
   const labels = [
-    'examiners', 
+    <span>{'examiners (' + filteredData.length + ' available)'}</span>, 
     'levels', 
     'availability', 
     <ShowHideBtn handler={closeHandler} type={'showExaminers'} hide />
