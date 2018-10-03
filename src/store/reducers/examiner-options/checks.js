@@ -1,21 +1,6 @@
 import moment from 'moment';
 import {isSameTime} from './utility';
 
-// export const type = (examiner, sessionType) => {
-//   console.log(examiner.roles.includes('Supervisor'));
-//   if(sessionType === 'Written'){
-//     if(!examiner.roles.includes('Supervisor'))
-//       examiner.avail.failsRoles = true;
-//   }
-
-//   if(sessionType === 'Speaking'){
-//     if(!examiner.roles.includes('Speaking Examiner'))
-//       examiner.avail.failsRoles = true;
-//   }
-
-//   return examiner;
-// }
-
 export const type = (examiner, sessionType) => {
   if(sessionType === 'Writing'){
     if(!examiner.roles.includes('Supervisor'))
@@ -34,9 +19,9 @@ export const type = (examiner, sessionType) => {
   return examiner;
 }
 
-export const levels = (examiner, sessionLevels) => {
+export const levels = (examiner, sessionLevels, sessionType) => {
   const {levels, avail} = examiner;
-  if(examiner.levels && sessionLevels.length !== 0){
+  if(examiner.levels && sessionLevels.length !== 0 && sessionType === 'Speaking'){
     if(!sessionLevels.every(level => levels.includes(level)))
       avail.failsLevel = true;
   }
