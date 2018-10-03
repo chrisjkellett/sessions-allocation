@@ -50,16 +50,16 @@ class Sessions extends Component{
 
     submit: (event) => {
       const { session } = this.state;
-      const { token, sessions } = this.props;
+      const { token, sessions, selectedSession } = this.props;
       event.preventDefault();
       this.handlers.validate();
       const sessionForDB = forSubmit(session);
       
       if(checkFormValidity(session)){
-      //   if(selectedExaminer === null)
-        this.props.addSession(sessions, sessionForDB, token)
-      //   else
-      //     this.props.updateExaminer(examinerForDB, selectedExaminer.id, token)
+        if(selectedSession === null)
+          this.props.addSession(sessions, sessionForDB, token)
+        else
+        this.props.updateSession(sessions, sessionForDB, selectedSession.id, token)
       this.handlers.closeForm();
       this.setState({ examiner: constructSessionState(), shouldValidate: false })
       }
@@ -165,6 +165,7 @@ const mapDispatchToProps = dispatch => {
     calculateAvailableExaminers: (examiners, session, sessions) => dispatch(exOpActions.calculateAvailableExaminers(examiners, session, sessions)),
     addSession: (sessions, session, token) => dispatch(actions.addSession(sessions, session, token)),
     deleteSession: (sessions, session, token) => dispatch(actions.deleteSession(sessions, session, token)),
+    updateSession: (sessions, session, id, token) => dispatch(actions.updateSession(sessions, session, id, token)),
     fetchSession: (id) => dispatch(actions.fetchSession(id)),
     clearSelectedSession: () => dispatch(actions.clearSelectedSession()),
   }

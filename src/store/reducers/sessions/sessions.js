@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, sessions: action.sessions}
 
     case actionTypes.UPDATE_SESSION_SUCCESS:
-      return { ...state, sessions: sortBy(state.sessions.filter(v => v.id !== action.id).concat(action.session), 'session_date') }
+      return { ...state, sessions: sortBy(action.sessions, 'session_date') }
 
     case actionTypes.FETCH_SESSION:
       return { ...state, selectedSession: state.sessions.find(s => s.id === action.id ) }

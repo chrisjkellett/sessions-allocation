@@ -72,9 +72,10 @@ export const updateSession = (sessions, session, id, token) => {
   return dispatch => {
     axios.put('/sessions/' + id + '.json?auth=' + token, session)
       .then(() => {
-        dispatch(updateSessionSuccess(session, id));
+        const updated = sessions.filter(s => s.id !== id).concat({...session, id: id});
+        dispatch(updateSessionSuccess(updated));
         dispatch(logResponse(session, {type: 'session', action: 'updated'}));
-        dispatch(updatePeriods(sessions));
+        dispatch(updatePeriods(updated));
       })
       .catch(error => {
         dispatch(logError(error, {type: 'session', action: 'update'}));
@@ -82,11 +83,10 @@ export const updateSession = (sessions, session, id, token) => {
   }
 }
 
-export const updateSessionSuccess = (session, id) => {
+export const updateSessionSuccess = (sessions) => {
   return {
     type: actionTypes.UPDATE_SESSION_SUCCESS,
-    session: session,
-    id: id
+    sessions: sessions
   }
 }
 
