@@ -1,10 +1,7 @@
 import React from 'react';
-import { Table, IsNotEmpty, Tr, Td, SubTd, TdIcons, ShowHideBtn } from '../../../../../../components';
-import moment from 'moment';
+import { Table, Tr, Td, SubTd, TdIcons, ShowHideBtn } from '../../../../../../components';
 
-const SameDaySessions = ({ data, session, closeHandler }) => {
-  const sessionDate = session['session_date'].value;
-  const filtered = data.filter(s => moment(s['session_date']).isSame(sessionDate));
+const SameDaySessions = ({ data, closeHandler }) => {
   const labels = [
     null,
     'examiners', 
@@ -14,16 +11,14 @@ const SameDaySessions = ({ data, session, closeHandler }) => {
 
   return(
     <Table labels={labels} limited>
-      <IsNotEmpty data={filtered}>
-        {filtered.map(s => (
-          <Tr key={s.id} >
-            <TdIcons array={s.levels} subContent={<SubTd data={[s.type, s.venue, s.time]} inline/>} />
-            <Td data={s.examiners} />
-            <Td data={s.support} />
-            <td></td>
-          </Tr>
-        ))}
-      </IsNotEmpty>
+      {data.map(s => (
+        <Tr key={s.id} >
+          <TdIcons array={s.levels} subContent={<SubTd data={[s.type, s.venue, s.time]} inline/>} />
+          <Td data={s.examiners} />
+          <Td data={s.support} />
+          <td></td>
+        </Tr>
+      ))}
     </Table>
   )
 }
