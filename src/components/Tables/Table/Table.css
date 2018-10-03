@@ -2,6 +2,11 @@
   padding: 0 5px;
 }
 
+.LimitedTable {
+  max-height: 273px;
+  overflow-y: scroll;
+}
+
 .RowHeader th{
   padding: 0;
   border-bottom: 1px solid grey;
@@ -13,6 +18,10 @@
   background: rgba(240,240,240, 0.98);
   vertical-align: bottom;
   z-index: 1;
+}
+
+.RowLimited th {
+  top: 0 !important;
 }
 
 .RowHeader th:first-child {

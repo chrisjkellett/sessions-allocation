@@ -3,8 +3,16 @@ import { Table, IsNotEmpty, Tr, Td, TdIcons, TdIconsForTime, ShowHideBtn } from 
 
 const ExaminersAvailable = ({ data, handlers, session, closeHandler }) => {
   const filteredData = data.filter(e => e.available);
+  const labels = [
+    'name', 
+    'roles', 
+    'levels', 
+    'availability', 
+    <ShowHideBtn handler={closeHandler} type={'showExaminers'} hide />
+  ];
+
   return(
-    <Table labels={['name', 'roles', 'levels', 'availability', <ShowHideBtn handler={closeHandler} type={'showExaminers'} hide />]}>
+    <Table labels={labels} limited>
       <IsNotEmpty data={filteredData}>
         {filteredData.map(e => (
           <Tr 
