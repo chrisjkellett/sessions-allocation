@@ -21,8 +21,8 @@ class SessionsForm extends Component {
     selectedSession && this.props.handlers.prepareForEdit(selectedSession);
     if(venues !== null && !selectedSession) this.props.handlers.addAsyncForm(venues[0].name, 'venue'); 
 
-    const { examiners, values, sessions } = this.props;
-    this.props.calculateAvailableExaminers(examiners, values, sessions);
+    const { examiners, session, sessions } = this.props;
+    this.props.calculateAvailableExaminers(examiners, session, sessions);
   }
 
   componentWillUnmount(){
@@ -44,18 +44,18 @@ class SessionsForm extends Component {
   }
   
   render() {
-    const { handlers, values, shouldValidate, selectedSession } = this.props;
+    const { handlers, session, shouldValidate, selectedSession } = this.props;
     const { availableExaminers, availableSupport, sessions } = this.props;
     const { showExaminers, showSupport, showSameDay } = this.state;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
-    const forSDSessions = sessions.filter(s => moment(s['session_date']).isSame(values['session_date'].value));
+    const forSDSessions = sessions.filter(s => moment(s['session_date']).isSame(session['session_date'].value));
 
     return (
         <Form handlers={handlers} label={label} edit={selectedSession} extraLarge={this.hasTableOpen()}>
           <FlexContainer>
             <FlexItem>
               <SessionsFormContent 
-                values={values} 
+                values={session} 
                 handlers={handlers} 
                 shouldValidate={shouldValidate} 
                 group={1} />    
@@ -68,9 +68,9 @@ class SessionsForm extends Component {
               {!showSameDay && forSDSessions.length > 0
                 && <ShowHideBtn handler={this.handlers.open} type="showSameDay" label="show same day sessions"/>}
               {showExaminers 
-                && <ExaminersAvailable data={availableExaminers} handlers={handlers} session={values} closeHandler={this.handlers.close} />}
+                && <ExaminersAvailable data={availableExaminers} handlers={handlers} session={session} closeHandler={this.handlers.close} />}
               {showSupport 
-                && <SupportAvailable data={availableSupport} handlers={handlers} session={values} closeHandler={this.handlers.close} />}
+                && <SupportAvailable data={availableSupport} handlers={handlers} session={session} closeHandler={this.handlers.close} />}
               {showSameDay 
                 && <SameDaySessions data={forSDSessions} closeHandler={this.handlers.close} />}
             </FlexItem>

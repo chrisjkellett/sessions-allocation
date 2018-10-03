@@ -137,7 +137,7 @@ class Sessions extends Component{
           {showForm && 
             <SessionsForm 
               handlers={this.handlers} 
-              values={session} 
+              session={session} 
               shouldValidate={shouldValidate}
               selectedSession={selectedSession} 
               clearSelectedSession={clearSelectedSession}  />
