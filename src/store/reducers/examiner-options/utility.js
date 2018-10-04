@@ -10,7 +10,7 @@ export const examinerCheck = ({examiners, session, sessions}) => {
     .map(e => check.type(e, session.type.value))
     .map(e => check.levels(e, session.levels.value, session.type.value))
     .map(e => check.day(e, session.session_date.value, session.time.value))
-    .map(e => check.isBusy(e, sameDayCheck({sessions: sessions, sessionDate: session.session_date.value}), session.time.value))
+    .map(e => check.isBusy(e, sameDayCheck(sessions, session.session_date.value), session.time.value))
     .map(e => check.isSupportAlso(clone(e), session.support.value))
     .map(e => check.isAvailable(e))
 }
@@ -19,12 +19,12 @@ export const supportCheck = ({examiners, session, sessions}) => {
   return examiners
     .filter(e => e.roles.includes('Support staff'))
     .map(e => check.day(e, session.session_date.value, session.time.value))
-    .map(e => check.isBusy(e, sameDayCheck({sessions: sessions, sessionDate: session.session_date.value}), session.time.value))
+    .map(e => check.isBusy(e, sameDayCheck(sessions, session.session_date.value), session.time.value))
     .map(e => check.isExaminerAlso(clone(e), session.examiners.value))
     .map(e => check.isAvailable(e))
 }
 
-export const sameDayCheck = ({sessions, sessionDate}) => {
+export const sameDayCheck = (sessions, sessionDate) => {
   return sessions === null ? [] : sessions.filter(s => moment(s.session_date).isSame(sessionDate));
 }
 

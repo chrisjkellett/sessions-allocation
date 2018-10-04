@@ -48,7 +48,9 @@ class SessionsForm extends Component {
     const { availableExaminers, availableSupport, sessions } = this.props;
     const { showExaminers, showSupport, showSameDay } = this.state;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
-    const forSDSessions = sessions.filter(s => moment(s['session_date']).isSame(session['session_date'].value));
+    const selectedId = selectedSession ? selectedSession.id : null;
+    const forSDSessions = sessions
+    .filter(s => s.id !== selectedId && moment(s['session_date']).isSame(session['session_date'].value));
 
     return (
         <Form handlers={handlers} label={label} edit={selectedSession} extraLarge={this.hasTableOpen()}>
