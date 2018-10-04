@@ -67,11 +67,12 @@ class Sessions extends Component{
 
     change: (event, type, id, index) => {
       const { session } = this.state;
-      const { examiners, sessions } = this.props;
+      const { examiners, sessions, selectedSession } = this.props;
+      const sessionId = selectedSession ? selectedSession.id : null;
       const value = getInputValue(event, type, index, [ ...session[id].value ]);
       const update = updateState(this.state, id, { value: value, id }, 'session');
       update.session[id].validation = checkValidity({ ...update.session[id] });
-      this.props.calculateAvailableExaminers(examiners, update.session, sessions);
+      this.props.calculateAvailableExaminers(examiners, update.session, sessions, sessionId);
       this.setState(update);
     },
 
@@ -162,7 +163,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     filterSessions: (value, filterBy) => dispatch(actions.filterSessionsByHeader(value, filterBy)),
-    calculateAvailableExaminers: (examiners, session, sessions) => dispatch(exOpActions.calculateAvailableExaminers(examiners, session, sessions)),
+    calculateAvailableExaminers: (examiners, session, sessions, sessionId) => {
+      dispatch(exOpActions.calculateAvailableExaminers(examiners, session, sessions, sessionId))
+    },
     addSession: (sessions, session, token) => dispatch(actions.addSession(sessions, session, token)),
     deleteSession: (sessions, session, token) => dispatch(actions.deleteSession(sessions, session, token)),
     updateSession: (sessions, session, id, token) => dispatch(actions.updateSession(sessions, session, id, token)),

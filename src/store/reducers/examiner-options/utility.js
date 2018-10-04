@@ -4,28 +4,28 @@ import {timeKeys} from '../../data';
 
 const clone = src => Object.assign({}, src);
 
-export const examinerCheck = ({examiners, session, sessions}) => {
+export const examinerCheck = ({examiners, session, sessions, sessionId}) => {
   return examiners
     .filter(e => !e.roles.includes('Support staff') || e.roles.includes('Speaking Examiner'))
     .map(e => check.type(e, session.type.value))
     .map(e => check.levels(e, session.levels.value, session.type.value))
     .map(e => check.day(e, session.session_date.value, session.time.value))
-    .map(e => check.isBusy(e, sameDayCheck(sessions, session.session_date.value), session.time.value))
+    .map(e => check.isBusy(e, sameDayCheck(sessions, session, sessionId), session.time.value))
     .map(e => check.isSupportAlso(clone(e), session.support.value))
     .map(e => check.isAvailable(e))
 }
 
-export const supportCheck = ({examiners, session, sessions}) => {
+export const supportCheck = ({examiners, session, sessions, sessionId}) => {
   return examiners
     .filter(e => e.roles.includes('Support staff'))
     .map(e => check.day(e, session.session_date.value, session.time.value))
-    .map(e => check.isBusy(e, sameDayCheck(sessions, session.session_date.value), session.time.value))
+    .map(e => check.isBusy(e, sameDayCheck(sessions, session, sessionId), session.time.value))
     .map(e => check.isExaminerAlso(clone(e), session.examiners.value))
     .map(e => check.isAvailable(e))
 }
 
-export const sameDayCheck = (sessions, sessionDate) => {
-  return sessions === null ? [] : sessions.filter(s => moment(s.session_date).isSame(sessionDate));
+export const sameDayCheck = (sessions, session, sessionId) => {
+  return sessions === null ? [] : sessions.filter(s => s.id !== sessionId && moment(s.session_date).isSame(session.session_date.value));
 }
 
 export const filterExaminers = ({examiners, filterValue}) => {

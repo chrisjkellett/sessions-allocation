@@ -22,7 +22,8 @@ class SessionsForm extends Component {
     if(venues !== null && !selectedSession) this.props.handlers.addAsyncForm(venues[0].name, 'venue'); 
 
     const { examiners, session, sessions } = this.props;
-    this.props.calculateAvailableExaminers(examiners, session, sessions);
+    const sessionId = selectedSession ? selectedSession.id : null;
+    this.props.calculateAvailableExaminers(examiners, session, sessions, sessionId);
   }
 
   componentWillUnmount(){
@@ -94,8 +95,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    calculateAvailableExaminers: (examiners, session, sessions) => {
-      dispatch(exOpActions.calculateAvailableExaminers(examiners, session, sessions))
+    calculateAvailableExaminers: (examiners, session, sessions, sessionId) => {
+      dispatch(exOpActions.calculateAvailableExaminers(examiners, session, sessions, sessionId))
     }
   }
 }
