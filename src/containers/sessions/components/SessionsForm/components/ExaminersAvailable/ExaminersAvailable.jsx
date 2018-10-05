@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, IsNotEmpty, Tr, Td, SubTd, TdIcons, TdIconsForTime, ShowHideBtn } from '../../../../../../components';
 
-const ExaminersAvailable = ({ data, handlers, session, closeHandler }) => {
+const ExaminersAvailable = ({ data, handlers, session, closeHandler, showUnavailable }) => {
   const filteredData = data.filter(e => e.available);
   const notAvailable = data.filter(e => !e.available);
   const labels = [
@@ -26,7 +26,7 @@ const ExaminersAvailable = ({ data, handlers, session, closeHandler }) => {
             <td></td>
           </Tr>
         ))}
-        {notAvailable.map(e => (
+        {showUnavailable && notAvailable.map(e => (
           <Tr 
             key={e.id} 
             name={e.name}

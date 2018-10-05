@@ -14,6 +14,7 @@ class SessionsForm extends Component {
     showExaminers: false,
     showSupport: false,
     showSameDay: false,
+    showUnavailable: false,
   }
 
   componentDidMount(){
@@ -37,6 +38,10 @@ class SessionsForm extends Component {
 
     close: (type) => {
       this.setState((prev) => ({ [type] : false }))
+    },
+
+    toggle: (type) => {
+      this.setState((prev) => ({ [type] : prev[type] ? false : true }))
     }
   }
 
@@ -47,9 +52,11 @@ class SessionsForm extends Component {
   render() {
     const { handlers, session, shouldValidate, selectedSession } = this.props;
     const { availableExaminers, availableSupport, sessions } = this.props;
-    const { showExaminers, showSupport, showSameDay } = this.state;
+    const { showExaminers, showSupport, showSameDay, showUnavailable } = this.state;
+    const examinersOrSupport = showExaminers || showSupport;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
     const selectedId = selectedSession ? selectedSession.id : null;
+    const labelForShowAll = showUnavailable ? 'hide unavailable' : 'show unavailable';
     const forSDSessions = sessions
     .filter(s => s.id !== selectedId && moment(s['session_date']).isSame(session['session_date'].value));
 
@@ -70,8 +77,15 @@ class SessionsForm extends Component {
                 && <ShowHideBtn handler={this.handlers.open} type="showSupport" label="select support"/>}
               {!showSameDay && forSDSessions.length > 0
                 && <ShowHideBtn handler={this.handlers.open} type="showSameDay" label="show same day sessions"/>}
+              {examinersOrSupport
+                && <ShowHideBtn handler={this.handlers.toggle} type="showUnavailable" label={labelForShowAll} />}
               {showExaminers 
-                && <ExaminersAvailable data={availableExaminers} handlers={handlers} session={session} closeHandler={this.handlers.close} />}
+                && <ExaminersAvailable 
+                  data={availableExaminers} 
+                  handlers={handlers} 
+                  session={session} 
+                  showUnavailable={showUnavailable}
+                  closeHandler={this.handlers.close} />}
               {showSupport 
                 && <SupportAvailable data={availableSupport} handlers={handlers} session={session} closeHandler={this.handlers.close} />}
               {showSameDay 
