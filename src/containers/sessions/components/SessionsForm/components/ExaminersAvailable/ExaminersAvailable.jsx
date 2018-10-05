@@ -5,7 +5,7 @@ const ExaminersAvailable = ({ data, handlers, session, closeHandler }) => {
   const filteredData = data.filter(e => e.available);
   const notAvailable = data.filter(e => !e.available);
   const labels = [
-    <span>{'examiners (' + filteredData.length + ' available)'}</span>, 
+    <span>{'examiners (' + filteredData.length + ' available, ' + session.examiners.value.length + ' selected)'}</span>, 
     'levels', 
     'availability', 
     <ShowHideBtn handler={closeHandler} type={'showExaminers'} hide />
