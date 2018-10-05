@@ -37,3 +37,11 @@
 .Selected {
   background: palegreen !important;
 }
+
+.NotAvailable {
+  opacity: 0.5;
+}
+
+.SelectedNotAvailable {
+  background: lightsalmon;
+}
