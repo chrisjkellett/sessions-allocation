@@ -87,7 +87,12 @@ class SessionsForm extends Component {
                   showUnavailable={showUnavailable}
                   closeHandler={this.handlers.close} />}
               {showSupport 
-                && <SupportAvailable data={availableSupport} handlers={handlers} session={session} closeHandler={this.handlers.close} />}
+                && <SupportAvailable 
+                    data={availableSupport} 
+                    handlers={handlers} 
+                    session={session} 
+                    showUnavailable={showUnavailable}
+                    closeHandler={this.handlers.close} />}
               {showSameDay 
                 && <SameDaySessions data={forSDSessions} closeHandler={this.handlers.close} />}
             </FlexItem>

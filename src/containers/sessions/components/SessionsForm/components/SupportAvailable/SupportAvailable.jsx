@@ -1,8 +1,9 @@
 import React from 'react';
 import { Table, IsNotEmpty, Tr, Td, SubTd, TdIconsForTime, ShowHideBtn } from '../../../../../../components';
 
-const SupportAvailable = ({ data, handlers, session, closeHandler }) => {
+const SupportAvailable = ({ data, handlers, session, closeHandler, showUnavailable }) => {
   const filteredData = data.filter(e => e.available);
+  const notAvailable = data.filter(e => !e.available);
   const labels = ['support', null, 'availability', <ShowHideBtn handler={closeHandler} type={'showSupport'} hide />]
   return(
     <Table labels={labels} limited>
@@ -16,6 +17,19 @@ const SupportAvailable = ({ data, handlers, session, closeHandler }) => {
             <Td data={e.name} subContent={<SubTd data={e.roles} />} />
             <td></td>
             <TdIconsForTime array={e.availability} noBorders/>
+            <td></td>
+          </Tr>
+        ))}
+        {showUnavailable && notAvailable.map(e => (
+          <Tr 
+            key={e.id} 
+            name={e.name}
+            disabled 
+            handler={handlers.selectExaminer} 
+            selected={session.support.value.includes(e.name)} >
+            <Td data={e.name} subContent={<SubTd data={Object.keys(e.avail).filter(item => e.avail[item])} />} />
+            <Td data={e.roles} smallFont></Td>
+            <TdIconsForTime array={e.availability} noBorders />
             <td></td>
           </Tr>
         ))}
