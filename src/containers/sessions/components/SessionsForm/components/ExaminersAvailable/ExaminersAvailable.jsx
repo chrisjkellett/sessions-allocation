@@ -34,9 +34,9 @@ const ExaminersAvailable = ({ data, handlers, session, closeHandler, showUnavail
             handler={handlers.selectExaminer} 
             selected={session.examiners.value.includes(e.name)} >
             <Td data={e.name} subContent={<SubTd data={Object.keys(e.avail).filter(item => e.avail[item])} />} />
+            <Td data={e.roles} smallFont></Td>
             <TdIcons array={e.levels} />
             <TdIconsForTime array={e.availability} noBorders />
-            <td></td>
           </Tr>
         ))}
       </IsNotEmpty>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getInputValue, updateState, updateArray } from '../utility';
+import { getInputValue, updateArray } from '../utility';
 import { checkValidity } from '../../validation/validation';
 import { Section } from '../../components/Wrappers';
 import { AddNewBtn } from '../../components/Btns/';
@@ -70,10 +70,10 @@ class Sessions extends Component{
       const { examiners, sessions, selectedSession } = this.props;
       const sessionId = selectedSession ? selectedSession.id : null;
       const value = getInputValue(event, type, index, [ ...session[id].value ]);
-      const update = updateState(this.state, id, { value: value, id }, 'session');
-      update.session[id].validation = checkValidity({ ...update.session[id] });
-      this.props.calculateAvailableExaminers(examiners, update.session, sessions, sessionId);
-      this.setState(update);
+      const updated = {...session, [id] : { ...session[id], value: value}}
+      updated[id].validation = checkValidity({ ...updated[id] });
+      this.props.calculateAvailableExaminers(examiners, updated, sessions, sessionId);
+      this.setState({ session: updated });
     },
 
     selectExaminer: (name) => {
