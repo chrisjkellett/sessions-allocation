@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import SessionsFormContent from './components/SessionsFormContent/SessionsFormContent';
-import ExaminersAvailable from './components/ExaminersAvailable/ExaminersAvailable';
-import SupportAvailable from './components/SupportAvailable/SupportAvailable';
-import SameDaySessions from './components/SameDaySessions/SameDaySessions';
-import AssignSupervisors from './components/AssignSupervisors/AssignSupervisors';
 import * as exOpActions from '../../../../store/actions/examiner-options/examiner-options';
 import { Form, FlexContainer, FlexItem, ShowHideBtn} from '../../../../components';
+import { 
+  SessionsFormContent, ExaminersAvailable, SupportAvailable, SameDaySessions, AssignSupervisors 
+} from './components';
 import moment from 'moment';
 
 class SessionsForm extends Component {
