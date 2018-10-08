@@ -1,14 +1,14 @@
 import React from 'react';
-import { Table, IsNotEmpty, Tr, Td, SubTd, TdIcons, TdIconsForTime, ShowHideBtn } from '../../../../../../components';
+import { Table, IsNotEmpty, Tr, Td, SubTd, TdIcons, TdIconsForTime } from '../../../../../../components';
 
-const ExaminersAvailable = ({ data, handlers, session, closeHandler, showUnavailable }) => {
+const ExaminersAvailable = ({ data, handlers, session, showUnavailable }) => {
   const filteredData = data.filter(e => e.available);
   const notAvailable = data.filter(e => !e.available);
   const labels = [
     <span>{'examiners (' + filteredData.length + ' available, ' + session.examiners.value.length + ' selected)'}</span>, 
     'levels', 
     'availability', 
-    <ShowHideBtn handler={closeHandler} type={'showExaminers'} hide />
+    null
   ];
 
   return(

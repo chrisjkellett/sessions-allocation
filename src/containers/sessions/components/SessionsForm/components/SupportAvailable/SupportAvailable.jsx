@@ -1,10 +1,10 @@
 import React from 'react';
-import { Table, IsNotEmpty, Tr, Td, SubTd, TdIconsForTime, ShowHideBtn } from '../../../../../../components';
+import { Table, IsNotEmpty, Tr, Td, SubTd, TdIconsForTime } from '../../../../../../components';
 
 const SupportAvailable = ({ data, handlers, session, closeHandler, showUnavailable }) => {
   const filteredData = data.filter(e => e.available);
   const notAvailable = data.filter(e => !e.available);
-  const labels = ['support', null, 'availability', <ShowHideBtn handler={closeHandler} type={'showSupport'} hide />]
+  const labels = ['support', null, 'availability', null]
   return(
     <Table labels={labels} limited>
       <IsNotEmpty data={filteredData}>

@@ -32,14 +32,6 @@ class SessionsForm extends Component {
   }
 
   handlers = {
-    open: (type) => {
-      this.setState((prev) => ({ [type] : true }))
-    },
-
-    close: (type) => {
-      this.setState((prev) => ({ [type] : false }))
-    },
-
     toggle: (type) => {
       this.setState((prev) => ({ [type] : prev[type] ? false : true }))
     }
@@ -56,7 +48,9 @@ class SessionsForm extends Component {
     const examinersOrSupport = showExaminers || showSupport;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
     const selectedId = selectedSession ? selectedSession.id : null;
-    const labelForShowAll = showUnavailable ? 'hide unavailable' : 'show unavailable';
+    const labelForShowAll = showUnavailable ? '-hide unavailable' : '+show unavailable';
+    const labelForSelectExaminers = showExaminers ? '-hide examiners' : '+select examiners';
+    const labelForSelectSupport = showSupport ? '-hide support' : '+select support';
     const forSDSessions = sessions
     .filter(s => s.id !== selectedId && moment(s['session_date']).isSame(session['session_date'].value));
 
@@ -71,12 +65,10 @@ class SessionsForm extends Component {
                 group={1} />    
             </FlexItem>
             <FlexItem double>
-              {!showExaminers 
-                && <ShowHideBtn handler={this.handlers.open} type="showExaminers" label="select examiners"/>}
-              {!showSupport 
-                && <ShowHideBtn handler={this.handlers.open} type="showSupport" label="select support"/>}
+              <ShowHideBtn handler={this.handlers.toggle} type="showExaminers" label={labelForSelectExaminers} />
+              <ShowHideBtn handler={this.handlers.toggle} type="showSupport" label={labelForSelectSupport} />
               {!showSameDay && forSDSessions.length > 0
-                && <ShowHideBtn handler={this.handlers.open} type="showSameDay" label="show same day sessions"/>}
+                && <ShowHideBtn handler={this.handlers.toggle} type="showSameDay" label="show same day sessions"/>}
               {examinersOrSupport
                 && <ShowHideBtn handler={this.handlers.toggle} type="showUnavailable" label={labelForShowAll} />}
               {showExaminers 
@@ -84,17 +76,15 @@ class SessionsForm extends Component {
                   data={availableExaminers} 
                   handlers={handlers} 
                   session={session} 
-                  showUnavailable={showUnavailable}
-                  closeHandler={this.handlers.close} />}
+                  showUnavailable={showUnavailable} />}
               {showSupport 
                 && <SupportAvailable 
                     data={availableSupport} 
                     handlers={handlers} 
                     session={session} 
-                    showUnavailable={showUnavailable}
-                    closeHandler={this.handlers.close} />}
+                    showUnavailable={showUnavailable} />}
               {showSameDay 
-                && <SameDaySessions data={forSDSessions} closeHandler={this.handlers.close} />}
+                && <SameDaySessions data={forSDSessions} />}
             </FlexItem>
           </FlexContainer>
         </Form>

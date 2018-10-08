@@ -1,12 +1,12 @@
 import React from 'react';
-import { Table, Tr, Td, SubTd, TdIcons, ShowHideBtn } from '../../../../../../components';
+import { Table, Tr, Td, SubTd, TdIcons } from '../../../../../../components';
 
-const SameDaySessions = ({ data, closeHandler }) => {
+const SameDaySessions = ({ data }) => {
   const labels = [
     null,
     'examiners', 
     'support', 
-    <ShowHideBtn handler={closeHandler} type={'showSameDay'} hide />
+    null
   ];
 
   return(
