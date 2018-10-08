@@ -5,16 +5,18 @@ import SessionsFormContent from './components/SessionsFormContent/SessionsFormCo
 import ExaminersAvailable from './components/ExaminersAvailable/ExaminersAvailable';
 import SupportAvailable from './components/SupportAvailable/SupportAvailable';
 import SameDaySessions from './components/SameDaySessions/SameDaySessions';
+import AssignSupervisors from './components/AssignSupervisors/AssignSupervisors';
 import * as exOpActions from '../../../../store/actions/examiner-options/examiner-options';
 import { Form, FlexContainer, FlexItem, ShowHideBtn} from '../../../../components';
 import moment from 'moment';
 
 class SessionsForm extends Component {
   state = {
-    showExaminers: false,
+    showExaminers: true,
     showSupport: false,
     showSameDay: false,
     showUnavailable: false,
+    showAssignSupervisors: false,
   }
 
   componentDidMount(){
@@ -44,18 +46,19 @@ class SessionsForm extends Component {
   render() {
     const { handlers, session, shouldValidate, selectedSession } = this.props;
     const { availableExaminers, availableSupport, sessions } = this.props;
-    const { showExaminers, showSupport, showSameDay, showUnavailable } = this.state;
+    const { showExaminers, showSupport, showSameDay, showUnavailable, showAssignSupervisors } = this.state;
     const examinersOrSupport = showExaminers || showSupport;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
     const selectedId = selectedSession ? selectedSession.id : null;
     const labelForShowAll = showUnavailable ? '-hide unavailable' : '+show unavailable';
     const labelForSelectExaminers = showExaminers ? '-hide examiners' : '+select examiners';
     const labelForSelectSupport = showSupport ? '-hide support' : '+select support';
+    const labelForAssignSupervisors = showAssignSupervisors ? '-hide supervisors' : '+assign supervisors';
     const forSDSessions = sessions
     .filter(s => s.id !== selectedId && moment(s['session_date']).isSame(session['session_date'].value));
 
     return (
-        <Form handlers={handlers} label={label} edit={selectedSession} extraLarge={this.hasTableOpen()}>
+        <Form handlers={handlers} label={label} edit={selectedSession} extraLarge>
           <FlexContainer>
             <FlexItem>
               <SessionsFormContent 
@@ -71,6 +74,8 @@ class SessionsForm extends Component {
                 && <ShowHideBtn handler={this.handlers.toggle} type="showSameDay" label="show same day sessions"/>}
               {examinersOrSupport
                 && <ShowHideBtn handler={this.handlers.toggle} type="showUnavailable" label={labelForShowAll} />}
+              {session.type.value === 'Writing'
+                && <ShowHideBtn handler={this.handlers.toggle} type="showAssignSupervisors" label={labelForAssignSupervisors} />}
               {showExaminers 
                 && <ExaminersAvailable 
                   data={availableExaminers} 
@@ -85,6 +90,8 @@ class SessionsForm extends Component {
                     showUnavailable={showUnavailable} />}
               {showSameDay 
                 && <SameDaySessions data={forSDSessions} />}
+              {showAssignSupervisors
+                && <AssignSupervisors />}
             </FlexItem>
           </FlexContainer>
         </Form>
