@@ -20,7 +20,7 @@ const ExaminersTable = ({ data, filtered, handlers, isConfirming }) => {
         {examiners.map(e => (
           <Tr key={e.name}>
             <Td data={e.name}/>
-            <Td data={e.roles} smallFont />
+            <Td data={e.roles} smallFont type='array'/>
             <TdIcons array={e.levels} />
             <TdIconsForTime array={e.availability} />
             <EditDeletePanel handlers={handlers} data={e} isConfirming={isConfirming} />

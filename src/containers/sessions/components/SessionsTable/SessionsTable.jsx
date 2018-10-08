@@ -19,9 +19,9 @@ const SessionsTable = ({ data, filtered, handlers, isConfirming, venues }) => {
       <IsNotEmpty data={sessions}>
         {sessions.map(s => (
           <Tr key={s.id}>
-            <TdDate data={s['session_date']} subContent={<SubTd data={[s.venue]} /> } />
+            <TdDate data={s['session_date']} subContent={<SubTd data={[s.venue, s.type]} /> } />
             <TdIcons array={s.levels} />
-            <Td data={s.examiners} />
+            <Td data={s.examiners} type={s.type}/>
             <Td data={s.support} />
             <EditDeletePanel handlers={handlers} data={s} isConfirming={isConfirming} />
           </Tr>

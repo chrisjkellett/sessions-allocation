@@ -22,7 +22,7 @@ const VenuesTable = ({ data, filtered, handlers, isConfirming }) => {
             <Td data={v.name} subContent={<SubTd data={v.address} inline />} />
             <td></td>
             <Td data={v.contact} />
-            <Td data={v.type} />
+            <Td data={v.type} type='array'/>
             <EditDeletePanel handlers={handlers} data={v} isConfirming={isConfirming} />
           </Tr>
         ))}
