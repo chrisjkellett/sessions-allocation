@@ -5,3 +5,11 @@
 .ExaminerPair {
   padding: 5px 0;
 }
+
+.ExaminerPair:first-child {
+  padding-top: 10px;
+}
+
+.ExaminerPair:last-child {
+  padding-bottom: 10px;
+}
