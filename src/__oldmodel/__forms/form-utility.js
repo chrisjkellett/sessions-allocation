@@ -27,7 +27,7 @@ export const checkDisabledFields = (examiner, value) => {
   for (let item in examiner){
     if(examiner[item].elementConfig){
       if(examiner[item].elementConfig.disabled === true || examiner[item].elementConfig.disabled === false){
-        examiner[item].elementConfig.disabled = conditionalItemCheck(value, 'Speaking Examiner');
+        examiner[item].elementConfig.disabled = conditionalItemCheck(value, 'SE');
       }
     }
   }

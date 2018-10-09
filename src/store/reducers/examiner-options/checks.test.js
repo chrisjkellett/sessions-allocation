@@ -3,8 +3,8 @@ import { Availability } from '../utility';
 
 const Examiner = {avail: Availability(), available: true }
 
-describe('tests on SE roles[type]', () => {
-  const SE = {
+describe('tests on Speaking Examiner roles[type]', () => {
+  const SpeakingExaminer = {
     ...Examiner, roles : [ "Speaking Examiner", "Team Leader" ], name: 'Christopher Kellett'
   }
 
@@ -22,13 +22,13 @@ describe('tests on SE roles[type]', () => {
     expect(filtered.avail.failsRoles).toBe(true);
   });
 
-  test('SE will fail if type is Writing', () => {
-    const filtered = checks.type(SE, 'Writing');
+  test('Speaking Examiner will fail if type is Writing', () => {
+    const filtered = checks.type(SpeakingExaminer, 'Writing');
     expect(filtered.avail.failsRoles).toBe(true);
   });
 
-  test('SE will pass if type is Speaking', () => {
-    const filtered = checks.type(SE, 'Speaking');
+  test('Speaking Examiner will pass if type is Speaking', () => {
+    const filtered = checks.type(SpeakingExaminer, 'Speaking');
     expect(filtered.avail.failsRoles).toBe(false);
   });
 }); 

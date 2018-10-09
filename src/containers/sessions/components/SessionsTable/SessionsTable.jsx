@@ -21,7 +21,7 @@ const SessionsTable = ({ data, filtered, handlers, isConfirming, venues }) => {
           <Tr key={s.id}>
             <TdDate data={s['session_date']} subContent={<SubTd data={[s.venue, s.type]} /> } />
             <TdIcons array={s.levels} />
-            <Td data={s.examiners} type={s.type}/>
+            <Td data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/>
             <Td data={s.support} />
             <EditDeletePanel handlers={handlers} data={s} isConfirming={isConfirming} />
           </Tr>

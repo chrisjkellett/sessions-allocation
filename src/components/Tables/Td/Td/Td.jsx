@@ -1,13 +1,14 @@
 import React from 'react';
 import classes from './Td.css';
 
-const Td = ({ data, smallFont, subContent, type }) => {
+const Td = ({ data, smallFont, subContent, type, isYLE }) => {
   const styles = smallFont ? classes.SmallFont : null;
+  const isWritingOrYLESpeaking = type === 'Writing' || (type === 'Speaking' && isYLE)
   return (
     <td className={styles}>
       {type === undefined && data} 
       {type === 'array' && data.join(" | ")}  
-      {type === 'Speaking' 
+      {type === 'Speaking' && !isYLE 
         && data.map((item, index) => index % 2 === 0 && 
         <div key={index} id={index} className={classes.ExaminerPair}>
           <span>{item} + </span>
@@ -15,7 +16,7 @@ const Td = ({ data, smallFont, subContent, type }) => {
         </div>
         )
       }
-      {type === 'Writing' 
+      {isWritingOrYLESpeaking
         && data.map(item => <div key={item} className={classes.ExaminerPair}>{item}</div>)
       }
       {subContent && subContent}
