@@ -4,8 +4,7 @@ import { withRouter } from 'react-router-dom';
 import * as exOpActions from '../../../../store/actions/examiner-options/examiner-options';
 import { Form, FlexContainer, FlexItem, ShowHideBtn} from '../../../../components';
 import { 
-  SessionsFormContent, ExaminersAvailable, SupportAvailable, SameDaySessions, AssignSupervisors 
-} from './components';
+  SessionsFormContent, ExaminersAvailable, SupportAvailable, SameDaySessions } from './components';
 import moment from 'moment';
 
 class SessionsForm extends Component {
@@ -72,13 +71,14 @@ class SessionsForm extends Component {
                 && <ShowHideBtn handler={this.handlers.toggle} type="showSameDay" label="show same day sessions"/>}
               {examinersOrSupport
                 && <ShowHideBtn handler={this.handlers.toggle} type="showUnavailable" label={labelForShowAll} />}
-              {session.type.value === 'Writing'
+              {session.type.value === 'Writing' && session.examiners.value.length !== 0
                 && <ShowHideBtn handler={this.handlers.toggle} type="showAssignSupervisors" label={labelForAssignSupervisors} />}
               {showExaminers 
                 && <ExaminersAvailable 
                   data={availableExaminers} 
                   handlers={handlers} 
                   session={session} 
+                  showAssignSupervisors={showAssignSupervisors}
                   showUnavailable={showUnavailable} />}
               {showSupport 
                 && <SupportAvailable 
@@ -88,8 +88,6 @@ class SessionsForm extends Component {
                     showUnavailable={showUnavailable} />}
               {showSameDay 
                 && <SameDaySessions data={forSDSessions} />}
-              {showAssignSupervisors
-                && <AssignSupervisors />}
             </FlexItem>
           </FlexContainer>
         </Form>

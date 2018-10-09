@@ -96,6 +96,10 @@ class Sessions extends Component{
       this.setState({ session: updated })
     },
 
+    assignSupervisor: () => {
+      console.log('supervise!');
+    },
+
     openForm: () => {
       this.setState({ showForm: true });
     },
