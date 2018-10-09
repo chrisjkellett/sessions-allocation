@@ -14,6 +14,7 @@ const initialState = {
 }
 
 let isExaminers = true;
+let examiner;
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
@@ -22,7 +23,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, examiners: sortBy(examiners) }
 
     case actionTypes.ADD_EXAMINER_SUCCESS:
-      const examiner = { ...action.examiner, id: action.id, avail: Availability(), available: true}
+      examiner = { ...action.examiner, id: action.id, avail: Availability(), available: true}
       return { ...state, examiners: sortBy(state.examiners.concat(examiner))}
 
     case actionTypes.DELETE_EXAMINER_SUCCESS:
@@ -35,7 +36,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, selectedExaminer: null }
 
     case actionTypes.UPDATE_EXAMINER_SUCCESS:
-      return { ...state, examiners: sortBy(state.examiners.filter(e => e.id !== action.id).concat(action.examiner)) }
+      examiner = { ...action.examiner, id: action.id, avail: Availability(), available: true}
+      return { ...state, examiners: sortBy(state.examiners.filter(e => e.id !== action.id).concat(examiner)) }
 
     case actionTypes.FILTER_EXAMINER:
       return {...state, filteredExaminers: filterData(state.examiners, action)};
