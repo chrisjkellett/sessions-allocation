@@ -99,3 +99,8 @@ export const updateArray = (array, newValue) => {
     ? array.filter(item => item !== newValue)
     : array.concat(newValue)
 }
+
+export const sortLevels = (arr) => {
+  const order = {'YLE': 0, 'KET': 1, 'PET': 2, 'FCE': 3, 'CAE': 4, 'CPE': 5};
+  return arr.sort((a, b) => order[a] - order[b]);
+}

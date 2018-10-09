@@ -7,7 +7,7 @@ import ExaminersTable from './components/ExaminersTable/ExaminersTable';
 import ExaminersForm from './components/ExaminersForm/ExaminersForm';
 import { AddNewBtn } from '../../components/Btns/';
 import { Section } from '../../components/Wrappers';
-import { getInputValue, updateState, forSubmit, checkFormValidity, distributeValuesForEditing } from '../utility';
+import { getInputValue, updateState, forSubmit, checkFormValidity, distributeValuesForEditing, sortLevels } from '../utility';
 import { checkValidity } from '../../validation/validation';
 import * as actions from '../../store/actions/examiners/examiners';
 
@@ -60,6 +60,7 @@ class Examiners extends Component{
     change: (event, type, id, index) => {
       const { examiner } = this.state;
       const value = getInputValue(event, type, index, [ ...examiner[id].value ]);
+      if(id === 'levels') sortLevels(value);
       const update = updateState(this.state, id, { value: value, id }, 'examiner');
       update.examiner[id].validation = checkValidity({ ...update.examiner[id] });
       this.setState(update);
