@@ -57,7 +57,7 @@ export const isBusy = (e, sameDaySessions, time) => {
   if (sameDaySessions.length !== 0){
     sameDaySessions.forEach(s => {
       if(isSameTime(s.time, time))
-        if(s.examiners.includes(e.name) || s.support.includes(e.name)) 
+        if((s.examiners && s.examiners.includes(e.name)) || (s.support && s.support.includes(e.name))) 
           e.avail.failsIsBusy = true;
         else  
           e.avail.failsIsBusy = e.avail.failsIsBusy ? true : false;

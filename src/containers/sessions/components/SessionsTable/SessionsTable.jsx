@@ -1,6 +1,6 @@
 import React from 'react';
 import { EditDeletePanel } from '../../../../components/Btns';
-import { Table, Tr, Td, TdIcons, TdDate, SubTd } from '../../../../components/Tables';
+import { Table, Tr, Td, TdIcons, TdDate } from '../../../../components/Tables';
 import IsNotEmpty from '../../../../components/Wrappers/IsNotEmpty/IsNotEmpty';
 import Filter from '../../../../components/Filter/Filter';
 
@@ -19,7 +19,7 @@ const SessionsTable = ({ data, filtered, handlers, isConfirming, venues }) => {
       <IsNotEmpty data={sessions}>
         {sessions.map(s => (
           <Tr key={s.id}>
-            <TdDate data={s['session_date']} subContent={<SubTd data={[s.venue, s.type]} /> } />
+            <TdDate data={s['session_date']} subContent={[s.type, s.venue, s.time]} isSession />
             <TdIcons array={s.levels} />
             <Td data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/>
             <Td data={s.support} />

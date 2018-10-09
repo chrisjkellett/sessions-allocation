@@ -13,7 +13,7 @@ const ExaminersAvailable = ({ data, handlers, session, showUnavailable }) => {
 
   return(
     <Table labels={labels} limited>
-      <IsNotEmpty data={filteredData}>
+      <IsNotEmpty data={filteredData} show={showUnavailable}>
         {filteredData.map(e => (
           <Tr 
             key={e.id} 
@@ -26,20 +26,20 @@ const ExaminersAvailable = ({ data, handlers, session, showUnavailable }) => {
             <td></td>
           </Tr>
         ))}
-        {showUnavailable && notAvailable.map(e => (
-          <Tr 
-            key={e.id} 
-            name={e.name}
-            disabled 
-            handler={handlers.selectExaminer} 
-            selected={session.examiners.value.includes(e.name)} >
-            <Td data={e.name} subContent={<SubTd data={Object.keys(e.avail).filter(item => e.avail[item])} />} />
-            <Td data={e.roles} smallFont></Td>
-            <TdIcons array={e.levels} />
-            <TdIconsForTime array={e.availability} noBorders />
-          </Tr>
-        ))}
       </IsNotEmpty>
+      {showUnavailable && notAvailable.map(e => (
+        <Tr 
+          key={e.id} 
+          name={e.name}
+          disabled 
+          handler={handlers.selectExaminer} 
+          selected={session.examiners.value.includes(e.name)} >
+          <Td data={e.name} subContent={<SubTd data={Object.keys(e.avail).filter(item => e.avail[item])} />} />
+          <TdIcons array={e.levels} />
+          <TdIconsForTime array={e.availability} noBorders />
+          <td></td>
+        </Tr>
+      ))}
     </Table>
   )
 }
