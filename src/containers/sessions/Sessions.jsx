@@ -77,21 +77,23 @@ class Sessions extends Component{
     },
 
     selectExaminer: (name) => {
-      this.setState((prev) => ({
-        session: { 
-          ...prev.session, 
-          examiners: {...prev.session.examiners, 
-          value: updateArray(prev.session.examiners.value, name)}}
-      }))
+      const { session } = this.state;
+      const { examiners, sessions, selectedSession} = this.props;
+      const sessionId = selectedSession ? selectedSession.id : null;
+      const value = updateArray(session.examiners.value, name);
+      const updated = { ...session, examiners: { ...session.examiners, value: value }}
+      this.props.calculateAvailableExaminers(examiners, updated, sessions, sessionId);
+      this.setState({ session: updated })
     },
 
     selectSupport: (name) => {
-      this.setState((prev) => ({
-        session: { 
-          ...prev.session, 
-          support: {...prev.session.support, 
-          value: updateArray(prev.session.support.value, name)}}
-      }))
+      const { session } = this.state;
+      const value = updateArray(session.support.value, name);
+      const { examiners, sessions, selectedSession} = this.props;
+      const sessionId = selectedSession ? selectedSession.id : null;
+      const updated = { ...session, support: { ...session.support, value: value }}
+      this.props.calculateAvailableExaminers(examiners, updated, sessions, sessionId);
+      this.setState({ session: updated })
     },
 
     openForm: () => {
