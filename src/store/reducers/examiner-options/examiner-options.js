@@ -3,9 +3,9 @@ import { examinerCheck, filterExaminers, supportCheck, filterSupport, selectExam
 
 const initial = {
   ex_options: [],
-  examinersSelectedForSession: [],
+  sessionExaminers: [],
   supp_options: [],
-  supportSelectedForSession: [],
+  sessionSupport: [],
   sameDaySessions: []
 }
 
@@ -17,14 +17,17 @@ const reducer = (state = initial, action) => {
         ...state, 
         ex_options: examiners, 
         supp_options: supportCheck(action),
-        examinersSelectedForSession: examiners
+        sessionExaminers: examiners
         .filter(e => e.available)
         .map(e => e.name)
-        .filter(e => state.examinersSelectedForSession.includes(e))
+        .filter(e => state.sessionExaminers.includes(e))
     };
 
-    case actionTypes.SELECT_AVAILABLE_EXAMINERS:  
-      return { ...state, examinersSelectedForSession: selectExaminer(state.examinersSelectedForSession, action.examiner)}
+    case actionTypes.SELECT_EXAMINER:  
+      return { ...state, sessionExaminers: selectExaminer(state.sessionExaminers, action.examiner)}
+
+    case actionTypes.CLEAR_SELECTED_EXAMINERS:
+      return { ...state, sessionExaminers: [], sessionSupport: [] }
 
     case actionTypes.FILTER_EXAMINERS:  
       return {...state, ex_options: filterExaminers(action)};

@@ -42,7 +42,7 @@ class SessionsForm extends Component {
   
   render() {
     const { handlers, session, shouldValidate, selectedSession } = this.props;
-    const { availableExaminers, availableSupport, sessions } = this.props;
+    const { availableExaminers, availableSupport, sessions, selectedExaminers } = this.props;
     const { showExaminers, showSupport, showSameDay, showUnavailable, showAssignSupervisors } = this.state;
     const examinersOrSupport = showExaminers || showSupport;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
@@ -53,7 +53,7 @@ class SessionsForm extends Component {
     const labelForAssignSupervisors = showAssignSupervisors ? '-hide supervisors' : '+assign supervisors';
     const forSDSessions = sessions
     .filter(s => s.id !== selectedId && moment(s['session_date']).isSame(session['session_date'].value));
-
+    console.log(selectedExaminers);
     return (
         <Form handlers={handlers} label={label} edit={selectedSession} extraLarge>
           <FlexContainer>
@@ -78,6 +78,7 @@ class SessionsForm extends Component {
                   data={availableExaminers} 
                   handlers={handlers} 
                   session={session} 
+                  selectedExaminers={selectedExaminers}
                   showAssignSupervisors={showAssignSupervisors}
                   showUnavailable={showUnavailable} />}
               {showSupport 
@@ -101,6 +102,7 @@ const mapStateToProps = state => {
     sessions: state.sess.sessions,
     examiners: state.ex.examiners,
     availableExaminers: state.op.ex_options,
+    selectedExaminers: state.op.sessionExaminers,
     availableSupport: state.op.supp_options,
   }
 }

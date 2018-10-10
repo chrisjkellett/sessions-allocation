@@ -12,8 +12,14 @@ export const calculateAvailableExaminers = (examiners, session, sessions, sessio
 
 export const selectAvailableExaminers = (examiner) => {
   return {
-    type: actionTypes.SELECT_AVAILABLE_EXAMINERS,
+    type: actionTypes.SELECT_EXAMINER,
     examiner: examiner,
+  }
+};
+
+export const clearSelectedExaminers = () => {
+  return {
+    type: actionTypes.CLEAR_SELECTED_EXAMINERS,
   }
 }
 

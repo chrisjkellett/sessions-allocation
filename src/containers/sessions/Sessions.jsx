@@ -77,14 +77,7 @@ class Sessions extends Component{
     },
 
     selectExaminer: (name) => {
-      const { session } = this.state;
-      const { examiners, sessions, selectedSession} = this.props;
-      const sessionId = selectedSession ? selectedSession.id : null;
-      const value = updateArray(session.examiners.value, name);
-      const updated = { ...session, examiners: { ...session.examiners, value: value }}
       this.props.selectAvailableExaminers(name);
-      this.props.calculateAvailableExaminers(examiners, updated, sessions, sessionId);
-      this.setState({ session: updated })
     },
 
     selectSupport: (name) => {
@@ -111,7 +104,8 @@ class Sessions extends Component{
 
     cancel: () => {
       this.handlers.closeForm();
-      this.setState({ session: constructSessionState(), shouldValidate: false })
+      this.setState({ session: constructSessionState(), shouldValidate: false });
+      this.props.clearSelectedExaminers();
     },
 
     filter: ({ target: { value, id }}) => {
@@ -179,6 +173,7 @@ const mapDispatchToProps = dispatch => {
     updateSession: (sessions, session, id, token) => dispatch(actions.updateSession(sessions, session, id, token)),
     fetchSession: (id) => dispatch(actions.fetchSession(id)),
     clearSelectedSession: () => dispatch(actions.clearSelectedSession()),
+    clearSelectedExaminers: () => dispatch(exOpActions.clearSelectedExaminers()),
   }
 }
 
