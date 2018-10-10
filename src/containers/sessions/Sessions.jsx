@@ -82,6 +82,7 @@ class Sessions extends Component{
       const sessionId = selectedSession ? selectedSession.id : null;
       const value = updateArray(session.examiners.value, name);
       const updated = { ...session, examiners: { ...session.examiners, value: value }}
+      this.props.selectAvailableExaminers(name);
       this.props.calculateAvailableExaminers(examiners, updated, sessions, sessionId);
       this.setState({ session: updated })
     },
@@ -172,6 +173,7 @@ const mapDispatchToProps = dispatch => {
     calculateAvailableExaminers: (examiners, session, sessions, sessionId) => {
       dispatch(exOpActions.calculateAvailableExaminers(examiners, session, sessions, sessionId))
     },
+    selectAvailableExaminers: (examiner) => dispatch(exOpActions.selectAvailableExaminers(examiner)),
     addSession: (sessions, session, token) => dispatch(actions.addSession(sessions, session, token)),
     deleteSession: (sessions, session, token) => dispatch(actions.deleteSession(sessions, session, token)),
     updateSession: (sessions, session, id, token) => dispatch(actions.updateSession(sessions, session, id, token)),

@@ -49,4 +49,11 @@ export const isSameTime = (a, b) => {
   const objA = timeKeys.find(t => t.time === a)
   const objB = timeKeys.find(t => t.time === b);
   return objA.am === objB.am;
+};
+
+export const selectExaminer = (arr, examiner) => {
+  if(arr.includes(examiner))
+    return arr.filter(e => e !== examiner)
+  else 
+    return arr.concat(examiner)
 }
