@@ -1,5 +1,7 @@
 import * as actionTypes from '../../actions/examiner-options/actionTypes';
-import { examinerCheck, filterExaminers, supportCheck, filterSupport, selectExaminer } from './utility';
+import { 
+  examinerCheck, filterExaminers, supportCheck, filterSupport, selectExaminer, compareAvailableAndSelected 
+} from './utility';
 
 const initial = {
   ex_options: [],
@@ -13,14 +15,13 @@ const reducer = (state = initial, action) => {
   switch(action.type){
     case actionTypes.CALCULATE_AVAILABLE_EXAMINERS: 
       const examiners = examinerCheck(action);
+      const support = supportCheck(action);
       return { 
         ...state, 
         ex_options: examiners, 
-        supp_options: supportCheck(action),
-        sessionExaminers: examiners
-        .filter(e => e.available)
-        .map(e => e.name)
-        .filter(e => state.sessionExaminers.includes(e))
+        supp_options: support,
+        sessionExaminers: compareAvailableAndSelected(examiners, state.sessionExaminers),
+        sessionSupport: compareAvailableAndSelected(support, state.sessionSupport),
     };
 
     case actionTypes.SELECT_EXAMINER:  

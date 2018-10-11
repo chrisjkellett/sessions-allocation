@@ -57,3 +57,10 @@ export const selectExaminer = (arr, examiner) => {
   else 
     return arr.concat(examiner)
 }
+
+export const compareAvailableAndSelected = (available, selected) => {
+  return available
+    .filter(e => e.available)
+    .map(e => e.name)
+    .filter(e => selected.includes(e))
+}

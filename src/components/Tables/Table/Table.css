@@ -5,7 +5,7 @@
 .LimitedTable {
   margin-top: 10px;
   margin-bottom: 30px;
-  max-height: 306px;
+  max-height: 264px;
   overflow-y: scroll;
 }
 
