@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getInputValue, updateArray } from '../utility';
+import { getInputValue } from '../utility';
 import { checkValidity } from '../../validation/validation';
 import { Section } from '../../components/Wrappers';
 import { AddNewBtn } from '../../components/Btns/';
@@ -81,13 +81,7 @@ class Sessions extends Component{
     },
 
     selectSupport: (name) => {
-      const { session } = this.state;
-      const value = updateArray(session.support.value, name);
-      const { examiners, sessions, selectedSession} = this.props;
-      const sessionId = selectedSession ? selectedSession.id : null;
-      const updated = { ...session, support: { ...session.support, value: value }}
-      this.props.calculateAvailableExaminers(examiners, updated, sessions, sessionId);
-      this.setState({ session: updated })
+      this.props.selectAvailableSupport(name);
     },
 
     assignSupervisor: () => {
@@ -168,6 +162,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(exOpActions.calculateAvailableExaminers(examiners, session, sessions, sessionId))
     },
     selectAvailableExaminers: (examiner) => dispatch(exOpActions.selectAvailableExaminers(examiner)),
+    selectAvailableSupport: (support) => dispatch(exOpActions.selectAvailableSupport(support)),
     addSession: (sessions, session, token) => dispatch(actions.addSession(sessions, session, token)),
     deleteSession: (sessions, session, token) => dispatch(actions.deleteSession(sessions, session, token)),
     updateSession: (sessions, session, id, token) => dispatch(actions.updateSession(sessions, session, id, token)),

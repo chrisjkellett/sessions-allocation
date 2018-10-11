@@ -24,7 +24,10 @@ const reducer = (state = initial, action) => {
     };
 
     case actionTypes.SELECT_EXAMINER:  
-      return { ...state, sessionExaminers: selectExaminer(state.sessionExaminers, action.examiner)}
+      return { ...state, sessionExaminers: selectExaminer(state.sessionExaminers, action.examiner) }
+
+    case actionTypes.SELECT_SUPPORT:
+      return { ...state, sessionSupport: selectExaminer(state.sessionSupport, action.support) }
 
     case actionTypes.CLEAR_SELECTED_EXAMINERS:
       return { ...state, sessionExaminers: [], sessionSupport: [] }

@@ -17,6 +17,13 @@ export const selectAvailableExaminers = (examiner) => {
   }
 };
 
+export const selectAvailableSupport = (support) => {
+  return {
+    type: actionTypes.SELECT_SUPPORT,
+    support: support,
+  }
+};
+
 export const clearSelectedExaminers = () => {
   return {
     type: actionTypes.CLEAR_SELECTED_EXAMINERS,

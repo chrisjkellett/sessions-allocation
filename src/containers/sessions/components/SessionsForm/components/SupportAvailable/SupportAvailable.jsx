@@ -19,7 +19,7 @@ const SupportAvailable = ({ data, handlers, session, showUnavailable, selectedSu
             key={e.id} 
             name={e.name} 
             handler={handlers.selectSupport} 
-            selected={session.support.value.includes(e.name)} >
+            selected={selectedSupport.includes(e.name)} >
             <Td data={e.name} subContent={<SubTd data={e.roles} />} />
             <td></td>
             <TdIconsForTime array={e.availability} noBorders/>
