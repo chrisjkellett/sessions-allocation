@@ -1,10 +1,16 @@
 import React from 'react';
 import { Table, IsNotEmpty, Tr, Td, SubTd, TdIconsForTime } from '../../../../../../components';
 
-const SupportAvailable = ({ data, handlers, session, closeHandler, showUnavailable }) => {
+const SupportAvailable = ({ data, handlers, session, showUnavailable, selectedSupport }) => {
   const filteredData = data.filter(e => e.available);
   const notAvailable = data.filter(e => !e.available);
-  const labels = ['support', null, 'availability', null]
+  const labels = [
+    <span>{'support (' + filteredData.length + ' available, ' + selectedSupport.length + ' selected)'}</span>, 
+    null, 
+    'availability', 
+    null
+  ];
+
   return(
     <Table labels={labels} limited>
       <IsNotEmpty data={filteredData}>
