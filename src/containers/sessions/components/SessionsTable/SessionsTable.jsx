@@ -1,34 +1,38 @@
-import React from 'react';
-import { EditDeletePanel } from '../../../../components/Btns';
-import { Table, Tr, Td, TdIcons, TdDate } from '../../../../components/Tables';
-import IsNotEmpty from '../../../../components/Wrappers/IsNotEmpty/IsNotEmpty';
-import Filter from '../../../../components/Filter/Filter';
+import React, { Component } from 'react';
+import { Table, Tr, Td, TdIcons, TdDate, IsNotEmpty, Filter, EditDeletePanel } from '../../../../components';
 
-const SessionsTable = ({ data, filtered, handlers, isConfirming, venues }) => {
-  const sessions = filtered === null ? data : filtered;
-  const labels = ([
-    <Filter label='venue' filter={handlers.filter} />, 
-    <Filter label='levels' filter={handlers.filter} />, 
-    <Filter label='examiners' filter={handlers.filter} />, 
-    <Filter label='support' filter={handlers.filter} />,
-    null
-  ]);
+class SessionsTable extends Component {
+  state = {
+    showSingleView: false,
+  }
 
-  return (
-    <Table labels={labels}>
-      <IsNotEmpty data={sessions}>
-        {sessions.map(s => (
-          <Tr key={s.id}>
-            <TdDate data={s['session_date']} subContent={[s.type, s.venue, s.time]} isSession />
-            <TdIcons array={s.levels} />
-            <Td data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/>
-            <Td data={s.support} />
-            <EditDeletePanel handlers={handlers} data={s} isConfirming={isConfirming} />
-          </Tr>
-        ))}
-      </IsNotEmpty>
-    </Table>
-  );
-};
+  render(){
+    const { data, filtered, handlers, isConfirming } = this.props;
+    const sessions = filtered === null ? data : filtered;
+    const labels = ([
+      <Filter label='venue' filter={handlers.filter} />, 
+      <Filter label='levels' filter={handlers.filter} />, 
+      <Filter label='examiners' filter={handlers.filter} />, 
+      <Filter label='support' filter={handlers.filter} />,
+      null
+    ]);
+
+    return (
+      <Table labels={labels}>
+        <IsNotEmpty data={sessions}>
+          {sessions.map(s => (
+            <Tr key={s.id}>
+              <TdDate data={s['session_date']} subContent={[s.type, s.venue, s.time]} isSession handler={handlers.toggleSingleView} />
+              <TdIcons array={s.levels} />
+              <Td data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/>
+              <Td data={s.support} />
+              <EditDeletePanel handlers={handlers} data={s} isConfirming={isConfirming} />
+            </Tr>
+          ))}
+        </IsNotEmpty>
+      </Table>
+    );
+  }
+}
 
 export default SessionsTable;

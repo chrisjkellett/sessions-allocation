@@ -18,6 +18,7 @@ import EditDeletePanel from './Btns/EditDeletePanel/EditDeletePanel';
 import ExpandBtn from './Btns/ExpandBtn/ExpandBtn';
 import ShowHideBtn from './Btns/ShowHideBtn/ShowHideBtn';
 import AsyncLoad from './AsyncLoad/AsyncLoad';
+import SingleView from './Wrappers/SingleView/SingleView';
 
 export {
   SubTd, Td, TdIcons, TdIconsForTime, TdDate, Tr, Table,
@@ -26,5 +27,6 @@ export {
   Form, Input,
   Filter,
   AddNewBtn, SubmitBtns, EditDeletePanel, ExpandBtn, ShowHideBtn,
-  AsyncLoad
+  AsyncLoad,
+  SingleView
 }

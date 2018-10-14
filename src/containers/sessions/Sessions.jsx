@@ -8,6 +8,7 @@ import { AddNewBtn } from '../../components/Btns/';
 import AsyncLoad from '../../components/AsyncLoad/AsyncLoad';
 import SessionsTable from './components/SessionsTable/SessionsTable';
 import SessionsForm from './components/SessionsForm/SessionsForm';
+import SingleSession from './components/SessionsTable/components/SingleSession/SingleSession';
 import constructSessionState from '../../store/constructors/sessions';
 import * as actions from '../../store/actions/sessions/sessions';
 import * as exOpActions from '../../store/actions/examiner-options/examiner-options';
@@ -19,7 +20,8 @@ class Sessions extends Component{
     session: constructSessionState(),
     showForm: false,
     isConfirming: false,
-    shouldValidate: false
+    shouldValidate: false,
+    showSingleView: false,
   }
 
   handlers = {
@@ -96,6 +98,10 @@ class Sessions extends Component{
       this.setState({ showForm: false });
     },
 
+    toggleSingleView: () => {
+      this.setState((prev) => ({ showSingleView: prev.showSingleView ? false : true }) )
+    },
+
     cancel: () => {
       this.handlers.closeForm();
       this.setState({ session: constructSessionState(), shouldValidate: false });
@@ -116,7 +122,7 @@ class Sessions extends Component{
   }
 
   render(){  
-    const { showForm, isConfirming, session, shouldValidate } = this.state;
+    const { showForm, isConfirming, session, shouldValidate, showSingleView } = this.state;
     const { sessions, filteredSessions, venues, selectedSession } = this.props;
     const { clearSelectedSession } = this.props;
 
@@ -137,6 +143,9 @@ class Sessions extends Component{
               shouldValidate={shouldValidate}
               selectedSession={selectedSession} 
               clearSelectedSession={clearSelectedSession}  />
+          }
+          {showSingleView &&
+            <SingleSession />
           }
         </AsyncLoad>
       </Section>
