@@ -7,14 +7,21 @@ import {
   SessionsFormContent, ExaminersAvailable, SupportAvailable, SameDaySessions } from './components';
 import moment from 'moment';
 
+const initialState = {
+  showExaminers: false,
+  showSupport: false,
+  showSameDay: false,
+  showUnavailable: false,
+  showAssignSupervisors: false,
+};
+
 class SessionsForm extends Component {
-  state = {
-    showExaminers: true,
-    showSupport: false,
-    showSameDay: false,
-    showUnavailable: false,
-    showAssignSupervisors: false,
+  constructor(props){
+    super(props);
+    this.handlers.ctrlToggles = this.handlers.ctrlToggles.bind(this);
   }
+
+  state = initialState;
 
   componentDidMount(){
     const { venues, selectedSession } = this.props;
@@ -25,20 +32,57 @@ class SessionsForm extends Component {
     const sessionId = selectedSession ? selectedSession.id : null;
     this.props.calculateAvailableExaminers(examiners, session, sessions, sessionId);
     document.getElementById('$session_date').focus();
+    document.addEventListener("keydown", this.handlers.ctrlToggles, false);
   }
 
   componentWillUnmount(){
     this.props.clearSelectedSession();
+    document.removeEventListener("keydown", this.handlers.ctrlToggles, false);
   }
 
   handlers = {
-    toggle: (type) => {
-      this.setState((prev) => ({ [type] : prev[type] ? false : true }))
-    }
-  }
+    toggleExaminers: () => {
+      this.setState((prev) => ({ ...initialState, showExaminers : prev.showExaminers ? false : true }))
+    },
 
-  hasTableOpen = () => {
-    return Object.keys(this.state).some(item => this.state[item])
+    toggleSupport: () => {
+      this.setState((prev) => ({ ...initialState, showSupport : prev.showSupport ? false : true }))
+    },
+
+    toggleSameDay: () => {
+      this.setState((prev) => ({ ...initialState, showSameDay : prev.showSameDay ? false : true }))
+    },
+
+    toggleUnavailable: () => {
+      this.setState((prev) => ({ showUnavailable : prev.showUnavailable ? false : true }))
+    },
+
+    ctrlToggles: (e) => {
+      if(e.keyCode === 69 && e.ctrlKey){
+        e.preventDefault();
+        this.handlers.toggleExaminers();
+      }
+
+      if(e.keyCode === 83 && e.ctrlKey){
+        e.preventDefault();
+        this.handlers.toggleSupport();
+      }
+
+      if(e.keyCode === 85 && e.ctrlKey){
+        e.preventDefault();
+        this.handlers.toggleUnavailable();
+      }
+
+      if(e.keyCode === 68 && e.ctrlKey){
+        e.preventDefault();
+        this.handlers.toggleSameDay();
+      }
+
+      if(e.keyCode === 90 && e.ctrlKey){
+        e.preventDefault();
+        this.setState(initialState);
+      }
+    }
   }
   
   render() {
@@ -50,11 +94,12 @@ class SessionsForm extends Component {
     const selectedId = selectedSession ? selectedSession.id : null;
     const labelForShowAll = showUnavailable ? '-hide unavailable' : '+show unavailable';
     const labelForSelectExaminers = showExaminers ? '-hide examiners' : '+select examiners';
+    const labelForSameDay = showSameDay ? '-hide same day sessions' : '+show same day sessions';
     const labelForSelectSupport = showSupport ? '-hide support' : '+select support';
     const labelForAssignSupervisors = showAssignSupervisors ? '-hide supervisors' : '+assign supervisors';
     const forSDSessions = sessions
     .filter(s => s.id !== selectedId && moment(s['session_date']).isSame(session['session_date'].value));
-
+    console.log(forSDSessions);
     return (
         <Form handlers={handlers} label={label} edit={selectedSession} extraLarge>
           <FlexContainer>
@@ -66,12 +111,12 @@ class SessionsForm extends Component {
                 group={1} />    
             </FlexItem>
             <FlexItem double>
-              <ShowHideBtn handler={this.handlers.toggle} type="showExaminers" label={labelForSelectExaminers} />
-              <ShowHideBtn handler={this.handlers.toggle} type="showSupport" label={labelForSelectSupport} />
-              {!showSameDay && forSDSessions.length > 0
-                && <ShowHideBtn handler={this.handlers.toggle} type="showSameDay" label="show same day sessions"/>}
+              <ShowHideBtn handler={this.handlers.toggleExaminers} type="showExaminers" label={labelForSelectExaminers} />
+              <ShowHideBtn handler={this.handlers.toggleSupport} type="showSupport" label={labelForSelectSupport} />
+              {forSDSessions.length > 0
+                && <ShowHideBtn handler={this.handlers.toggleSameDay} type="showSameDay" label={labelForSameDay}/>}
               {examinersOrSupport
-                && <ShowHideBtn handler={this.handlers.toggle} type="showUnavailable" label={labelForShowAll} />}
+                && <ShowHideBtn handler={this.handlers.toggleUnavailable} type="showUnavailable" label={labelForShowAll} />}
               {session.type.value === 'Writing' && session.examiners.value.length !== 0
                 && <ShowHideBtn handler={this.handlers.toggle} type="showAssignSupervisors" label={labelForAssignSupervisors} />}
               {showExaminers 
@@ -89,7 +134,7 @@ class SessionsForm extends Component {
                     session={session} 
                     selectedSupport={selectedSupport}
                     showUnavailable={showUnavailable} />}
-              {showSameDay 
+              {showSameDay && forSDSessions.length !== 0
                 && <SameDaySessions data={forSDSessions} />}
             </FlexItem>
           </FlexContainer>

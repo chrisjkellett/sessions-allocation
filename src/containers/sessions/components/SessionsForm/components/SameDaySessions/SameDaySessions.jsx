@@ -9,7 +9,7 @@ const SameDaySessions = ({ data }) => {
     null
   ];
 
-  return(
+  return (
     <Table labels={labels} limited>
       {data.map(s => (
         <Tr key={s.id} >
