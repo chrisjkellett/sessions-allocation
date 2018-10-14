@@ -16,11 +16,41 @@ import * as routes from '../../store/app-data/routes';
 import AsyncLoad from '../../components/AsyncLoad/AsyncLoad';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.handlers.tabViewer = this.handlers.tabViewer.bind(this);
+  }
+
   componentDidMount(){
     this.props.loadExaminers();
     this.props.loadSessions();
     this.props.loadVenues();
     this.props.checkAuthState();
+    document.addEventListener("keydown", this.handlers.tabViewer, false);
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.handlers.tabViewer, false);
+  }
+
+  handlers = {
+    tabViewer: (e) => {
+      const arr = [routes.SESSIONS, routes.EXAMINERS, routes.VENUES];
+      if(e.keyCode === 9 && e.shiftKey) {
+        e.preventDefault();
+        const index = arr.indexOf(this.props.location.pathname);
+        index - 1 < 0
+        ? this.props.history.push(arr[arr.length - 1])
+        : this.props.history.push(arr[index - 1]);
+      }
+      else if(e.keyCode === 9) {
+        e.preventDefault();
+        const index = arr.indexOf(this.props.location.pathname);
+        index + 1 !== arr.length 
+        ? this.props.history.push(arr[index + 1]) 
+        : this.props.history.push(arr[0]); 
+      }
+    }
   }
 
   render() {
