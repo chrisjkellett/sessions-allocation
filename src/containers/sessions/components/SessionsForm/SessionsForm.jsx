@@ -53,7 +53,7 @@ class SessionsForm extends Component {
     const labelForAssignSupervisors = showAssignSupervisors ? '-hide supervisors' : '+assign supervisors';
     const forSDSessions = sessions
     .filter(s => s.id !== selectedId && moment(s['session_date']).isSame(session['session_date'].value));
-    console.log(selectedExaminers);
+
     return (
         <Form handlers={handlers} label={label} edit={selectedSession} extraLarge>
           <FlexContainer>
