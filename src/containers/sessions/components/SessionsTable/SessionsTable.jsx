@@ -22,7 +22,7 @@ class SessionsTable extends Component {
         <IsNotEmpty data={sessions}>
           {sessions.map(s => (
             <Tr key={s.id}>
-              <TdDate data={s['session_date']} subContent={[s.type, s.venue, s.time]} isSession handler={handlers.toggleSingleView} />
+              <TdDate data={s['session_date']} subContent={[s.type, s.venue, s.time]} isSession handler={(id) => handlers.openSingleView(s.id)} />
               <TdIcons array={s.levels} />
               <Td data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/>
               <Td data={s.support} />

@@ -98,8 +98,9 @@ class Sessions extends Component{
       this.setState({ showForm: false });
     },
 
-    toggleSingleView: () => {
-      this.setState((prev) => ({ showSingleView: prev.showSingleView ? false : true }) )
+    openSingleView: (id) => {
+      this.props.fetchSession(id);
+      this.setState({ showSingleView: true });
     },
 
     cancel: () => {
@@ -145,7 +146,7 @@ class Sessions extends Component{
               clearSelectedSession={clearSelectedSession}  />
           }
           {showSingleView &&
-            <SingleSession />
+            <SingleSession session={selectedSession} />
           }
         </AsyncLoad>
       </Section>

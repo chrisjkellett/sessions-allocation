@@ -2,3 +2,11 @@
   font-weight: normal;
   font-size: 90%;
 }
+
+.Link {
+  cursor: pointer;
+}
+
+.Link:hover {
+  color: grey;
+}

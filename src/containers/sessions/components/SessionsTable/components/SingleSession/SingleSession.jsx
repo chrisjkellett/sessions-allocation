@@ -1,10 +1,11 @@
 import React from 'react';
 import { SingleView } from '../../../../../../components';
 
-const SingleSession = () => {
+
+const SingleSession = ({ session }) => {
   return (
     <SingleView>
-      <div>In single view</div>
+      <div>{session.id}</div>
     </SingleView>
   )
 }
