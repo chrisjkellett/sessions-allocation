@@ -7,13 +7,13 @@ class SessionsTable extends Component {
   }
 
   render(){
-    const { data, filtered, handlers, isConfirming } = this.props;
+    const { data, filtered, handlers, isConfirming, activeFilter } = this.props;
     const sessions = filtered === null ? data : filtered;
     const labels = ([
-      <Filter label='venue' filter={handlers.filter} />, 
-      <Filter label='levels' filter={handlers.filter} />, 
-      <Filter label='examiners' filter={handlers.filter} />, 
-      <Filter label='support' filter={handlers.filter} />,
+      <Filter label='venue' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
+      <Filter label='levels' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
+      <Filter label='examiners' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
+      <Filter label='support' filter={handlers.filter} value={!activeFilter ? '' : undefined}/>,
       null
     ]);
 

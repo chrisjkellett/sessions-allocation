@@ -10,7 +10,8 @@ const initialState = {
   error: false,
   editing: false,
   selectedSession: null,
-  filteredSessions: null
+  filteredSessions: null,
+  filterValue: '',
 }
 
 const reducer = (state = initialState, action) => {
@@ -35,7 +36,7 @@ const reducer = (state = initialState, action) => {
       return {...state, selectedSession: null}
 
     case actionTypes.FILTER_SESSIONS_BY_HEADER:
-      return { ...state, filteredSessions: filterData(state.sessions, action)}
+      return { ...state, filteredSessions: filterData(state.sessions, action), filterValue: action.value}
 
     case actionTypes.CLEAR_FILTERS:
       return { ...state, filteredSessions: null }

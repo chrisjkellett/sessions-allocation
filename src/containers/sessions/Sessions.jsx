@@ -27,6 +27,7 @@ class Sessions extends Component {
     isConfirming: false,
     shouldValidate: false,
     showSingleView: false,
+    activeFilter: false,
   }
 
   componentDidMount(){
@@ -125,7 +126,7 @@ class Sessions extends Component {
       if(e.keyCode === 27) {
         this.state.showSingleView && this.handlers.closeSingleView();
         this.state.showForm && this.handlers.cancel();
-        this.props.filteredSessions !== null && this.props.clearFilters();
+        this.props.filteredSessions !== null && this.handlers.removeFilters();
       }
     },
 
@@ -136,7 +137,13 @@ class Sessions extends Component {
     },
 
     filter: ({ target: { value, id }}) => {
-      this.props.filterSessions(value, id);
+      this.setState({ activeFilter: value.trim() !== '' ? true : false })
+      this.props.filterSessions(value.trim(), id);
+    },
+
+    removeFilters: () => {
+      this.setState({ activeFilter: false });
+      this.props.clearFilters();
     },
 
     toggleConfirm: () => {
@@ -149,7 +156,7 @@ class Sessions extends Component {
   }
 
   render(){  
-    const { showForm, isConfirming, session, shouldValidate, showSingleView } = this.state;
+    const { showForm, isConfirming, session, shouldValidate, showSingleView, activeFilter } = this.state;
     const { sessions, filteredSessions, venues, selectedSession } = this.props;
     const { clearSelectedSession } = this.props;
 
@@ -162,6 +169,7 @@ class Sessions extends Component {
             filtered={filteredSessions} 
             handlers={this.handlers} 
             isConfirming={isConfirming} 
+            activeFilter={activeFilter}
             venues={venues} />
           {showForm && 
             <SessionsForm 
