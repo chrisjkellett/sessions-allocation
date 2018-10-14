@@ -35,6 +35,11 @@ class Examiners extends Component {
   }
 
   handlers = {
+    add: () => {
+      this.props.fetchExaminer();
+      this.handlers.openForm();
+    },
+
     edit: (id) => {
       this.props.fetchExaminer(id);
       this.handlers.openForm();
@@ -110,7 +115,7 @@ class Examiners extends Component {
       }
       else if(e.keyCode === 65 && e.ctrlKey) {
         e.preventDefault();
-        !this.state.showForm && this.handlers.openForm();
+        !this.state.showForm && this.handlers.add();
       }
     },
 
@@ -136,7 +141,7 @@ class Examiners extends Component {
     return (
       <Section showForm={showForm}>
         <AsyncLoad waitFor={examiners}>
-          <AddNewBtn showForm={showForm} openForm={this.handlers.openForm} label={'examiner'} />
+          <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'examiner'} />
           <ExaminersTable 
             data={examiners} 
             filtered={filtered} 

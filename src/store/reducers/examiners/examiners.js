@@ -12,6 +12,7 @@ const initialState = {
   selectedExaminer: null,
   filteredExaminers: null,
   filterValue: '',
+  formActive: false,
 }
 
 let isExaminers = true;
@@ -31,10 +32,10 @@ const reducer = (state = initialState, action) => {
       return { ...state, examiners: state.examiners.filter(e => e.id !== action.id) }
 
     case actionTypes.FETCH_EXAMINER:
-      return { ...state, selectedExaminer: state.examiners.find(e => e.id === action.id) }
+      return { ...state, selectedExaminer: state.examiners.find(e => e.id === action.id), formActive: true }
 
     case actionTypes.CLEAR_SELECTED_EXAMINER:
-      return { ...state, selectedExaminer: null }
+      return { ...state, selectedExaminer: null, formActive: false }
 
     case actionTypes.UPDATE_EXAMINER_SUCCESS:
       examiner = { ...action.examiner, id: action.id, avail: Availability(), available: true}

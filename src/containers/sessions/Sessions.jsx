@@ -45,6 +45,11 @@ class Sessions extends Component {
       }))
     },
 
+    add: () => {
+      this.props.fetchSession();
+      this.handlers.openForm();
+    },
+
     edit: (id) => {
       this.props.fetchSession(id);
       this.handlers.openForm();
@@ -130,7 +135,7 @@ class Sessions extends Component {
       }
       else if(e.keyCode === 65 && e.ctrlKey) {
         e.preventDefault();
-        !this.state.showForm && this.handlers.openForm();
+        !this.state.showForm && this.handlers.add();
       }
     },
 
@@ -167,7 +172,7 @@ class Sessions extends Component {
     return (
       <Section showForm={showForm}>
         <AsyncLoad waitFor={sessions}>
-          <AddNewBtn showForm={showForm} openForm={this.handlers.openForm} label={'session'} />
+          <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'session'} />
           <SessionsTable 
             data={sessions} 
             filtered={filteredSessions} 

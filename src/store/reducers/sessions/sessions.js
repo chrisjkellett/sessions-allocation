@@ -12,6 +12,7 @@ const initialState = {
   selectedSession: null,
   filteredSessions: null,
   filterValue: '',
+  formActive: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -30,10 +31,10 @@ const reducer = (state = initialState, action) => {
       return { ...state, sessions: sortBy(action.sessions, 'session_date') }
 
     case actionTypes.FETCH_SESSION:
-      return { ...state, selectedSession: state.sessions.find(s => s.id === action.id ) }
+      return { ...state, selectedSession: state.sessions.find(s => s.id === action.id ), formActive: true }
 
     case actionTypes.CLEAR_SELECTED_SESSION:
-      return {...state, selectedSession: null}
+      return {...state, selectedSession: null, formActive: false }
 
     case actionTypes.FILTER_SESSIONS_BY_HEADER:
       return { ...state, filteredSessions: filterData(state.sessions, action), filterValue: action.value}

@@ -6,7 +6,8 @@ const initial = {
   venues: [],
   filteredVenues: null,
   error: false,
-  selectedVenue: null
+  selectedVenue: null,
+  formActive: false,
 }
 
 const reducer = (state = initial, action) => {
@@ -25,10 +26,10 @@ const reducer = (state = initial, action) => {
       return { ...state, venues: state.venues.filter(v => v.id !== action.venue.id) };
 
     case actionTypes.FETCH_VENUE:
-      return { ...state, selectedVenue: state.venues.find(v => v.id === action.id) };
+      return { ...state, selectedVenue: state.venues.find(v => v.id === action.id), formActive: true };
 
     case actionTypes.CLEAR_SELECTED_VENUE:
-      return { ...state, selectedVenue: null }
+      return { ...state, selectedVenue: null, formActive: false }
     
     case actionTypes.FILTER_VENUE:
       return {...state, filteredVenues: filterData(state.venues, action)};

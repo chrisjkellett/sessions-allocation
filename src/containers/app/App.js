@@ -36,14 +36,15 @@ class App extends Component {
   handlers = {
     tabViewer: (e) => {
       const arr = [routes.SESSIONS, routes.EXAMINERS, routes.VENUES];
-      if(e.keyCode === 9 && e.shiftKey) {
+      const { isAuthenticated, hasFormActive } = this.props;
+      if(isAuthenticated && !hasFormActive && e.keyCode === 9 && e.shiftKey) {
         e.preventDefault();
         const index = arr.indexOf(this.props.location.pathname);
         index - 1 < 0
         ? this.props.history.push(arr[arr.length - 1])
         : this.props.history.push(arr[index - 1]);
       }
-      else if(e.keyCode === 9) {
+      else if(isAuthenticated && !hasFormActive && e.keyCode === 9) {
         e.preventDefault();
         const index = arr.indexOf(this.props.location.pathname);
         index + 1 !== arr.length 
@@ -85,7 +86,8 @@ const mapStateToProps = state => {
     isAuthenticated: state.auth.token !== null && state.auth.token !== '9999',
     examiners: state.ex.examiners,
     user: state.auth.session_user,
-    selected: state.ex.selectedExaminer
+    selected: state.ex.selectedExaminer,
+    hasFormActive: state.sess.formActive || state.ex.formActive || state.venue.formActive,
   }
 }
 

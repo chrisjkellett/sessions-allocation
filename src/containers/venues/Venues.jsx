@@ -12,11 +12,24 @@ import * as actions from '../../store/actions/venues/venues';
 
 
 class Venues extends Component{
+  constructor(props){
+    super(props);
+    this.handlers.escapeAll = this.handlers.escapeAll.bind(this);
+  }
+
   state = {
     venue: constructVenuesState(),
     shouldValidate: false,
     showForm: false,
     isConfirming: false
+  }
+
+  componentDidMount(){
+    document.addEventListener("keydown", this.handlers.escapeAll, false);
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.handlers.escapeAll, false);
   }
 
   handlers = {
@@ -67,6 +80,11 @@ class Venues extends Component{
       this.setState((prev) => ({ isConfirming: prev.isConfirming ? false : true }));
     },
 
+    add: () => {
+      this.props.fetchVenue();
+      this.handlers.openForm();
+    },
+
     edit: (id) => {
       this.props.fetchVenue(id);
       this.handlers.openForm();
@@ -83,7 +101,19 @@ class Venues extends Component{
 
     validate: () => {
       this.setState((prev) => ({ ...prev.state, shouldValidate: true }))
-    }
+    },
+
+    escapeAll: (e) => {
+      if(e.keyCode === 27) {
+        // this.state.showSingleView && this.handlers.closeSingleView();
+        this.state.showForm && this.handlers.cancel();
+        // this.props.filteredVenues !== null && this.handlers.removeFilters();
+      }
+      else if(e.keyCode === 65 && e.ctrlKey) {
+        e.preventDefault();
+        !this.state.showForm && this.handlers.add();
+      }
+    },
   }
 
   render(){
@@ -94,7 +124,7 @@ class Venues extends Component{
     return (
        <Section showForm={showForm}>
           <VenuesTable data={venues} filtered={filtered} handlers={handlers} isConfirming={isConfirming} showForm={showForm} />
-          <AddNewBtn showForm={showForm} openForm={handlers.openForm} label={'venue'} />
+          <AddNewBtn showForm={showForm} openForm={handlers.add} label={'venue'} />
           {showForm && 
             <VenuesForm 
               handlers={handlers} 
