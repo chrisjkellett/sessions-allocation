@@ -10,7 +10,8 @@ import {
 const initialState = {
   examiners: null,
   selectedExaminer: null,
-  filteredExaminers: null
+  filteredExaminers: null,
+  filterValue: '',
 }
 
 let isExaminers = true;
@@ -40,7 +41,10 @@ const reducer = (state = initialState, action) => {
       return { ...state, examiners: sortBy(state.examiners.filter(e => e.id !== action.id).concat(examiner)) }
 
     case actionTypes.FILTER_EXAMINER:
-      return {...state, filteredExaminers: filterData(state.examiners, action)};
+      return { ...state, filteredExaminers: filterData(state.examiners, action), filterValue: action.value };
+
+    case actionTypes.CLEAR_FILTERS:
+      return { ...state, filteredExaminers: null }
 
     default:
       return state;  

@@ -113,3 +113,9 @@ export const filterExaminer = (value, filterBy) => {
     filterBy: filterBy
   }
 };
+
+export const clearFilters = () => {
+  return {
+    type: actionTypes.CLEAR_FILTERS
+  }
+};

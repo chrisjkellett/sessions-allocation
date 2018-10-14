@@ -11,13 +11,27 @@ import { getInputValue, updateState, forSubmit, checkFormValidity, distributeVal
 import { checkValidity } from '../../validation/validation';
 import * as actions from '../../store/actions/examiners/examiners';
 
-class Examiners extends Component{
+class Examiners extends Component {
+  constructor(props){
+    super(props);
+    this.handlers.escapeAll = this.handlers.escapeAll.bind(this);
+  }
+
   state = {
     examiner: constructExaminerState(),
     showForm: false,
     isConfirming: false,
     shouldValidate: false,
-    extraLarge: false
+    extraLarge: false,
+    activeFilter: false,
+  }
+
+  componentDidMount(){
+    document.addEventListener("keydown", this.handlers.escapeAll, false);
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.handlers.escapeAll, false);
   }
 
   handlers = {
@@ -79,8 +93,26 @@ class Examiners extends Component{
       this.setState({ examiner: constructExaminerState(), shouldValidate: false })
     },
 
+    closeSingleView: () => {
+      console.log('close single view')
+    },
+
+    removeFilters: () => {
+      this.setState({ activeFilter: false });
+      this.props.clearFilters();
+    },
+
+    escapeAll: (e) => {
+      if(e.keyCode === 27) {
+        this.state.showSingleView && this.handlers.closeSingleView();
+        this.state.showForm && this.handlers.cancel();
+        this.props.filtered !== null && this.handlers.removeFilters();
+      }
+    },
+
     filter: ({ target: { value, id }}) => {
-      this.props.filterExaminer(value, id);
+      this.setState({ activeFilter: value.trim() !== '' ? true : false })
+      this.props.filterExaminer(value.trim(), id);
     },
 
     toggleConfirm: () => {
@@ -94,14 +126,19 @@ class Examiners extends Component{
   }
 
   render(){  
-    const { isConfirming, showForm, examiner, shouldValidate, extraLarge } = this.state;
+    const { isConfirming, showForm, examiner, shouldValidate, extraLarge, activeFilter } = this.state;
     const { examiners, filtered, selectedExaminer } = this.props;
     const { clearSelectedExaminer } = this.props;
     return (
       <Section showForm={showForm}>
         <AsyncLoad waitFor={examiners}>
           <AddNewBtn showForm={showForm} openForm={this.handlers.openForm} label={'examiner'} />
-          <ExaminersTable data={examiners} filtered={filtered} handlers={this.handlers} isConfirming={isConfirming}/>
+          <ExaminersTable 
+            data={examiners} 
+            filtered={filtered} 
+            handlers={this.handlers} 
+            isConfirming={isConfirming}
+            activeFilter={activeFilter} />
           {showForm && 
             <ExaminersForm 
               handlers={this.handlers} 
@@ -133,7 +170,8 @@ const mapDispatchToProps = dispatch => {
     deleteExaminer: (examiner, token) => dispatch(actions.deleteExaminer(examiner, token)),
     fetchExaminer: (id) => dispatch(actions.fetchExaminer(id)),
     clearSelectedExaminer: () => dispatch(actions.clearSelectedExaminer()),
-    updateExaminer: (examiner, id, token) => dispatch(actions.updateExaminer(examiner, id, token))
+    updateExaminer: (examiner, id, token) => dispatch(actions.updateExaminer(examiner, id, token)),
+    clearFilters: () => dispatch(actions.clearFilters()),
   }
 }
 
