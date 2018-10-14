@@ -1,0 +1,6 @@
+.SingleItem span:first-of-type{
+  width: 200px;
+  padding: 10px 0;
+  background: lightblue;
+  display: inline-block;
+}
