@@ -1,4 +1,4 @@
-export const generateInputProps = (element, shouldValidate, { change }) => {
+export const generateInputProps = (element, shouldValidate, { change }, i) => {
   const {config} = element
     return {
       key: element.id,
@@ -9,6 +9,6 @@ export const generateInputProps = (element, shouldValidate, { change }) => {
       value: config.value,
       valid: config.validation.valid,
       shouldValidate: shouldValidate,
-      change: (event, index) => change(event, config.elementType, element.id, index)
+      change: (event, index) => change(event, config.elementType, element.id, index),
     }
 };

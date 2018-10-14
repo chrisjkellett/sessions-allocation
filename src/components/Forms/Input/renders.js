@@ -6,11 +6,11 @@ import moment from 'moment';
 export const renderFormElement = (type, props) =>{
   switch (type){
     case 'input' :
-      return <input {...props.elementConfig} onChange={props.change} value={props.value}/>;
+      return <input {...props.elementConfig} id={'$' + props.label} onChange={props.change} value={props.value} />;
 
     case 'select' :
       return (
-        <select {...props.elementConfig} onChange={props.change} value={props.value} >
+        <select {...props.elementConfig} id={'$' + props.label} onChange={props.change} value={props.value} >
           {props.options.map(option => (
             <option key={option}>{option}</option>
           ))}
@@ -36,7 +36,7 @@ export const renderFormElement = (type, props) =>{
     case 'date' :
       return(
         <div className={classes.DateSelect}>
-          <select {...props.elementConfig} onChange={(event, index) => props.change(event, 2)} value={props.value[2]} >
+          <select {...props.elementConfig} id={'$' + props.label} onChange={(event, index) => props.change(event, 2)} value={props.value[2]} >
             {props.options.days.map(option => (
               <option key={option.d} value={option.id}>{option.d}</option>
             ))}

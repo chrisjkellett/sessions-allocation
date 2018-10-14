@@ -24,6 +24,7 @@ class SessionsForm extends Component {
     const { examiners, session, sessions } = this.props;
     const sessionId = selectedSession ? selectedSession.id : null;
     this.props.calculateAvailableExaminers(examiners, session, sessions, sessionId);
+    document.getElementById('$session_date').focus();
   }
 
   componentWillUnmount(){

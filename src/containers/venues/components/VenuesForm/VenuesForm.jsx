@@ -7,6 +7,7 @@ class VenuesForm extends Component {
   componentDidMount(){
     const { selectedVenue } = this.props;
     selectedVenue && this.props.handlers.fetchRecord(selectedVenue);
+    document.getElementById('$name').focus();
   }
 
   componentWillUnmount(){

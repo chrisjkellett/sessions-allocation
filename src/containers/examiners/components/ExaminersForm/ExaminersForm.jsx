@@ -7,6 +7,7 @@ class VenuesForm extends Component {
   componentDidMount(){
     const { selectedExaminer } = this.props;
     selectedExaminer && this.props.handlers.prepareForEdit(selectedExaminer);
+    document.getElementById('$name').focus();
   }
 
   componentWillUnmount(){
