@@ -37,6 +37,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FILTER_SESSIONS_BY_HEADER:
       return { ...state, filteredSessions: filterData(state.sessions, action)}
 
+    case actionTypes.CLEAR_FILTERS:
+      return { ...state, filteredSessions: null }
+
     default:
       return state;  
   }

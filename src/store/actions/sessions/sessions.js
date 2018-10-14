@@ -116,5 +116,11 @@ export const filterSessionsByHeader = (value, filterBy) => {
     value: value,
     filterBy: filterBy,
   }
+};
+
+export const clearFilters = () => {
+  return {
+    type: actionTypes.CLEAR_FILTERS
+  }
 }
 

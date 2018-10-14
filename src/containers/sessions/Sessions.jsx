@@ -15,13 +15,26 @@ import * as exOpActions from '../../store/actions/examiner-options/examiner-opti
 import { forSubmit, checkFormValidity, distributeValuesForEditing } from '../utility';
 
 
-class Sessions extends Component{
+class Sessions extends Component {
+  constructor(props){
+    super(props);
+    this.handlers.escapeAll = this.handlers.escapeAll.bind(this);
+  }
+
   state = {
     session: constructSessionState(),
     showForm: false,
     isConfirming: false,
     shouldValidate: false,
     showSingleView: false,
+  }
+
+  componentDidMount(){
+    document.addEventListener("keydown", this.handlers.escapeAll, false);
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.handlers.escapeAll, false);
   }
 
   handlers = {
@@ -103,6 +116,19 @@ class Sessions extends Component{
       this.setState({ showSingleView: true });
     },
 
+    closeSingleView: () => {
+      this.setState({ showSingleView: false });
+      this.props.clearSelectedSession();
+    },
+
+    escapeAll: (e) => {
+      if(e.keyCode === 27) {
+        this.state.showSingleView && this.handlers.closeSingleView();
+        this.state.showForm && this.handlers.cancel();
+        this.props.filteredSessions !== null && this.props.clearFilters();
+      }
+    },
+
     cancel: () => {
       this.handlers.closeForm();
       this.setState({ session: constructSessionState(), shouldValidate: false });
@@ -179,6 +205,7 @@ const mapDispatchToProps = dispatch => {
     fetchSession: (id) => dispatch(actions.fetchSession(id)),
     clearSelectedSession: () => dispatch(actions.clearSelectedSession()),
     clearSelectedExaminers: () => dispatch(exOpActions.clearSelectedExaminers()),
+    clearFilters: () => dispatch(actions.clearFilters()),
   }
 }
 
