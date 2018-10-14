@@ -108,6 +108,10 @@ class Examiners extends Component {
         this.state.showForm && this.handlers.cancel();
         this.props.filtered !== null && this.handlers.removeFilters();
       }
+      else if(e.keyCode === 65 && e.ctrlKey) {
+        e.preventDefault();
+        !this.state.showForm && this.handlers.openForm();
+      }
     },
 
     filter: ({ target: { value, id }}) => {

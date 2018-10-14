@@ -128,6 +128,10 @@ class Sessions extends Component {
         this.state.showForm && this.handlers.cancel();
         this.props.filteredSessions !== null && this.handlers.removeFilters();
       }
+      else if(e.keyCode === 65 && e.ctrlKey) {
+        e.preventDefault();
+        !this.state.showForm && this.handlers.openForm();
+      }
     },
 
     cancel: () => {
