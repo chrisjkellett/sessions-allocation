@@ -12,7 +12,7 @@ class Monthly extends Component {
 
   render(){  
     const { periods, currentPeriod } = this.props;
-    return (
+    return periods.length <= 1 ? null : (
      <div className={classes.Monthly}>
         <select value={currentPeriod} onChange={this.changeHandler}>
           {periods.map(p => <option key={p}>{p}</option>)}

@@ -110,11 +110,12 @@ export const filterSessions = (period, sessions) => {
   }
 }
 
-export const filterSessionsByHeader = (value, filterBy) => {
+export const filterSessionsByHeader = (value, filterBy, sessions) => {
   return {
     type: actionTypes.FILTER_SESSIONS_BY_HEADER,
     value: value,
     filterBy: filterBy,
+    sessions: sessions,
   }
 };
 

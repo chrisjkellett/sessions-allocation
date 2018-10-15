@@ -194,13 +194,14 @@ class Sessions extends Component {
     const { sessionsByPeriod, sessionsByWeek, filteredSessions, venues, selectedSession, examiners } = this.props;
     const { clearSelectedSession } = this.props;
     const sessions = sessionsByWeek.length !== 0 ? sessionsByWeek : sessionsByPeriod;
+    const filtered = filteredSessions ? filteredSessions.filter(s => sessions.some(x => s.id === x.id)) : null;
 
     return (
       <Section showForm={showForm}>
         <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'session'} />
         <SessionsTable 
           data={sessions} 
-          filtered={filteredSessions} 
+          filtered={filtered} 
           handlers={this.handlers} 
           isConfirming={isConfirming} 
           activeFilter={activeFilter}

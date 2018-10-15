@@ -1,6 +1,5 @@
 .SplitWeekly, .PeriodSubNav{
   display: inline-block;
-  margin: 0 5px;
 }
 
 .FilterPanel {
@@ -24,7 +23,7 @@
   padding: 2px 5px;
   background: white;
   cursor: pointer;
-  margin-right: 2px;
+  margin-bottom: 2px;
 }
 
 .SmallLink:hover{
