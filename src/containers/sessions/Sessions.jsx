@@ -189,7 +189,7 @@ class Sessions extends Component {
               clearSelectedSession={clearSelectedSession}  />
           }
           {showSingleView &&
-            <SingleSession session={selectedSession} />
+            <SingleSession session={selectedSession} venues={venues}/>
           }
         </AsyncLoad>
       </Section>

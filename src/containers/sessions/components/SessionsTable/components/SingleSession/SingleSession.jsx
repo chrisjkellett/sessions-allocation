@@ -1,20 +1,21 @@
 import React from 'react';
-import { SingleView, FlexContainer, FlexItem } from '../../../../../../components';
-import classes from './SingleSession.css';
+import { SingleView, SingleItem, SingleItemForVenue, FlexContainer, FlexItem } from '../../../../../../components';
 
-const SingleSession = ({ session }) => {
+const labels = ['session date', 'time', 'type', 'venue', 'levels']
+
+const SingleSession = ({ session, venues }) => {
   return (
     <SingleView>
       <FlexContainer>
         <FlexItem>
-          <div className={classes.SingleItem}>
-            <span>session date</span>
-            <span>{session.session_date}</span>
-          </div>
-          <div>
-            <span>start time</span>
-            <span>{session.time}</span>
-          </div>
+          <SingleItem label={labels[0]} data={session.session_date}/>
+          <SingleItem label={labels[1]} data={session.time}/>
+          <SingleItem label={labels[2]} data={session.type}/>
+          <SingleItemForVenue label={labels[3]} venue={venues.find(v => v.name === session.venue)} />
+          <SingleItem label={labels[4]} data={session.levels} icons/>
+        </FlexItem>
+        <FlexItem>
+          examiners
         </FlexItem>
       </FlexContainer>
     </SingleView>

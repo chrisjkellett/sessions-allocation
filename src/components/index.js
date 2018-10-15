@@ -18,7 +18,9 @@ import EditDeletePanel from './Btns/EditDeletePanel/EditDeletePanel';
 import ExpandBtn from './Btns/ExpandBtn/ExpandBtn';
 import ShowHideBtn from './Btns/ShowHideBtn/ShowHideBtn';
 import AsyncLoad from './AsyncLoad/AsyncLoad';
-import SingleView from './Wrappers/SingleView/SingleView';
+import SingleView from './Wrappers/SingleView/SingleView/SingleView';
+import SingleItem from './Wrappers/SingleView/SingleItem/SingleItem';
+import SingleItemForVenue from './Wrappers/SingleView/SingleItem/SingleItemForVenue';
 
 export {
   SubTd, Td, TdIcons, TdIconsForTime, TdDate, Tr, Table,
@@ -28,5 +30,5 @@ export {
   Filter,
   AddNewBtn, SubmitBtns, EditDeletePanel, ExpandBtn, ShowHideBtn,
   AsyncLoad,
-  SingleView
+  SingleView, SingleItem, SingleItemForVenue,
 }

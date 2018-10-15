@@ -1,0 +1,22 @@
+.SingleItem {
+  display: flex;
+  align-items: center;
+}
+
+.SingleItem div{
+  width: 200px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.Data {
+  background: white;
+  padding-left: 10px;
+  border-left: 1px solid lightgrey;
+}
+
+.Sub {
+  font-size: 80%;
+  padding: 0 !important;
+}
