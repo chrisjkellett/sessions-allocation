@@ -24,15 +24,16 @@ class SessionsForm extends Component {
   state = initialState;
 
   componentDidMount(){
-    const { venues, selectedSession } = this.props;
+    const { venues, selectedSession, examiners, session, sessions } = this.props;
+    const sessionId = selectedSession ? selectedSession.id : null;
     selectedSession && this.props.handlers.prepareForEdit(selectedSession);
     if(venues !== null && !selectedSession) this.props.handlers.addAsyncForm(venues[0].name, 'venue'); 
-
-    const { examiners, session, sessions } = this.props;
-    const sessionId = selectedSession ? selectedSession.id : null;
     this.props.calculateAvailableExaminers(examiners, session, sessions, sessionId);
     document.getElementById('$session_date').focus();
     document.addEventListener("keydown", this.handlers.ctrlToggles, false);
+    this.setState({
+      showExaminers: true, showSupport: true
+    })
   }
 
   componentWillUnmount(){
