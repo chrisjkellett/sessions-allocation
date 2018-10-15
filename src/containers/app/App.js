@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   render() {
-    const {isAuthenticated, examiners} = this.props;
+    const {isAuthenticated, examiners, periods} = this.props;
     return (
       <Wrapper>
         <Switch>
@@ -69,7 +69,9 @@ class App extends Component {
               <Switch>
                 {isAuthenticated && <Route path={routes.EXAMINERS} exact component={Examiners} />}
                 {isAuthenticated && <Route path={routes.VENUES} exact component={Venues} />}
-                {isAuthenticated && <Route path={routes.SESSIONS} exact component={Sessions} /> }
+                <AsyncLoad waitFor={periods}>
+                  {isAuthenticated && <Route path={routes.SESSIONS} exact component={Sessions} /> }
+                </AsyncLoad>
               </Switch>
             </section>
           </AsyncLoad>
@@ -85,6 +87,7 @@ const mapStateToProps = state => {
     sessions: state.sess.sessions,
     isAuthenticated: state.auth.token !== null && state.auth.token !== '9999',
     examiners: state.ex.examiners,
+    periods: state.per.periods,
     user: state.auth.session_user,
     selected: state.ex.selectedExaminer,
     hasFormActive: state.sess.formActive || state.ex.formActive || state.venue.formActive,

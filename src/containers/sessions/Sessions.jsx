@@ -6,8 +6,7 @@ import { checkValidity } from '../../validation/validation';
 import { Section } from '../../components/Wrappers';
 import { AddNewBtn } from '../../components/Btns/';
 import AsyncLoad from '../../components/AsyncLoad/AsyncLoad';
-import SessionsTable from './components/SessionsTable/SessionsTable';
-import SessionsForm from './components/SessionsForm/SessionsForm';
+import { SessionsTable, SessionsForm, Monthly } from './components';
 import SingleSession from './components/SessionsTable/components/SingleSession/SingleSession';
 import constructSessionState from '../../store/constructors/sessions';
 import * as actions from '../../store/actions/sessions/sessions';
@@ -193,15 +192,16 @@ class Sessions extends Component {
 
   render(){  
     const { showForm, isConfirming, session, shouldValidate, showSingleView, activeFilter } = this.state;
-    const { sessions, filteredSessions, venues, selectedSession, examiners } = this.props;
+    const { sessionsByPeriod, filteredSessions, venues, selectedSession, examiners } = this.props;
     const { clearSelectedSession } = this.props;
 
     return (
       <Section showForm={showForm}>
-        <AsyncLoad waitFor={sessions}>
+        <AsyncLoad waitFor={sessionsByPeriod}>
           <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'session'} />
+          <Monthly />
           <SessionsTable 
-            data={sessions} 
+            data={sessionsByPeriod} 
             filtered={filteredSessions} 
             handlers={this.handlers} 
             isConfirming={isConfirming} 
@@ -228,6 +228,7 @@ const mapStateToProps = state => {
   return {
     token: state.auth.token,
     sessions: state.sess.sessions,
+    sessionsByPeriod: state.per.sessionsByPeriod,
     selectedSession: state.sess.selectedSession,
     examiners: state.ex.examiners,
     venues: state.venue.venues,
