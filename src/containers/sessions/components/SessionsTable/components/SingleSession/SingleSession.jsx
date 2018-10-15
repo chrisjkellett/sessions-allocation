@@ -8,7 +8,7 @@ import {
   FlexItem,
   Label } from '../../../../../../components';
 
-const labels = ['session date', 'time', 'type', 'venue', 'levels', 'examiners']
+const labels = ['session date', 'time', 'type', 'venue', 'levels', 'examiners', 'support']
 
 const SingleSession = ({ session, venues, examiners }) => {
   return (
@@ -23,7 +23,10 @@ const SingleSession = ({ session, venues, examiners }) => {
         </FlexItem>
         <FlexItem double>
           <Label label={labels[5]}>
-            <SingleItemForExaminer examiners={examiners.filter(e => session.examiners.includes(e.name))} />
+            <SingleItemForExaminer examiners={session.examiners && examiners.filter(e => session.examiners.includes(e.name))} />
+          </Label>
+          <Label label={labels[6]}>
+            <SingleItemForExaminer examiners={session.support && examiners.filter(e => session.support.includes(e.name))} />
           </Label>
         </FlexItem>
       </FlexContainer>
