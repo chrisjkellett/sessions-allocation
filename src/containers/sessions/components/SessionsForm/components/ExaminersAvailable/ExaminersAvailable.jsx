@@ -32,9 +32,7 @@ const ExaminersAvailable = ({ data, handlers, session, showUnavailable, showAssi
         <Tr 
           key={e.id} 
           name={e.name}
-          disabled 
-          handler={handlers.selectExaminer} 
-          selected={session.examiners.value.includes(e.name)} >
+          disabled >
           <Td data={e.name} subContent={<SubTd data={Object.keys(e.avail).filter(item => e.avail[item])} />} />
           <TdIcons array={e.levels} />
           <TdIconsForTime array={e.availability} noBorders />

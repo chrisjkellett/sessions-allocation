@@ -30,9 +30,7 @@ const SupportAvailable = ({ data, handlers, session, showUnavailable, selectedSu
           <Tr 
             key={e.id} 
             name={e.name}
-            disabled 
-            handler={handlers.selectExaminer} 
-            selected={session.support.value.includes(e.name)} >
+            disabled >
             <Td data={e.name} subContent={<SubTd data={Object.keys(e.avail).filter(item => e.avail[item])} />} />
             <Td data={e.roles} smallFont></Td>
             <TdIconsForTime array={e.availability} noBorders />
