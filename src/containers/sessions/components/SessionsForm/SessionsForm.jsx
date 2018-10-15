@@ -42,11 +42,19 @@ class SessionsForm extends Component {
 
   handlers = {
     toggleExaminers: () => {
-      this.setState((prev) => ({ ...initialState, showExaminers : prev.showExaminers ? false : true }))
+      this.setState((prev) => ({ 
+        ...initialState, 
+        showExaminers : prev.showExaminers ? false : true,
+        showSupport : prev.showSupport ? true : false 
+      }))
     },
 
     toggleSupport: () => {
-      this.setState((prev) => ({ ...initialState, showSupport : prev.showSupport ? false : true }))
+      this.setState((prev) => ({ 
+        ...initialState, 
+        showSupport : prev.showSupport ? false : true,
+        showExaminers : prev.showExaminers ? true : false 
+      }))
     },
 
     toggleSameDay: () => {
