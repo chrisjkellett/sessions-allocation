@@ -1,10 +1,10 @@
 import React from 'react';
-import classes from '../../../Sessions.css';
+import classes from '../Weekly.css';
 import * as $ from './utility';
 
 const FilterPanel = ({ weeks, closeOptions, filterByWeek, sessions, weekFilteredBy }) => {
   return (
-    <span id="weeks-filter-panel">
+    <div id="weeks-filter-panel" className={classes.FilterPanel}>
       <div>
         <div>
           <span className={classes.SmallLabel}>filter by week beginning</span>
@@ -17,7 +17,7 @@ const FilterPanel = ({ weeks, closeOptions, filterByWeek, sessions, weekFiltered
           <span id="close-options-btn" className={classes.CloseFilter} onClick={closeOptions}>✖</span>
         </div>
       </div>
-    </span>
+    </div>
   ) 
 }
 

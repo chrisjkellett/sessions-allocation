@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import classes from '../../Sessions.css';
+import classes from './Weekly.css';
 import FilterPanel from './components/FilterPanel';
 import * as actions from '../../../../store/actions/periods/periods'
 
@@ -28,7 +28,7 @@ export class UnconnectedWeekly extends Component{
       <section className={classes.SplitWeekly}>
         { weeks.length <= 1 || (weeks.length > 1 && showOptions)
           ? null
-          : <span id="split-btn" className={classes.SmallLink} onClick={openOptions}>filter by week</span>
+          : <div id="split-btn" className={classes.SmallLink} onClick={openOptions}>filter by week</div>
         }
 
         { weeks.length > 1 && showOptions 
@@ -45,6 +45,13 @@ export class UnconnectedWeekly extends Component{
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    weeks: state.per.weeks,
+    filterByWeek: state.per.filterByWeek,
+    weekFilteredBy: state.per.weekFilteredBy,
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -53,4 +60,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(UnconnectedWeekly);
+export default connect(mapStateToProps, mapDispatchToProps)(UnconnectedWeekly);

@@ -14,7 +14,6 @@ class Monthly extends Component {
     const { periods, currentPeriod } = this.props;
     return (
      <div className={classes.Monthly}>
-      <label>period:</label>
         <select value={currentPeriod} onChange={this.changeHandler}>
           {periods.map(p => <option key={p}>{p}</option>)}
         </select>
