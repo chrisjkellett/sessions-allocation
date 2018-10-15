@@ -4,9 +4,28 @@ import classes from './Weekly.css';
 import FilterPanel from './components/FilterPanel';
 import * as actions from '../../../../store/actions/periods/periods'
 
-export class UnconnectedWeekly extends Component{
+export class UnconnectedWeekly extends Component {
+  constructor(props){
+    super(props);
+    this.escapeAll = this.escapeAll.bind(this);
+  }
+
+  componentDidMount(){
+    document.addEventListener("keydown", this.escapeAll, false);
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.escapeAll, false);
+  }
+
   state = {
     showOptions: false
+  }
+
+  escapeAll = (e) => {
+    if(e.keyCode === 27) {
+      this.closeOptions();
+    }
   }
 
   openOptions = () => {

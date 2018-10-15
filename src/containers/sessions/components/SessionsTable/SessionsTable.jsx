@@ -8,10 +8,10 @@ class SessionsTable extends Component {
   }
 
   render(){
-    const { data, filtered, handlers, isConfirming, activeFilter } = this.props;
+    const { data, filtered, handlers, isConfirming, activeFilter, showDateFilter } = this.props;
     const sessions = filtered === null ? data : filtered;
     const labels = ([
-      <span>
+      showDateFilter ? null : <span>
         <Monthly />
         <Weekly />
       </span>, 

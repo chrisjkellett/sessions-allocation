@@ -26,6 +26,7 @@ class Sessions extends Component {
     shouldValidate: false,
     showSingleView: false,
     activeFilter: false,
+    showDateFilter: false,
   }
 
   componentDidMount(){
@@ -152,15 +153,27 @@ class Sessions extends Component {
       this.props.clearSelectedSession();
     },
 
+    toggleDateFilter: () => {
+      this.setState((prev) => ({ showDateFilter: prev.showDateFilter ? false : true }))
+    },
+
     escapeAll: (e) => {
       if(e.keyCode === 27) {
         this.state.showSingleView && this.handlers.closeSingleView();
         this.state.showForm && this.handlers.cancel();
         this.props.filteredSessions !== null && this.handlers.removeFilters();
       }
-      else if(e.keyCode === 65 && e.ctrlKey) {
+      if(e.keyCode === 78 && e.ctrlKey) {
         e.preventDefault();
         !this.state.showForm && this.handlers.add();
+      }
+      if(e.keyCode === 65 && e.ctrlKey) {
+        e.preventDefault();
+        this.handlers.toggleshowDateFilter();
+      }
+      if(e.keyCode === 70 && e.ctrlKey) {
+        e.preventDefault();
+        this.handlers.toggleDateFilter();
       }
     },
 
@@ -190,21 +203,24 @@ class Sessions extends Component {
   }
 
   render(){  
-    const { showForm, isConfirming, session, shouldValidate, showSingleView, activeFilter } = this.state;
-    const { sessionsByPeriod, sessionsByWeek, filteredSessions, venues, selectedSession, examiners } = this.props;
+    const { 
+      showForm, isConfirming, session, shouldValidate, showSingleView, activeFilter, showDateFilter 
+    } = this.state;
+    const { sessionsByPeriod, sessionsByWeek, filteredSessions, venues, selectedSession, examiners, sessions } = this.props;
     const { clearSelectedSession } = this.props;
-    const sessions = sessionsByWeek.length !== 0 ? sessionsByWeek : sessionsByPeriod;
-    const filtered = filteredSessions ? filteredSessions.filter(s => sessions.some(x => s.id === x.id)) : null;
+    const sessionsWithFilters = sessionsByWeek.length !== 0 ? sessionsByWeek : sessionsByPeriod;
+    const filtered = filteredSessions ? filteredSessions.filter(s => sessionsWithFilters.some(x => s.id === x.id)) : null;
 
     return (
       <Section showForm={showForm}>
         <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'session'} />
         <SessionsTable 
-          data={sessions} 
-          filtered={filtered} 
+          data={showDateFilter ? sessions : sessionsWithFilters} 
+          filtered={showDateFilter ? filteredSessions : filtered} 
           handlers={this.handlers} 
           isConfirming={isConfirming} 
           activeFilter={activeFilter}
+          showDateFilter={showDateFilter}
           venues={venues} />
         {showForm && 
           <SessionsForm 
