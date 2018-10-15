@@ -12,7 +12,7 @@ import SingleSession from './components/SessionsTable/components/SingleSession/S
 import constructSessionState from '../../store/constructors/sessions';
 import * as actions from '../../store/actions/sessions/sessions';
 import * as exOpActions from '../../store/actions/examiner-options/examiner-options';
-import { forSubmit, checkFormValidity, distributeValuesForEditing } from '../utility';
+import { forSubmit, checkFormValidity, distributeValuesForEditing, updateArray } from '../utility';
 
 
 class Sessions extends Component {
@@ -36,6 +36,14 @@ class Sessions extends Component {
 
   componentWillUnmount(){
     document.removeEventListener("keydown", this.handlers.escapeAll, false);
+  }
+
+  componentDidUpdate(){
+    if(this.props.sessionExaminers.length !== this.state.session.examiners.value.length){
+      this.setState((prev) => ({
+        session: { ...prev.session, examiners: { ...prev.session.examiners, value: this.props.sessionExaminers }}
+      }))
+    }
   }
 
   handlers = {
@@ -97,7 +105,19 @@ class Sessions extends Component {
       this.setState({ session: updated });
     },
 
+    simulateChange: (id, name) => {
+      const { session } = this.state;
+      const { examiners, sessions, selectedSession } = this.props;
+      const sessionId = selectedSession ? selectedSession.id : null;
+      const value = updateArray(session[id].value, name);
+      const updated = {...session, [id] : { ...session[id], value: value}}
+      updated[id].validation = checkValidity({ ...updated[id] });
+      this.props.calculateAvailableExaminers(examiners, updated, sessions, sessionId);
+      this.setState({ session: updated });
+    },
+
     selectExaminer: (name) => {
+      this.handlers.simulateChange('examiners', name)
       this.props.selectAvailableExaminers(name);
     },
 
@@ -205,6 +225,7 @@ const mapStateToProps = state => {
     examiners: state.ex.examiners,
     venues: state.venue.venues,
     filteredSessions: state.sess.filteredSessions,
+    sessionExaminers: state.op.sessionExaminers,
   }
 }
 
