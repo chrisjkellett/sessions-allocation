@@ -44,6 +44,12 @@ class Sessions extends Component {
         session: { ...prev.session, examiners: { ...prev.session.examiners, value: this.props.sessionExaminers }}
       }))
     }
+
+    if(this.props.sessionSupport.length !== this.state.session.support.value.length){
+      this.setState((prev) => ({
+        session: { ...prev.session, support: { ...prev.session.support, value: this.props.sessionSupport }}
+      }))
+    }
   }
 
   handlers = {
@@ -122,6 +128,7 @@ class Sessions extends Component {
     },
 
     selectSupport: (name) => {
+      this.handlers.simulateChange('support', name)
       this.props.selectAvailableSupport(name);
     },
 
@@ -226,6 +233,7 @@ const mapStateToProps = state => {
     venues: state.venue.venues,
     filteredSessions: state.sess.filteredSessions,
     sessionExaminers: state.op.sessionExaminers,
+    sessionSupport: state.op.sessionSupport,
   }
 }
 
