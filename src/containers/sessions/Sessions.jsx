@@ -91,7 +91,7 @@ class Sessions extends Component {
       const sessionForDB = forSubmit(session);
       
       if(checkFormValidity(session)){
-        if(selectedSession === null)
+        if(selectedSession === undefined)
           this.props.addSession(sessions, sessionForDB, token)
         else
         this.props.updateSession(sessions, sessionForDB, selectedSession.id, token)
