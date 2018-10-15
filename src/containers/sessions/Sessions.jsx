@@ -191,14 +191,15 @@ class Sessions extends Component {
 
   render(){  
     const { showForm, isConfirming, session, shouldValidate, showSingleView, activeFilter } = this.state;
-    const { sessionsByPeriod, filteredSessions, venues, selectedSession, examiners } = this.props;
+    const { sessionsByPeriod, sessionsByWeek, filteredSessions, venues, selectedSession, examiners } = this.props;
     const { clearSelectedSession } = this.props;
+    const sessions = sessionsByWeek.length !== 0 ? sessionsByWeek : sessionsByPeriod;
 
     return (
       <Section showForm={showForm}>
         <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'session'} />
         <SessionsTable 
-          data={sessionsByPeriod} 
+          data={sessions} 
           filtered={filteredSessions} 
           handlers={this.handlers} 
           isConfirming={isConfirming} 
@@ -225,6 +226,7 @@ const mapStateToProps = state => {
     token: state.auth.token,
     sessions: state.sess.sessions,
     sessionsByPeriod: state.per.sessionsByPeriod,
+    sessionsByWeek: state.per.sessionsByWeek,
     selectedSession: state.sess.selectedSession,
     examiners: state.ex.examiners,
     venues: state.venue.venues,

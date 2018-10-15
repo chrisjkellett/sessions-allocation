@@ -47,6 +47,7 @@ export class UnconnectedWeekly extends Component{
 
 const mapStateToProps = state => {
   return {
+    sessions: state.sess.sessions,
     weeks: state.per.weeks,
     filterByWeek: state.per.filterByWeek,
     weekFilteredBy: state.per.weekFilteredBy,
