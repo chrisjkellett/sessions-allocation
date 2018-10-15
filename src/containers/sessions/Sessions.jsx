@@ -5,8 +5,7 @@ import { getInputValue } from '../utility';
 import { checkValidity } from '../../validation/validation';
 import { Section } from '../../components/Wrappers';
 import { AddNewBtn } from '../../components/Btns/';
-import AsyncLoad from '../../components/AsyncLoad/AsyncLoad';
-import { SessionsTable, SessionsForm, Monthly } from './components';
+import { SessionsTable, SessionsForm } from './components';
 import SingleSession from './components/SessionsTable/components/SingleSession/SingleSession';
 import constructSessionState from '../../store/constructors/sessions';
 import * as actions from '../../store/actions/sessions/sessions';
@@ -197,28 +196,25 @@ class Sessions extends Component {
 
     return (
       <Section showForm={showForm}>
-        <AsyncLoad waitFor={sessionsByPeriod}>
-          <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'session'} />
-          <Monthly />
-          <SessionsTable 
-            data={sessionsByPeriod} 
-            filtered={filteredSessions} 
+        <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'session'} />
+        <SessionsTable 
+          data={sessionsByPeriod} 
+          filtered={filteredSessions} 
+          handlers={this.handlers} 
+          isConfirming={isConfirming} 
+          activeFilter={activeFilter}
+          venues={venues} />
+        {showForm && 
+          <SessionsForm 
             handlers={this.handlers} 
-            isConfirming={isConfirming} 
-            activeFilter={activeFilter}
-            venues={venues} />
-          {showForm && 
-            <SessionsForm 
-              handlers={this.handlers} 
-              session={session} 
-              shouldValidate={shouldValidate}
-              selectedSession={selectedSession} 
-              clearSelectedSession={clearSelectedSession}  />
-          }
-          {showSingleView &&
-            <SingleSession session={selectedSession} venues={venues} examiners={examiners}/>
-          }
-        </AsyncLoad>
+            session={session} 
+            shouldValidate={shouldValidate}
+            selectedSession={selectedSession} 
+            clearSelectedSession={clearSelectedSession}  />
+        }
+        {showSingleView &&
+          <SingleSession session={selectedSession} venues={venues} examiners={examiners}/>
+        }
       </Section>
     )
   }

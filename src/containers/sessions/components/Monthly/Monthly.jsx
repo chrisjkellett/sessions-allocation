@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import classes from './Monthly.css';
 import * as actions from '../../../../store/actions/periods/periods';
 
 class Monthly extends Component {
@@ -12,8 +13,8 @@ class Monthly extends Component {
   render(){  
     const { periods, currentPeriod } = this.props;
     return (
-     <div>
-      <label>periods</label>
+     <div className={classes.Monthly}>
+      <label>period:</label>
         <select value={currentPeriod} onChange={this.changeHandler}>
           {periods.map(p => <option key={p}>{p}</option>)}
         </select>

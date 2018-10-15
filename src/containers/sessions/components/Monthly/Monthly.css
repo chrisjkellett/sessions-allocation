@@ -1,0 +1,10 @@
+.Monthly {
+  margin-bottom: 4px;
+}
+
+
+.Monthly label, .Monthly select {
+  display: inline-block;
+  padding-right: 5px;
+}
+

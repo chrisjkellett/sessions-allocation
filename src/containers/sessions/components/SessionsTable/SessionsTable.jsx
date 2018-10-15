@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table, Tr, Td, TdIcons, TdDate, IsNotEmpty, Filter, EditDeletePanel } from '../../../../components';
+import { Monthly } from '../';
 
 class SessionsTable extends Component {
   state = {
@@ -10,7 +11,7 @@ class SessionsTable extends Component {
     const { data, filtered, handlers, isConfirming, activeFilter } = this.props;
     const sessions = filtered === null ? data : filtered;
     const labels = ([
-      <Filter label='venue' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
+      <Monthly />, 
       <Filter label='levels' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
       <Filter label='examiners' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
       <Filter label='support' filter={handlers.filter} value={!activeFilter ? '' : undefined}/>,
