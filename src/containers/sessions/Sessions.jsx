@@ -166,7 +166,7 @@ class Sessions extends Component {
 
   render(){  
     const { showForm, isConfirming, session, shouldValidate, showSingleView, activeFilter } = this.state;
-    const { sessions, filteredSessions, venues, selectedSession } = this.props;
+    const { sessions, filteredSessions, venues, selectedSession, examiners } = this.props;
     const { clearSelectedSession } = this.props;
 
     return (
@@ -189,7 +189,7 @@ class Sessions extends Component {
               clearSelectedSession={clearSelectedSession}  />
           }
           {showSingleView &&
-            <SingleSession session={selectedSession} venues={venues}/>
+            <SingleSession session={selectedSession} venues={venues} examiners={examiners}/>
           }
         </AsyncLoad>
       </Section>

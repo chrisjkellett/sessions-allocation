@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './SingleItem.css';
 
-const SingleItemForVenue = ({ label, venue }) => {
+const SingleItemForObject = ({ label, venue }) => {
   return (
     <div className={classes.SingleItem}>
       <div className={classes.Label}>{label}</div>
@@ -13,4 +13,4 @@ const SingleItemForVenue = ({ label, venue }) => {
   )
 }
 
-export default SingleItemForVenue;
+export default SingleItemForObject;

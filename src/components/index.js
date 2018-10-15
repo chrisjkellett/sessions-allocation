@@ -20,7 +20,9 @@ import ShowHideBtn from './Btns/ShowHideBtn/ShowHideBtn';
 import AsyncLoad from './AsyncLoad/AsyncLoad';
 import SingleView from './Wrappers/SingleView/SingleView/SingleView';
 import SingleItem from './Wrappers/SingleView/SingleItem/SingleItem';
-import SingleItemForVenue from './Wrappers/SingleView/SingleItem/SingleItemForVenue';
+import SingleItemForObject from './Wrappers/SingleView/SingleItem/SingleItemForObject';
+import SingleItemForExaminer from './Wrappers/SingleView/SingleItem/SingleItemForExaminer';
+import Label from './Wrappers/SingleView/Label/Label';
 
 export {
   SubTd, Td, TdIcons, TdIconsForTime, TdDate, Tr, Table,
@@ -30,5 +32,5 @@ export {
   Filter,
   AddNewBtn, SubmitBtns, EditDeletePanel, ExpandBtn, ShowHideBtn,
   AsyncLoad,
-  SingleView, SingleItem, SingleItemForVenue,
+  SingleView, SingleItem, SingleItemForObject, SingleItemForExaminer, Label
 }
