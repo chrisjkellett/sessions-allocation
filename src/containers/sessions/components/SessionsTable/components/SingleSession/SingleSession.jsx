@@ -15,7 +15,7 @@ const SingleSession = ({ session, venues, examiners }) => {
     <SingleView>
       <FlexContainer>
         <FlexItem>
-          <SingleItem label={labels[0]} data={session.session_date}/>
+          <SingleItem label={labels[0]} data={session.session_date} isDate />
           <SingleItem label={labels[1]} data={session.time}/>
           <SingleItem label={labels[2]} data={session.type}/>
           <SingleItemForObject label={labels[3]} venue={venues.find(v => v.name === session.venue)} />
