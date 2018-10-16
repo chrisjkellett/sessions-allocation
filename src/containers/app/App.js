@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import {Route, withRouter, Switch} from 'react-router-dom';
+import { Route, withRouter, Switch, Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Header from '../header/Header';
 import Auth from '../auth/Auth';
@@ -63,20 +63,22 @@ class App extends Component {
         </Switch>
 
         <Route path='/(.+)' render={() => (
-          <AsyncLoad waitFor={examiners}>
-          <AsyncLoad waitFor={sessions}>
-            <Header />
-            <section className={classes.Section}>
-              <Switch>
-                {isAuthenticated && <Route path={routes.EXAMINERS} exact component={Examiners} />}
-                {isAuthenticated && <Route path={routes.VENUES} exact component={Venues} />}
-                <AsyncLoad waitFor={periods}>
-                  {isAuthenticated && <Route path={routes.SESSIONS} exact component={Sessions} /> }
-                </AsyncLoad>
-              </Switch>
-            </section>
-          </AsyncLoad>
-          </AsyncLoad>
+          isAuthenticated 
+          ? <AsyncLoad waitFor={examiners}>
+            <AsyncLoad waitFor={sessions}>
+              <Header />
+              <section className={classes.Section}>
+                <Switch>
+                  {isAuthenticated && <Route path={routes.EXAMINERS} exact component={Examiners} />}
+                  {isAuthenticated && <Route path={routes.VENUES} exact component={Venues} />}
+                  <AsyncLoad waitFor={periods}>
+                    {isAuthenticated && <Route path={routes.SESSIONS} exact component={Sessions} /> }
+                  </AsyncLoad>
+                </Switch>
+              </section>
+            </AsyncLoad>
+            </AsyncLoad>
+          : <Redirect to={routes.LOGIN_PAGE} />
           )} />
       </Wrapper>
 

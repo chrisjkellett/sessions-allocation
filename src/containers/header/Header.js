@@ -29,9 +29,6 @@ class Header extends Component{
         <ul>
           {navElements.renderSessionViewLink()}
           {isAuthenticated && navElements.renderExaminerViewLink()}
-          {/* {!isAuthenticated && user && navElements.renderSingleExaminerViewLink(user, selectedExaminer)}
-          {isAuthenticated && navElements.renderExaminerFormLink(this.props)} */}
-          {/* {isAuthenticated && navElements.renderSessionFormLink(this.props)} */}
           {isAuthenticated && navElements.renderVenuesLink()}
           {navElements.renderLogout(this.logoutHandler, user, isAuthenticated)}
         </ul>

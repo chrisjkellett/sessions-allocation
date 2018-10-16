@@ -31,6 +31,21 @@ export const constructExaminerState = () => {
       validation: constructValidation({...rules.required, ...rules.checkEmail})
       },
 
+    date_of_birth: {
+      elementType: 'date',
+      options: {
+        days: dayOptions,
+        months: monthOptions,
+        years: Array.from(new Array(51),(val, index) => index + 1950)
+      },
+      elementConfig: {
+        disabled: false
+      },
+      value: [1985, monthOptions[0].id, dayOptions[0].id],
+      group: 1,
+      validation: constructValidation({...rules.checkDate})
+    },
+
     roles: {
       elementType: 'select',
       elementConfig: {
@@ -78,21 +93,6 @@ export const constructExaminerState = () => {
       value: [],
       group: 2,
       validation: constructValidation({...rules.required})
-    },
-
-    date_of_birth: {
-      elementType: 'date',
-      options: {
-        days: dayOptions,
-        months: monthOptions,
-        years: Array.from(new Array(51),(val, index) => index + 1950)
-      },
-      elementConfig: {
-        disabled: false
-      },
-      value: [1985, monthOptions[0].id, dayOptions[0].id],
-      group: 1,
-      validation: constructValidation({...rules.checkDate, ...rules.NotBeforeToday})
     },
   } 
 };
