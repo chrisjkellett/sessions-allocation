@@ -90,7 +90,9 @@ export const filterData = (data, { value, filterBy }) => {
   ? null 
   : typeof data[0][filterBy] === 'string' 
     ? filterAsString(data, value, filterBy)
-    : filterAsArray(data, value, filterBy);
+    : data[0][filterBy].name !== undefined
+      ? filterAsArray(data, value, filterBy)
+      : filterAsArrayOfObjects(data, value, filterBy)
 }
 
 const filterAsString = (data, value, filterBy) => {
@@ -106,3 +108,10 @@ const filterAsArray = (data, value, filterBy) => {
     );
 };
 
+const filterAsArrayOfObjects = (data, value, filterBy) => {
+  return data.filter(record => 
+    record[filterBy] !== undefined && record[filterBy].some(item => 
+        item.name.substring(0, value.length).toLowerCase() === value.toLowerCase()
+      )
+    );
+}

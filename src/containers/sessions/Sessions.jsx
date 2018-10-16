@@ -37,19 +37,19 @@ class Sessions extends Component {
     document.removeEventListener("keydown", this.handlers.escapeAll, false);
   }
 
-  componentDidUpdate(){
-    if(this.props.sessionExaminers.length !== this.state.session.examiners.value.length){
-      this.setState((prev) => ({
-        session: { ...prev.session, examiners: { ...prev.session.examiners, value: this.props.sessionExaminers }}
-      }))
-    }
+  // componentDidUpdate(){
+  //   if(this.props.sessionExaminers.length !== this.state.session.examiners.value.length){
+  //     this.setState((prev) => ({
+  //       session: { ...prev.session, examiners: { ...prev.session.examiners, value: this.props.sessionExaminers }}
+  //     }))
+  //   }
 
-    if(this.props.sessionSupport.length !== this.state.session.support.value.length){
-      this.setState((prev) => ({
-        session: { ...prev.session, support: { ...prev.session.support, value: this.props.sessionSupport }}
-      }))
-    }
-  }
+  //   if(this.props.sessionSupport.length !== this.state.session.support.value.length){
+  //     this.setState((prev) => ({
+  //       session: { ...prev.session, support: { ...prev.session.support, value: this.props.sessionSupport }}
+  //     }))
+  //   }
+  // }
 
   handlers = {
     addAsyncForm: (value, type) => {
@@ -183,6 +183,7 @@ class Sessions extends Component {
     },
 
     filter: ({ target: { value, id }}) => {
+      console.log(value);
       this.setState({ activeFilter: value.trim() !== '' ? true : false })
       this.props.filterSessions(value.trim(), id);
     },

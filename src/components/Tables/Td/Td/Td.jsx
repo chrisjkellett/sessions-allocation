@@ -7,7 +7,7 @@ const Td = ({ data, smallFont, subContent, type, isYLE, handler }) => {
   if(handler) styles.push(classes.Link);
   
   const isWritingOrYLESpeaking = type === 'Writing' || (type === 'Speaking' && isYLE)
-  
+
   return (
     <td className={styles.join(" ")}>
       {type === undefined && <div onClick={handler ? handler : null}>{data}</div>} 
