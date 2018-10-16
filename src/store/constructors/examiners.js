@@ -94,5 +94,6 @@ export const constructExaminerState = () => {
       group: 2,
       validation: constructValidation({...rules.required})
     },
+    
   } 
 };

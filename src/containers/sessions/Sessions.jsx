@@ -123,8 +123,9 @@ class Sessions extends Component {
     },
 
     selectExaminer: (name) => {
-      this.handlers.simulateChange('examiners', name)
-      this.props.selectAvailableExaminers(name);
+      const examiner = { name: name, supervisor: false }
+      this.handlers.simulateChange('examiners', examiner)
+      this.props.selectAvailableExaminers(examiner);
     },
 
     selectSupport: (name) => {

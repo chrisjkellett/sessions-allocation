@@ -20,7 +20,7 @@ const ExaminersAvailable = ({ data, handlers, session, showUnavailable, showAssi
             key={e.id} 
             name={e.name} 
             handler={handler} 
-            selected={selectedExaminers.includes(e.name)} >
+            selected={selectedExaminers.find(ex => ex.name === e.name)} >
             <Td data={e.name} subContent={<SubTd data={e.roles} />} />
             <TdIcons array={e.levels} />
             <TdIconsForTime array={e.availability} noBorders />
