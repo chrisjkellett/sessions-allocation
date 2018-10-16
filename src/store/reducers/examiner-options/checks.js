@@ -2,8 +2,9 @@ import moment from 'moment';
 import {isSameTime} from './utility';
 
 export const type = (examiner, sessionType) => {
+  const writingRoles = examiner.roles.includes('Supervisor') || examiner.roles.includes('Invigilator')
   if(sessionType === 'Writing'){
-    if(!examiner.roles.includes('Supervisor'))
+    if(!writingRoles)
       examiner.avail.failsRoles = true;
     else{
       examiner.avail.failsRoles = false;
