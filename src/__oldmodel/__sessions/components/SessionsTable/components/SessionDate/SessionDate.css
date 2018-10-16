@@ -1,9 +1,0 @@
-.LinkToSingleView{
-  color: initial;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.LinkToSingleView:hover{
-  color: grey;
-}
