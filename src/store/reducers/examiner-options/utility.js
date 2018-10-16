@@ -52,8 +52,10 @@ export const isSameTime = (a, b) => {
 };
 
 export const selectExaminer = (arr, examiner) => {
-  if(arr.includes(examiner))
-    return arr.filter(e => e !== examiner)
+  console.log(arr);
+  console.log(examiner);
+  if(arr.find(x => x.name === examiner.name))
+    return arr.filter(e => e.name !== examiner.name)
   else 
     return arr.concat(examiner)
 }
