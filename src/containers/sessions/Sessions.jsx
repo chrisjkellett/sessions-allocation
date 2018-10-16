@@ -71,6 +71,7 @@ class Sessions extends Component {
     prepareForEdit: (selected) => {
       const { session } = this.state;
       this.setState({ session: distributeValuesForEditing(session, selected) })
+      this.props.distributeExaminers(selected.examiners, selected.support)
     },
 
     delete: (session) => {
@@ -264,6 +265,7 @@ const mapDispatchToProps = dispatch => {
     clearSelectedSession: () => dispatch(actions.clearSelectedSession()),
     clearSelectedExaminers: () => dispatch(exOpActions.clearSelectedExaminers()),
     clearFilters: () => dispatch(actions.clearFilters()),
+    distributeExaminers: (examiners, support) => dispatch(exOpActions.distributeExaminersOnEdit(examiners, support))
   }
 }
 

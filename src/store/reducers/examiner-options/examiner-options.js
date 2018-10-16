@@ -33,6 +33,9 @@ const reducer = (state = initial, action) => {
     case actionTypes.CLEAR_SELECTED_EXAMINERS:
       return { ...state, sessionExaminers: [], sessionSupport: [] }
 
+    case actionTypes.DISTRIBUTE_ON_EDIT:
+      return { ...state, sessionExaminers: action.examiners, sessionSupport: action.support }
+
     case actionTypes.FILTER_EXAMINERS:  
       return {...state, ex_options: filterExaminers(action)};
 

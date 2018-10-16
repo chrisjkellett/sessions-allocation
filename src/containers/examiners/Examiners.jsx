@@ -48,7 +48,7 @@ class Examiners extends Component {
 
     prepareForEdit: (selected) => {
       const { examiner } = this.state;
-      this.setState({ examiner: distributeValuesForEditing(examiner, selected) })
+      this.setState({ examiner: distributeValuesForEditing(examiner, selected) });
     },
 
     delete: (examiner) => {
@@ -189,7 +189,7 @@ const mapDispatchToProps = dispatch => {
     fetchExaminer: (id) => dispatch(actions.fetchExaminer(id)),
     clearSelectedExaminer: () => dispatch(actions.clearSelectedExaminer()),
     updateExaminer: (examiner, id, token) => dispatch(actions.updateExaminer(examiner, id, token)),
-    clearFilters: () => dispatch(actions.clearFilters()),
+    clearFilters: () => dispatch(actions.clearFilters())
   }
 }
 

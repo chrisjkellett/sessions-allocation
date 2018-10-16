@@ -45,3 +45,11 @@ export const filterSupport = (support, filterValue) => {
     filterValue: filterValue
   }
 }
+
+export const distributeExaminersOnEdit = (examiners, support) => {
+  return {
+    type: actionTypes.DISTRIBUTE_ON_EDIT,
+    examiners: examiners,
+    support: support,
+  }
+}
