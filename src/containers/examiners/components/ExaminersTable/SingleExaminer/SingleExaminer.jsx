@@ -4,11 +4,13 @@ import {
   SingleItem, 
   SingleItemAvail, 
   FlexContainer, 
-  FlexItem } from '../../../../../components';
+  FlexItem,
+  Label,
+  Table, Tr, TdDate, TdIcons, Td } from '../../../../../components';
 
-const labels = ['name', 'email', 'roles', 'id number', 'levels', 'availability']
+const labels = ['name', 'email', 'roles', 'id number', 'levels', 'availability', 'upcoming sessions']
 
-const SingleExaminer = ({ examiner, venues, sessions }) => {
+const SingleExaminer = ({ examiner, sessions }) => {
   return (
     <SingleView>
       <FlexContainer>
@@ -21,7 +23,20 @@ const SingleExaminer = ({ examiner, venues, sessions }) => {
           <SingleItemAvail label={labels[5]} data={examiner.availability} />
         </FlexItem>
         <FlexItem double>
-          
+          <Label label={labels[6]}>
+            <Table labels={[null, null, null, null]}>
+              {sessions
+                .filter(sess => sess.examiners.includes(examiner.name) || sess.support.includes(examiner.name))
+                .map(s => (
+                <Tr key={s.id}>
+                  <TdDate data={s['session_date']} subContent={[s.type, s.venue, s.time]} isSession />
+                  <TdIcons array={s.levels} />
+                  <Td data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/>
+                  <Td data={s.support} />
+                </Tr>
+              ))}
+            </Table>
+          </Label>
         </FlexItem>
       </FlexContainer>
     </SingleView>

@@ -143,7 +143,7 @@ class Examiners extends Component {
 
   render(){  
     const { isConfirming, showForm, examiner, shouldValidate, extraLarge, activeFilter, showSingleView } = this.state;
-    const { examiners, filtered, selectedExaminer } = this.props;
+    const { examiners, filtered, selectedExaminer, sessions } = this.props;
     const { clearSelectedExaminer } = this.props;
     return (
       <Section overlay={showForm || showSingleView}>
@@ -164,7 +164,7 @@ class Examiners extends Component {
             clearSelectedExaminer={clearSelectedExaminer} />
         }
         {showSingleView &&
-          <SingleExaminer examiner={selectedExaminer}/>
+          <SingleExaminer examiner={selectedExaminer} sessions={sessions} />
         }
       </Section>
     )
@@ -173,6 +173,7 @@ class Examiners extends Component {
 
 const mapStateToProps = state => {
   return {
+    sessions: state.sess.sessions,
     token: state.auth.token,
     examiners: state.ex.examiners,
     filtered: state.ex.filteredExaminers,
