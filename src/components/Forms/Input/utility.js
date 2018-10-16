@@ -1,7 +1,7 @@
 import classes from './Input.css';
 
 export const formatLabel = (str) => {
-  return str === undefined ? null : str.replace('_', ' ').toLowerCase();
+  return str === undefined ? null : str.replace(/_/g, ' ').toLowerCase();
 }
 
 export const generateClasses = (props, classes) => {
