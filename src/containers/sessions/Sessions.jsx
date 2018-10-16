@@ -183,7 +183,6 @@ class Sessions extends Component {
     },
 
     filter: ({ target: { value, id }}) => {
-      console.log(value);
       this.setState({ activeFilter: value.trim() !== '' ? true : false })
       this.props.filterSessions(value.trim(), id);
     },
