@@ -1,0 +1,12 @@
+.Counter {
+  border-radius: 50%;
+  height: 13px;
+  width:13px;
+  line-height: 13px;
+  font-size: 13px;
+  display: inline-block;
+  text-align: center;
+  background: lightblue;
+  padding: 1px;
+  margin-left: 4px;
+}

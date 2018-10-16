@@ -24,6 +24,7 @@ import SingleItemForObject from './Wrappers/SingleView/SingleItem/SingleItemForO
 import SingleItemForExaminer from './Wrappers/SingleView/SingleItem/SingleItemForExaminer';
 import SingleItemAvail from './Wrappers/SingleView/SingleItem/SingleItemAvail';
 import Label from './Wrappers/SingleView/Label/Label';
+import Counter from './Counter/Counter';
 
 export {
   SubTd, Td, TdIcons, TdIconsForTime, TdDate, Tr, Table,
@@ -34,5 +35,6 @@ export {
   AddNewBtn, SubmitBtns, EditDeletePanel, ExpandBtn, ShowHideBtn,
   AsyncLoad,
   SingleView, SingleItem, SingleItemForObject, SingleItemForExaminer, SingleItemAvail,
-  Label
+  Label,
+  Counter
 }

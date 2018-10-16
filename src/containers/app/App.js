@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   render() {
-    const {isAuthenticated, examiners, periods} = this.props;
+    const {isAuthenticated, examiners, periods, sessions} = this.props;
     return (
       <Wrapper>
         <Switch>
@@ -64,6 +64,7 @@ class App extends Component {
 
         <Route path='/(.+)' render={() => (
           <AsyncLoad waitFor={examiners}>
+          <AsyncLoad waitFor={sessions}>
             <Header />
             <section className={classes.Section}>
               <Switch>
@@ -74,6 +75,7 @@ class App extends Component {
                 </AsyncLoad>
               </Switch>
             </section>
+          </AsyncLoad>
           </AsyncLoad>
           )} />
       </Wrapper>

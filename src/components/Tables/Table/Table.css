@@ -61,5 +61,6 @@
 .SmallHeaders {
   font-size: 90%;
   color: grey;
+  padding-top: 5px !important;
 }
 
