@@ -167,10 +167,6 @@ class Sessions extends Component {
         e.preventDefault();
         !this.state.showForm && this.handlers.add();
       }
-      if(e.keyCode === 65 && e.ctrlKey) {
-        e.preventDefault();
-        this.handlers.toggleshowDateFilter();
-      }
       if(e.keyCode === 70 && e.ctrlKey) {
         e.preventDefault();
         this.handlers.toggleDateFilter();
