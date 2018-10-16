@@ -22,6 +22,7 @@ import SingleView from './Wrappers/SingleView/SingleView/SingleView';
 import SingleItem from './Wrappers/SingleView/SingleItem/SingleItem';
 import SingleItemForObject from './Wrappers/SingleView/SingleItem/SingleItemForObject';
 import SingleItemForExaminer from './Wrappers/SingleView/SingleItem/SingleItemForExaminer';
+import SingleItemAvail from './Wrappers/SingleView/SingleItem/SingleItemAvail';
 import Label from './Wrappers/SingleView/Label/Label';
 
 export {
@@ -32,5 +33,6 @@ export {
   Filter,
   AddNewBtn, SubmitBtns, EditDeletePanel, ExpandBtn, ShowHideBtn,
   AsyncLoad,
-  SingleView, SingleItem, SingleItemForObject, SingleItemForExaminer, Label
+  SingleView, SingleItem, SingleItemForObject, SingleItemForExaminer, SingleItemAvail,
+  Label
 }
