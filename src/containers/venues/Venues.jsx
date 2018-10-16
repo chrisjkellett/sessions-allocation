@@ -122,7 +122,7 @@ class Venues extends Component{
     const { clearSelectedVenue } = this.props;
     const { handlers } = this;
     return (
-       <Section showForm={showForm}>
+       <Section overlay={showForm}>
           <VenuesTable data={venues} filtered={filtered} handlers={handlers} isConfirming={isConfirming} showForm={showForm} />
           <AddNewBtn showForm={showForm} openForm={handlers.add} label={'venue'} />
           {showForm && 

@@ -208,7 +208,7 @@ class Sessions extends Component {
     const filtered = filteredSessions ? filteredSessions.filter(s => sessionsWithFilters.some(x => s.id === x.id)) : null;
 
     return (
-      <Section showForm={showForm}>
+      <Section overlay={showForm || showSingleView}>
         <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'session'} />
         <SessionsTable 
           data={showDateFilter ? sessions : sessionsWithFilters} 

@@ -146,7 +146,7 @@ class Examiners extends Component {
     const { examiners, filtered, selectedExaminer } = this.props;
     const { clearSelectedExaminer } = this.props;
     return (
-      <Section showForm={showForm}>
+      <Section overlay={showForm || showSingleView}>
         <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'examiner'} />
         <ExaminersTable 
           data={examiners} 

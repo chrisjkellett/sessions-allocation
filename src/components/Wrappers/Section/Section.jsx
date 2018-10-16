@@ -2,8 +2,8 @@ import React from 'react';
 import { bool } from 'prop-types';
 import classes from './Section.css';
 
-const Section = ({ showForm, children }) => {
-  const styles = showForm ? classes.Section : null
+const Section = ({ overlay, children }) => {
+  const styles = overlay ? classes.Section : null
   return (
     <section>
       <div className={styles} />
@@ -13,7 +13,7 @@ const Section = ({ showForm, children }) => {
 };
 
 Section.propTypes = {
-  showForm: bool.isRequired
+  overlay: bool.isRequired
 };
 
 export default Section;
