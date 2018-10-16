@@ -13,3 +13,11 @@
 .ExaminerPair:last-child {
   padding-bottom: 10px;
 }
+
+.Link div:first-child {
+  cursor: pointer;
+}
+
+.Link div:first-child:hover {
+  color: grey;
+}

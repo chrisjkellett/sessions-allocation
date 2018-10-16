@@ -19,7 +19,7 @@ const ExaminersTable = ({ data, filtered, handlers, isConfirming, activeFilter }
       <IsNotEmpty data={examiners}>
         {examiners.map(e => (
           <Tr key={e.name}>
-            <Td data={e.name} subContent={<SubTd data={e.roles} />} />
+            <Td data={e.name} subContent={<SubTd data={e.roles} />} handler={() => handlers.openSingleView(e.id)}  />
             <td></td>
             <TdIcons array={e.levels} />
             <TdIconsForTime array={e.availability} />

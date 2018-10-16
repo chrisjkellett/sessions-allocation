@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import AsyncLoad from '../../components/AsyncLoad/AsyncLoad';
 import { constructExaminerState } from '../../store/constructors/examiners';
 import ExaminersTable from './components/ExaminersTable/ExaminersTable';
 import ExaminersForm from './components/ExaminersForm/ExaminersForm';
+import SingleExaminer from './components/ExaminersTable/SingleExaminer/SingleExaminer';
 import { AddNewBtn } from '../../components/Btns/';
 import { Section } from '../../components/Wrappers';
 import { getInputValue, updateState, forSubmit, checkFormValidity, distributeValuesForEditing, sortLevels } from '../utility';
@@ -24,6 +24,7 @@ class Examiners extends Component {
     shouldValidate: false,
     extraLarge: false,
     activeFilter: false,
+    showSingleView: false,
   }
 
   componentDidMount(){
@@ -98,10 +99,6 @@ class Examiners extends Component {
       this.setState({ examiner: constructExaminerState(), shouldValidate: false })
     },
 
-    closeSingleView: () => {
-      console.log('close single view')
-    },
-
     removeFilters: () => {
       this.setState({ activeFilter: false });
       this.props.clearFilters();
@@ -124,6 +121,16 @@ class Examiners extends Component {
       this.props.filterExaminer(value.trim(), id);
     },
 
+    openSingleView: (id) => {
+      this.props.fetchExaminer(id);
+      this.setState({ showSingleView: true });
+    },
+
+    closeSingleView: () => {
+      this.setState({ showSingleView: false });
+      this.props.clearSelectedExaminer();
+    },
+
     toggleConfirm: () => {
       this.setState((prev) => ({ isConfirming: prev.isConfirming ? false : true }));
     },
@@ -135,29 +142,30 @@ class Examiners extends Component {
   }
 
   render(){  
-    const { isConfirming, showForm, examiner, shouldValidate, extraLarge, activeFilter } = this.state;
+    const { isConfirming, showForm, examiner, shouldValidate, extraLarge, activeFilter, showSingleView } = this.state;
     const { examiners, filtered, selectedExaminer } = this.props;
     const { clearSelectedExaminer } = this.props;
     return (
       <Section showForm={showForm}>
-        <AsyncLoad waitFor={examiners}>
-          <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'examiner'} />
-          <ExaminersTable 
-            data={examiners} 
-            filtered={filtered} 
+        <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'examiner'} />
+        <ExaminersTable 
+          data={examiners} 
+          filtered={filtered} 
+          handlers={this.handlers} 
+          isConfirming={isConfirming}
+          activeFilter={activeFilter} />
+        {showForm && 
+          <ExaminersForm 
             handlers={this.handlers} 
-            isConfirming={isConfirming}
-            activeFilter={activeFilter} />
-          {showForm && 
-            <ExaminersForm 
-              handlers={this.handlers} 
-              values={examiner} 
-              shouldValidate={shouldValidate} 
-              selectedExaminer={selectedExaminer} 
-              extraLarge={extraLarge}
-              clearSelectedExaminer={clearSelectedExaminer} />
-          }
-        </AsyncLoad>
+            values={examiner} 
+            shouldValidate={shouldValidate} 
+            selectedExaminer={selectedExaminer} 
+            extraLarge={extraLarge}
+            clearSelectedExaminer={clearSelectedExaminer} />
+        }
+        {showSingleView &&
+          <SingleExaminer examiner={selectedExaminer}/>
+        }
       </Section>
     )
   }
