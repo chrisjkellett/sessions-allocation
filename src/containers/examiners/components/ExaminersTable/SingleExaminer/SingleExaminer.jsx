@@ -24,7 +24,7 @@ const SingleExaminer = ({ examiner, sessions }) => {
         </FlexItem>
         <FlexItem double>
           <Label label={labels[6]}>
-            <Table labels={[null, null, null, null]}>
+            <Table labels={[null, 'levels', 'examiners', 'support']} smallHeaders>
               {sessions
                 .filter(sess => sess.examiners.includes(examiner.name) || sess.support.includes(examiner.name))
                 .map(s => (
