@@ -20,7 +20,7 @@ const reducer = (state = initial, action) => {
         ...state, 
         ex_options: examiners, 
         supp_options: support,
-        // sessionExaminers: compareAvailableAndSelected(examiners, state.sessionExaminers),
+        sessionExaminers: compareAvailableAndSelected(examiners, state.sessionExaminers),
         sessionSupport: compareAvailableAndSelected(support, state.sessionSupport),
     };
 

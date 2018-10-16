@@ -52,8 +52,6 @@ export const isSameTime = (a, b) => {
 };
 
 export const selectExaminer = (arr, examiner) => {
-  console.log(arr);
-  console.log(examiner);
   if(arr.find(x => x.name === examiner.name))
     return arr.filter(e => e.name !== examiner.name)
   else 
@@ -61,8 +59,6 @@ export const selectExaminer = (arr, examiner) => {
 }
 
 export const compareAvailableAndSelected = (available, selected) => {
-  return available
-    .filter(e => e.available)
-    .map(e => e.name)
-    .filter(e => selected.includes(e))
+  const av = available.filter(e => e.available);
+  return selected.filter(e => av.some(ex => ex.name === e.name))
 }

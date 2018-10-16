@@ -129,8 +129,9 @@ class Sessions extends Component {
     },
 
     selectSupport: (name) => {
-      this.handlers.simulateChange('support', name)
-      this.props.selectAvailableSupport(name);
+      const examiner = { name: name, supervisor: false }
+      this.handlers.simulateChange('support', examiner)
+      this.props.selectAvailableSupport(examiner);
     },
 
     assignSupervisor: () => {
