@@ -94,10 +94,10 @@ export const updateState = (obj, id, updatedState, type) => {
   }
 }
 
-export const updateArray = (array, newValue) => {
-  return array.includes(newValue) 
-    ? array.filter(item => item !== newValue)
-    : array.concat(newValue)
+export const updateArray = (array, name, supervisor) => {
+  return array.includes(name) 
+    ? array.filter(item => item !== name)
+    : array.concat(name)
 }
 
 export const sortLevels = (arr) => {

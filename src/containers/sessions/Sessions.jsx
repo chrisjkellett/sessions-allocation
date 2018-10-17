@@ -111,11 +111,11 @@ class Sessions extends Component {
       this.setState({ session: updated });
     },
 
-    simulateChange: (id, name) => {
+    simulateChange: (id, examiner) => {
       const { session } = this.state;
       const { examiners, sessions, selectedSession } = this.props;
       const sessionId = selectedSession ? selectedSession.id : null;
-      const value = updateArray(session[id].value, name);
+      const value = updateArray(session[id].value, examiner.name, examiner.supervisor);
       const updated = {...session, [id] : { ...session[id], value: value}}
       updated[id].validation = checkValidity({ ...updated[id] });
       this.props.calculateAvailableExaminers(examiners, updated, sessions, sessionId);
@@ -134,8 +134,10 @@ class Sessions extends Component {
       this.props.selectAvailableSupport(examiner);
     },
 
-    assignSupervisor: () => {
-      console.log('supervise!');
+    assignSupervisor: (name) => {
+      const examiner = { name: name, supervisor: true }
+      this.handlers.simulateChange('examiners', examiner)
+      // this.props.selectAvailableExaminers(examiner);
     },
 
     openForm: () => {

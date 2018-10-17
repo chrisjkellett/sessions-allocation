@@ -66,6 +66,10 @@ class SessionsForm extends Component {
       this.setState((prev) => ({ showUnavailable : prev.showUnavailable ? false : true }))
     },
 
+    toggle: (id) => {
+      this.setState((prev) => ({[id] : prev[id] ? false : true }))
+    },
+
     ctrlToggles: (e) => {
       if(e.keyCode === 69 && e.ctrlKey){
         e.preventDefault();
