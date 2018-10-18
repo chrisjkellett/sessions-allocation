@@ -10,10 +10,11 @@ const SupportAvailable = ({ data, handlers, session, showUnavailable, selectedSu
     'availability', 
     null
   ];
+  const noRecordOrFilter = filteredData.length === 0 || showUnavailable;
 
   return(
     <Table labels={labels} limited>
-      <IsNotEmpty data={filteredData}>
+      <IsNotEmpty data={filteredData} show={noRecordOrFilter}>
         {filteredData.map(e => (
           <Tr 
             key={e.id} 
@@ -26,18 +27,18 @@ const SupportAvailable = ({ data, handlers, session, showUnavailable, selectedSu
             <td></td>
           </Tr>
         ))}
-        {showUnavailable && notAvailable.map(e => (
+      </IsNotEmpty>
+        {noRecordOrFilter && notAvailable.map(e => (
           <Tr 
             key={e.id} 
             name={e.name}
             disabled >
             <Td data={e.name} subContent={<SubTd data={Object.keys(e.avail).filter(item => e.avail[item])} />} />
-            <Td data={e.roles} smallFont></Td>
+            <td></td>
             <TdIconsForTime array={e.availability} noBorders />
             <td></td>
           </Tr>
         ))}
-      </IsNotEmpty>
     </Table>
   )
 }
