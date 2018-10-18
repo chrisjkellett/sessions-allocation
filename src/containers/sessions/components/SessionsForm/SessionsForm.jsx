@@ -83,6 +83,11 @@ class SessionsForm extends Component {
       this.setState((prev) => ({[id] : prev[id] ? false : true }))
     },
 
+    savePairings: (examiners) => {
+      this.props.handlers.changePairings(examiners);
+      this.handlers.togglePairings();
+    },
+
     ctrlToggles: (e) => {
       if(e.keyCode === 69 && e.ctrlKey){
         e.preventDefault();
@@ -160,7 +165,7 @@ class SessionsForm extends Component {
               {showSameDay && forSDSessions.length !== 0
                 && <SameDaySessions data={forSDSessions} />}
               {showPairings && 
-                <Pairings examiners={session.examiners.value} handler={handlers.changePairings}/>}
+                <Pairings examiners={session.examiners.value} handler={this.handlers.savePairings}/>}
             </FlexItem>
           </FlexContainer>
         </Form>

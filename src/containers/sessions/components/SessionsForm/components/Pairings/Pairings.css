@@ -34,3 +34,21 @@
   background: aliceblue;
   border-color: grey;
 }
+
+.MockBtnPanel {
+  text-align: center;
+}
+
+.MockBtn {
+  cursor: pointer;
+  border: 1px solid grey;
+  padding: 5px;
+  text-align: center;
+  display: inline-block;
+  background: lightgrey;
+  width: 50px;
+}
+
+.MockBtn:hover {
+  background: aliceblue;
+}
