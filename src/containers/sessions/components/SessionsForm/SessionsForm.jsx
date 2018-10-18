@@ -76,7 +76,7 @@ class SessionsForm extends Component {
     togglePairings: () => {
       this.setState((prev) => (prev.showPairings 
         ? { ...initialWithExaminers, showPairings : false }
-        : { ...initialState, showPairings : true } ))
+        : { ...initialState, showExaminers: true, showPairings : true } ))
     },
 
     toggle: (id) => {
