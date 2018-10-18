@@ -16,13 +16,22 @@ const initialState = {
   showPairings: false,
 };
 
+const initialWithExaminers = {
+  showExaminers: true,
+  showSupport: true,
+  showSameDay: false,
+  showUnavailable: false,
+  showAssignSupervisors: false,
+  showPairings: false,
+};
+
 class SessionsForm extends Component {
   constructor(props){
     super(props);
     this.handlers.ctrlToggles = this.handlers.ctrlToggles.bind(this);
   }
 
-  state = initialState;
+  state = initialWithExaminers;
 
   componentDidMount(){
     const { venues, selectedSession, examiners, session, sessions } = this.props;
@@ -32,9 +41,6 @@ class SessionsForm extends Component {
     this.props.calculateAvailableExaminers(examiners, session, sessions, sessionId);
     document.getElementById('$session_date').focus();
     document.addEventListener("keydown", this.handlers.ctrlToggles, false);
-    this.setState({
-      showExaminers: true, showSupport: true
-    })
   }
 
   componentWillUnmount(){
@@ -68,7 +74,9 @@ class SessionsForm extends Component {
     },
 
     togglePairings: () => {
-      this.setState((prev) => ({ ...initialState, showPairings : prev.showPairings ? false : true }))
+      this.setState((prev) => (prev.showPairings 
+        ? { ...initialWithExaminers, showPairings : false }
+        : { ...initialState, showPairings : true } ))
     },
 
     toggle: (id) => {
@@ -132,7 +140,7 @@ class SessionsForm extends Component {
                 && <ShowHideBtn handler={this.handlers.toggleUnavailable} visible={showUnavailable} label={'unavailable'} />}
               {session.type.value === 'Writing' && session.examiners.value.length !== 0
                 && <ShowHideBtn handler={this.handlers.toggle} visible={showAssignSupervisors} label={'supervisors'} />}
-              {session.type.value === 'Speaking' && session.examiners.value.length > 1
+              {session.type.value === 'Speaking' && session.examiners.value.length > 3
                 && <ShowHideBtn handler={this.handlers.togglePairings} visible={showPairings} label={'pairings'} />}
               {showExaminers 
                 && <ExaminersAvailable 

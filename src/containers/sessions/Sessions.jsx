@@ -37,19 +37,19 @@ class Sessions extends Component {
     document.removeEventListener("keydown", this.handlers.escapeAll, false);
   }
 
-  // componentDidUpdate(){
-  //   if(this.props.sessionExaminers.length !== this.state.session.examiners.value.length){
-  //     this.setState((prev) => ({
-  //       session: { ...prev.session, examiners: { ...prev.session.examiners, value: this.props.sessionExaminers }}
-  //     }))
-  //   }
+  componentDidUpdate(){
+    if(this.props.sessionExaminers.length !== this.state.session.examiners.value.length){
+      this.setState((prev) => ({
+        session: { ...prev.session, examiners: { ...prev.session.examiners, value: this.props.sessionExaminers }}
+      }))
+    }
 
-  //   if(this.props.sessionSupport.length !== this.state.session.support.value.length){
-  //     this.setState((prev) => ({
-  //       session: { ...prev.session, support: { ...prev.session.support, value: this.props.sessionSupport }}
-  //     }))
-  //   }
-  // }
+    if(this.props.sessionSupport.length !== this.state.session.support.value.length){
+      this.setState((prev) => ({
+        session: { ...prev.session, support: { ...prev.session.support, value: this.props.sessionSupport }}
+      }))
+    }
+  }
 
   handlers = {
     addAsyncForm: (value, type) => {
@@ -115,7 +115,7 @@ class Sessions extends Component {
       const { session } = this.state;
       const { examiners, sessions, selectedSession } = this.props;
       const sessionId = selectedSession ? selectedSession.id : null;
-      const value = updateArray(session[id].value, examiner.name, examiner.supervisor);
+      const value = updateArray(session[id].value, examiner);
       const updated = {...session, [id] : { ...session[id], value: value}}
       updated[id].validation = checkValidity({ ...updated[id] });
       this.props.calculateAvailableExaminers(examiners, updated, sessions, sessionId);
