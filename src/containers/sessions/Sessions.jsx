@@ -135,8 +135,10 @@ class Sessions extends Component {
       this.props.selectAvailableSupport(examiner);
     },
 
-    changePairings: (index) => {
-      console.log(index);
+    changePairings: (examiners) => {
+      this.setState((prev) => ({
+        session: { ...prev.session, examiners: { ...prev.session.examiners, value: examiners }}
+      }))
     },
 
     assignSupervisor: (name) => {
