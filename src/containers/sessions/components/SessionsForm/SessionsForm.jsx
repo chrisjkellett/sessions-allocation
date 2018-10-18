@@ -117,6 +117,7 @@ class SessionsForm extends Component {
   }
   
   render() {
+    console.log(this.props.selectedSession);
     const { handlers, session, shouldValidate, selectedSession } = this.props;
     const { availableExaminers, availableSupport, sessions, selectedExaminers, selectedSupport } = this.props;
     const { showExaminers, showSupport, showSameDay, showUnavailable, showAssignSupervisors, showPairings } = this.state;

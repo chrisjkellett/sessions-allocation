@@ -91,12 +91,13 @@ class Sessions extends Component {
       const sessionForDB = forSubmit(session);
       
       if(checkFormValidity(session)){
-        if(selectedSession === undefined)
+        if(selectedSession === null){
           this.props.addSession(sessions, sessionForDB, token)
-        else
-        this.props.updateSession(sessions, sessionForDB, selectedSession.id, token)
-      this.handlers.closeForm();
-      this.setState({ examiner: constructSessionState(), shouldValidate: false })
+          this.handlers.cancel();
+        }else{
+          this.props.updateSession(sessions, sessionForDB, selectedSession.id, token)
+          this.handlers.cancel();
+        }
       }
     },
 
