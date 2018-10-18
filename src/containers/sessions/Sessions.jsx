@@ -134,6 +134,10 @@ class Sessions extends Component {
       this.props.selectAvailableSupport(examiner);
     },
 
+    changePairings: (index) => {
+      console.log(index);
+    },
+
     assignSupervisor: (name) => {
       const examiner = { name: name, supervisor: true }
       this.handlers.simulateChange('examiners', examiner)

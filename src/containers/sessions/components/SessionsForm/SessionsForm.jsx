@@ -160,7 +160,7 @@ class SessionsForm extends Component {
               {showSameDay && forSDSessions.length !== 0
                 && <SameDaySessions data={forSDSessions} />}
               {showPairings && 
-                <Pairings examiners={session.examiners.value}/>}
+                <Pairings examiners={session.examiners.value} handler={handlers.changePairings}/>}
             </FlexItem>
           </FlexContainer>
         </Form>
