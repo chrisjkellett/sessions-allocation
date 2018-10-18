@@ -106,11 +106,6 @@ class SessionsForm extends Component {
     const examinersOrSupport = showExaminers || showSupport;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
     const selectedId = selectedSession ? selectedSession.id : null;
-    const labelForShowAll = showUnavailable ? '-hide unavailable' : '+show unavailable';
-    const labelForSelectExaminers = showExaminers ? '-hide examiners' : '+select examiners';
-    const labelForSameDay = showSameDay ? '-hide same day sessions' : '+show same day sessions';
-    const labelForSelectSupport = showSupport ? '-hide support' : '+select support';
-    const labelForAssignSupervisors = showAssignSupervisors ? '-hide supervisors' : '+assign supervisors';
     const forSDSessions = sessions
     .filter(s => s.id !== selectedId && moment(s['session_date']).isSame(session['session_date'].value));
 
@@ -125,16 +120,16 @@ class SessionsForm extends Component {
                 group={1} />    
             </FlexItem>
             <FlexItem double>
-              <ShowHideBtn handler={this.handlers.toggleExaminers} type="showExaminers" label={labelForSelectExaminers} />
-              <ShowHideBtn handler={this.handlers.toggleSupport} type="showSupport" label={labelForSelectSupport} />
+              <ShowHideBtn handler={this.handlers.toggleExaminers} visible={showExaminers} label={'examiners'} />
+              <ShowHideBtn handler={this.handlers.toggleSupport} visible={showSupport} label={'support'} />
               {forSDSessions.length > 0
-                && <ShowHideBtn handler={this.handlers.toggleSameDay} type="showSameDay" label={labelForSameDay}/>}
+                && <ShowHideBtn handler={this.handlers.toggleSameDay} visible={showSameDay} label={'same day sessions'} />}
               {examinersOrSupport
-                && <ShowHideBtn handler={this.handlers.toggleUnavailable} type="showUnavailable" label={labelForShowAll} />}
+                && <ShowHideBtn handler={this.handlers.toggleUnavailable} visible={showUnavailable} label={'unavailable'} />}
               {session.type.value === 'Writing' && session.examiners.value.length !== 0
-                && <ShowHideBtn handler={this.handlers.toggle} type="showAssignSupervisors" label={labelForAssignSupervisors} />}
+                && <ShowHideBtn handler={this.handlers.toggle} visible={showAssignSupervisors} label={'supervisors'} />}
               {session.type.value === 'Speaking' && session.examiners.value.length > 1
-                && <ShowHideBtn handler={this.handlers.toggle} type="showPairings" label={'pairings'} />}
+                && <ShowHideBtn handler={this.handlers.toggle} visible={showPairings} label={'pairings'} />}
               {showExaminers 
                 && <ExaminersAvailable 
                   data={availableExaminers} 
