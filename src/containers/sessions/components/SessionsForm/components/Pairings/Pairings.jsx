@@ -20,6 +20,15 @@ class Pairings extends Component {
     else
       if(toPair.name === examiners[index].name)
         this.setState({ toPair: null })
+      else{
+        const newPairing = examiners.filter(e => e.name === toPair.name || e.name === examiners[index].name) 
+        this.setState({
+          examiners: examiners
+            .filter(e => e.name !== toPair.name && e.name !== examiners[index].name)
+            .concat(newPairing),
+          toPair: null
+        })
+      }
   }
 
   render(){
