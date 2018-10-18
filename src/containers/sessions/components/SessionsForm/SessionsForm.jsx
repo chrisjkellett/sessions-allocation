@@ -67,6 +67,10 @@ class SessionsForm extends Component {
       this.setState((prev) => ({ showUnavailable : prev.showUnavailable ? false : true }))
     },
 
+    togglePairings: () => {
+      this.setState((prev) => ({ ...initialState, showPairings : prev.showPairings ? false : true }))
+    },
+
     toggle: (id) => {
       this.setState((prev) => ({[id] : prev[id] ? false : true }))
     },
@@ -129,7 +133,7 @@ class SessionsForm extends Component {
               {session.type.value === 'Writing' && session.examiners.value.length !== 0
                 && <ShowHideBtn handler={this.handlers.toggle} visible={showAssignSupervisors} label={'supervisors'} />}
               {session.type.value === 'Speaking' && session.examiners.value.length > 1
-                && <ShowHideBtn handler={this.handlers.toggle} visible={showPairings} label={'pairings'} />}
+                && <ShowHideBtn handler={this.handlers.togglePairings} visible={showPairings} label={'pairings'} />}
               {showExaminers 
                 && <ExaminersAvailable 
                   data={availableExaminers} 
@@ -148,7 +152,7 @@ class SessionsForm extends Component {
               {showSameDay && forSDSessions.length !== 0
                 && <SameDaySessions data={forSDSessions} />}
               {showPairings && 
-                <Pairings />}
+                <Pairings examiners={session.examiners.value}/>}
             </FlexItem>
           </FlexContainer>
         </Form>

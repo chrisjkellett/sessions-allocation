@@ -6,8 +6,11 @@ const ShowHideBtn = ({ handler, visible, label }) => {
   if(visible) styles.push(classes.Active);
 
   return(
-    <div className={styles.join(" ")} onClick={()=> handler(visible)}>
-      { !visible ? 'show ' + label : 'hide ' + label }
+    <div className={styles.join(" ")} onClick={handler}>
+      { !visible 
+        ? 'show ' + label 
+        : 'hide ' + label
+       }
     </div>
   )
 }
