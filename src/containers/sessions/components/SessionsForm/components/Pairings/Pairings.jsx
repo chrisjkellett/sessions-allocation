@@ -15,9 +15,11 @@ class Pairings extends Component {
 
   change = (index) => {
     const { toPair, examiners} = this.state;
-    if(toPair === null){
+    if(toPair === null)
       this.setState({ toPair: examiners[index]})
-    }
+    else
+      if(toPair.name === examiners[index].name)
+        this.setState({ toPair: null })
   }
 
   render(){
