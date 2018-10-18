@@ -66,7 +66,7 @@ class SessionsForm extends Component {
     },
 
     toggleSameDay: () => {
-      this.setState((prev) => ({ ...initialState, showSameDay : prev.showSameDay ? false : true }))
+      this.setState((prev) => ({ ...initialWithExaminers, showSameDay : prev.showSameDay ? false : true }))
     },
 
     toggleUnavailable: () => {

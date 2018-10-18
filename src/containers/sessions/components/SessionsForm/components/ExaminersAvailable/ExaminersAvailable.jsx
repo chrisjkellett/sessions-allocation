@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table, IsNotEmpty, Tr, Td, SubTd, TdIcons, TdIconsForTime } from '../../../../../../components';
+import { getPairNumber } from './utility';
 
 const ExaminersAvailable = ({ data, handlers, session, showUnavailable, showAssignSupervisors, selectedExaminers }) => {
   const filteredData = data.filter(e => e.available);
@@ -24,7 +25,7 @@ const ExaminersAvailable = ({ data, handlers, session, showUnavailable, showAssi
             <Td data={e.name} subContent={<SubTd data={e.roles} />} />
             <TdIcons array={e.levels} />
             <TdIconsForTime array={e.availability} noBorders />
-            <td></td>
+            <td>{getPairNumber(selectedExaminers.findIndex(ex => ex.name === e.name))}</td>
           </Tr>
         ))}
       </IsNotEmpty>
