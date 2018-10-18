@@ -13,7 +13,7 @@ const SupportAvailable = ({ data, handlers, session, showUnavailable, selectedSu
   const noRecordOrFilter = filteredData.length === 0 || showUnavailable;
 
   return(
-    <Table labels={labels} limited>
+    <Table labels={labels} limited smallHeaders>
       <IsNotEmpty data={filteredData} show={noRecordOrFilter}>
         {filteredData.map(e => (
           <Tr 

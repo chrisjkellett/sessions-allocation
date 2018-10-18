@@ -14,7 +14,7 @@ const ExaminersAvailable = ({ data, handlers, session, showUnavailable, showAssi
   const handler = showAssignSupervisors ? handlers.assignSupervisor : handlers.selectExaminer;
 
   return(
-    <Table labels={labels} limited>
+    <Table labels={labels} limited smallHeaders>
       <IsNotEmpty data={filteredData} show={showUnavailable}>
         {filteredData.map(e => (
           <Tr 

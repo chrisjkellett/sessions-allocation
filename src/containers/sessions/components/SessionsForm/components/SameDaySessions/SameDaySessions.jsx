@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Tr, Td, SubTd, TdIcons } from '../../../../../../components';
+import { Table, Tr, Td, SubTd } from '../../../../../../components';
 
 const SameDaySessions = ({ data }) => {
   const labels = [
@@ -10,10 +10,10 @@ const SameDaySessions = ({ data }) => {
   ];
 
   return (
-    <Table labels={labels} limited>
+    <Table labels={labels} limited smallHeaders>
       {data.map(s => (
         <Tr key={s.id} >
-          <TdIcons array={s.levels} subContent={<SubTd data={[s.type, s.venue, s.time]} inline/>} />
+          <Td data={null} subContent={<SubTd data={[s.levels, s.type + ' @', s.venue, s.time]} inline/>} />
           <Td data={s.examiners.map(e => e.name)} type={s.type}/>
           <Td data={s.support.map(e => e.name)} />
           <td></td>
