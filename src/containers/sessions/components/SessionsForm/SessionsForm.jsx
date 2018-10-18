@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import * as exOpActions from '../../../../store/actions/examiner-options/examiner-options';
 import { Form, FlexContainer, FlexItem, ShowHideBtn} from '../../../../components';
 import { 
-  SessionsFormContent, ExaminersAvailable, SupportAvailable, SameDaySessions } from './components';
+  SessionsFormContent, ExaminersAvailable, SupportAvailable, SameDaySessions, Pairings } from './components';
 import moment from 'moment';
 
 const initialState = {
@@ -13,6 +13,7 @@ const initialState = {
   showSameDay: false,
   showUnavailable: false,
   showAssignSupervisors: false,
+  showPairings: false,
 };
 
 class SessionsForm extends Component {
@@ -101,7 +102,7 @@ class SessionsForm extends Component {
   render() {
     const { handlers, session, shouldValidate, selectedSession } = this.props;
     const { availableExaminers, availableSupport, sessions, selectedExaminers, selectedSupport } = this.props;
-    const { showExaminers, showSupport, showSameDay, showUnavailable, showAssignSupervisors } = this.state;
+    const { showExaminers, showSupport, showSameDay, showUnavailable, showAssignSupervisors, showPairings } = this.state;
     const examinersOrSupport = showExaminers || showSupport;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
     const selectedId = selectedSession ? selectedSession.id : null;
@@ -132,6 +133,8 @@ class SessionsForm extends Component {
                 && <ShowHideBtn handler={this.handlers.toggleUnavailable} type="showUnavailable" label={labelForShowAll} />}
               {session.type.value === 'Writing' && session.examiners.value.length !== 0
                 && <ShowHideBtn handler={this.handlers.toggle} type="showAssignSupervisors" label={labelForAssignSupervisors} />}
+              {session.type.value === 'Speaking' && session.examiners.value.length > 1
+                && <ShowHideBtn handler={this.handlers.toggle} type="showPairings" label={'pairings'} />}
               {showExaminers 
                 && <ExaminersAvailable 
                   data={availableExaminers} 
@@ -149,6 +152,8 @@ class SessionsForm extends Component {
                     showUnavailable={showUnavailable} />}
               {showSameDay && forSDSessions.length !== 0
                 && <SameDaySessions data={forSDSessions} />}
+              {showPairings && 
+                <Pairings />}
             </FlexItem>
           </FlexContainer>
         </Form>
