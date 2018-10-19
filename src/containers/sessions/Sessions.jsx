@@ -141,10 +141,10 @@ class Sessions extends Component {
       }))
     },
 
-    assignSupervisor: (name) => {
-      const examiner = { name: name, supervisor: true }
-      this.handlers.simulateChange('examiners', examiner)
-      // this.props.selectAvailableExaminers(examiner);
+    assignSupervisors: (examiners) => {
+      this.setState((prev) => ({
+        session: { ...prev.session, examiners: { ...prev.session.examiners, value: examiners }}
+      }))
     },
 
     openForm: () => {

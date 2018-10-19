@@ -3,12 +3,11 @@ import classes from './Supervisors.css';
 
 class Supervisors extends Component {
   state = {
-    toPair: null,
+    selected: [],
     examiners: [],
   }
 
   componentDidMount(){
-    console.log(this.props.examiners);
     this.setState({
       examiners: this.props.examiners
     })
@@ -22,20 +21,28 @@ class Supervisors extends Component {
     }
   }
 
-  change = (index) => {
-  
+  change = (item, index) => {
+    const { examiners } = this.state;
+    item.supervisor = item.supervisor ? false : true;
+    examiners[index] = item;
+
+    this.setState({ 
+      examiners: examiners
+    })
+
+    this.props.handler(examiners);
   }
 
   render(){
-    const {examiners, toPair} = this.state;
+    const {examiners} = this.state;
     return (
       <div className={classes.Supervisors}>
         {examiners === null ? 'loading' : 
           examiners.map((item, index) => 
             <span 
-              className={toPair && item.name === toPair.name ? classes.Selected : classes.Single} 
+              className={item.supervisor ? classes.Selected : classes.Single} 
               key={item.name} 
-              onClick={() => this.change(index)}>
+              onClick={() => this.change(item, index)}>
               {item.name}
             </span>
         )}   

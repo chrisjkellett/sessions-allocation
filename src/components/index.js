@@ -3,6 +3,7 @@ import Td from './Tables/Td/Td/Td';
 import TdIcons from './Tables/Td/TdIcons/TdIcons';
 import TdIconsForTime from './Tables/Td/TdIcons/TdIconsForTime';
 import TdDate from './Tables/Td/TdDate/TdDate';
+import TdExaminer from './Tables/Td/TdExaminer/TdExaminer';
 import Tr from './Tables/Tr/Tr';
 import Table from './Tables/Table/Table';
 import IsNotEmpty from './Wrappers/IsNotEmpty/IsNotEmpty';
@@ -27,7 +28,7 @@ import Label from './Wrappers/SingleView/Label/Label';
 import Counter from './Counter/Counter';
 
 export {
-  SubTd, Td, TdIcons, TdIconsForTime, TdDate, Tr, Table,
+  SubTd, Td, TdIcons, TdIconsForTime, TdDate, Tr, Table, TdExaminer,
   IsNotEmpty, Section,
   FlexContainer, FlexItem,
   Form, Input,

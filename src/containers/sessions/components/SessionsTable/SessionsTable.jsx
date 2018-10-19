@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Tr, Td, TdIcons, TdDate, IsNotEmpty, Filter, EditDeletePanel } from '../../../../components';
+import { Table, Tr, Td, TdIcons, TdDate, IsNotEmpty, Filter, EditDeletePanel, TdExaminer } from '../../../../components';
 import { Monthly, Weekly } from '../';
 
 class SessionsTable extends Component {
@@ -28,7 +28,7 @@ class SessionsTable extends Component {
             <Tr key={s.id}>
               <TdDate data={s['session_date']} subContent={[s.type, s.venue, s.time]} isSession handler={(id) => handlers.openSingleView(s.id)} />
               <TdIcons array={s.levels} />
-              <Td data={s.examiners && s.examiners.map(e => e.name)} type={s.type} isYLE={s.levels.includes('YLE')}/>
+              <TdExaminer data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/>
               <Td data={s.support.map(s => s.name)} />
               <EditDeletePanel handlers={handlers} data={s} isConfirming={isConfirming} />
             </Tr>

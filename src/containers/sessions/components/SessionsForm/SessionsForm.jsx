@@ -168,7 +168,7 @@ class SessionsForm extends Component {
               {showPairings && 
                 <Pairings examiners={session.examiners.value} handler={this.handlers.savePairings}/>}
               {showSupervisors && 
-                <Supervisors examiners={session.examiners.value.filter(e => supervisors.some(s => e.name === s.name))} handler={this.handlers.assignSupervisors}/>}
+                <Supervisors examiners={session.examiners.value.filter(e => supervisors.some(s => e.name === s.name))} handler={this.props.handlers.assignSupervisors}/>}
             </FlexItem>
           </FlexContainer>
         </Form>
