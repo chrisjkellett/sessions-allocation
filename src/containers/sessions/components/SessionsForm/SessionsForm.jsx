@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import * as exOpActions from '../../../../store/actions/examiner-options/examiner-options';
 import { Form, FlexContainer, FlexItem, ShowHideBtn} from '../../../../components';
 import { 
-  SessionsFormContent, ExaminersAvailable, SupportAvailable, SameDaySessions, Pairings } from './components';
+  SessionsFormContent, ExaminersAvailable, SupportAvailable, SameDaySessions, Pairings, Supervisors } from './components';
 import moment from 'moment';
 
 const initialState = {
@@ -12,7 +12,7 @@ const initialState = {
   showSupport: false,
   showSameDay: false,
   showUnavailable: false,
-  showAssignSupervisors: false,
+  showSupervisors: false,
   showPairings: false,
 };
 
@@ -21,7 +21,7 @@ const initialWithExaminers = {
   showSupport: true,
   showSameDay: false,
   showUnavailable: false,
-  showAssignSupervisors: false,
+  showSupervisors: false,
   showPairings: false,
 };
 
@@ -79,8 +79,10 @@ class SessionsForm extends Component {
         : { ...initialState, showExaminers: true, showPairings : true } ))
     },
 
-    toggle: (id) => {
-      this.setState((prev) => ({[id] : prev[id] ? false : true }))
+    toggleSupervisors: () => {
+      this.setState((prev) => (prev.showPairings 
+        ? { ...initialWithExaminers, showSupervisors : false }
+        : { ...initialState, showExaminers: true, showSupervisors : true } ))
     },
 
     savePairings: (examiners) => {
@@ -118,7 +120,7 @@ class SessionsForm extends Component {
   render() {
     const { handlers, session, shouldValidate, selectedSession } = this.props;
     const { availableExaminers, availableSupport, sessions, selectedExaminers, selectedSupport } = this.props;
-    const { showExaminers, showSupport, showSameDay, showUnavailable, showAssignSupervisors, showPairings } = this.state;
+    const { showExaminers, showSupport, showSameDay, showUnavailable, showSupervisors, showPairings } = this.state;
     const examinersOrSupport = showExaminers || showSupport;
     const label = selectedSession !== null ? 'Save changes' : 'Add Session';
     const selectedId = selectedSession ? selectedSession.id : null;
@@ -143,7 +145,7 @@ class SessionsForm extends Component {
               {examinersOrSupport
                 && <ShowHideBtn handler={this.handlers.toggleUnavailable} visible={showUnavailable} label={'unavailable'} />}
               {session.type.value === 'Writing' && session.examiners.value.length !== 0
-                && <ShowHideBtn handler={this.handlers.toggle} visible={showAssignSupervisors} label={'supervisors'} />}
+                && <ShowHideBtn handler={this.handlers.toggleSupervisors} visible={showSupervisors} label={'supervisors'} />}
               {session.type.value === 'Speaking' && session.examiners.value.length > 3
                 && <ShowHideBtn handler={this.handlers.togglePairings} visible={showPairings} label={'pairings'} />}
               {showExaminers 
@@ -152,7 +154,6 @@ class SessionsForm extends Component {
                   handlers={handlers} 
                   session={session} 
                   selectedExaminers={selectedExaminers}
-                  showAssignSupervisors={showAssignSupervisors}
                   showUnavailable={showUnavailable} />}
               {showSupport 
                 && <SupportAvailable 
@@ -165,6 +166,8 @@ class SessionsForm extends Component {
                 && <SameDaySessions data={forSDSessions} />}
               {showPairings && 
                 <Pairings examiners={session.examiners.value} handler={this.handlers.savePairings}/>}
+              {showSupervisors && 
+                <Supervisors examiners={session.examiners.value} handler={this.handlers.assignSupervisors}/>}
             </FlexItem>
           </FlexContainer>
         </Form>

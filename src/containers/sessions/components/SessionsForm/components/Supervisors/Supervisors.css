@@ -1,0 +1,37 @@
+.ExaminerPair {
+  text-align: center;
+  margin: 10px;
+}
+
+.Single {
+  border: 1px solid gray;
+  background: white;
+  margin: 5px;
+  cursor: pointer;
+  display: inline-block;
+  width: 200px;
+  padding: 7px 2px;
+  border-radius: 1px;
+}
+
+.Single:hover {
+  background: pink;
+  border-color: #4b4b4b;
+}
+
+.Selected {
+  border: 1px solid grey;
+  background: palegreen;
+  margin: 5px;
+  cursor: pointer;
+  display: inline-block;
+  width: 200px;
+  padding: 7px 2px;
+  border-radius: 1px;
+}
+
+.Selected:hover {
+  background: aliceblue;
+  border-color: #4b4b4b;
+}
+

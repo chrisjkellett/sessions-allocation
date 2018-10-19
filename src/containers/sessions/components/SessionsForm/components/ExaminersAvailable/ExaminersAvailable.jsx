@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, IsNotEmpty, Tr, Td, SubTd, TdIcons, TdIconsForTime } from '../../../../../../components';
 
-const ExaminersAvailable = ({ data, handlers, session, showUnavailable, showAssignSupervisors, selectedExaminers }) => {
+const ExaminersAvailable = ({ data, handlers, session, showUnavailable, selectedExaminers }) => {
   const filteredData = data.filter(e => e.available);
   const notAvailable = data.filter(e => !e.available);
   const labels = [
@@ -10,7 +10,6 @@ const ExaminersAvailable = ({ data, handlers, session, showUnavailable, showAssi
     'availability', 
     null
   ];
-  const handler = showAssignSupervisors ? handlers.assignSupervisor : handlers.selectExaminer;
 
   return(
     <Table labels={labels} limited smallHeaders>
@@ -19,7 +18,7 @@ const ExaminersAvailable = ({ data, handlers, session, showUnavailable, showAssi
           <Tr 
             key={e.id} 
             name={e.name} 
-            handler={handler} 
+            handler={handlers.selectExaminer} 
             selected={selectedExaminers.find(ex => ex.name === e.name)} >
             <Td data={e.name} subContent={<SubTd data={e.roles} />} />
             <TdIcons array={e.levels} />
