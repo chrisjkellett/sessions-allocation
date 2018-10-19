@@ -29,17 +29,15 @@ class Supervisors extends Component {
   render(){
     const {examiners, toPair} = this.state;
     return (
-      <div>
+      <div className={classes.Supervisors}>
         {examiners === null ? 'loading' : 
           examiners.map((item, index) => 
-            <div key={index} id={index} className={classes.ExaminerPair}>
-              <span 
-                className={toPair && item.name === toPair.name ? classes.Selected : classes.Single} 
-                key={item.name} 
-                onClick={() => this.change(index)}>
-                {item.name}
-              </span>
-            </div>
+            <span 
+              className={toPair && item.name === toPair.name ? classes.Selected : classes.Single} 
+              key={item.name} 
+              onClick={() => this.change(index)}>
+              {item.name}
+            </span>
         )}   
       </div>
     )
