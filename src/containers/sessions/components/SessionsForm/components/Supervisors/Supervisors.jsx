@@ -8,6 +8,7 @@ class Supervisors extends Component {
   }
 
   componentDidMount(){
+    console.log(this.props.examiners);
     this.setState({
       examiners: this.props.examiners
     })

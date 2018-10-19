@@ -80,7 +80,7 @@ class SessionsForm extends Component {
     },
 
     toggleSupervisors: () => {
-      this.setState((prev) => (prev.showPairings 
+      this.setState((prev) => (prev.showSupervisors 
         ? { ...initialWithExaminers, showSupervisors : false }
         : { ...initialState, showExaminers: true, showSupervisors : true } ))
     },
