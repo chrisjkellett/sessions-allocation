@@ -4,7 +4,7 @@ import classes from './Supervisors.css';
 class Supervisors extends Component {
   state = {
     toPair: null,
-    examiners: null,
+    examiners: [],
   }
 
   componentDidMount(){
@@ -12,6 +12,14 @@ class Supervisors extends Component {
     this.setState({
       examiners: this.props.examiners
     })
+  }
+
+  componentDidUpdate(){
+    if(this.props.examiners.length !== this.state.examiners.length){
+       this.setState({
+        examiners: this.props.examiners
+      })
+    }
   }
 
   change = (index) => {

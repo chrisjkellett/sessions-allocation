@@ -126,6 +126,7 @@ class SessionsForm extends Component {
     const selectedId = selectedSession ? selectedSession.id : null;
     const forSDSessions = sessions
     .filter(s => s.id !== selectedId && moment(s['session_date']).isSame(session['session_date'].value));
+    const supervisors = availableExaminers.filter(e => e.available && e.roles.includes('Supervisor'));
 
     return (
         <Form handlers={handlers} label={label} edit={selectedSession} extraLarge>
@@ -167,7 +168,7 @@ class SessionsForm extends Component {
               {showPairings && 
                 <Pairings examiners={session.examiners.value} handler={this.handlers.savePairings}/>}
               {showSupervisors && 
-                <Supervisors examiners={session.examiners.value} handler={this.handlers.assignSupervisors}/>}
+                <Supervisors examiners={session.examiners.value.filter(e => supervisors.some(s => e.name === s.name))} handler={this.handlers.assignSupervisors}/>}
             </FlexItem>
           </FlexContainer>
         </Form>
