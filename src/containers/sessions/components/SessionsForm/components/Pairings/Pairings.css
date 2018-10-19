@@ -4,19 +4,19 @@
 }
 
 .Single {
-  border: 1px solid lightgray;
+  border: 1px solid gray;
   background: white;
   margin: 5px;
   cursor: pointer;
   display: inline-block;
   width: 200px;
-  padding: 5px 0;
-  border-radius: 50px;
+  padding: 7px 2px;
+  border-radius: 1px;
 }
 
 .Single:hover {
   background: pink;
-  border-color: grey;
+  border-color: #4b4b4b;
 }
 
 .Selected {
@@ -26,29 +26,12 @@
   cursor: pointer;
   display: inline-block;
   width: 200px;
-  padding: 5px 0;
-  border-radius: 50px;
+  padding: 7px 2px;
+  border-radius: 1px;
 }
 
 .Selected:hover {
   background: aliceblue;
-  border-color: grey;
+  border-color: #4b4b4b;
 }
 
-.MockBtnPanel {
-  text-align: center;
-}
-
-.MockBtn {
-  cursor: pointer;
-  border: 1px solid grey;
-  padding: 5px;
-  text-align: center;
-  display: inline-block;
-  background: lightgrey;
-  width: 50px;
-}
-
-.MockBtn:hover {
-  background: aliceblue;
-}

@@ -21,13 +21,12 @@ class Pairings extends Component {
       if(toPair.name === examiners[index].name)
         this.setState({ toPair: null })
       else{
-        const newPairing = examiners.filter(e => e.name === toPair.name || e.name === examiners[index].name) 
-        this.setState({
-          examiners: examiners
-            .filter(e => e.name !== toPair.name && e.name !== examiners[index].name)
-            .concat(newPairing),
-          toPair: null
-        })
+        const newPairing = examiners.filter(e => e.name === toPair.name || e.name === examiners[index].name);
+        const newExaminers = examiners
+        .filter(e => e.name !== toPair.name && e.name !== examiners[index].name)
+        .concat(newPairing);
+        this.setState({ examiners: newExaminers, toPair: null })
+        this.props.handler(newExaminers);
       }
   }
 
@@ -52,11 +51,7 @@ class Pairings extends Component {
                 {examiners[index + 1].name}
               </span>
             </div>
-        )}
-        <div className={classes.MockBtnPanel}>
-          <div className={classes.MockBtn} onClick={() => this.props.handler(examiners)}>save</div>
-        </div>
-        
+        )}   
       </div>
     )
   }

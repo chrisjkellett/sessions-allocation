@@ -85,7 +85,6 @@ class SessionsForm extends Component {
 
     savePairings: (examiners) => {
       this.props.handlers.changePairings(examiners);
-      this.handlers.togglePairings();
     },
 
     ctrlToggles: (e) => {
