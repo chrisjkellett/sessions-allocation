@@ -31,7 +31,7 @@ const SingleExaminer = ({ examiner, sessions }) => {
           <SingleItem label={labels[2]} data={examiner.roles} array />
           {examiner['id_number'] && <SingleItem label={labels[3]} data={examiner['id_number']} />}
           {examiner['levels'] && <SingleItem label={labels[4]} data={examiner['levels']} icons />}
-          {examiner['status'] && <SingleItem label={'status'} data={examiner['status']} />}
+          {examiner['status'] && <SingleItem label={'status'} data={examiner['status']} active={examiner['status']} />}
           <SingleItemAvail label={labels[5]} data={examiner.availability} />
         </FlexItem>
         <FlexItem double>

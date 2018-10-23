@@ -60,6 +60,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "deploy": "aws s3 sync build/ s3://sessionsallocation",
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {

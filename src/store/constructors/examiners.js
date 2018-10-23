@@ -101,7 +101,7 @@ export const constructExaminerState = () => {
       elementConfig: {
         disabled: false
       },
-      value: ['active'],
+      value: 'active',
       group: 2,
       validation: constructValidation({})
     },
