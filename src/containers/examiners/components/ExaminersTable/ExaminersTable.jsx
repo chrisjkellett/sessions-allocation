@@ -8,7 +8,7 @@ const ExaminersTable = ({ data, filtered, handlers, isConfirming, activeFilter }
   const examiners = filtered === null ? data : filtered;
   const labels = ([
     <Filter label='name' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
-    <Filter label='roles' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
+    null, 
     <Filter label='levels' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
     <Filter label='availability' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
     null
