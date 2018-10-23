@@ -4,7 +4,6 @@ import IconClasses from '../../../Tables/Td/TdIcons/TdIcons.css';
 import moment from 'moment';
 
 const SingleItem = ({ label, data, icons, isDate, array, shortDate, active }) => {
-  console.log(active)
   const dateFormat = shortDate ? 'Do MMMM YYYY' : 'dddd Do MMMM YYYY'
   const content = isDate ?  data && moment(data, 'YYYYMMDD').format(dateFormat) : data;
   const styles = [classes.Data]

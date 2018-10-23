@@ -10,10 +10,11 @@ const ExaminersAvailable = ({ data, handlers, session, showUnavailable, selected
     'availability', 
     null
   ];
+  const noRecordOrFilter = filteredData.length === 0 || showUnavailable;
 
   return(
     <Table labels={labels} limited smallHeaders>
-      <IsNotEmpty data={filteredData} show={showUnavailable}>
+      <IsNotEmpty data={filteredData} show={noRecordOrFilter}>
         {filteredData.map(e => (
           <Tr 
             key={e.id} 
@@ -27,7 +28,7 @@ const ExaminersAvailable = ({ data, handlers, session, showUnavailable, selected
           </Tr>
         ))}
       </IsNotEmpty>
-      {showUnavailable && notAvailable.map(e => (
+      {noRecordOrFilter && notAvailable.map(e => (
         <Tr 
           key={e.id} 
           name={e.name}
