@@ -110,9 +110,9 @@ class Examiners extends Component {
         this.state.showForm && this.handlers.cancel();
         this.props.filtered !== null && this.handlers.removeFilters();
       }
-      else if(e.keyCode === 65 && e.ctrlKey) {
+      else if(e.keyCode === 78 && e.shiftKey) {
         e.preventDefault();
-        !this.state.showForm && this.handlers.add();
+        !this.state.showForm ? this.handlers.add() : this.handlers.cancel();
       }
     },
 

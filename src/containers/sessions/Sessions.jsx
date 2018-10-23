@@ -175,11 +175,11 @@ class Sessions extends Component {
         this.state.showForm && this.handlers.cancel();
         this.props.filteredSessions !== null && this.handlers.removeFilters();
       }
-      if(e.keyCode === 78 && e.ctrlKey) {
+      if(e.keyCode === 78 && e.shiftKey) {
         e.preventDefault();
-        !this.state.showForm && this.handlers.add();
+        !this.state.showForm ? this.handlers.add() : this.handlers.cancel();;
       }
-      if(e.keyCode === 70 && e.ctrlKey) {
+      if(e.keyCode === 70 && e.shiftKey) {
         e.preventDefault();
         this.handlers.toggleDateFilter();
       }
