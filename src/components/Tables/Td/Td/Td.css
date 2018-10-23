@@ -21,3 +21,7 @@
 .Link div:first-child:hover {
   color: grey;
 }
+
+.Thicker {
+  font-weight: 500;
+}
