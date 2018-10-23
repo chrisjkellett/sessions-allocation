@@ -10,15 +10,16 @@ import {
   Tr, 
   TdDate, 
   TdIcons, 
+  Counter,
   Td,
-  Counter
+  TdExaminer
 } from '../../../../../components';
 
 const labels = ['name', 'email', 'roles', 'id number', 'levels', 'availability', 'upcoming sessions']
 
 const SingleExaminer = ({ examiner, sessions }) => {
   const filteredSessions = sessions
-  .filter(sess => sess.examiners.includes(examiner.name) || sess.support.includes(examiner.name));
+  .filter(sess => sess.examiners.some(e => e.name === examiner.name) || sess.support.some(e => e.name === examiner.name));
 
   return (
     <SingleView>
@@ -41,8 +42,8 @@ const SingleExaminer = ({ examiner, sessions }) => {
                     <Tr key={s.id}>
                       <TdDate data={s['session_date']} subContent={[s.type, s.venue, s.time]} isSession />
                       <TdIcons array={s.levels} />
-                      <Td data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/>
-                      <Td data={s.support} />
+                      <TdExaminer data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/>
+                      <Td data={s.support.map(e => e.name)} />
                     </Tr>
                   ))}
                 </Table>
