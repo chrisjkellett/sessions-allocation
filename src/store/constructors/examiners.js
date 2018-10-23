@@ -94,6 +94,17 @@ export const constructExaminerState = () => {
       group: 2,
       validation: constructValidation({...rules.required})
     },
+
+    status: {
+      elementType: 'select',
+      options: ['active', 'suspended'],
+      elementConfig: {
+        disabled: false
+      },
+      value: ['active'],
+      group: 2,
+      validation: constructValidation({})
+    },
     
   } 
 };
