@@ -9,6 +9,7 @@ export const examinerCheck = ({examiners, session, sessions, sessionId}) => {
   return examiners
     .map(e => ({ ...e, avail: Availability(), available: true }))
     .filter(e => !e.roles.includes('Support staff') || e.roles.includes('Speaking Examiner'))
+    .map(e => check.isActive(e))
     .map(e => check.type(e, session.type.value))
     .map(e => check.levels(e, session.levels.value, session.type.value))
     .map(e => check.day(e, session.session_date.value, session.time.value))
@@ -21,6 +22,7 @@ export const supportCheck = ({examiners, session, sessions, sessionId}) => {
   return examiners
     .map(e => ({ ...e, avail: Availability(), available: true }))
     .filter(e => e.roles.includes('Support staff'))
+    .map(e => check.isActive(e))
     .map(e => check.day(e, session.session_date.value, session.time.value))
     .map(e => check.isBusy(e, sameDayCheck(sessions, session, sessionId), session.time.value))
     .map(e => check.isExaminerAlso(clone(e), session.examiners.value))

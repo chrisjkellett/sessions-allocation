@@ -95,6 +95,14 @@ export const isExaminerAlso = (e, sessionExaminers) => {
   return {...e, avail: {...availCopy}};
 }
 
+export const isActive = (e) => {
+  if(e.status === 'suspended'){
+    console.log(e.status)
+    e.avail.failsIsActive = true;
+  }
+  return e;
+}
+
 
 //always final check
 export const isAvailable = (e) => {

@@ -57,6 +57,7 @@ export const Availability = () => {
     failsIsBusy: false,
     failsIsSupport: false,
     failsIsExaminer: false,
+    failsIsActive: false,
   }
 }
 
