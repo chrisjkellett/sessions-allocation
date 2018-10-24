@@ -211,19 +211,7 @@ class Sessions extends Component {
     },
 
     print: () => {
-      const options = {
-        useCORS: true,
-        allowTaint: true,
-        letterRendering: true,
-        onrendered: function(canvas) {
-        var ctx = canvas.getContext('2d');
-        ctx.webkitImageSmoothingEnabled = false;
-        ctx.mozImageSmoothingEnabled = false;
-        ctx.imageSmoothingEnabled = false;
-        },
-      }
-
-      html2canvas(document.querySelector("#session-table"), options).then(canvas => {
+      html2canvas(document.querySelector("#session-table"), {scale: 2, width: 400, height: 400}).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF('p', 'mm', [297, 210]);
         pdf.addImage(imgData, 'PNG', 0, 0);
@@ -245,7 +233,7 @@ class Sessions extends Component {
       <Section overlay={showForm || showSingleView}>
         <BtnPanelFixed hidden={showForm}>
           <Btn handler={this.handlers.add} label={'add new session'} />
-          <Btn handler={this.handlers.print} label={'download as pdf'} />
+          <Btn handler={this.handlers.print} label={'download as pdf'} disabled />
         </BtnPanelFixed>
         <div id='session-table'>
           <SessionsTable 

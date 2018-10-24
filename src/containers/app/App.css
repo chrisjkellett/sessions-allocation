@@ -23,14 +23,18 @@ input[type='checkbox']{
 }
 
 button{
-  border: 1px solid grey;
+  border: 1px solid lightgrey;
   padding: 5px;
-  cursor: pointer;
   display: inline-block;
   margin: 0 2px;
 }
 
-button:hover{
+button:enabled{
+  cursor: pointer;
+  border: 1px solid grey;
+}
+
+button:hover:enabled{
   background-color: lightgrey;
 }
 
