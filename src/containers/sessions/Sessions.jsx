@@ -12,6 +12,7 @@ import * as actions from '../../store/actions/sessions/sessions';
 import * as exOpActions from '../../store/actions/examiner-options/examiner-options';
 import { forSubmit, checkFormValidity, distributeValuesForEditing, updateArray } from '../utility';
 import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 class Sessions extends Component {
   constructor(props){
@@ -211,11 +212,22 @@ class Sessions extends Component {
 
     print: () => {
       const options = {
-        width: 1200
+        useCORS: true,
+        allowTaint: true,
+        letterRendering: true,
+        onrendered: function(canvas) {
+        var ctx = canvas.getContext('2d');
+        ctx.webkitImageSmoothingEnabled = false;
+        ctx.mozImageSmoothingEnabled = false;
+        ctx.imageSmoothingEnabled = false;
+        },
       }
 
       html2canvas(document.querySelector("#session-table"), options).then(canvas => {
-        document.body.appendChild(canvas);
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', [297, 210]);
+        pdf.addImage(imgData, 'PNG', 0, 0);
+        pdf.save("download.pdf"); 
       });
     }
   }
