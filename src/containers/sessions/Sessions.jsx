@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { getInputValue } from '../utility';
 import { checkValidity } from '../../validation/validation';
 import { Section } from '../../components/Wrappers';
-import { AddNewBtn } from '../../components/Btns/';
+import { AddNewBtn, BtnPanelFixed } from '../../components';
 import { SessionsTable, SessionsForm } from './components';
 import SingleSession from './components/SessionsTable/components/SingleSession/SingleSession';
 import constructSessionState from '../../store/constructors/sessions';
@@ -221,7 +221,9 @@ class Sessions extends Component {
 
     return (
       <Section overlay={showForm || showSingleView}>
-        <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'session'} />
+        <BtnPanelFixed>
+          <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'session'} />
+        </BtnPanelFixed>
         <SessionsTable 
           data={showDateFilter ? sessions : sessionsWithFilters} 
           filtered={showDateFilter ? filteredSessions : filtered} 

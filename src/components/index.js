@@ -18,6 +18,7 @@ import SubmitBtns from './Btns/SubmitBtns/SubmitBtns';
 import EditDeletePanel from './Btns/EditDeletePanel/EditDeletePanel';
 import ExpandBtn from './Btns/ExpandBtn/ExpandBtn';
 import ShowHideBtn from './Btns/ShowHideBtn/ShowHideBtn';
+import BtnPanelFixed from './Btns/BtnPanelFixed/BtnPanelFixed';
 import AsyncLoad from './AsyncLoad/AsyncLoad';
 import SingleView from './Wrappers/SingleView/SingleView/SingleView';
 import SingleItem from './Wrappers/SingleView/SingleItem/SingleItem';
@@ -34,6 +35,7 @@ export {
   Form, Input,
   Filter,
   AddNewBtn, SubmitBtns, EditDeletePanel, ExpandBtn, ShowHideBtn,
+  BtnPanelFixed,
   AsyncLoad,
   SingleView, SingleItem, SingleItemForObject, SingleItemForExaminer, SingleItemAvail,
   Label,
