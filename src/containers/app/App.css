@@ -26,6 +26,8 @@ button{
   border: 1px solid grey;
   padding: 5px;
   cursor: pointer;
+  display: inline-block;
+  margin: 0 2px;
 }
 
 button:hover{

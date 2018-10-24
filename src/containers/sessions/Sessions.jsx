@@ -207,6 +207,10 @@ class Sessions extends Component {
 
     validate: () => {
       this.setState((prev) => ({ ...prev.state, shouldValidate: true }))
+    },
+
+    print: () => {
+      console.log('print me')
     }
   }
 
@@ -223,6 +227,7 @@ class Sessions extends Component {
       <Section overlay={showForm || showSingleView}>
         <BtnPanelFixed hidden={showForm}>
           <Btn handler={this.handlers.add} label={'add new session'} />
+          <Btn handler={this.handlers.print} label={'download as pdf'} />
         </BtnPanelFixed>
         <SessionsTable 
           data={showDateFilter ? sessions : sessionsWithFilters} 

@@ -18,16 +18,17 @@
 }
 
 .SmallLink{
-  font-size: 75%;
+  font-size: 80%;
   border: 1px solid lightgrey;
   padding: 2px 5px;
-  background: white;
+  color: gray;
   cursor: pointer;
   margin-bottom: 2px;
   margin-right: 1px;
 }
 
 .SmallLink:hover{
+  color: initial;
   border-color: grey;
 }
 
