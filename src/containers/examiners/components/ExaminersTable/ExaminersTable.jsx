@@ -1,6 +1,5 @@
 import React from 'react';
-import { EditDeletePanel } from '../../../../components/Btns';
-import { Table, Tr, Td, SubTd, TdIcons, TdIconsForTime } from '../../../../components/Tables';
+import { Table, Tr, Td, SubTd, TdIcons, TdIconsForTime, EditDeletePanel } from '../../../../components';
 import IsNotEmpty from '../../../../components/Wrappers/IsNotEmpty/IsNotEmpty';
 import Filter from '../../../../components/Filter/Filter';
 

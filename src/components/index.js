@@ -13,7 +13,7 @@ import FlexContainer from './Layout/FlexContainer/FlexContainer';
 import Form from './Forms/Form/Form';
 import Input from './Forms/Input/Input';
 import Filter from './Filter/Filter';
-import AddNewBtn from './Btns/AddNewBtn/AddNewBtn';
+import Btn from './Btns/Btn/Btn';
 import SubmitBtns from './Btns/SubmitBtns/SubmitBtns';
 import EditDeletePanel from './Btns/EditDeletePanel/EditDeletePanel';
 import ExpandBtn from './Btns/ExpandBtn/ExpandBtn';
@@ -34,7 +34,7 @@ export {
   FlexContainer, FlexItem,
   Form, Input,
   Filter,
-  AddNewBtn, SubmitBtns, EditDeletePanel, ExpandBtn, ShowHideBtn,
+  SubmitBtns, EditDeletePanel, ExpandBtn, ShowHideBtn, Btn,
   BtnPanelFixed,
   AsyncLoad,
   SingleView, SingleItem, SingleItemForObject, SingleItemForExaminer, SingleItemAvail,

@@ -5,8 +5,7 @@ import { constructExaminerState } from '../../store/constructors/examiners';
 import ExaminersTable from './components/ExaminersTable/ExaminersTable';
 import ExaminersForm from './components/ExaminersForm/ExaminersForm';
 import SingleExaminer from './components/ExaminersTable/SingleExaminer/SingleExaminer';
-import { AddNewBtn } from '../../components/Btns/';
-import { Section } from '../../components/Wrappers';
+import { Btn, BtnPanelFixed, Section } from '../../components';
 import { getInputValue, updateState, forSubmit, checkFormValidity, distributeValuesForEditing, sortLevels } from '../utility';
 import { checkValidity } from '../../validation/validation';
 import * as actions from '../../store/actions/examiners/examiners';
@@ -147,7 +146,9 @@ class Examiners extends Component {
     const { clearSelectedExaminer } = this.props;
     return (
       <Section overlay={showForm || showSingleView}>
-        <AddNewBtn showForm={showForm} openForm={this.handlers.add} label={'examiner'} />
+        <BtnPanelFixed hidden={showForm}>
+          <Btn handler={this.handlers.add} label={'add new examiner'} />
+        </BtnPanelFixed>
         <ExaminersTable 
           data={examiners} 
           filtered={filtered} 

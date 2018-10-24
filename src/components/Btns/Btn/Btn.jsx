@@ -1,12 +1,5 @@
 import React from 'react';
-import classes from './Btn.css';
 
-const Btn = ({ label, handler }) => {
-  return (
-    <div className={classes.BtnPanel}>
-      <button onClick={handler}>{label}</button> 
-    </div>
-  )
-}
+const Btn = ({ label, handler }) => <button onClick={handler}>{label}</button> 
 
 export default Btn;

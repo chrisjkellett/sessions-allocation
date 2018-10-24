@@ -2,9 +2,8 @@ import  React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import VenuesForm from './components/VenuesForm/VenuesForm';
-import AddNewBtn from '../../components/Btns/AddNewBtn/AddNewBtn';
+import { Btn, BtnPanelFixed, Section } from '../../components';
 import VenuesTable from './components/VenuesTable/VenuesTable';
-import { Section } from '../../components/Wrappers';
 import {constructVenuesState} from '../../store/constructors/venues';
 import { updateState, checkFormValidity, forSubmit, getInputValue, distributeValuesForEditing } from '../utility';
 import { checkValidity } from '../../validation/validation';
@@ -124,7 +123,9 @@ class Venues extends Component{
     return (
        <Section overlay={showForm}>
           <VenuesTable data={venues} filtered={filtered} handlers={handlers} isConfirming={isConfirming} showForm={showForm} />
-          <AddNewBtn showForm={showForm} openForm={handlers.add} label={'venue'} />
+          <BtnPanelFixed hidden={showForm}>
+            <Btn handler={this.handlers.add} label={'add new venue'} />
+          </BtnPanelFixed>
           {showForm && 
             <VenuesForm 
               handlers={handlers} 

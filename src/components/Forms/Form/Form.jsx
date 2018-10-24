@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Form.css';
-import { SubmitBtns } from '../../Btns';
+import SubmitBtns from '../../Btns/SubmitBtns/SubmitBtns';
 
 const Form = (props) => {
   const {handlers, label, extraLarge, expand} = props;

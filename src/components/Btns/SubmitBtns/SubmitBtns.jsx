@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './SubmitBtns.css';
-import { ExpandBtn } from '..';
+import ExpandBtn from '../ExpandBtn/ExpandBtn';
 
 const SubmitBtns = ({ label, handlers, edit, expand }) => {
   return (
