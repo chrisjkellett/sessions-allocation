@@ -13,7 +13,7 @@ class Monthly extends Component {
   render(){  
     const { periods, currentPeriod } = this.props;
     return periods.length <= 1 ? null : (
-     <div className={classes.Monthly}>
+     <div className={classes.Monthly} data-html2canvas-ignore>
         <select value={currentPeriod} onChange={this.changeHandler}>
           {periods.map(p => <option key={p}>{p}</option>)}
         </select>

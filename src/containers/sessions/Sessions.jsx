@@ -11,7 +11,7 @@ import constructSessionState from '../../store/constructors/sessions';
 import * as actions from '../../store/actions/sessions/sessions';
 import * as exOpActions from '../../store/actions/examiner-options/examiner-options';
 import { forSubmit, checkFormValidity, distributeValuesForEditing, updateArray } from '../utility';
-
+import html2canvas from 'html2canvas';
 
 class Sessions extends Component {
   constructor(props){
@@ -210,7 +210,9 @@ class Sessions extends Component {
     },
 
     print: () => {
-      console.log('print me')
+      html2canvas(document.querySelector("#session-table")).then(canvas => {
+        document.body.appendChild(canvas);
+      });
     }
   }
 
@@ -229,14 +231,16 @@ class Sessions extends Component {
           <Btn handler={this.handlers.add} label={'add new session'} />
           <Btn handler={this.handlers.print} label={'download as pdf'} />
         </BtnPanelFixed>
-        <SessionsTable 
-          data={showDateFilter ? sessions : sessionsWithFilters} 
-          filtered={showDateFilter ? filteredSessions : filtered} 
-          handlers={this.handlers} 
-          isConfirming={isConfirming} 
-          activeFilter={activeFilter}
-          showDateFilter={showDateFilter}
-          venues={venues} />
+        <div id='session-table'>
+          <SessionsTable 
+            data={showDateFilter ? sessions : sessionsWithFilters} 
+            filtered={showDateFilter ? filteredSessions : filtered} 
+            handlers={this.handlers} 
+            isConfirming={isConfirming} 
+            activeFilter={activeFilter}
+            showDateFilter={showDateFilter}
+            venues={venues} />
+          </div>
         {showForm && 
           <SessionsForm 
             handlers={this.handlers} 

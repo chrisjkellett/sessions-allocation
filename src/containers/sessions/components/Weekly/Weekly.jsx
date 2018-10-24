@@ -44,7 +44,7 @@ export class UnconnectedWeekly extends Component {
     const { weeks, filterByWeek, sessions, weekFilteredBy } = this.props;
     
     return weeks !== null ? (
-      <section className={classes.SplitWeekly}>
+      <section className={classes.SplitWeekly} data-html2canvas-ignore>
         { weeks.length <= 1 || (weeks.length > 1 && showOptions)
           ? null
           : <div id="split-btn" className={classes.SmallLink} onClick={openOptions}>filter by week</div>

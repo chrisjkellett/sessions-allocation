@@ -6,9 +6,11 @@ import classes from './EditDeletePanel.css';
 const EditDeletePanel = ({ handlers, data, isConfirming }) => {
   return (
     <td className={classes.Panel}>
-      <EditBtn handlers={handlers} id={data.id} />
-      <span> | </span>
-      <DeleteBtn handlers={handlers} data={data} isConfirming={isConfirming} />
+      <div data-html2canvas-ignore>
+        <EditBtn handlers={handlers} id={data.id} />
+        <span> | </span>
+        <DeleteBtn handlers={handlers} data={data} isConfirming={isConfirming} />
+      </div>
     </td>
   )
 }
