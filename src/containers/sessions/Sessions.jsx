@@ -210,7 +210,11 @@ class Sessions extends Component {
     },
 
     print: () => {
-      html2canvas(document.querySelector("#session-table")).then(canvas => {
+      const options = {
+        width: 1200
+      }
+
+      html2canvas(document.querySelector("#session-table"), options).then(canvas => {
         document.body.appendChild(canvas);
       });
     }
