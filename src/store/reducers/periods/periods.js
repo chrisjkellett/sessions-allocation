@@ -38,9 +38,10 @@ const reducer = (state = initialState, action) => {
       };
 
     case actionTypes.UPDATE_PERIODS: 
-      periods = createSet(monthsFromArray(action.sessions));
-      current = setCurrentPeriodByMonth(periods);
-      sessions = filterSessionsByMonth(action.sessions, current);
+      isEmpty = action.sessions.length === 0;
+      periods = isEmpty ? [] : createSet(monthsFromArray(action.sessions));
+      current = isEmpty ? [] : setCurrentPeriodByMonth(periods);
+      sessions = isEmpty ? [] : filterSessionsByMonth(action.sessions, current);
       return { 
         ...state, 
         periods: periods, 

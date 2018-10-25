@@ -97,7 +97,6 @@ export const isExaminerAlso = (e, sessionExaminers) => {
 
 export const isActive = (e) => {
   if(e.status === 'suspended'){
-    console.log(e.status)
     e.avail.failsIsActive = true;
   }
   return e;

@@ -20,8 +20,8 @@ const Td = ({ data, type, isYLE }) => {
     : <td className={styles.join(" ")}>
         {data.map((item, index) => index % 2 === 0 && 
           <div key={index} id={index} className={classes.ExaminerPair}>
-            <span>{item.name} + </span>
-            {data[index + 1] && <span>{data[index + 1].name}</span>}
+            <span>{item.name}</span>
+            {data[index + 1] && <span>+ {data[index + 1].name}</span>}
           </div>
         )}
       </td>
