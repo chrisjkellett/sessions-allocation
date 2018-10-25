@@ -1,11 +1,13 @@
 .Monthly {
-  margin-bottom: 4px;
   display: inline-block;
 }
 
 
-.Monthly label, .Monthly select {
+.Monthly select {
   display: inline-block;
   margin-right: 5px;
+  color: grey;
+  background: transparent;
+  border: 0;
+  padding-bottom: 1px;
 }
-

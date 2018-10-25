@@ -7,9 +7,6 @@ const FilterPanel = ({ weeks, closeOptions, filterByWeek, sessions, weekFiltered
     <div id="weeks-filter-panel" className={classes.FilterPanel}>
       <div>
         <div>
-          <span className={classes.SmallLabel}>filter by week beginning</span>
-        </div>
-        <div>
           {weeks.map(week => (
             <span key={week} className={$.setClasses(week, weekFilteredBy)} onClick={() => filterByWeek(sessions, week)}>{week}</span>
             )

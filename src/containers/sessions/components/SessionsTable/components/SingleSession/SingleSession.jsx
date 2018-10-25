@@ -23,10 +23,10 @@ const SingleSession = ({ session, venues, examiners }) => {
         </FlexItem>
         <FlexItem double>
           <Label label={labels[5]}>
-            <SingleItemForExaminer examiners={session.examiners && examiners.filter(e => session.examiners.includes(e.name))} />
+            <SingleItemForExaminer examiners={session.examiners && examiners.filter(e => session.examiners.some(ex => ex.name === e.name))} />
           </Label>
           <Label label={labels[6]}>
-            <SingleItemForExaminer examiners={session.support && examiners.filter(e => session.support.includes(e.name))} />
+            <SingleItemForExaminer examiners={session.support && examiners.filter(e => session.support.some(ex => ex.name === e.name))} />
           </Label>
         </FlexItem>
       </FlexContainer>

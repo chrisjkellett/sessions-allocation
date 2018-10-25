@@ -6,7 +6,7 @@ const SingleItemForExaminer = ({ examiners }) => {
   return !examiners 
     ? <div>no information available</div>
     : (
-      <Table labels={labels}>
+      <Table labels={labels} limited>
           {examiners.map(e => (
             <Tr 
               key={e.id} 
