@@ -14,6 +14,7 @@ const initialState = {
   filteredSessions: null,
   filterValue: '',
   formActive: false,
+  showAll: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -46,6 +47,9 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.CLEAR_FILTERS:
       return { ...state, filteredSessions: null }
+
+    case actionTypes.TOGGLE_ARCHIVE:
+      return { ...state, showAll: state.showAll ? false : true }
 
     default:
       return state;  

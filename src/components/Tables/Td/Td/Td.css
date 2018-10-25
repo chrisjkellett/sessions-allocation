@@ -6,6 +6,10 @@
   padding: 5px 0;
 }
 
+.ExaminerPair span{
+  padding: 0 3px;
+}
+
 .ExaminerPair:first-child {
   padding-top: 10px;
 }

@@ -15,8 +15,8 @@ const Td = ({ data, smallFont, subContent, type, isYLE, handler }) => {
       {type === 'Speaking' && !isYLE 
         && data.map((item, index) => index % 2 === 0 && 
         <div key={index} id={index} className={classes.ExaminerPair}>
-          <span>{item} + </span>
-          <span>{data[index + 1]}</span>
+          <span>{item}</span>
+          <span>+ {data[index + 1]}</span>
         </div>
         )
       }

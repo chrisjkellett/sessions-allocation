@@ -128,3 +128,8 @@ export const clearFilters = () => {
   }
 }
 
+export const toggleArchive = () => {
+  return {
+    type: actionTypes.TOGGLE_ARCHIVE
+  }
+}

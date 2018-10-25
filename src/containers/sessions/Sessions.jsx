@@ -10,6 +10,7 @@ import SingleSession from './components/SessionsTable/components/SingleSession/S
 import constructSessionState from '../../store/constructors/sessions';
 import * as actions from '../../store/actions/sessions/sessions';
 import * as exOpActions from '../../store/actions/examiner-options/examiner-options';
+import * as perActions from '../../store/actions/periods/periods';
 import { forSubmit, checkFormValidity, distributeValuesForEditing, updateArray } from '../utility';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -184,6 +185,11 @@ class Sessions extends Component {
         e.preventDefault();
         this.handlers.toggleDateFilter();
       }
+
+      if(e.keyCode === 81 && e.shiftKey) {
+        e.preventDefault();
+        this.handlers.toggleArchive();
+      }
     },
 
     cancel: () => {
@@ -217,6 +223,12 @@ class Sessions extends Component {
         pdf.addImage(imgData, 'PNG', 0, 0);
         pdf.save("download.pdf"); 
       });
+    },
+
+    toggleArchive: () => {
+      const { showAll, updatePeriods, toggleArchive, sessions, allSessions } = this.props;
+      updatePeriods(showAll ? sessions : allSessions);
+      toggleArchive();
     }
   }
 
@@ -269,6 +281,8 @@ const mapStateToProps = state => {
   return {
     token: state.auth.token,
     sessions: state.sess.sessions,
+    allSessions: state.sess.allSessions,
+    showAll: state.sess.showAll,
     sessionsByPeriod: state.per.sessionsByPeriod,
     sessionsByWeek: state.per.sessionsByWeek,
     selectedSession: state.sess.selectedSession,
@@ -295,7 +309,9 @@ const mapDispatchToProps = dispatch => {
     clearSelectedSession: () => dispatch(actions.clearSelectedSession()),
     clearSelectedExaminers: () => dispatch(exOpActions.clearSelectedExaminers()),
     clearFilters: () => dispatch(actions.clearFilters()),
-    distributeExaminers: (examiners, support) => dispatch(exOpActions.distributeExaminersOnEdit(examiners, support))
+    distributeExaminers: (examiners, support) => dispatch(exOpActions.distributeExaminersOnEdit(examiners, support)),
+    toggleArchive: () => dispatch(actions.toggleArchive()),
+    updatePeriods: (sessions) => dispatch(perActions.updatePeriods(sessions))
   }
 }
 
