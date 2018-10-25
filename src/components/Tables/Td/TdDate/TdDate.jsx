@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import classes from './TdDate.css';
 
-const TdDate = ({ data, subContent, isSession, handler }) => {
+const TdDate = ({ data, subContent, isSession, handler, archived }) => {
   const styles = handler ? classes.Link : null;
   return (
     <td>
@@ -13,6 +13,11 @@ const TdDate = ({ data, subContent, isSession, handler }) => {
         <div className={classes.SubContent}>
           <div>{subContent[0] + ' session @ ' + subContent[1]}</div>
           <div>{'Start time: ' + subContent[2]}</div>
+          {archived && 
+            <div className={classes.Archived}>
+              <span>archived</span>
+            </div>
+          }
         </div>
       }
     </td>

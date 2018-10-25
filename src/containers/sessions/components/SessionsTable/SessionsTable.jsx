@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table, Tr, Td, TdIcons, TdDate, IsNotEmpty, Filter, EditDeletePanel, TdExaminer } from '../../../../components';
 import { Monthly, Weekly } from '../';
+import { isBeforeToday } from '../../../utility';
 
 class SessionsTable extends Component {
   state = {
@@ -20,19 +21,27 @@ class SessionsTable extends Component {
       data.length !== 0 && <Filter label='support' filter={handlers.filter} value={!activeFilter ? '' : undefined}/>,
       null
     ]);
+    let archived;
 
     return (
       <Table labels={labels}>
         <IsNotEmpty data={sessions}>
-          {sessions.map(s => (
-            <Tr key={s.id}>
-              <TdDate data={s['session_date']} subContent={[s.type, s.venue, s.time]} isSession handler={(id) => handlers.openSingleView(s.id)} />
-              <TdIcons array={s.levels} />
-              <TdExaminer data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/>
-              <Td data={s.support.map(s => s.name)} />
-              <EditDeletePanel handlers={handlers} data={s} isConfirming={isConfirming} />
-            </Tr>
-          ))}
+          {sessions.map(s => {
+            archived = isBeforeToday(s['session_date']);
+            return( 
+              <Tr key={s.id} archived={archived}>
+                <TdDate 
+                  data={s['session_date']} 
+                  subContent={[s.type, s.venue, s.time]} 
+                  isSession 
+                  handler={(id) => handlers.openSingleView(s.id)} 
+                  archived= {archived}/>
+                <TdIcons array={s.levels} />
+                <TdExaminer data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/>
+                <Td data={s.support.map(s => s.name)} />
+                <EditDeletePanel handlers={handlers} data={s} isConfirming={isConfirming} />
+              </Tr>
+          )})}
         </IsNotEmpty>
       </Table>
     );

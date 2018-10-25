@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const distributeValuesForEditing = (state, selected) => {  
   for(let item in state){
     state[item].value = selected[item] !== undefined ? selected[item]: state[item].value;
@@ -103,4 +105,9 @@ export const updateArray = (array, examiner) => {
 export const sortLevels = (arr) => {
   const order = {'YLE': 0, 'KET': 1, 'PET': 2, 'FCE': 3, 'CAE': 4, 'CPE': 5};
   return arr.sort((a, b) => order[a] - order[b]);
+}
+
+export const isBeforeToday = (sessionDate) => {
+  const yesterday = moment().subtract(1, 'days');
+  return moment(sessionDate.join("-")) < yesterday;
 }

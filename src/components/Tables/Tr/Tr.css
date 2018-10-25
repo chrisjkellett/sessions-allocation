@@ -42,6 +42,6 @@
   opacity: 0.5;
 }
 
-.SelectedNotAvailable {
-  background: lightsalmon;
+.SelectedNotAvailable, .Archived {
+  background: lightpink !important;
 }

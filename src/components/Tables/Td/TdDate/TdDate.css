@@ -10,3 +10,7 @@
 .Link:hover {
   color: grey;
 }
+
+.Archived span{
+  background: salmon;
+}
