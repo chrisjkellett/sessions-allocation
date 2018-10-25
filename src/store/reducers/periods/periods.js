@@ -21,13 +21,14 @@ export const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-  let periods, current, sessions;
+  let periods, current, sessions, isEmpty;
 
   switch(action.type){
     case actionTypes.LOAD_PERIODS: 
-      periods = createSet(monthsFromObject(action.sessions));
-      current = setCurrentPeriodByMonth(periods);
-      sessions = filterSessionsByMonth(objectToArray(action.sessions), current);
+      isEmpty = Object.keys(action.sessions).length === 0;
+      periods = isEmpty ? [] : createSet(monthsFromObject(action.sessions));
+      current = isEmpty ? [] : setCurrentPeriodByMonth(periods);
+      sessions = isEmpty ? [] : filterSessionsByMonth(objectToArray(action.sessions), current);
       return { 
         ...state, 
         periods: periods, 

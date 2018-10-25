@@ -18,7 +18,10 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.LOAD_SESSIONS_SUCCESS:
-      return { ...state, sessions: sortBy(objectToArray(action.sessions), 'session_date') };
+      return { 
+        ...state, 
+        sessions: Object.keys(action.sessions).length === 0 ? [] : sortBy(objectToArray(action.sessions), 'session_date') 
+      };
 
     case actionTypes.ADD_SESSION_SUCCESS:
       const session = { ...action.session, id: action.id} 

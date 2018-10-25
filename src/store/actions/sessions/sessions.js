@@ -7,6 +7,7 @@ export const loadSessions = () => {
   return dispatch => {
     axios.get('/sessions.json')
       .then(response => {
+        delete response.data.db;
         // const currentSessions = filterOutOldSessions(response.data);
         dispatch(loadSessionsSuccess(response.data));
         response.data && dispatch(loadPeriods(response.data));
