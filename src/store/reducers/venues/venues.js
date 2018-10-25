@@ -26,7 +26,7 @@ const reducer = (state = initial, action) => {
       return { ...state, venues: state.venues.filter(v => v.id !== action.venue.id) };
 
     case actionTypes.FETCH_VENUE:
-      return { ...state, selectedVenue: state.venues.find(v => v.id === action.id), formActive: true };
+      return { ...state, selectedVenue: action.id ? state.venues.find(v => v.id === action.id): null, formActive: true };
 
     case actionTypes.CLEAR_SELECTED_VENUE:
       return { ...state, selectedVenue: null, formActive: false }
