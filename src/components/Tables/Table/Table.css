@@ -11,6 +11,7 @@
 
 .RowHeader th{
   padding-top: 20px;
+  height: 25px;
   border-bottom: 1px solid darkgrey;
   font-weight: initial;
   position: sticky;

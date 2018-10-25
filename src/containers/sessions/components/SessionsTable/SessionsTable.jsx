@@ -15,9 +15,9 @@ class SessionsTable extends Component {
         <Monthly />
         <Weekly />
       </span>, 
-      <Filter label='levels' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
-      <Filter label='examiners' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
-      <Filter label='support' filter={handlers.filter} value={!activeFilter ? '' : undefined}/>,
+      data.length !== 0 && <Filter label='levels' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
+      data.length !== 0 && <Filter label='examiners' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
+      data.length !== 0 && <Filter label='support' filter={handlers.filter} value={!activeFilter ? '' : undefined}/>,
       null
     ]);
 
