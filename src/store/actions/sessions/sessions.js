@@ -2,15 +2,16 @@ import * as actionTypes from './actionTypes';
 import axios from '../../../axios';
 import { logResponse, logError } from '../general/general';
 import { loadPeriods, updatePeriods } from '../periods/periods';
+import { filterOutOldSessions } from './utilities';
 
 export const loadSessions = () => {
   return dispatch => {
     axios.get('/sessions.json')
       .then(response => {
         delete response.data.db;
-        // const currentSessions = filterOutOldSessions(response.data);
-        dispatch(loadSessionsSuccess(response.data));
-        response.data && dispatch(loadPeriods(response.data));
+        const currentSessions = filterOutOldSessions(response.data);
+        dispatch(loadSessionsSuccess(currentSessions, response.data));
+        response.data && dispatch(loadPeriods(currentSessions));
       })
       .catch(error => {
         console.log(error);
@@ -18,10 +19,11 @@ export const loadSessions = () => {
   }
 }
 
-export const loadSessionsSuccess = (data) => {
+export const loadSessionsSuccess = (sessions, allSessions) => {
   return {
     type: actionTypes.LOAD_SESSIONS_SUCCESS,
-    sessions: data
+    sessions: sessions,
+    allSessions: allSessions
   }
 };
 
