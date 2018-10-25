@@ -254,7 +254,11 @@ class Sessions extends Component {
             clearSelectedSession={clearSelectedSession}  />
         }
         {showSingleView &&
-          <SingleSession session={selectedSession} venues={venues} examiners={examiners}/>
+          <SingleSession 
+          session={selectedSession} 
+          venues={venues} 
+          examiners={examiners} 
+          close={this.handlers.closeSingleView} />
         }
       </Section>
     )

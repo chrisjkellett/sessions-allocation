@@ -17,3 +17,20 @@
   z-index: 2;
   box-sizing: border-box;
 }
+
+.Content {
+  position: relative;
+}
+
+.Close {
+  position: absolute;
+  top: 0px;
+  z-index: 3;
+  right: 0;
+  margin: 0 8px;
+  cursor: pointer;
+}
+
+.Close:hover {
+  color: gray;
+}

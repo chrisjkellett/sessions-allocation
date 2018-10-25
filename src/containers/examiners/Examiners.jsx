@@ -165,7 +165,7 @@ class Examiners extends Component {
             clearSelectedExaminer={clearSelectedExaminer} />
         }
         {showSingleView &&
-          <SingleExaminer examiner={selectedExaminer} sessions={sessions} />
+          <SingleExaminer examiner={selectedExaminer} sessions={sessions} close={this.handlers.closeSingleView}/>
         }
       </Section>
     )

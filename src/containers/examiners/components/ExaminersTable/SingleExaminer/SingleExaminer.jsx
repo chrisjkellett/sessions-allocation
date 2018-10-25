@@ -17,12 +17,12 @@ import {
 
 const labels = ['name', 'email', 'roles', 'id number', 'levels', 'availability', 'upcoming sessions']
 
-const SingleExaminer = ({ examiner, sessions }) => {
+const SingleExaminer = ({ examiner, sessions, close }) => {
   const filteredSessions = sessions
   .filter(sess => sess.examiners.some(e => e.name === examiner.name) || sess.support.some(e => e.name === examiner.name));
 
   return (
-    <SingleView>
+    <SingleView close={close}>
       <FlexContainer>
         <FlexItem>
           <SingleItem label={labels[0]} data={examiner.name} />

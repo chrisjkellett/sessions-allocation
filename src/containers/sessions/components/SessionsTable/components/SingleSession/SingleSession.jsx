@@ -10,9 +10,9 @@ import {
 
 const labels = ['session date', 'time', 'type', 'venue', 'levels', 'examiners', 'support']
 
-const SingleSession = ({ session, venues, examiners }) => {
+const SingleSession = ({ session, venues, examiners, close }) => {
   return (
-    <SingleView>
+    <SingleView close={close}>
       <FlexContainer>
         <FlexItem>
           <SingleItem label={labels[0]} data={session.session_date} isDate />
