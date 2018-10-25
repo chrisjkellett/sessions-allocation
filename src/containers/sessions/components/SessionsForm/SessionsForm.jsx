@@ -37,7 +37,7 @@ class SessionsForm extends Component {
     const { venues, selectedSession, examiners, session, sessions } = this.props;
     const sessionId = selectedSession ? selectedSession.id : null;
     selectedSession && this.props.handlers.prepareForEdit(selectedSession);
-    if(venues !== null && !selectedSession) this.props.handlers.addAsyncForm(venues[0].name, 'venue'); 
+    if(venues !== null && !selectedSession && venues.length !== 0) this.props.handlers.addAsyncForm(venues[0].name, 'venue'); 
     this.props.calculateAvailableExaminers(examiners, session, sessions, sessionId);
     document.getElementById('$session_date').focus();
     document.addEventListener("keydown", this.handlers.ctrlToggles, false);

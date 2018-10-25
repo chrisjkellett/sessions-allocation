@@ -6,6 +6,7 @@ export const loadExaminers = () => {
   return dispatch => {
     axios.get('/examiners.json')
       .then(response => {
+        delete response.data.db;
         dispatch(loadExaminersSuccess(response.data))
       })
       .catch(error => {

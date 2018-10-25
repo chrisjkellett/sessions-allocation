@@ -27,6 +27,7 @@ export const loadVenues = () => {
   return dispatch => {
     axios.get('/venues.json')
       .then(response => {
+        delete response.data.db;
         dispatch(loadVenuesSuccess(response.data));
       })
       .catch(error => {

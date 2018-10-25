@@ -20,7 +20,7 @@ export const generateInputProps = (element, shouldValidate, { change }, venues, 
     options: hasAsyncOptions(config.options, payloadType(element.id)),
     elementtype: config.elementType,
     elementConfig: config.elementConfig,
-    value: hasAsyncOptions(config.value, venues[0].name),
+    value: hasAsyncOptions(config.value, venues.length !== 0 ? venues[0].name : []),
     hide: config.hide,
     valid: config.validation.valid,
     shouldValidate: shouldValidate,
@@ -29,5 +29,9 @@ export const generateInputProps = (element, shouldValidate, { change }, venues, 
 }
 
 const hasAsyncOptions = (options, payload) => {
-  return options === null ? payload : options 
+  return options === null 
+    ? payload.length !== 0
+      ? payload
+      : []
+    : options 
 }
