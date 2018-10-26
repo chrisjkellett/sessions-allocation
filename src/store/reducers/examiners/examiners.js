@@ -1,6 +1,5 @@
 import * as actionTypes from '../../actions/examiners/actionTypes';
 import {
-  objectToArray,
   sortBy,
   filterData,
   Availability,
@@ -15,13 +14,13 @@ const initialState = {
   formActive: false,
 }
 
-let isExaminers = true;
 let examiner;
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case actionTypes.LOAD_EXAMINERS_SUCCESS:
-      const examiners = objectToArray(action.examiners, isExaminers);
+      const examiners = Object.keys(action.examiners)
+        .map(a => ({...action.examiners[a], id: a, avail: Availability(), available: true}));
       return { ...state, examiners: sortBy(examiners) }
 
     case actionTypes.ADD_EXAMINER_SUCCESS:
