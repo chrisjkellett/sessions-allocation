@@ -6,17 +6,18 @@ import * as actions from '../../../../store/actions/periods/periods';
 
 class Monthly extends Component {
   changeHandler = (e) => {
-    const { sessions, archived, showAll } = this.props;
-    this.props.periodSelect(showAll ? archived : sessions, e.target.value)
+    const { sessions, archived, showArchived } = this.props;
+    this.props.periodSelect(showArchived ? archived : sessions, e.target.value)
   }
 
   render(){  
-    const { periods, currentPeriod } = this.props;
+    const { periods, currentPeriod, showArchived } = this.props;
     return periods.length <= 1 ? null : (
      <div className={classes.Monthly} data-html2canvas-ignore>
         <select value={currentPeriod} onChange={this.changeHandler}>
           {periods.map(p => <option key={p}>{p}</option>)}
         </select>
+        {showArchived && <span className={classes.Archives}>[archives]</span>}
       </div>
     )
   }
@@ -25,7 +26,7 @@ class Monthly extends Component {
 const mapStateToProps = state => {
   return {
     sessions: state.sess.sessions,
-    showAll: state.sess.showAll,
+    showArchived: state.sess.showArchived,
     archived: state.sess.archived,
     periods: state.per.periods,
     currentPeriod: state.per.current,

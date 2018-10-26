@@ -41,7 +41,7 @@ export class UnconnectedWeekly extends Component {
   render(){
     const { openOptions, closeOptions } = this;
     const { showOptions } = this.state;
-    const { weeks, filterByWeek, sessions, archived, showAll, weekFilteredBy } = this.props;
+    const { weeks, filterByWeek, sessions, archived, showArchived, weekFilteredBy } = this.props;
     
     return weeks !== null ? (
       <section className={classes.SplitWeekly} data-html2canvas-ignore>
@@ -58,7 +58,7 @@ export class UnconnectedWeekly extends Component {
               filterByWeek={filterByWeek}
               sessions={sessions} 
               archived={archived} 
-              showAll={showAll} /> 
+              showArchived={showArchived} /> 
           : null
           }
       </section>
@@ -69,7 +69,7 @@ export class UnconnectedWeekly extends Component {
 const mapStateToProps = state => {
   return {
     sessions: state.sess.sessions,
-    showAll: state.sess.showAll,
+    showArchived: state.sess.showArchived,
     archived: state.sess.archived,
     weeks: state.per.weeks,
     filterByWeek: state.per.filterByWeek,

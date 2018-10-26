@@ -77,8 +77,9 @@ class Sessions extends Component {
     },
 
     delete: (session) => {
-      const { token, sessions } = this.props;
+      const { token, sessions, showArchived } = this.props;
       this.props.deleteSession(sessions, session, token);
+      showArchived && this.handlers.toggleArchive();
     },
 
     expand: () => {
@@ -87,7 +88,7 @@ class Sessions extends Component {
 
     submit: (event) => {
       const { session } = this.state;
-      const { token, sessions, selectedSession } = this.props;
+      const { token, sessions, selectedSession, showArchived } = this.props;
       event.preventDefault();
       this.handlers.validate();
       const sessionForDB = forSubmit(session);
@@ -99,6 +100,7 @@ class Sessions extends Component {
         }else{
           this.props.updateSession(sessions, sessionForDB, selectedSession.id, token)
           this.handlers.cancel();
+          showArchived && this.handlers.toggleArchive();
         }
       }
     },
@@ -172,21 +174,27 @@ class Sessions extends Component {
     },
 
     escapeAll: (e) => {
+      const { showArchived } = this.props;
       if(e.keyCode === 27) {
         this.state.showSingleView && this.handlers.closeSingleView();
         this.state.showForm && this.handlers.cancel();
         this.props.filteredSessions !== null && this.handlers.removeFilters();
       }
-      if(e.keyCode === 78 && e.shiftKey) {
+      if(e.keyCode === 78 && e.ctrlKey) {
         e.preventDefault();
         !this.state.showForm ? this.handlers.add() : this.handlers.cancel();;
       }
-      if(e.keyCode === 70 && e.shiftKey) {
+      if(e.keyCode === 70 && e.ctrlKey) {
         e.preventDefault();
         this.handlers.toggleDateFilter();
       }
 
-      if(e.keyCode === 81 && e.shiftKey) {
+      if(e.keyCode === 81 && e.ctrlKey) {
+        e.preventDefault();
+        this.handlers.toggleArchive();
+      }
+
+      if(e.keyCode === 27 && showArchived) {
         e.preventDefault();
         this.handlers.toggleArchive();
       }
@@ -226,8 +234,8 @@ class Sessions extends Component {
     },
 
     toggleArchive: () => {
-      const { showAll, updatePeriods, toggleArchive, sessions, archived } = this.props;
-      updatePeriods(showAll ? sessions : archived);
+      const { showArchived, updatePeriods, toggleArchive, sessions, archived } = this.props;
+      updatePeriods(showArchived ? sessions : archived);
       toggleArchive();
     }
   }
@@ -236,16 +244,19 @@ class Sessions extends Component {
     const { 
       showForm, isConfirming, session, shouldValidate, showSingleView, activeFilter, showDateFilter 
     } = this.state;
-    const { sessionsByPeriod, sessionsByWeek, filteredSessions, venues, selectedSession, examiners, sessions } = this.props;
+    const { sessionsByPeriod, sessionsByWeek, filteredSessions, venues, selectedSession, examiners, sessions, showArchived } = this.props;
     const { clearSelectedSession } = this.props;
     const sessionsWithFilters = sessionsByWeek.length !== 0 ? sessionsByWeek : sessionsByPeriod;
     const filtered = filteredSessions ? filteredSessions.filter(s => sessionsWithFilters.some(x => s.id === x.id)) : null;
 
     return (
       <Section overlay={showForm || showSingleView}>
-        <BtnPanelFixed hidden={showForm}>
+        <BtnPanelFixed hidden={showForm || showArchived}>
           <Btn handler={this.handlers.add} label={'add new session'} />
           <Btn handler={this.handlers.print} label={'download as pdf'} disabled />
+        </BtnPanelFixed>
+        <BtnPanelFixed hidden={!showArchived}>
+          <Btn handler={this.handlers.toggleArchive} label={'return to sessions'} />
         </BtnPanelFixed>
         <div id='session-table'>
           <SessionsTable 
@@ -282,7 +293,7 @@ const mapStateToProps = state => {
     token: state.auth.token,
     sessions: state.sess.sessions,
     archived: state.sess.archived,
-    showAll: state.sess.showAll,
+    showArchived: state.sess.showArchived,
     sessionsByPeriod: state.per.sessionsByPeriod,
     sessionsByWeek: state.per.sessionsByWeek,
     selectedSession: state.sess.selectedSession,

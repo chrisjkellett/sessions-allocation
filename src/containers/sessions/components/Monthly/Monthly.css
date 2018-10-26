@@ -11,3 +11,9 @@
   border: 0;
   padding-bottom: 1px;
 }
+
+.Archives {
+  color: grey;
+  font-size: 80%;
+  margin: 0 3px;
+}

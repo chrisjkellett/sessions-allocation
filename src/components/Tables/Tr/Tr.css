@@ -43,5 +43,5 @@
 }
 
 .SelectedNotAvailable, .Archived {
-  background: lightpink !important;
+  background: rgb(253, 212, 218) !important;
 }
