@@ -1,3 +1,15 @@
 .Loading{
   margin: 80px 0 0 10px;
 }
+
+.Error {
+  margin: 40px 10px;
+  border: 1px solid grey;
+  display: inline-block;
+  padding: 0 10px;
+  background: pink;
+}
+
+.Error i{
+  margin-right: 5px;
+}

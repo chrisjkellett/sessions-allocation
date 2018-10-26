@@ -1,21 +1,22 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../../axios';
-import { logResponse, logError } from '../general/general';
+import { logResponse, logError, logServerError } from '../general/general';
 import { loadPeriods, updatePeriods } from '../periods/periods';
-import { filterOutOldSessions, assignIds } from './utilities';
+import { filterSessionsByToday } from './utilities';
 
 export const loadSessions = () => {
   return dispatch => {
     axios.get('/sessions.json')
       .then(response => {
         delete response.data.db;
-        const currentSessions = filterOutOldSessions(response.data);
-        const allSessions = assignIds(response.data);
-        dispatch(loadSessionsSuccess(currentSessions, allSessions));
-        response.data && dispatch(loadPeriods(currentSessions));
+        const sessions = filterSessionsByToday(response.data);
+        console.log(sessions);
+        throw Error;
+        // dispatch(loadSessionsSuccess(currentSessions, archivedSessions));
+        // response.data && dispatch(loadPeriods(currentSessions));
       })
       .catch(error => {
-        console.log(error);
+        dispatch(logServerError(error, {type: 'sessions', action: 'loading'}));
       })
   }
 }

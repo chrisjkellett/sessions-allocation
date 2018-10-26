@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   sessions: null,
-  allSessions: null,
+  archivedSessions: null,
   error: false,
   editing: false,
   selectedSession: null,
@@ -23,7 +23,7 @@ const reducer = (state = initialState, action) => {
       return { 
         ...state, 
         sessions: Object.keys(action.sessions).length === 0 ? [] : sortBy(objectToArray(action.sessions), 'session_date'),
-        allSessions: Object.keys(action.allSessions).length === 0 ? [] : sortBy(objectToArray(action.allSessions), 'session_date')
+        archviedSessions: Object.keys(action.allSessions).length === 0 ? [] : sortBy(objectToArray(action.allSessions), 'session_date')
       };
 
     case actionTypes.ADD_SESSION_SUCCESS:

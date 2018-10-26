@@ -21,3 +21,11 @@ export const refreshLog = () => {
     type: actionTypes.REFRESH_LOG
   }
 }
+
+export const logServerError = (error, map) => {
+  return {
+    type: actionTypes.LOG_SERVER_ERROR,
+    errorMessage: error.response && error.response.data,
+    map: map
+  }
+}

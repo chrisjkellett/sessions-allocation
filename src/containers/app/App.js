@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 import { Route, withRouter, Switch, Redirect } from 'react-router-dom';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Header from '../header/Header';
 import Auth from '../auth/Auth';
 import Sessions from '../sessions/Sessions';
 import Examiners from '../examiners/Examiners';
 import Venues from '../venues/Venues.jsx';
 import Wrapper from '../../components/Misc/Wrapper/Wrapper';
-import {loadExaminers} from '../../store/actions/examiners/examiners';
-import {loadSessions} from '../../store/actions/sessions/sessions';
-import {checkAuthState} from '../../store/actions/auth/auth';
+import { loadExaminers } from '../../store/actions/examiners/examiners';
+import { loadSessions } from '../../store/actions/sessions/sessions';
+import { checkAuthState } from '../../store/actions/auth/auth';
 import * as venueActions from '../../store/actions/venues/venues';
 import * as routes from '../../store/app-data/routes';
 import AsyncLoad from '../../components/AsyncLoad/AsyncLoad';
@@ -55,7 +55,7 @@ class App extends Component {
   }
 
   render() {
-    const {isAuthenticated, examiners, periods, sessions} = this.props;
+    const {isAuthenticated, examiners, periods, sessions, error} = this.props;
     return (
       <Wrapper>
         <Switch>
@@ -64,20 +64,22 @@ class App extends Component {
 
         <Route path='/(.+)' render={() => (
           isAuthenticated 
-          ? <AsyncLoad waitFor={examiners}>
-            <AsyncLoad waitFor={sessions}>
+          ? <Wrapper>
               <Header />
-              <section className={classes.Section}>
-                <Switch>
-                  {isAuthenticated && <Route path={routes.EXAMINERS} exact component={Examiners} />}
-                  {isAuthenticated && <Route path={routes.VENUES} exact component={Venues} />}
-                  <AsyncLoad waitFor={periods}>
-                    {isAuthenticated && <Route path={routes.SESSIONS} exact component={Sessions} /> }
-                  </AsyncLoad>
-                </Switch>
-              </section>
-            </AsyncLoad>
-            </AsyncLoad>
+              <AsyncLoad waitFor={examiners} error={error}>
+              <AsyncLoad waitFor={sessions} error={error}>
+                <section className={classes.Section}>
+                  <Switch>
+                    {isAuthenticated && <Route path={routes.EXAMINERS} exact component={Examiners} />}
+                    {isAuthenticated && <Route path={routes.VENUES} exact component={Venues} />}
+                    <AsyncLoad waitFor={periods}>
+                      {isAuthenticated && <Route path={routes.SESSIONS} exact component={Sessions} /> }
+                    </AsyncLoad>
+                  </Switch>
+                </section>
+              </AsyncLoad>
+              </AsyncLoad>
+            </Wrapper>
           : <Redirect to={routes.LOGIN_PAGE} />
           )} />
       </Wrapper>
@@ -89,6 +91,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     sessions: state.sess.sessions,
+    error: state.gen.serverError,
     isAuthenticated: state.auth.token !== null && state.auth.token !== '9999',
     examiners: state.ex.examiners,
     periods: state.per.periods,
