@@ -19,7 +19,7 @@ const reducer = (state = initial, action) => {
       return {...state, serverError: action.map}
 
     case actionTypes.REFRESH_LOG: 
-      return {...initial}
+      return { ...state, updated: null, map: null, error: null }
 
     default:
       return state;  

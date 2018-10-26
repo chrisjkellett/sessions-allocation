@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../../axios';
-import { logResponse, logServerError } from '../general/general';
+import { logResponse, logServerError, logError } from '../general/general';
 
 export const loadExaminers = () => {
   return dispatch => {
@@ -31,7 +31,8 @@ export const addExaminer = (examiner, token) => {
         dispatch(logResponse(examiner, {type: 'examiners', action: 'added'}));
       })
       .catch(error => {
-        console.log(error);
+        dispatch(actionFailure());
+        dispatch(logError(error, {type: 'examiner', action: 'added'}));
       })
   }
 }
@@ -52,7 +53,8 @@ export const updateExaminer = (examiner, id, token) => {
         dispatch(logResponse(examiner, {type: 'examiners', action: 'updated'}));
       })
       .catch(error => {
-        console.log(error)
+        dispatch(actionFailure());
+        dispatch(logError(error, {type: 'examiner', action: 'edit'}));
       })
   }
 }
@@ -74,7 +76,8 @@ export const deleteExaminer = (examiner, token) => {
         dispatch(logResponse(examiner, {type: 'examiners', action: 'deleted'}));
       })
       .catch(error => {
-        console.log(error);
+        dispatch(actionFailure());
+        dispatch(logError(error, {type: 'examiner', action: 'delete'}));
       })
   }
 }
@@ -120,3 +123,10 @@ export const clearFilters = () => {
     type: actionTypes.CLEAR_FILTERS
   }
 };
+
+export const actionFailure = () => {
+  return {
+    type: actionTypes.EXAMINER_ACTION_FAILURE
+  }
+};
+

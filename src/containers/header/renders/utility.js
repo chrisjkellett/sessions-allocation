@@ -24,6 +24,8 @@ export const formatError = (error) => {
   switch (error) {
     case 'EMAIL_EXISTS':
       return 'account already exists with this email'
+    case undefined:
+      return 
     default:
       return error;
   }
