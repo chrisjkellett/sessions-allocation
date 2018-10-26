@@ -10,10 +10,8 @@ export const loadSessions = () => {
       .then(response => {
         delete response.data.db;
         const sessions = filterSessionsByToday(response.data);
-        console.log(sessions);
-        throw Error;
-        // dispatch(loadSessionsSuccess(currentSessions, archivedSessions));
-        // response.data && dispatch(loadPeriods(currentSessions));
+        dispatch(loadSessionsSuccess(sessions.current, sessions.archive));
+        response.data && dispatch(loadPeriods(sessions.current));
       })
       .catch(error => {
         dispatch(logServerError(error, {type: 'sessions', action: 'loading'}));

@@ -2,7 +2,6 @@ import React from 'react';
 import classes from './AsyncLoad.css';
 
 const AsyncLoad = ({ children, waitFor, error }) => {
-  console.log(error)
   if(error)
     return (
       <div className={classes.Error}>
