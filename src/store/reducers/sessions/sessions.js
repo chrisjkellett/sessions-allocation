@@ -37,7 +37,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, sessions: sortBy(action.sessions, 'session_date') }
 
     case actionTypes.FETCH_SESSION:
-      return { ...state, selectedSession: action.id ? state.sessions.find(s => s.id === action.id ) : null, formActive: true }
+      return { ...state, selectedSession: action.id ? state.allSessions.find(s => s.id === action.id ) : null, formActive: true }
 
     case actionTypes.CLEAR_SELECTED_SESSION:
       return {...state, selectedSession: null, formActive: false }

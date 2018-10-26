@@ -65,7 +65,6 @@ export const objectToArray = (obj, isExaminers) => {
   const keys = Object.keys(obj);
 
   const array = keys.map(item =>{
-    obj[item].id = item;
     if(isExaminers){
       obj[item].avail = Availability();
       obj[item].available = true;

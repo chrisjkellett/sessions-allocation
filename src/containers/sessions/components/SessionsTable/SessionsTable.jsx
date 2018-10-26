@@ -34,7 +34,7 @@ class SessionsTable extends Component {
                   data={s['session_date']} 
                   subContent={[s.type, s.venue, s.time]} 
                   isSession 
-                  handler={(id) => handlers.openSingleView(s.id)} 
+                  handler={() => handlers.openSingleView(s.id)} 
                   archived= {archived}/>
                 <TdIcons array={s.levels} />
                 <TdExaminer data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/>

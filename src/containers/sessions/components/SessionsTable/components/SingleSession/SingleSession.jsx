@@ -11,6 +11,7 @@ import {
 const labels = ['session date', 'time', 'type', 'venue', 'levels', 'examiners', 'support']
 
 const SingleSession = ({ session, venues, examiners, close }) => {
+  console.log(session);
   return (
     <SingleView close={close}>
       <FlexContainer>

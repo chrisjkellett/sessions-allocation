@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes';
 import axios from '../../../axios';
 import { logResponse, logError } from '../general/general';
 import { loadPeriods, updatePeriods } from '../periods/periods';
-import { filterOutOldSessions } from './utilities';
+import { filterOutOldSessions, assignIds } from './utilities';
 
 export const loadSessions = () => {
   return dispatch => {
@@ -10,7 +10,8 @@ export const loadSessions = () => {
       .then(response => {
         delete response.data.db;
         const currentSessions = filterOutOldSessions(response.data);
-        dispatch(loadSessionsSuccess(currentSessions, response.data));
+        const allSessions = assignIds(response.data);
+        dispatch(loadSessionsSuccess(currentSessions, allSessions));
         response.data && dispatch(loadPeriods(currentSessions));
       })
       .catch(error => {
