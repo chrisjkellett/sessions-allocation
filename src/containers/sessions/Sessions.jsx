@@ -226,8 +226,8 @@ class Sessions extends Component {
     },
 
     toggleArchive: () => {
-      const { showAll, updatePeriods, toggleArchive, sessions, allSessions } = this.props;
-      updatePeriods(showAll ? sessions : allSessions);
+      const { showAll, updatePeriods, toggleArchive, sessions, archived } = this.props;
+      updatePeriods(showAll ? sessions : archived);
       toggleArchive();
     }
   }
@@ -281,7 +281,7 @@ const mapStateToProps = state => {
   return {
     token: state.auth.token,
     sessions: state.sess.sessions,
-    allSessions: state.sess.allSessions,
+    archived: state.sess.archived,
     showAll: state.sess.showAll,
     sessionsByPeriod: state.per.sessionsByPeriod,
     sessionsByWeek: state.per.sessionsByWeek,

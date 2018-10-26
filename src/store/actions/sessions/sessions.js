@@ -19,11 +19,11 @@ export const loadSessions = () => {
   }
 }
 
-export const loadSessionsSuccess = (sessions, allSessions) => {
+export const loadSessionsSuccess = (sessions, archived) => {
   return {
     type: actionTypes.LOAD_SESSIONS_SUCCESS,
     sessions: sessions,
-    allSessions: allSessions
+    archived: archived,
   }
 };
 

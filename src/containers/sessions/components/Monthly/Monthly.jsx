@@ -6,8 +6,8 @@ import * as actions from '../../../../store/actions/periods/periods';
 
 class Monthly extends Component {
   changeHandler = (e) => {
-    const { sessions, allSessions, showAll } = this.props;
-    this.props.periodSelect(showAll ? allSessions : sessions, e.target.value)
+    const { sessions, archived, showAll } = this.props;
+    this.props.periodSelect(showAll ? archived : sessions, e.target.value)
   }
 
   render(){  
@@ -26,7 +26,7 @@ const mapStateToProps = state => {
   return {
     sessions: state.sess.sessions,
     showAll: state.sess.showAll,
-    allSessions: state.sess.allSessions,
+    archived: state.sess.archived,
     periods: state.per.periods,
     currentPeriod: state.per.current,
   }

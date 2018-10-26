@@ -23,7 +23,7 @@ const reducer = (state = initialState, action) => {
       return { 
         ...state, 
         sessions: Object.keys(action.sessions).length === 0 ? [] : sortBy(objectToArray(action.sessions), 'session_date'),
-        archived: Object.keys(action.allSessions).length === 0 ? [] : sortBy(objectToArray(action.allSessions), 'session_date')
+        archived: Object.keys(action.archived).length === 0 ? [] : sortBy(objectToArray(action.archived), 'session_date')
       };
 
     case actionTypes.ADD_SESSION_SUCCESS:
@@ -37,7 +37,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, sessions: sortBy(action.sessions, 'session_date') }
 
     case actionTypes.FETCH_SESSION:
-      return { ...state, selectedSession: action.id ? state.allSessions.find(s => s.id === action.id ) : null, formActive: true }
+      return { ...state, selectedSession: action.id ? state.archived.find(s => s.id === action.id ) : null, formActive: true }
 
     case actionTypes.CLEAR_SELECTED_SESSION:
       return {...state, selectedSession: null, formActive: false }
