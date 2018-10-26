@@ -31,7 +31,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, examiners: state.examiners.filter(e => e.id !== action.id) }
 
     case actionTypes.FETCH_EXAMINER:
-      return { ...state, selectedExaminer: state.examiners.find(e => e.id === action.id), formActive: true }
+      return { ...state, selectedExaminer: action.id ? state.examiners.find(s => s.id === action.id ) : null, formActive: true }
 
     case actionTypes.CLEAR_SELECTED_EXAMINER:
       return { ...state, selectedExaminer: null, formActive: false }

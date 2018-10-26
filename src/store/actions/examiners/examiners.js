@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../../axios';
-import { logResponse } from '../general/general';
+import { logResponse, logServerError } from '../general/general';
 
 export const loadExaminers = () => {
   return dispatch => {
@@ -10,7 +10,7 @@ export const loadExaminers = () => {
         dispatch(loadExaminersSuccess(response.data))
       })
       .catch(error => {
-        console.log(error);
+        dispatch(logServerError(error, {type: 'examiners', action: 'loading'}));
       })
   }
 }
