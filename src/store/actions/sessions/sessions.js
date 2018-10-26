@@ -93,10 +93,11 @@ export const updateSessionSuccess = (sessions) => {
   }
 }
 
-export const fetchSession = (id) => {
+export const fetchSession = (id, archived) => {
   return {
     type: actionTypes.FETCH_SESSION,
-    id: id
+    id: id,
+    archived: archived
   }
 }
 
