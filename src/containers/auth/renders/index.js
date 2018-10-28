@@ -19,7 +19,6 @@ export const renderUI = (state, inputHandler, submitHandler, error, showErrors) 
               }
             )}
             <button>login</button>
-            {/* {renderError(error)} */}
           </form>
         </section>
       </div>

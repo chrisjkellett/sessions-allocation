@@ -1,6 +1,6 @@
 html{
   background: 
-    linear-gradient(rgba(240, 248, 255, 0.9), rgba(173, 216, 230, 0.8)), url('./assets/img/wallpaper_rv.jpg');
+    linear-gradient(rgba(240, 248, 255, 0.9), rgba(173, 216, 230, 0.75)), url('./assets/img/abstract_cubes.jpg');
   min-height: 100vh;
   background-size: cover;
 }

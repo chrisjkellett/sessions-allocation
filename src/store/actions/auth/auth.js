@@ -2,7 +2,6 @@ import * as actionTypes from './actionTypes';
 import axios from 'axios';
 import {AUTH_API} from '../../data';
 import {setStorage, deleteStorage, getStorage, checkTokenValidity} from './utility';
-import {fetchExaminer} from '../examiners/examiners';
 
 export const authUserStart = () => {
   return {
@@ -20,21 +19,21 @@ export const authUser = (user, regUser) => {
         dispatch(checkAuthTimeout(res.data.expiresIn));
     })
       .catch(error => {
-        dispatch(authRegularUser(regUser, error));
+        dispatch(authFail(error));
     })
   }
 }
 
-export const authRegularUser = (user, error) => {
-  return dispatch => {
-    if(user){
-      setStorage({idToken: '9999', expiresIn: 3600, email: null}, user.name);
-      dispatch(authRegularUserSuccess(user))
-      dispatch(fetchExaminer(user))
-    }else 
-      dispatch(authFail(error))
-  }
-}
+// export const authRegularUser = (user, error) => {
+//   return dispatch => {
+//     if(user){
+//       setStorage({idToken: '9999', expiresIn: 3600, email: null}, user.name);
+//       dispatch(authRegularUserSuccess(user))
+//       dispatch(fetchExaminer(user))
+//     }else 
+//       dispatch(authFail(error))
+//   }
+// }
 
 export const checkAuthState = () => {
   return dispatch => {
