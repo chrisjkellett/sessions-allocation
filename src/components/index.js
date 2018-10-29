@@ -27,6 +27,7 @@ import SingleItemForExaminer from './Wrappers/SingleView/SingleItem/SingleItemFo
 import SingleItemAvail from './Wrappers/SingleView/SingleItem/SingleItemAvail';
 import Label from './Wrappers/SingleView/Label/Label';
 import Counter from './Counter/Counter';
+import Logo from './Logo/Logo';
 
 export {
   SubTd, Td, TdIcons, TdIconsForTime, TdDate, Tr, Table, TdExaminer,
@@ -39,5 +40,6 @@ export {
   AsyncLoad,
   SingleView, SingleItem, SingleItemForObject, SingleItemForExaminer, SingleItemAvail,
   Label,
-  Counter
+  Counter,
+  Logo
 }

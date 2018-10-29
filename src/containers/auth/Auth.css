@@ -20,3 +20,18 @@
   width: 100%;
   text-align: center;
 }
+
+.Login {
+  margin-top: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Login form {
+  border: 1px solid lightgrey;
+  padding: 50px;
+  background: rgba(203, 203, 203, 0.6);
+  font-size: 120%;
+  max-width: 50%;
+}

@@ -2,12 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter, Redirect} from 'react-router-dom';
 import { constructAuthState } from '../../store/constructors/auth';
-import {renderUI} from './renders/';
 import { updateState, forSubmit } from '../utility';
 import {checkValidity} from '../../validation/validation';
 import {formatInput} from '../../validation/utility';
 import * as actions from '../../store/actions/auth/auth';
 import * as routes from '../../store/app-data/routes';
+import { Section, Input, Logo } from '../../components';
+import { generateFormElementArray } from '../utility';
+import { generateInputProps } from './utility';
+import classes from './Auth.css';
 
 class Auth extends Component{
   state = {
@@ -15,30 +18,47 @@ class Auth extends Component{
     showErrors: true
   }
 
-  inputHandler = (event, id) => {
-    const {value} = event.target;
-    const type = Object.keys({...this.state})[0];
-    const update = updateState(this.state, id, {value: formatInput(value, id)}, type);
-    update[type][id].validation = checkValidity({...update[type][id]});
-    this.setState({...update, showErrors: false});
+  handlers = {
+    change: (event, id) => {
+      const {value} = event.target;
+      const type = Object.keys({...this.state})[0];
+      const update = updateState(this.state, id, {value: formatInput(value, id)}, type);
+      update[type][id].validation = checkValidity({...update[type][id]});
+      this.setState({...update, showErrors: false});
+    },
+  
+    submit: (event) => {
+      event.preventDefault();
+      const {authUser, examiners} = this.props;
+      const user = forSubmit({...this.state.login});
+      const regularUser = examiners.find(ex => ex.email === user.email && user.password === 'test');
+      authUser(Object.assign({...user}, {returnSecureToken: true}), regularUser);
+      this.setState({...this.state, showErrors: true})
+    }
   }
-
-  submitHandler = (event) => {
-    event.preventDefault();
-    const {authUser, examiners} = this.props;
-    const user = forSubmit({...this.state.login});
-    const regularUser = examiners.find(ex => ex.email === user.email && user.password === 'test');
-    authUser(Object.assign({...user}, {returnSecureToken: true}), regularUser);
-    this.setState({...this.state, showErrors: true})
-  }
+  
 
   render(){
-    const {isUser, error} = this.props;
-    const {login, showErrors} = this.state;
+    const {isUser} = this.props;
+    const { submit, change } = this.handlers;
+    const { login } = this.state;
     if(isUser)
       return <Redirect to={routes.SESSIONS} />;
     else
-      return renderUI({...login}, this.inputHandler, this.submitHandler, error, showErrors);
+      return (
+        <Section>
+          <div className={classes.Login}>
+            <form onSubmit={submit}>
+            {generateFormElementArray(login)
+                .map(element =>{
+                  return <Input {...generateInputProps(element, login, change)} />
+                }
+              )}
+              <button>login</button>
+            </form>
+          </div>
+        </Section>
+      );
     
   }
 }
