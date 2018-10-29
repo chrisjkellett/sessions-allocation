@@ -16,6 +16,8 @@ export const formatError = (error) => {
   switch(error){
     case 'INVALID_EMAIL':
       return 'invalid username and password combination';
+    case 'SERVER_ERROR':
+      return 'no access to internet - please check your connection and refresh the page';
     default:
       return error;
   }

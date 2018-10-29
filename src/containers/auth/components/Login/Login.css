@@ -6,8 +6,6 @@
 }
 
 .Wrapper {
-  border: 1px solid lightgrey;
-  background: rgba(203, 203, 203, 0.6);
   font-size: 120%;
   max-width: 50%;
 }

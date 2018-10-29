@@ -47,7 +47,7 @@ export const authUserSuccess = ({email, idToken}) => {
 export const authFail = (error) => {
   return {
     type: actionTypes.AUTH_USER_FAIL,
-    error: error.response.data.error.message
+    error: error.response ? error.response.data.error.message : 'SERVER_ERROR'
   }
 }
 

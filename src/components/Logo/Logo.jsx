@@ -1,9 +1,9 @@
 import React from 'react'
 import classes from './Logo.css';
 
-const Logo = ({styles}) => {
+const Logo = () => {
   return (
-    <div className={classes[styles]}>
+    <div className={classes.Logo}>
       <span className={classes.Title}>examiner 
         <span>manager</span>
       </span>

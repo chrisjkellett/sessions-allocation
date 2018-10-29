@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:800|Roboto:100');
 
-.Centre-Mid{
-  margin: auto;
-  width: 250px;
-  padding: 6px;
+.Logo{
+  padding: 10px;
+  border-bottom: #D1D1D1;
 }
 
 .Title {

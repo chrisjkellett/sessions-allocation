@@ -3,13 +3,13 @@ import {connect} from 'react-redux';
 import {withRouter, Redirect} from 'react-router-dom';
 import { constructAuthState } from '../../store/constructors/auth';
 import { updateState, forSubmit } from '../utility';
-import {checkValidity} from '../../validation/validation';
 import {formatInput} from '../../validation/utility';
 import * as actions from '../../store/actions/auth/auth';
 import * as routes from '../../store/app-data/routes';
 import { Section } from '../../components';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import Login from './components/Login/Login';
+import { Logo } from '../../components';
 
 class Auth extends Component {
   constructor(props){
@@ -37,12 +37,8 @@ class Auth extends Component {
   }
 
   handlers = {
-    change: (event, id) => {
-      const {value} = event.target;
-      const type = Object.keys({...this.state})[0];
-      const update = updateState(this.state, id, {value: formatInput(value, id)}, type);
-      update[type][id].validation = checkValidity({...update[type][id]});
-      this.setState(update);
+    change: (e, id) => {
+      this.setState(updateState(this.state, id, {value: formatInput(e.target.value, id)}, 'login'));
       this.props.clearErrors();
     },
   
@@ -50,6 +46,13 @@ class Auth extends Component {
       event.preventDefault();
       const user = forSubmit({...this.state.login});
       this.props.authUser(Object.assign({...user}, {returnSecureToken: true}));
+      this.setState((prev) => ({
+        login: { 
+          ...prev.login, 
+          email: { ...prev.login.email, value: '' },
+          password: { ...prev.login.password, value: '' },
+        }
+      }))
     },
 
     clear: (e) => {
@@ -68,6 +71,7 @@ class Auth extends Component {
     else
       return (
         <Section overlay={false}>
+          <Logo />
           <ErrorMessage error={error} />
           <Login login={login} handlers={this.handlers} />
         </Section>
