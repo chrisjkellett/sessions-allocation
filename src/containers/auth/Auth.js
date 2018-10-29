@@ -51,14 +51,16 @@ class Auth extends Component{
     else
       return (
         <Section overlay={false}>
+        <div className={classes.ErrorWrapper}>
+              {error && 
+                  <div className={classes.Error}>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>{formatError(error)}</span>
+                  </div>
+              }
+            </div>
           <div className={classes.Login}>
             <div className={classes.Wrapper}>
-              {error && 
-                <div className={classes.Error}>
-                  <i class="fas fa-exclamation-triangle"></i>
-                  <span>{formatError(error)}</span>
-                </div>
-              }
               <form onSubmit={submit}>
               {generateFormElementArray(login)
                   .map(element =>{
