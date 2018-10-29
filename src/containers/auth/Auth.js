@@ -7,14 +7,26 @@ import {checkValidity} from '../../validation/validation';
 import {formatInput} from '../../validation/utility';
 import * as actions from '../../store/actions/auth/auth';
 import * as routes from '../../store/app-data/routes';
-import { Section, Input } from '../../components';
-import { generateFormElementArray } from '../utility';
-import { generateInputProps, formatError } from './utility';
-import classes from './Auth.css';
+import { Section } from '../../components';
+import ErrorMessage from './components/ErrorMessage/ErrorMessage';
+import Login from './components/Login/Login';
 
-class Auth extends Component{
+class Auth extends Component {
+  constructor(props){
+    super(props);
+    this.handlers.clear = this.handlers.clear.bind(this);
+  }
+
   state = {
     login: constructAuthState()
+  }
+
+  componentDidMount(){
+    document.addEventListener("keydown", this.handlers.clear, false);
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.handlers.clear, false);
   }
 
   componentDidUpdate(){
@@ -38,39 +50,26 @@ class Auth extends Component{
       event.preventDefault();
       const user = forSubmit({...this.state.login});
       this.props.authUser(Object.assign({...user}, {returnSecureToken: true}));
+    },
+
+    clear: (e) => {
+      if(e.keyCode === 27) {
+        this.props.clearErrors();
+      }
     }
   }
   
 
   render(){
     const { isUser, error } = this.props;
-    const { submit, change } = this.handlers;
     const { login } = this.state;
     if(isUser)
       return <Redirect to={routes.SESSIONS} />;
     else
       return (
         <Section overlay={false}>
-        <div className={classes.ErrorWrapper}>
-              {error && 
-                  <div className={classes.Error}>
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span>{formatError(error)}</span>
-                  </div>
-              }
-            </div>
-          <div className={classes.Login}>
-            <div className={classes.Wrapper}>
-              <form onSubmit={submit}>
-              {generateFormElementArray(login)
-                  .map(element =>{
-                    return <Input {...generateInputProps(element, login, change)} />
-                  }
-                )}
-                <button>login</button>
-              </form>
-            </div>
-          </div>
+          <ErrorMessage error={error} />
+          <Login login={login} handlers={this.handlers} />
         </Section>
       );
     

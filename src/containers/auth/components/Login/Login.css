@@ -16,20 +16,3 @@
   margin: 50px;
 }
 
-.ErrorWrapper {
-  margin-top: 100px;
-  height: 25px;
-  display: flex;
-  justify-content: center;
-}
-
-.Error {
-  border: 1px solid grey;
-  display: inline-block;
-  padding: 0 10px;
-  background: pink;
-}
-
-.Error i{
-  margin-right: 5px;
-}
