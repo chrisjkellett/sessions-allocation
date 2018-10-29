@@ -7,15 +7,14 @@ import {checkValidity} from '../../validation/validation';
 import {formatInput} from '../../validation/utility';
 import * as actions from '../../store/actions/auth/auth';
 import * as routes from '../../store/app-data/routes';
-import { Section, Input, Logo } from '../../components';
+import { Section, Input } from '../../components';
 import { generateFormElementArray } from '../utility';
 import { generateInputProps } from './utility';
 import classes from './Auth.css';
 
 class Auth extends Component{
   state = {
-    login: constructAuthState(),
-    showErrors: true
+    login: constructAuthState()
   }
 
   handlers = {
@@ -29,11 +28,8 @@ class Auth extends Component{
   
     submit: (event) => {
       event.preventDefault();
-      const {authUser, examiners} = this.props;
       const user = forSubmit({...this.state.login});
-      const regularUser = examiners.find(ex => ex.email === user.email && user.password === 'test');
-      authUser(Object.assign({...user}, {returnSecureToken: true}), regularUser);
-      this.setState({...this.state, showErrors: true})
+      this.props.authUser(Object.assign({...user}, {returnSecureToken: true}));
     }
   }
   
@@ -46,7 +42,7 @@ class Auth extends Component{
       return <Redirect to={routes.SESSIONS} />;
     else
       return (
-        <Section>
+        <Section overlay={false}>
           <div className={classes.Login}>
             <form onSubmit={submit}>
             {generateFormElementArray(login)
