@@ -9,16 +9,16 @@ const initial = {
 const reducer = (state = initial, action) => {
   switch(action.type){
     case actionTypes.AUTH_USER_SUCCESS: 
-      return {...state, session_user: action.email, token: action.token};
-
-    case actionTypes.AUTH_REGULAR_USER_SUCCESS:
-      return {...state, session_user: action.user.name, token: localStorage.getItem('token')}
+      return { ...state, session_user: action.email, token: action.token };
 
     case actionTypes.AUTH_USER_FAIL:
-      return {...state, error: action.error}
+      return { ...state, error: action.error }
 
     case actionTypes.AUTH_LOGOUT: 
-      return {...initial};
+      return { ...initial };
+
+    case actionTypes.CLEAR_ERRORS:
+      return { ...state, error: false }
 
     default:
       return state;  

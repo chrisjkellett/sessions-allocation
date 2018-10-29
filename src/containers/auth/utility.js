@@ -11,3 +11,12 @@ export const generateInputProps = (element, state, inputHandler) => {
     change: (event) => inputHandler(event, element.id)
   }
 }
+
+export const formatError = (error) => {
+  switch(error){
+    case 'INVALID_EMAIL':
+      return 'invalid username and password combination';
+    default:
+      return error;
+  }
+}

@@ -3,15 +3,9 @@ import axios from 'axios';
 import {AUTH_API} from '../../data';
 import {setStorage, deleteStorage, getStorage, checkTokenValidity} from './utility';
 
-export const authUserStart = () => {
-  return {
-    type: actionTypes.AUTH_USER_START
-  }
-}
 
-export const authUser = (user, regUser) => {
+export const authUser = (user) => {
   return dispatch => {
-    dispatch(authUserStart());
     axios.post(AUTH_API, user)
       .then(res => {
         setStorage(res.data, null);
@@ -24,17 +18,6 @@ export const authUser = (user, regUser) => {
   }
 }
 
-// export const authRegularUser = (user, error) => {
-//   return dispatch => {
-//     if(user){
-//       setStorage({idToken: '9999', expiresIn: 3600, email: null}, user.name);
-//       dispatch(authRegularUserSuccess(user))
-//       dispatch(fetchExaminer(user))
-//     }else 
-//       dispatch(authFail(error))
-//   }
-// }
-
 export const checkAuthState = () => {
   return dispatch => {
     const cache = getStorage();
@@ -46,10 +29,8 @@ export const checkAuthState = () => {
       const validToken = checkTokenValidity(cache);
       if(validToken && cache.token !== '9999'){
         dispatch(authUserSuccess(Object.assign({}, {email: cache.email, idToken: cache.token})))
-        dispatch(checkAuthTimeout((new Date(cache.expiration).getTime() - new Date().getTime())/ 1000))
-      }else if(validToken)
-        dispatch(authRegularUserSuccess(Object.assign({}, {name: cache.name})));
-      else
+        dispatch(checkAuthTimeout((new Date(cache.expiration).getTime() - new Date().getTime())/ 1000));
+      }else
         dispatch(logout());
     }
   }
@@ -63,17 +44,10 @@ export const authUserSuccess = ({email, idToken}) => {
   }
 }
 
-export const authRegularUserSuccess = (user) => {
-  return {
-    type: actionTypes.AUTH_REGULAR_USER_SUCCESS,
-    user: user
-  }
-}
-
 export const authFail = (error) => {
   return {
     type: actionTypes.AUTH_USER_FAIL,
-    error: error
+    error: error.response.data.error.message
   }
 }
 
@@ -89,5 +63,11 @@ export const logout = () => {
   deleteStorage();
   return {
     type: actionTypes.AUTH_LOGOUT
+  }
+}
+
+export const clearErrors = () => {
+  return {
+    type: actionTypes.CLEAR_ERRORS,
   }
 }

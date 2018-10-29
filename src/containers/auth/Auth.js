@@ -9,12 +9,19 @@ import * as actions from '../../store/actions/auth/auth';
 import * as routes from '../../store/app-data/routes';
 import { Section, Input } from '../../components';
 import { generateFormElementArray } from '../utility';
-import { generateInputProps } from './utility';
+import { generateInputProps, formatError } from './utility';
 import classes from './Auth.css';
 
 class Auth extends Component{
   state = {
     login: constructAuthState()
+  }
+
+  componentDidUpdate(){
+    const { error } = this.props;
+    if(error){
+      document.getElementById('$email').focus();
+    }
   }
 
   handlers = {
@@ -23,7 +30,8 @@ class Auth extends Component{
       const type = Object.keys({...this.state})[0];
       const update = updateState(this.state, id, {value: formatInput(value, id)}, type);
       update[type][id].validation = checkValidity({...update[type][id]});
-      this.setState({...update, showErrors: false});
+      this.setState(update);
+      this.props.clearErrors();
     },
   
     submit: (event) => {
@@ -35,7 +43,7 @@ class Auth extends Component{
   
 
   render(){
-    const {isUser} = this.props;
+    const { isUser, error } = this.props;
     const { submit, change } = this.handlers;
     const { login } = this.state;
     if(isUser)
@@ -44,14 +52,22 @@ class Auth extends Component{
       return (
         <Section overlay={false}>
           <div className={classes.Login}>
-            <form onSubmit={submit}>
-            {generateFormElementArray(login)
-                .map(element =>{
-                  return <Input {...generateInputProps(element, login, change)} />
-                }
-              )}
-              <button>login</button>
-            </form>
+            <div className={classes.Wrapper}>
+              {error && 
+                <div className={classes.Error}>
+                  <i class="fas fa-exclamation-triangle"></i>
+                  <span>{formatError(error)}</span>
+                </div>
+              }
+              <form onSubmit={submit}>
+              {generateFormElementArray(login)
+                  .map(element =>{
+                    return <Input {...generateInputProps(element, login, change)} />
+                  }
+                )}
+                <button>login</button>
+              </form>
+            </div>
           </div>
         </Section>
       );
@@ -70,7 +86,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    authUser: (user, regularUser) => dispatch(actions.authUser(user, regularUser))
+    authUser: (user) => dispatch(actions.authUser(user)),
+    clearErrors: () => dispatch(actions.clearErrors()),
   }
   
 }
