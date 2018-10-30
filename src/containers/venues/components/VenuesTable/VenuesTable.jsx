@@ -7,13 +7,13 @@ class VenuesTable extends Component {
   }
 
   render(){
-    const { data, filtered, handlers, isConfirming } = this.props;
+    const { data, filtered, handlers, isConfirming, activeFilter } = this.props;
     const venues = filtered === null ? data : filtered;
     const labels = ([
-      data.length !== 0 && <Filter label='name' filter={handlers.filter} />, 
+      data.length !== 0 && <Filter label='name' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
       null,
       data.length !== 0 && 'contact', 
-      data.length !== 0 && <Filter label='type' filter={handlers.filter} />, 
+      data.length !== 0 && <Filter label='type' filter={handlers.filter} value={!activeFilter ? '' : undefined} />, 
       null
     ]);
   

@@ -20,7 +20,8 @@ class Venues extends Component{
     venue: constructVenuesState(),
     shouldValidate: false,
     showForm: false,
-    isConfirming: false
+    isConfirming: false,
+    activeFilter: false,
   }
 
   componentDidMount(){
@@ -91,7 +92,13 @@ class Venues extends Component{
     },
 
     filter: ({ target: {value, id}}) => {
-      this.props.filterVenue(value, id);
+      this.setState({ activeFilter: value.trim() !== '' ? true : false })
+      this.props.filterVenue(value.trim(), id);
+    },
+
+    removeFilters: () => {
+      this.setState({ activeFilter: false });
+      this.props.clearFilters();
     },
 
     fetchRecord: (selected) => {
@@ -105,7 +112,6 @@ class Venues extends Component{
 
     escapeAll: (e) => {
       if(e.keyCode === 27) {
-        // this.state.showSingleView && this.handlers.closeSingleView();
         this.state.showForm && this.handlers.cancel();
         // this.props.filteredVenues !== null && this.handlers.removeFilters();
       }
@@ -117,13 +123,19 @@ class Venues extends Component{
   }
 
   render(){
-    const { venue, shouldValidate, showForm, isConfirming } = this.state;
+    const { venue, shouldValidate, showForm, isConfirming, activeFilter } = this.state;
     const { venues, selectedVenue, filtered } = this.props;
     const { clearSelectedVenue } = this.props;
     const { handlers } = this;
     return (
        <Section overlay={showForm}>
-          <VenuesTable data={venues} filtered={filtered} handlers={handlers} isConfirming={isConfirming} showForm={showForm} />
+          <VenuesTable 
+            data={venues} 
+            activeFilter={activeFilter}
+            filtered={filtered} 
+            handlers={handlers} 
+            isConfirming={isConfirming} 
+            showForm={showForm} />
           <BtnPanelFixed hidden={showForm}>
             <Btn handler={this.handlers.add} label={'add new venue'} />
           </BtnPanelFixed>
