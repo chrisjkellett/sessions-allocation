@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './UpdateLog.css';
-import { getLogData } from '../../renders/utility';
+import { getLogData } from '../utility';
 
 const UpdateLog = ({update, map}) => {
   const data = getLogData(map, update);

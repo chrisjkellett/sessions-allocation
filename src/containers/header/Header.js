@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import classes from './Header.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as navElements from './renders/';
 import { refreshLog } from '../../store/actions/general/general';
 import { logout } from '../../store/actions/auth/auth';
 import { Link } from '../../components';
 import * as routes from '../../store/app-data/routes';
 import Logout from './components/Logout/Logout';
 import UpdateLog from './components/UpdateLog/UpdateLog';
+import ErrorLog from './components/ErrorLog/ErrorLog';
 
 class Header extends Component{
   componentWillReceiveProps(next){
@@ -36,8 +36,12 @@ class Header extends Component{
           <Link route={routes.VENUES} isAuthenticated={isAuthenticated}/>
           <Logout logout={this.logoutHandler}/>
         </ul>
-        {updatedLog && <UpdateLog update={updatedLog} map={mapOfLog} />}
-        {error && !serverError && navElements.renderErrorLog(error, mapOfLog)}
+        {updatedLog && 
+          <UpdateLog update={updatedLog} map={mapOfLog} />
+        }
+        {error && !serverError && 
+          <ErrorLog error={error} map={mapOfLog} />
+        }
       </div>
     )
   }

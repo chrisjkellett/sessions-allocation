@@ -54,7 +54,7 @@ export const updateExaminer = (examiner, id, token) => {
       })
       .catch(error => {
         dispatch(actionFailure());
-        dispatch(logError(error, {type: 'examiner', action: 'edit'}));
+        dispatch(logError(error, {type: 'examiner', action: 'updating'}));
       })
   }
 }
@@ -77,7 +77,7 @@ export const deleteExaminer = (examiner, token) => {
       })
       .catch(error => {
         dispatch(actionFailure());
-        dispatch(logError(error, {type: 'examiner', action: 'delete'}));
+        dispatch(logError(error, {type: 'examiner', action: 'deleting'}));
       })
   }
 }

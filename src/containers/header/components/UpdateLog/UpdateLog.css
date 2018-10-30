@@ -11,6 +11,10 @@
   text-align: center;
 }
 
+.UpdateAlert i{
+  margin-right: 5px;
+}
+
 .Message{
   display: inline-block;
 }

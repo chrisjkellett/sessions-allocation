@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../../axios';
-import { logResponse, logError } from '../general/general';
+import { logResponse, logError, logServerError } from '../general/general';
 
 export const addVenue = (venue, token) => {
   return dispatch => {
@@ -10,7 +10,7 @@ export const addVenue = (venue, token) => {
         dispatch(logResponse(venue, {type: 'venues', action: 'added'}));
       })
       .catch(error => {
-        dispatch(logError(error, {type: 'venues', action: 'added'}));
+        dispatch(logError(error, {type: 'venues', action: 'adding'}));
       })
   }
 };
@@ -31,7 +31,7 @@ export const loadVenues = () => {
         dispatch(loadVenuesSuccess(response.data));
       })
       .catch(error => {
-        dispatch(logError(error, {type: 'venues', action: 'load'}))
+        dispatch(logServerError(error, {type: 'venues', action: 'loading'}));
       })
   }
 };
@@ -51,7 +51,7 @@ export const deleteVenue = (venue, token) => {
         dispatch(logResponse(venue, {type: 'venue', action: 'deleted'}));
       })
       .catch(error => {
-        dispatch(logError(error, {type: 'session', action: 'delete'}));
+        dispatch(logError(error, {type: 'session', action: 'deleting'}));
       })
   }
 };
@@ -71,7 +71,7 @@ export const updateVenue = (venue, id, token) => {
         dispatch(logResponse(venue, {type: 'venue', action: 'updated'}));
       })
       .catch(error => {
-        dispatch(logError(error, {type: 'venue', action: 'update'}));
+        dispatch(logError(error, {type: 'venue', action: 'updating'}));
       })
   }
 };

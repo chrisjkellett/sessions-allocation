@@ -32,7 +32,7 @@ export const addSession = (sessions, session, token) => {
     axios.post('/sessions.json?auth=' + token, session)
       .then(response => {
         dispatch(addSessionSuccess(session, response.data.name));
-        dispatch(logResponse(session, {type: 'session', action: 'adding'}));
+        dispatch(logResponse(session, {type: 'session', action: 'added'}));
         dispatch(updatePeriods(sessions.concat({...session, id: response.data.name})));
       })
       .catch(error => {
@@ -55,7 +55,7 @@ export const deleteSession = (sessions, session, token) => {
       .then(() => {
         const filtered = sessions.filter(s => s.id !== session.id);
         dispatch(deleteSessionSuccess(filtered));
-        dispatch(logResponse(session, {type: 'session', action: 'deleting'}));
+        dispatch(logResponse(session, {type: 'session', action: 'deleted'}));
         dispatch(updatePeriods(filtered));
       })
       .catch(error => {
@@ -77,7 +77,7 @@ export const updateSession = (sessions, session, id, token) => {
       .then(() => {
         const updated = sessions.filter(s => s.id !== id).concat({...session, id: id});
         dispatch(updateSessionSuccess(updated));
-        dispatch(logResponse(session, {type: 'session', action: 'updating'}));
+        dispatch(logResponse(session, {type: 'session', action: 'updated'}));
         dispatch(updatePeriods(updated));
       })
       .catch(error => {
