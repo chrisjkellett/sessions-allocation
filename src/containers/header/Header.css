@@ -51,13 +51,12 @@
 
 .ErrorAlert{
   position: absolute;
-  font-size: 90%;
   top: 7px;
-  right: 7px;
+  right: 17px;
   z-index: 5;
-  padding: 2px 10px;
+  padding: 0 10px;
   border: 1px solid grey;
-  background:#ff777d;
+  background:pink;
   min-width: 300px;
   text-align: center;
   /* animation: fadeOut 5s forwards; */

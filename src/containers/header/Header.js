@@ -23,7 +23,7 @@ class Header extends Component{
   }
 
   render(){
-    const {updatedLog, mapOfLog, error, user, isAuthenticated} = this.props;
+    const {updatedLog, mapOfLog, error, serverError, user, isAuthenticated} = this.props;
     return(
       <div className={classes.Header}>
         <ul>
@@ -33,7 +33,7 @@ class Header extends Component{
           {navElements.renderLogout(this.logoutHandler, user, isAuthenticated)}
         </ul>
         {updatedLog && navElements.renderUpdateLog(updatedLog, mapOfLog)}
-        {error && navElements.renderErrorLog(error, mapOfLog)}
+        {error && !serverError && navElements.renderErrorLog(error, mapOfLog)}
       </div>
     )
   }
@@ -46,6 +46,7 @@ const mapStateToProps = state => {
     updatedLog: state.gen.updated,
     mapOfLog: state.gen.map,
     error: state.gen.error,
+    serverError: state.gen.serverError,
     isAuthenticated: state.auth.token !== null && state.auth.token !== '9999'
   }
 }

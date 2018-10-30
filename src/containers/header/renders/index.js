@@ -55,11 +55,14 @@ export const renderUpdateLog = (update, {type, action}) => {
   );
 }
 
-export const renderErrorLog = ({error, mapOfLog}) => {  
+export const renderErrorLog = (error, mapOfLog) => {  
   return (
     <div className={classes.ErrorAlert}>
-      <i className="fas fa-exclamation-circle"></i>
-      <span className={classes.Action}>{formatError(error, mapOfLog)}</span>
+      <i className="fas fa-exclamation-triangle"></i>
+      <span className={classes.Action}>
+        <span>error {mapOfLog.action} {mapOfLog.type} - </span>
+        <span>{formatError(error, mapOfLog)}</span>
+      </span>
     </div>
   );
 }

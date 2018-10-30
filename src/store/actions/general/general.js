@@ -11,7 +11,7 @@ export const logResponse = (response, map) => {
 export const logError = (error, map) => {
   return {
     type: actionTypes.LOG_ERROR,
-    errorMessage: error,
+    errorMessage: error.response ? error.response.data.error.message : 'SERVER_ERROR',
     map: map
   }
 }

@@ -22,10 +22,8 @@ export const getLogData = (type, update) => {
 
 export const formatError = (error) => {
   switch (error) {
-    case 'EMAIL_EXISTS':
-      return 'account already exists with this email'
-    case undefined:
-      return 
+    case 'SERVER_ERROR':
+      return 'connection to internet has been lost'
     default:
       return error;
   }

@@ -32,11 +32,11 @@ export const addSession = (sessions, session, token) => {
     axios.post('/sessions.json?auth=' + token, session)
       .then(response => {
         dispatch(addSessionSuccess(session, response.data.name));
-        dispatch(logResponse(session, {type: 'session', action: 'added'}));
+        dispatch(logResponse(session, {type: 'session', action: 'adding'}));
         dispatch(updatePeriods(sessions.concat({...session, id: response.data.name})));
       })
       .catch(error => {
-        dispatch(logError(error, {type: 'session', action: 'added'}));
+        dispatch(logError(error, {type: 'session', action: 'adding'}));
       })
   }
 }
@@ -55,11 +55,11 @@ export const deleteSession = (sessions, session, token) => {
       .then(() => {
         const filtered = sessions.filter(s => s.id !== session.id);
         dispatch(deleteSessionSuccess(filtered));
-        dispatch(logResponse(session, {type: 'session', action: 'deleted'}));
+        dispatch(logResponse(session, {type: 'session', action: 'deleting'}));
         dispatch(updatePeriods(filtered));
       })
       .catch(error => {
-        dispatch(logError(error, {type: 'session', action: 'delete'}));
+        dispatch(logError(error, {type: 'session', action: 'deleting'}));
       })
   }
 }
@@ -77,11 +77,11 @@ export const updateSession = (sessions, session, id, token) => {
       .then(() => {
         const updated = sessions.filter(s => s.id !== id).concat({...session, id: id});
         dispatch(updateSessionSuccess(updated));
-        dispatch(logResponse(session, {type: 'session', action: 'updated'}));
+        dispatch(logResponse(session, {type: 'session', action: 'updating'}));
         dispatch(updatePeriods(updated));
       })
       .catch(error => {
-        dispatch(logError(error, {type: 'session', action: 'update'}));
+        dispatch(logError(error, {type: 'session', action: 'updating'}));
       })
   }
 }
@@ -107,7 +107,7 @@ export const clearSelectedSession = () => {
   }
 }
 
-export const filterSessions = (period, sessions) => {
+export const filterSessions = (period) => {
   return {
     type: actionTypes.FILTER_SESSIONS,
     period: period
