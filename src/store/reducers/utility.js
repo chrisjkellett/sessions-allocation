@@ -86,7 +86,7 @@ export const checkExaminerOnLoad = ({user, examiners}) => {
 };
 
 export const filterData = (data, { value, filterBy }) => {
-  return value.length === 0 
+  return value.length === 0
   ? null 
   : typeof data[0][filterBy] === 'string' 
     ? filterAsString(data, value, filterBy)

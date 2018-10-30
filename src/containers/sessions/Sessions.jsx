@@ -37,6 +37,7 @@ class Sessions extends Component {
 
   componentWillUnmount(){
     document.removeEventListener("keydown", this.handlers.escapeAll, false);
+    this.props.clearFilters();
   }
 
   componentDidUpdate(){

@@ -34,6 +34,9 @@ const reducer = (state = initial, action) => {
     case actionTypes.FILTER_VENUE:
       return {...state, filteredVenues: filterData(state.venues, action)};
 
+    case actionTypes.CLEAR_FILTERS:
+      return { ...state, filteredVenues: null }
+
     default:
       return state;  
   }

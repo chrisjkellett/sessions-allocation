@@ -32,6 +32,7 @@ class Examiners extends Component {
 
   componentWillUnmount(){
     document.removeEventListener("keydown", this.handlers.escapeAll, false);
+    this.props.clearFilters();
   }
 
   handlers = {

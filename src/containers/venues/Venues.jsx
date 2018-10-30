@@ -29,6 +29,7 @@ class Venues extends Component{
 
   componentWillUnmount(){
     document.removeEventListener("keydown", this.handlers.escapeAll, false);
+    this.props.clearFilters();
   }
 
   handlers = {
@@ -156,6 +157,7 @@ const mapDispatchToProps = dispatch => {
     fetchVenue: (id) => dispatch(actions.fetchVenue(id)),
     clearSelectedVenue: () => dispatch(actions.clearSelectedVenue()),
     filterVenue: (value, filterBy) => dispatch(actions.filterVenue(value, filterBy)),
+    clearFilters: () => dispatch(actions.clearFilters()),
   }
 }
 
