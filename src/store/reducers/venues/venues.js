@@ -1,5 +1,5 @@
 import * as actionTypes from '../../actions/venues/actionTypes';
-import { objectToArray , filterData} from '../utility';
+import { filterData } from '../utility';
 import { sortByName } from './utility';
 
 const initial = {

@@ -37,14 +37,7 @@ class App extends Component {
     tabViewer: (e) => {
       const arr = [routes.SESSIONS, routes.EXAMINERS, routes.VENUES];
       const {hasFormActive, isAuthenticated } = this.props;
-      if(isAuthenticated && !hasFormActive && e.keyCode === 9 && e.ctrlKey) {
-        e.preventDefault();
-        const index = arr.indexOf(this.props.location.pathname);
-        index - 1 < 0
-        ? this.props.history.push(arr[arr.length - 1])
-        : this.props.history.push(arr[index - 1]);
-      }
-      else if(isAuthenticated && !hasFormActive && e.keyCode === 9) {
+      if(isAuthenticated && !hasFormActive && e.keyCode === 9 && e.shiftKey) {
         e.preventDefault();
         const index = arr.indexOf(this.props.location.pathname);
         index + 1 !== arr.length 
