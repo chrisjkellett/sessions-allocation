@@ -8,6 +8,7 @@ import { logout } from '../../store/actions/auth/auth';
 import { Link } from '../../components';
 import * as routes from '../../store/app-data/routes';
 import Logout from './components/Logout/Logout';
+import UpdateLog from './components/UpdateLog/UpdateLog';
 
 class Header extends Component{
   componentWillReceiveProps(next){
@@ -35,7 +36,7 @@ class Header extends Component{
           <Link route={routes.VENUES} isAuthenticated={isAuthenticated}/>
           <Logout logout={this.logoutHandler}/>
         </ul>
-        {updatedLog && navElements.renderUpdateLog(updatedLog, mapOfLog)}
+        {updatedLog && <UpdateLog update={updatedLog} map={mapOfLog} />}
         {error && !serverError && navElements.renderErrorLog(error, mapOfLog)}
       </div>
     )

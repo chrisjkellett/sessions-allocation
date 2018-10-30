@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export const getLogData = (type, update) => {
+export const getLogData = ({type}, update) => {
   switch (type){
     case 'session':
       return{
