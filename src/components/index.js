@@ -29,6 +29,7 @@ import Label from './Wrappers/SingleView/Label/Label';
 import Counter from './Counter/Counter';
 import Logo from './Logo/Logo';
 import Link from './Link/Link';
+import Wrapper from './Misc/Wrapper/Wrapper';
 
 export {
   SubTd, Td, TdIcons, TdIconsForTime, TdDate, Tr, Table, TdExaminer,
@@ -43,5 +44,6 @@ export {
   Label,
   Counter,
   Logo,
-  Link
+  Link,
+  Wrapper,
 }

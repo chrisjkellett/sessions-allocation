@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import classes from './App.css';
 import { Route, withRouter, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from '../header/Header';
@@ -7,18 +6,22 @@ import Auth from '../auth/Auth';
 import Sessions from '../sessions/Sessions';
 import Examiners from '../examiners/Examiners';
 import Venues from '../venues/Venues.jsx';
-import Wrapper from '../../components/Misc/Wrapper/Wrapper';
+import { Wrapper, AsyncLoad, Section } from '../../components';
 import { loadExaminers } from '../../store/actions/examiners/examiners';
 import { loadSessions } from '../../store/actions/sessions/sessions';
 import { checkAuthState } from '../../store/actions/auth/auth';
 import * as venueActions from '../../store/actions/venues/venues';
 import * as routes from '../../store/app-data/routes';
-import AsyncLoad from '../../components/AsyncLoad/AsyncLoad';
+import Help from '../help/Help';
 
 class App extends Component {
   constructor(props){
     super(props);
     this.handlers.tabViewer = this.handlers.tabViewer.bind(this);
+  }
+
+  state = {
+    showHelp: false,
   }
 
   componentDidMount(){
@@ -44,15 +47,31 @@ class App extends Component {
         ? this.props.history.push(arr[index + 1]) 
         : this.props.history.push(arr[0]); 
       }
+      else if(e.keyCode === 112) {
+        e.preventDefault();
+        this.setState(prev => ({
+          showHelp: prev.showHelp ? false : true
+        }))
+      }
+      else if(e.keyCode === 27) {
+        e.preventDefault();
+        this.setState({
+          showHelp:  false
+        })
+      }
     }
   }
 
   render() {
     const {isAuthenticated, examiners, periods, sessions, error} = this.props;
+    const { showHelp } = this.state;
     return (
       <Wrapper>
         <Switch>
-          <Route path={routes.LOGIN_PAGE} exact component={Auth} />
+          <Section overlay={showHelp}>
+            <Help show={showHelp} />
+            <Route path={routes.LOGIN_PAGE} exact component={Auth} />
+          </Section>
         </Switch>
 
         <Route path='/(.+)' render={() => (
@@ -61,7 +80,7 @@ class App extends Component {
               <Header />
               <AsyncLoad waitFor={examiners} error={error}>
               <AsyncLoad waitFor={sessions} error={error}>
-                <section className={classes.Section}>
+                <Section overlay={showHelp}>
                   <Switch>
                     {isAuthenticated && <Route path={routes.EXAMINERS} exact component={Examiners} />}
                     {isAuthenticated && <Route path={routes.VENUES} exact component={Venues} />}
@@ -69,7 +88,7 @@ class App extends Component {
                       {isAuthenticated && <Route path={routes.SESSIONS} exact component={Sessions} /> }
                     </AsyncLoad>
                   </Switch>
-                </section>
+                </Section>
               </AsyncLoad>
               </AsyncLoad>
             </Wrapper>

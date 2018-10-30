@@ -1,9 +1,9 @@
-.FormContainer {
+.HelpContainer {
   display: flex;
   justify-content: center;
 }
 
-.Form {
+.Help {
   display: inline-block;
   border: 1px solid #bdbdbd;
   padding: 10px 30px 30px 30px;
@@ -14,10 +14,4 @@
   top: 50px;
   z-index: 4;
   box-sizing: border-box;
-}
-
-.ExtraLarge {
-  width: 97%;
-  margin: 0;
-  border-right: 0;
 }

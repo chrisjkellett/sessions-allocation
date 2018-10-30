@@ -3,7 +3,7 @@
   height: 100vh;
   background: rgba(100, 100, 100, 0.6);
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   overflow: hidden;
   margin-bottom: -40px;
 }
