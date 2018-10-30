@@ -1,5 +1,5 @@
 .Table {
-  padding: 0 5px;
+  padding: 0;
 }
 
 .LimitedTable {
@@ -10,7 +10,7 @@
 }
 
 .RowHeader th{
-  padding-top: 20px;
+  padding: 20px 5px 0 5px;
   height: 25px;
   border-bottom: 1px solid darkgrey;
   font-weight: initial;
