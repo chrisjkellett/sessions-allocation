@@ -7,6 +7,7 @@ import { refreshLog } from '../../store/actions/general/general';
 import { logout } from '../../store/actions/auth/auth';
 import { Link } from '../../components';
 import * as routes from '../../store/app-data/routes';
+import Logout from './components/Logout/Logout';
 
 class Header extends Component{
   componentWillReceiveProps(next){
@@ -25,14 +26,14 @@ class Header extends Component{
   }
 
   render(){
-    const {updatedLog, mapOfLog, error, serverError, user, isAuthenticated} = this.props;
+    const {updatedLog, mapOfLog, error, serverError, isAuthenticated} = this.props;
     return(
       <div className={classes.Header}>
         <ul>
           <Link route={routes.SESSIONS} isAuthenticated={isAuthenticated}/>
           <Link route={routes.EXAMINERS} isAuthenticated={isAuthenticated}/>
           <Link route={routes.VENUES} isAuthenticated={isAuthenticated}/>
-          {navElements.renderLogout(this.logoutHandler, user, isAuthenticated)}
+          <Logout logout={this.logoutHandler}/>
         </ul>
         {updatedLog && navElements.renderUpdateLog(updatedLog, mapOfLog)}
         {error && !serverError && navElements.renderErrorLog(error, mapOfLog)}

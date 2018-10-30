@@ -1,0 +1,13 @@
+.RightMenu {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.ActiveLink{
+  color: #0000EE;
+  cursor: pointer;
+}
+
+.ActiveLink:hover{
+  color: grey;
+}
