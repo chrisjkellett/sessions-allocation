@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import classes from './Header.css';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import * as navElements from './renders/';
 import { refreshLog } from '../../store/actions/general/general';
-import {logout} from '../../store/actions/auth/auth';
+import { logout } from '../../store/actions/auth/auth';
+import { Link } from '../../components';
+import * as routes from '../../store/app-data/routes';
 
 class Header extends Component{
   componentWillReceiveProps(next){
@@ -27,9 +29,9 @@ class Header extends Component{
     return(
       <div className={classes.Header}>
         <ul>
-          {navElements.renderSessionViewLink()}
-          {isAuthenticated && navElements.renderExaminerViewLink()}
-          {isAuthenticated && navElements.renderVenuesLink()}
+          <Link route={routes.SESSIONS} isAuthenticated={isAuthenticated}/>
+          <Link route={routes.EXAMINERS} isAuthenticated={isAuthenticated}/>
+          <Link route={routes.VENUES} isAuthenticated={isAuthenticated}/>
           {navElements.renderLogout(this.logoutHandler, user, isAuthenticated)}
         </ul>
         {updatedLog && navElements.renderUpdateLog(updatedLog, mapOfLog)}

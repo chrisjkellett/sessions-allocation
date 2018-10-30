@@ -28,6 +28,7 @@ import SingleItemAvail from './Wrappers/SingleView/SingleItem/SingleItemAvail';
 import Label from './Wrappers/SingleView/Label/Label';
 import Counter from './Counter/Counter';
 import Logo from './Logo/Logo';
+import Link from './Link/Link';
 
 export {
   SubTd, Td, TdIcons, TdIconsForTime, TdDate, Tr, Table, TdExaminer,
@@ -41,5 +42,6 @@ export {
   SingleView, SingleItem, SingleItemForObject, SingleItemForExaminer, SingleItemAvail,
   Label,
   Counter,
-  Logo
+  Logo,
+  Link
 }
