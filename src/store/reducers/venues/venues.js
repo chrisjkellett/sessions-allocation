@@ -20,7 +20,8 @@ const reducer = (state = initial, action) => {
       return { ...state, venues: sortByName(state.venues.filter(v => v.id !== action.id).concat(action.venue)) }
     
     case actionTypes.LOAD_VENUE_SUCCESS: 
-      return { ...state, venues: sortByName(objectToArray(action.venues)) };
+      const venues =  Object.keys(action.venues).map(a => ({...action.venues[a], id: a }));
+      return { ...state, venues: sortByName(venues) };
 
     case actionTypes.DELETE_VENUE_SUCCESS:
       return { ...state, venues: state.venues.filter(v => v.id !== action.venue.id) };
