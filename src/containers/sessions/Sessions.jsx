@@ -190,7 +190,7 @@ class Sessions extends Component {
         this.handlers.toggleDateFilter();
       }
 
-      if(e.keyCode === 81 && e.ctrlKey) {
+      if(e.keyCode === 81 && e.shiftKey) {
         e.preventDefault();
         this.handlers.toggleArchive();
       }

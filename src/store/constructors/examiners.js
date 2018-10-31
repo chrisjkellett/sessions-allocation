@@ -1,5 +1,5 @@
 import {
-  roleKeys, levelKeys, availabilityKeys, dayOptions, monthOptions
+  roleKeys, levelKeys, availabilityKeys
 } from '../data';
 
 import {
@@ -31,20 +31,30 @@ export const constructExaminerState = () => {
       validation: constructValidation({...rules.required, ...rules.checkEmail})
       },
 
-    date_of_birth: {
-      elementType: 'date',
-      options: {
-        days: dayOptions,
-        months: monthOptions,
-        years: Array.from(new Array(51),(val, index) => index + 1950)
-      },
+    // date_of_birth: {
+    //   elementType: 'date',
+    //   options: {
+    //     days: dayOptions,
+    //     months: monthOptions,
+    //     years: Array.from(new Array(51),(val, index) => index + 1950)
+    //   },
+    //   elementConfig: {
+    //     disabled: false
+    //   },
+    //   value: [1985, monthOptions[0].id, dayOptions[0].id],
+    //   group: 1,
+    //   validation: constructValidation({...rules.checkDate})
+    // },
+
+    phone: {
+      elementType: 'input',
       elementConfig: {
-        disabled: false
+        type: 'text'
       },
-      value: [1985, monthOptions[0].id, dayOptions[0].id],
+      value: '',
       group: 1,
-      validation: constructValidation({...rules.checkDate})
-    },
+      validation: constructValidation({})
+      },
 
     roles: {
       elementType: 'select',

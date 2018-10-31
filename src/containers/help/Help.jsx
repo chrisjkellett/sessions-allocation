@@ -21,6 +21,9 @@ const Help = ({ show }) => {
           <KeyWrapper>
             <Key label={'shift'} /> + <Key label={'n'} /> = add a new record
           </KeyWrapper>
+          <KeyWrapper>
+            <Key label={'shift'} /> + <Key label={'q'} /> = show archived sessions (in sessions view)
+          </KeyWrapper>
         </ul>
       </div>
     </div>

@@ -34,13 +34,40 @@ export const yearOptions = [CURRENTYEAR, CURRENTYEAR + 1];
 //keys
 export const levelKeys = ['YLE', 'KET', 'PET', 'FCE', 'CAE', 'CPE'];
 export const roleKeys = ['Speaking Examiner', 'Supervisor', 'Invigilator', 'Support staff', 'Team Leader'];
-export const availabilityKeys = ['Monday', 'Monday pm', 'Tuesday', 'Tuesday pm', 'Wednesday', 'Wednesday pm', 'Thursday', 'Thursday pm', 'Friday', 'Friday pm', 'Saturday', 'Saturday pm']
+export const availabilityKeys = [
+  'Monday', 'Monday pm', 
+  'Tuesday', 'Tuesday pm', 
+  'Wednesday', 'Wednesday pm', 
+  'Thursday', 'Thursday pm', 
+  'Friday', 'Friday pm', 
+  'Saturday', 'Saturday pm'
+]
 export const sessionTypeKeys = ['Speaking', 'Writing'];
 export const venueKeys = ['Lenguas Vivas', 'Hotel Puerta', 'NH Centre'];
 export const timeKeys = [
   {time: '08:00', am: true}, 
   {time: '08:30', am: true},
   {time: '09:00', am: true}, 
+  {time: '09:30', am: true}, 
+  {time: '10:00', am: true}, 
+  {time: '10:30', am: true}, 
+  {time: '11:00', am: true}, 
+  {time: '11:30', am: true}, 
+  {time: '12:00', am: true}, 
+  {time: '12:30', am: true}, 
+  {time: '13:00', am: true},
+  {time: '13:30', am: true}, 
+  {time: '14:00', am: false},  
+  {time: '14:30', am: false}, 
   {time: '15:00', am: false}, 
-  {time: '15:30', am: false}
+  {time: '15:30', am: false},
+  {time: '16:00', am: false},
+  {time: '16:30', am: false},
+  {time: '17:00', am: false},
+  {time: '17:30', am: false},
+  {time: '18:00', am: false},
+  {time: '18:30', am: false},
+  {time: '19:00', am: false},
+  {time: '19:30', am: false},
+  {time: '20:00', am: false},
 ]

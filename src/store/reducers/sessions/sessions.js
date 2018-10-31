@@ -49,7 +49,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FILTER_SESSIONS_BY_HEADER:
       return { 
         ...state, 
-        filteredSessions: action.sessions || action.value === '' ? filterData(state.sessions, action) : [], 
+        filteredSessions: filterData(state.sessions, action), 
         filterValue: action.value
       }
 

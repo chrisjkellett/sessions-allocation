@@ -43,8 +43,8 @@ const SingleExaminer = ({ examiner, sessions, close }) => {
                     <Tr key={s.id}>
                       <TdDate data={s['session_date']} subContent={[s.type, s.venue, s.time]} isSession />
                       <TdIcons array={s.levels} />
-                      <TdExaminer data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/>
-                      <Td data={s.support.map(e => e.name)} />
+                      {s.examiners ? <TdExaminer data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/> : <td></td>}
+                      {s.support ? <Td data={s.support.map(e => e.name)} /> : <td></td>}
                     </Tr>
                   ))}
                 </Table>
