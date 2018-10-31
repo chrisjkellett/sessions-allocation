@@ -27,7 +27,7 @@ const SingleExaminer = ({ examiner, sessions, close }) => {
         <FlexItem>
           <SingleItem label={labels[0]} data={examiner.name} />
           <SingleItem label={labels[1]} data={examiner.email} />
-          <SingleItem label={'date of birth'} data={examiner['date_of_birth']} isDate shortDate />
+          <SingleItem label={'phone'} data={examiner['phone']} />
           <SingleItem label={labels[2]} data={examiner.roles} array />
           {examiner['id_number'] && <SingleItem label={labels[3]} data={examiner['id_number']} />}
           {examiner['levels'] && <SingleItem label={labels[4]} data={examiner['levels']} icons />}
