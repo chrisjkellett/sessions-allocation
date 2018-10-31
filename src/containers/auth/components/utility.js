@@ -13,12 +13,17 @@ export const generateInputProps = (element, state, inputHandler) => {
 }
 
 export const formatError = (error) => {
+  const inputError = 'invalid username and password combination';
   switch(error){
     case 'INVALID_EMAIL':
-      return 'invalid username and password combination';
+      return inputError;
+    case 'INVALID_PASSWORD':
+      return inputError;
+    case 'MISSING_PASSWORD':
+      return inputError;
     case 'SERVER_ERROR':
       return 'no access to internet - please check your connection and refresh the page';
     default:
-      return error;
+      return error.toLowerCase().replace(/_/g, " ");
   }
 }

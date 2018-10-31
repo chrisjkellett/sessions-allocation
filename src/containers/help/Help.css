@@ -3,6 +3,10 @@
   justify-content: center;
 }
 
+.P {
+  margin: 10px;
+}
+
 .Help {
   display: inline-block;
   border: 1px solid #bdbdbd;
@@ -14,4 +18,5 @@
   top: 50px;
   z-index: 4;
   box-sizing: border-box;
+  width: 98%;
 }

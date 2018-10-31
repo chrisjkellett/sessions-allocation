@@ -30,6 +30,8 @@ import Counter from './Counter/Counter';
 import Logo from './Logo/Logo';
 import Link from './Link/Link';
 import Wrapper from './Misc/Wrapper/Wrapper';
+import Key from './Icons/Key/Key';
+import KeyWrapper from './Icons/KeyWrapper/KeyWrapper';
 
 export {
   SubTd, Td, TdIcons, TdIconsForTime, TdDate, Tr, Table, TdExaminer,
@@ -46,4 +48,5 @@ export {
   Logo,
   Link,
   Wrapper,
+  Key, KeyWrapper,
 }

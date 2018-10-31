@@ -49,7 +49,6 @@ class Auth extends Component {
       this.setState((prev) => ({
         login: { 
           ...prev.login, 
-          email: { ...prev.login.email, value: '' },
           password: { ...prev.login.password, value: '' },
         }
       }))
@@ -71,7 +70,7 @@ class Auth extends Component {
     else
       return (
         <Section overlay={false}>
-          <Logo />
+          <Logo header/>
           <ErrorMessage error={error} />
           <Login login={login} handlers={this.handlers} />
         </Section>

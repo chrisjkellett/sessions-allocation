@@ -115,7 +115,7 @@ class Venues extends Component{
         this.state.showForm && this.handlers.cancel();
         // this.props.filteredVenues !== null && this.handlers.removeFilters();
       }
-      else if(e.keyCode === 78 && e.ctrlKey) {
+      else if(e.keyCode === 78 && e.shiftKey) {
         e.preventDefault();
         !this.state.showForm ? this.handlers.add() : this.handlers.cancel();
       }

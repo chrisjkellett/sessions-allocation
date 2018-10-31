@@ -5,12 +5,22 @@
   border-bottom: #D1D1D1;
 }
 
+.Header {
+  background: rgba(229, 235, 199, 0.6);
+}
+
 .Title {
-  font-size: 160%;
+  font-size: 220%;
   font-family: 'Raleway';
 }
 
 .Title span{
   font-family: 'Roboto';
   padding: 5px;
+}
+
+.Sub {
+  font-size: 50%;
+  font-family: 'Roboto';
+  padding: 0 !important;
 }

@@ -62,5 +62,5 @@ export const selectExaminer = (arr, examiner) => {
 
 export const compareAvailableAndSelected = (available, selected) => {
   const av = available.filter(e => e.available);
-  return selected.filter(e => av.some(ex => ex.name === e.name))
+  return selected ? selected.filter(e => av.some(ex => ex.name === e.name)) : [];
 }

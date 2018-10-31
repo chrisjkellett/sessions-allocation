@@ -37,8 +37,8 @@ class SessionsTable extends Component {
                   handler={() => handlers.openSingleView(s.id)} 
                   archived= {archived}/>
                 <TdIcons array={s.levels} />
-                <TdExaminer data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/>
-                <Td data={s.support.map(s => s.name)} />
+                {s.examiners ? <TdExaminer data={s.examiners} type={s.type} isYLE={s.levels.includes('YLE')}/> : <td></td>}
+                <Td data={s.support && s.support.map(s => s.name)} />
                 <EditDeletePanel handlers={handlers} data={s} isConfirming={isConfirming} />
               </Tr>
           )})}
