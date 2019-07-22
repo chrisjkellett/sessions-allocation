@@ -7,9 +7,7 @@
   padding: 0;
   position: fixed;
   height: 40px;
-  background: rgba(255, 255, 255, 0.98);
   width: 100%;
-  border-bottom: 1px solid lightgrey;
   top: 0;
   display: flex;
   z-index: 3;
