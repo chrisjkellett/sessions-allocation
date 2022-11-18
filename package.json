@@ -30,7 +30,7 @@
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
     "glyphicons-only-bootstrap": "^1.0.1",
-    "html-webpack-plugin": "2.29.0",
+    "html-webpack-plugin": "5.5.0",
     "html2canvas": "^1.0.0-alpha.12",
     "jest": "^24.8.0",
     "jspdf": "^1.4.1",
